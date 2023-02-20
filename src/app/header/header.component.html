@@ -1,7 +1,15 @@
 <div class="background private" *ngIf="isPrivate"><p>Private Header</p>
-    <button (click)="setIsPrivate(false)">change to public</button>
+    
 </div>
 
 <div class="background public" *ngIf="!isPrivate"><p>Public Header</p>
-    <button (click)="setIsPrivate(true)">change to private</button>
+    
+</div>
+
+<div class="breadcrumb" *ngIf="isPrivate">
+    <button (click)="setIsPrivate(false)">Logout</button>
+</div>
+
+<div class="breadcrumb" *ngIf="!isPrivate">
+    <button (click)="setIsPrivate(true)">Login</button>
 </div>
