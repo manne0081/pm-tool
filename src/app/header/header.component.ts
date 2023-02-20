@@ -13,4 +13,8 @@ export class HeaderComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    setIsPrivate(test: boolean) {
+        this.isPrivate = test;
+    }
+
 }
