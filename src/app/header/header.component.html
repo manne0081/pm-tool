@@ -1,15 +1,15 @@
+<div class="background public" *ngIf="!isPrivate"><p routerLink="/">Public Header</p>
+    
+</div>
+
 <div class="background private" *ngIf="isPrivate"><p>Private Header</p>
     
 </div>
 
-<div class="background public" *ngIf="!isPrivate"><p>Public Header</p>
-    
+<div class="breadcrumb" *ngIf="!isPrivate">
+    <button *ngIf="isVisible" (click)="setIsPrivate(true)" routerLink="/login">Login</button>
 </div>
 
 <div class="breadcrumb" *ngIf="isPrivate">
-    <button (click)="setIsPrivate(false)">Logout</button>
-</div>
-
-<div class="breadcrumb" *ngIf="!isPrivate">
-    <button (click)="setIsPrivate(true)">Login</button>
+    <button (click)="setIsPrivate(false)" routerLink="">Logout</button>
 </div>
