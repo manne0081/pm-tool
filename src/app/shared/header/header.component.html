@@ -1,15 +1,23 @@
+<!-- Public -->
 <div class="background public" *ngIf="!isPrivate"><p routerLink="/">Public Header</p>
     
 </div>
 
+<div class="breadcrumb" *ngIf="!isPrivate">
+    <div style="flex-grow: 1; background-color: red;"></div>
+    <div style="flex-grow: 1; background-color: green;"></div>
+    <div style="flex-grow: 8; background-color: blue; position: absolute; right: 0;">
+        <button *ngIf="isVisible" routerLink="/login">Login</button>
+    </div>
+</div>
+
+<!-- Private -->
 <div class="background private" *ngIf="isPrivate"><p>Private Header</p>
     
 </div>
 
-<div class="breadcrumb" *ngIf="!isPrivate">
-    <button *ngIf="isVisible" routerLink="/login">Login</button>
-</div>
-
 <div class="breadcrumb" *ngIf="isPrivate">
-    <button routerLink="">Logout</button>
+    <div>
+        <button routerLink="">Logout</button>
+    </div>
 </div>
