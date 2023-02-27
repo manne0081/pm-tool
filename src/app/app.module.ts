@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { LoginComponent } from './shared/login/login.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+
+import { HomeComponent } from './public/home/home.component';
 
 @NgModule({
     declarations: [
