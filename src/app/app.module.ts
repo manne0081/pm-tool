@@ -8,6 +8,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 import { HomeComponent } from './public/home/home.component';
+import { DashboardComponent } from './private/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { HomeComponent } from './public/home/home.component';
         LoginComponent,
         HeaderComponent,
         HomeComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,

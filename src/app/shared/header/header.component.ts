@@ -17,21 +17,14 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit(): void {
         this.href = this.router.url;
-        console.log("headerComponent > ngOnInit > url: " + this.href + " => isVisible: " + this.isVisible);
-        if(this.href == "/login") {
-            console.log("headerComponent > ngOnInit > url is /login");
-            this.isVisible = false;
-        };
-    }
-
-    setIsPrivate(isPrivate: boolean) {
-        this.isPrivate = isPrivate;
-        this.href = this.router.url;
         
-        if(this.href == "/login"){
+        if(this.href == "/login") {
             this.isVisible = false;
-            console.log("setIsPrivate > url: " + this.href + " => isVisible: " + this.isVisible);
         };
-    }
 
+        if (this.href == "/dashboard") {
+            this.isPrivate = true;
+        }
+        
+    }  
 }

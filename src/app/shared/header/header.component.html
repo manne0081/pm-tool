@@ -7,9 +7,9 @@
 </div>
 
 <div class="breadcrumb" *ngIf="!isPrivate">
-    <button *ngIf="isVisible" (click)="setIsPrivate(true)" routerLink="/login">Login</button>
+    <button *ngIf="isVisible" routerLink="/login">Login</button>
 </div>
 
 <div class="breadcrumb" *ngIf="isPrivate">
-    <button (click)="setIsPrivate(false)" routerLink="">Logout</button>
+    <button routerLink="">Logout</button>
 </div>
