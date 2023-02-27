@@ -3,11 +3,11 @@
     
 </div>
 
-<div class="breadcrumb" *ngIf="!isPrivate">
-    <div style="flex-grow: 1; background-color: red;"></div>
-    <div style="flex-grow: 1; background-color: green;"></div>
-    <div style="flex-grow: 8; background-color: blue; position: absolute; right: 0;">
-        <button *ngIf="isVisible" routerLink="/login">Login</button>
+<div class="breadcrumb-container" *ngIf="!isPrivate">
+    <div class="breadcrumb-item item-1"></div>
+    <div class="breadcrumb-item item-2"></div>
+    <div class="breadcrumb-item item-3">
+        <button class="button" *ngIf="isVisible" routerLink="/login">Login</button>
     </div>
 </div>
 
@@ -16,8 +16,10 @@
     
 </div>
 
-<div class="breadcrumb" *ngIf="isPrivate">
-    <div>
-        <button routerLink="">Logout</button>
+<div class="breadcrumb-container" *ngIf="isPrivate">
+    <div class="breadcrumb-item item-1"></div>
+    <div class="breadcrumb-item item-2"></div>
+    <div class="breadcrumb-item item-3">
+        <button class="button" *ngIf="isVisible" routerLink="">Logout</button>
     </div>
 </div>

@@ -1,7 +1,7 @@
 // Generelly-Header
 // ================
 .background {
-    height: 65px;
+    height: 76px;
 }
 
 // Public
@@ -18,14 +18,36 @@
 }
 
 // Breadcrumb
-// ================
-.breadcrumb {
+// ==========
+.breadcrumb-container {
     background-color: darkcyan;
-    height: 24px;
+    height: 36px;
     display: flex;
-    flex-direction: row;
+    flex-direction: row;    
 }
 
+.breadcrumb-item {
+    flex-grow: 1;
+}
 
+.item-1 {
+    // background-color: lightblue;
+}
 
+.item-2 {
+    // background-color: lightsalmon;
+}
 
+.item-3 {
+    // background-color: lightcyan;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    text-align: right;
+    margin-right: 3px;
+}
+
+.button {
+    margin-top: 3px;
+    padding: 5px 15px;
+}
