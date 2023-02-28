@@ -1,0 +1,135 @@
+/* === SCROLL-BAR === */
+/* ================== */
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #1e5670 #2d3240;
+}
+  
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+  
+*::-webkit-scrollbar-track {
+    background: rgb(230, 206, 161);
+}
+  
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(69, 69, 88);
+    border-radius: 20px;
+    border: 3px solid rgb(230, 206, 161);
+}
+
+
+/* === GRID-System === */
+/* =================== */
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+[class*="col-"] {
+    float: left;
+    /* padding: 15px;     */
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+
+/* === FLEX-BOX === */
+/* ================ */
+.flex-container {
+    // background-color: lime;
+    position: relative;
+    top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.flex-container div {
+    overflow: auto;
+}
+
+.flex-container > div {    
+    height: 906px;
+}
+
+.navigation-background {
+    background-color: #212530;
+    flex: 1.5;
+    // padding: 10px;
+    min-width: 250px;
+}
+
+.navigation-background > p {
+    // background-color: #212530;
+    height: 40px;
+    border-radius: 8px;
+    margin: 0 0 10px 0;
+    color: whitesmoke;
+    padding: 5px 10px 5px 10px;
+}
+
+
+/* === Main-Content === */
+/* ==================== */
+.content-background {
+    // background-color: darkkhaki;
+    overscroll-behavior: contain;
+    flex: 8;
+    margin-top: 10px;
+}
+
+.content-buttons {
+    background-color: whitesmoke;
+    color: #444444;
+    height: 40px;
+    border-radius: 12px;
+    padding: 5px 10px 5px 10px;
+    z-index: 15;
+    position: relative;
+    margin: 0 10px;
+}
+
+.content-header-background {
+    background-color: #3d414d;
+    position: sticky;
+    top: -10px;
+    z-index: 15;
+    height: 96px;
+    border-radius: 12px;
+    padding: 0 10px;
+    margin-bottom: 0;
+}
+
+.content-header {
+    background-color: #1e5670;
+    height: 60px;
+    color: whitesmoke;
+    border-radius: 16px;
+    padding: 5px 10px 5px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.content-background > p {
+    margin: 0 0 10px 0;
+    padding: 0 20px 10px 20px;
+    position: relative;
+    top: 0px;
+}

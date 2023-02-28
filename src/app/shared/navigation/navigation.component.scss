@@ -1,0 +1,42 @@
+.navigation-background {
+    background-color: #212530;
+    height: 100%;
+}
+
+.item-background {
+    background-color: #3d414d;
+    width: 48px;
+}
+
+li {
+    height: 48px;
+}
+
+ul {
+    list-style-type: none;
+    // width: 200px;
+    
+}
+  
+li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+li a.active {
+    background-color: #212530;
+    // border-radius: 0px 8px 8px 0px;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    // border-radius: 0px 8px 8px 0px;
+}
+
+li img {
+    width: 24px;
+}
