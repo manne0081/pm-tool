@@ -1,4 +1,18 @@
 <app-header></app-header>
 
-<p>Formulareingabe...</p>
-<button (click)="login()" routerLink="/dashboard">Submit</button>
+<div style="text-align: center">
+    <h3>Login (ohne Funktion)</h3>
+    <br>
+
+    <label for="username">Benutzername</label>
+    <br>
+    <input type="text" id="username" name="Benutzername">
+    <br><br>
+
+    <label for="password">Kennwort</label>
+    <br>
+    <input type="password" id="password" name="Kennwort">
+    <br><br>
+
+    <button class="submitButton" (click)="login()" routerLink="/dashboard">Anmelden</button>
+</div>

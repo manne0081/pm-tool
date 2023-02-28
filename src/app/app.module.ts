@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 import { HomeComponent } from './public/home/home.component';
 import { DashboardComponent } from './private/dashboard/dashboard.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { DashboardComponent } from './private/dashboard/dashboard.component';
         HeaderComponent,
         HomeComponent,
         PageNotFoundComponent,
-        DashboardComponent
+        DashboardComponent,
+        NavigationComponent
     ],
     imports: [
         BrowserModule,
