@@ -6,13 +6,14 @@
 
     <label for="username">Benutzername</label>
     <br>
-    <input type="text" id="username" name="Benutzername">
+    <input type="text" id="username" name="Benutzername" [(ngModel)]="username">
     <br><br>
 
     <label for="password">Kennwort</label>
     <br>
-    <input type="password" id="password" name="Kennwort">
+    <input type="password" id="password" name="Kennwort" [(ngModel)]="password">
     <br><br>
 
-    <button class="submitButton" (click)="login()" routerLink="/dashboard">Anmelden</button>
+    <button class="submitButton" (click)="login()">Anmelden</button>
+    <button class="submitButton" (click)="test()">Daten ausfüllen</button>
 </div>
