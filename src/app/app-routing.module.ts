@@ -6,12 +6,14 @@ import { HomeComponent } from './public/home/home.component';
 import { LoginComponent } from './shared/login/login.component';
 import { DashboardComponent } from './private/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
     { path: "", component: HomeComponent },
     { path: "home", component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'dashboard', component: DashboardComponent },
+    { path: 'test', component: TestComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
 
