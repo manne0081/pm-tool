@@ -1,9 +1,87 @@
-div {
-    background: #999;
-    height: 100px;
-    width: 200px;
-    border: #999 solid 1px;
-    border-radius: 10px;
-    margin: 15px;
-    box-shadow: 0px 0px 0px 1px #fff inset;
-  }
+/* === SCROLL-BAR === */
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #3d414d #2d3240;
+}  
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}  
+*::-webkit-scrollbar-track {
+    background: rgb(230, 206, 161);
+}  
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(69, 69, 88);
+    border-radius: 20px;
+    border: 3px solid rgb(230, 206, 161);
+}
+
+/* === GRID-System === */
+/* =================== */
+.row {
+    position: relative;
+    top: 48px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+    // height: 100%;
+}
+
+[class*="col-"] {
+    float: left;
+    /* padding: 15px;     */
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+/* === FLEX-BOX === */
+/* ================ */
+.flex-container {
+    background-color: lime;
+    position: relative;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    height: 800px;
+}
+
+.navigation {
+    position: fixed;
+    height: 100%;
+    background-color: #3d414d;
+    width: 48px;
+}
+
+.quicklinks {
+    position: fixed;
+    left: 48px;
+    height: 100%;
+    background-color: #212530;
+    width: 236px;
+    color: rgb(216, 216, 216);
+    padding: 10px 20px;
+    box-sizing: border-box;
+    overflow: scroll;
+    border-right: 1px solid #212530;
+}
+
+.content {
+    color: rgb(216, 216, 216);
+    padding-left: 296px;
+    padding-top: 10px;
+}

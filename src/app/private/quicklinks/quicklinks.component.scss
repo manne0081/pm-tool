@@ -1,0 +1,62 @@
+.headline-background {
+    width: 190px;
+    height: 48px;
+    position: fixed;
+    z-index: 1000;
+    background-color: #212530;
+    top: 48px;
+}
+
+p.headline {
+    text-transform: uppercase;
+    font-size: bold;
+    display: inline;
+    padding-top: 12px;
+    padding-left: 9px;
+    font-size: 18px;
+    position: fixed;
+}
+
+.container {
+    margin-top: 8px;
+    background-color: #2c303b;
+    width: 190px;
+    height: 32px;
+    border-radius: 6px;
+    padding: 7px 0 7px 10px;
+    box-sizing: border-box;
+}
+
+.container:hover {
+    background-color: #343944;
+}
+
+.firstQuickLink {
+    margin-top: 39px;
+}
+
+.container > div {
+    display: inline;
+}
+
+.move > img {
+    height: 12px;
+    margin-right: 8px;
+    margin-top: 3px;
+}
+
+.designation > p {
+    display: inline;
+    position: relative;
+    top: -1px;
+}
+
+.edit {
+    position: absolute;
+    right: 30px;
+}
+
+.edit > img {
+    height: 12px;
+    margin-left: 57px;
+}

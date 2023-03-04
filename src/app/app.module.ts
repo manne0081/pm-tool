@@ -12,6 +12,7 @@ import { HomeComponent } from './public/home/home.component';
 import { DashboardComponent } from './private/dashboard/dashboard.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { TestComponent } from './test/test.component';
+import { QuicklinksComponent } from './private/quicklinks/quicklinks.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { TestComponent } from './test/test.component';
         PageNotFoundComponent,
         DashboardComponent,
         NavigationComponent,
-        TestComponent
+        TestComponent,
+        QuicklinksComponent
     ],
     imports: [
         BrowserModule,

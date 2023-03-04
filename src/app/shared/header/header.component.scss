@@ -16,7 +16,11 @@
 // =======
 .private {
     background-image: url(../../../assets/private-header-background.png);
+    background-color: #3d414d;
     height: 48px;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
 }
 
 .private-header-container {

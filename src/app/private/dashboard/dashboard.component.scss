@@ -1,21 +1,16 @@
 /* === SCROLL-BAR === */
-/* ================== */
-
 /* Works on Firefox */
 * {
     scrollbar-width: thin;
-    scrollbar-color: #1e5670 #2d3240;
-}
-  
+    scrollbar-color: #3d414d #2d3240;
+}  
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
     width: 12px;
-}
-  
+}  
 *::-webkit-scrollbar-track {
     background: rgb(230, 206, 161);
-}
-  
+}  
 *::-webkit-scrollbar-thumb {
     background-color: rgb(69, 69, 88);
     border-radius: 20px;
@@ -24,10 +19,16 @@
 
 /* === GRID-System === */
 /* =================== */
+.row {
+    position: relative;
+    top: 48px;
+}
+
 .row::after {
     content: "";
     clear: both;
     display: block;
+    // height: 100%;
 }
 
 [class*="col-"] {
@@ -51,83 +52,36 @@
 /* === FLEX-BOX === */
 /* ================ */
 .flex-container {
-    // background-color: lime;
+    background-color: lime;
     position: relative;
     top: 0px;
     display: flex;
-    flex-wrap: wrap;
-    height: auto;
+    flex-direction: row;
+    height: 800px;
 }
 
-.flex-container div {
-    overflow: auto;
-}
-
-.flex-container > div {    
-    height: 906px;
-}
-
-.navigation-background {
-    background-color: #212530;
-    flex: 1.5;
-    // padding: 10px;
-    min-width: 250px;
-}
-
-.navigation-background > p {
-    // background-color: #212530;
-    height: 40px;
-    border-radius: 8px;
-    margin: 0 0 10px 0;
-    color: whitesmoke;
-    padding: 5px 10px 5px 10px;
-}
-
-
-/* === Main-Content === */
-/* ==================== */
-.content-background {
-    // background-color: darkkhaki;
-    overscroll-behavior: contain;
-    flex: 8;
-    margin-top: 10px;
-}
-
-.content-buttons {
-    background-color: whitesmoke;
-    color: #444444;
-    height: 40px;
-    border-radius: 12px;
-    padding: 5px 10px 5px 10px;
-    z-index: 15;
-    position: relative;
-    margin: 0 10px;
-}
-
-.content-header-background {
+.navigation {
+    position: fixed;
+    height: 100%;
     background-color: #3d414d;
-    position: sticky;
-    top: -10px;
-    z-index: 15;
-    height: 96px;
-    border-radius: 12px;
-    padding: 0 10px;
-    margin-bottom: 0;
+    width: 48px;
 }
 
-.content-header {
-    background-color: #1e5670;
-    height: 60px;
-    color: whitesmoke;
-    border-radius: 16px;
-    padding: 5px 10px 5px 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.quicklinks {
+    position: fixed;
+    left: 48px;
+    height: 100%;
+    background-color: #212530;
+    width: 236px;
+    color: rgb(216, 216, 216);
+    padding: 10px 20px;
+    box-sizing: border-box;
+    overflow: scroll;
+    border-right: 1px solid #212530;
 }
 
-.content-background > p {
-    margin: 0 0 10px 0;
-    padding: 0 20px 10px 20px;
-    position: relative;
-    top: 0px;
+.content {
+    color: rgb(216, 216, 216);
+    padding-left: 296px;
+    padding-top: 10px;
 }
