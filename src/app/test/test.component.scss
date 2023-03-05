@@ -24,6 +24,10 @@
     top: 48px;
 }
 
+.row-content {
+    position: relative;
+}
+
 .row::after {
     content: "";
     clear: both;
@@ -82,9 +86,76 @@
 
 .content {
     color: rgb(216, 216, 216);
-    // padding-left: 296px;
     padding-top: 10px;
     position: relative;
     left: 296px;
-    z-index: -50;
+}
+
+.content-header-background {
+    background-color: #3d414d;
+    margin-bottom: 12px;
+    height: 86px;
+    width: 100%;
+    padding: 5px 10px;
+    position: fixed;
+    top: 48px;
+    left: 285px;
+    z-index: 100;
+}
+
+.content-header-container {
+    background-color: #212530;
+    margin-bottom: 16px;
+    height: 64px;
+    border-radius: 12px;
+    padding: 8px 16px;
+    position: fixed;
+    top: 49px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.content-header-container > p {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.content-value {
+    position: relative;
+    top: 68px;
+    margin: 8px;
+}
+
+.row-content > div {
+    padding-top: 4px;
+}
+
+.row-content > div label {
+    display: block; 
+    font-size: .8em;
+    font-weight: bold; 
+    // padding-left: 10px;
+}
+
+.row-content > div input {
+    width: 80%;
+    border-style: none;
+    background-color: rgb(219, 210, 210);
+}
+
+.row-content > div input:hover {
+    border-style: none;
+    background-color: rgb(194, 179, 179);
+    // border-bottom: 1px solid red;
+}
+
+.row-content > div input:focus {
+    background-color: rgb(194, 179, 179);
+    outline: none;
+    // border-bottom: 1px solid lime; 
+    box-shadow: inset 0px -1px 1px lime; 
+}
+
+.row-content > div input.disabled {
+    background-color: rgb(175, 160, 160);
 }
