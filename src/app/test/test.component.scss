@@ -94,13 +94,14 @@
 .content-header-background {
     background-color: #3d414d;
     margin-bottom: 12px;
-    height: 86px;
+    height: 84px;
     width: 100%;
     padding: 5px 10px;
     position: fixed;
     top: 48px;
     left: 285px;
     z-index: 100;
+    box-shadow: 5px 10px 5px #3d414d;
 }
 
 .content-header-container {
@@ -122,7 +123,7 @@
 
 .content-value {
     position: relative;
-    top: 68px;
+    top: 72px;
     margin: 8px;
 }
 
