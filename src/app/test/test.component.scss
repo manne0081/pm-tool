@@ -100,7 +100,7 @@
     position: fixed;
     top: 48px;
     left: 285px;
-    z-index: 100;
+    z-index: 50;
     box-shadow: 5px 10px 5px #3d414d;
 }
 
@@ -134,29 +134,41 @@
 .row-content > div label {
     display: block; 
     font-size: .8em;
-    font-weight: bold; 
+    // font-weight: bold; 
     // padding-left: 10px;
 }
 
-.row-content > div input {
-    width: 80%;
+.row-content > div input, .row .col-2 > input {
+    width: 90%;
     border-style: none;
-    background-color: rgb(219, 210, 210);
+    background-color: rgb(180, 180, 180);
 }
 
-.row-content > div input:hover {
+.row-content > div input:hover, .row .col-2 > input:hover {
     border-style: none;
-    background-color: rgb(194, 179, 179);
+    background-color: rgb(210, 210, 210);
     // border-bottom: 1px solid red;
 }
 
-.row-content > div input:focus {
-    background-color: rgb(194, 179, 179);
+.row-content > div input:focus, .row .col-2 > input:focus {
+    background-color: rgb(210, 210, 210);
     outline: none;
     // border-bottom: 1px solid lime; 
     box-shadow: inset 0px -1px 1px lime; 
 }
 
-.row-content > div input.disabled {
-    background-color: rgb(175, 160, 160);
+.row-content > div input.disabled, .row .col-2 > input.disabled {
+    background-color: transparent;
+    color: rgb(210, 210, 210);
+    border-style: none;
+}
+
+.content-test {
+    background-color: rgb(210, 210, 210);
+    border-radius: 8px;
+    height: auto;
+}
+
+.row-content .light-background {
+    background-color: lime;
 }
