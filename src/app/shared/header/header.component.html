@@ -22,19 +22,17 @@
 <!-- HEADER -->
 <!-- ###### -->
 <div class="background private" *ngIf="isPrivate">    
-    <div class="private-header-container">
+    <div class="row">
 
-        <div class="private-header-item-1">
+        <div class="col-4 searching">
             <input type="text" placeholder="z.B. Name, Rechnungsnummer, Datum etc.">
         </div>
 
-        <div class="private-header-item-2">
+        <div class="col-4 logo">
             <img src="../../../assets/tackl-logo-white.png" alt="" routerLink="/dashboard">
         </div>
 
-        <div class="private-header-item-3">
-            <!-- <button class="button" *ngIf="isVisible" routerLink="">Logout</button> -->
-            
+        <div class="col-4 functions">
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">Max Mustermann</button>
                 <div class="dropdown-content">

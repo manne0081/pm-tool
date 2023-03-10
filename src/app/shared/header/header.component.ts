@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
             this.isVisible = false;
         };
 
-        if (this.href == "/dashboard" || this.href =='/test') {
+        if (this.href == "/dashboard" || this.href =='/test' || this.href =='/test2') {
             this.isPrivate = true;
         }
         

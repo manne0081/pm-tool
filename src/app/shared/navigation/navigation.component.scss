@@ -68,7 +68,8 @@
 
 
 
-.navigation-item.pre-active:hover, .navigation-item.post-active:hover {
+// .navigation-item.pre-active:hover, .navigation-item.post-active:hover {
+.navigation-item.inactive:hover, .navigation-item:not(.active):hover {
     background-color: #2f333d;
     width: 48px;
     height: 48px;

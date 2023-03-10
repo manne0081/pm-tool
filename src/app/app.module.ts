@@ -13,6 +13,7 @@ import { DashboardComponent } from './private/dashboard/dashboard.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { TestComponent } from './test/test.component';
 import { QuicklinksComponent } from './private/quicklinks/quicklinks.component';
+import { Test2Component } from './shared/test2/test2.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { QuicklinksComponent } from './private/quicklinks/quicklinks.component';
         DashboardComponent,
         NavigationComponent,
         TestComponent,
-        QuicklinksComponent
+        QuicklinksComponent,
+        Test2Component
     ],
     imports: [
         BrowserModule,

@@ -33,13 +33,13 @@
     flex-grow: 4;
 }
 
-.private-header-item-1 {
+.searching {
     // background-color: lime;
     padding-top: 3px;
     padding-left: 10px;
 }
 
-.private-header-item-1 > input {
+.searching > input {
     background-color: #d6d6d6;
     font-style: italic;
     position: absolute;
@@ -49,17 +49,17 @@
     border: 1px solid #606060;
 }
 
-.private-header-item-2 {
+.logo {
     // background-color: orange;
     text-align: center;
     padding-top: 2px;   
 }
 
-.private-header-item-2 > img {
+.logo > img {
     height: 42px;
 }
 
-.private-header-item-3 {
+.functions {
     // background-color: lime;
     text-align: right;
     padding-top: 5px;
