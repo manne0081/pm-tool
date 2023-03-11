@@ -1,3 +1,39 @@
+/* === GRID-System === */
+/* =================== */
+.row {
+    // position: relative;
+    // top: 48px;
+}
+
+.row-content {
+    position: relative;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+    // height: 100%;
+}
+
+[class*="col-"] {
+    float: left;
+    /* padding: 15px;     */
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
 // Generelly-Header
 // ================
 .background {
@@ -23,20 +59,10 @@
     z-index: 100;
 }
 
-.private-header-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.private-header-container > div {
-    flex-grow: 4;
-}
-
 .searching {
     // background-color: lime;
-    padding-top: 3px;
-    padding-left: 10px;
+    padding-top: 8px;
+    padding-left: 8px;
 }
 
 .searching > input {
@@ -52,7 +78,7 @@
 .logo {
     // background-color: orange;
     text-align: center;
-    padding-top: 2px;   
+    padding-top: 1px;   
 }
 
 .logo > img {
@@ -62,7 +88,7 @@
 .functions {
     // background-color: lime;
     text-align: right;
-    padding-top: 5px;
+    padding-top: 6px;
     padding-right: 10px;
 }
 
@@ -71,7 +97,7 @@
 .dropbtn {
     margin-top: 5px;
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    border-radius: 4px 4px 4px 4px;
     color: white;
     padding: 4px 8px;
     font-size: 14px;
@@ -81,9 +107,9 @@
 .dropdown {
     position: relative;
     display: inline-block;
-}  
+}
 .dropdown-content {
-    border-radius: 4px;
+    border-radius: 4px 0px 4px 4px;
     display: none;
     position: absolute;
     right: 0;
@@ -97,16 +123,17 @@
     padding: 4px 6px;
     text-decoration: none;
     display: block;
-}  
+}
 .dropdown-content a:hover {
     background-color: #f1f1f1;
-    border-radius: 4px;
-}  
+    border-radius: 4px 0px 4px 4px;
+}
 .dropdown:hover .dropdown-content {
     display: block;
 }
 .dropdown:hover .dropbtn {
     background-color:  rgba(255, 255, 255, 0.5);
+    border-radius: 4px 4px 0px 0px;
 }
 
 

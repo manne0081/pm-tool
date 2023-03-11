@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 	styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-	classDashboard: string = '';
-	classTest: string = '';
-	classTest2: string = '';
-	classTest3: string = '';
+	classItem1: string = '';
+	classItem2: string = '';
+	classItem3: string = '';
+	classItem4: string = '';
 
 	constructor(private route: Router) { }
 
@@ -23,20 +23,20 @@ export class NavigationComponent implements OnInit {
 	setCssToItem(route: string): void {
 		if (route == "/dashboard") {
 			console.log("url == /dashboard!");
-			this.classDashboard = "navigation-item first-item active";
-			this.classTest = "navigation-item inactive post-active";
+			this.classItem1 = "navigation-item first-item active";
+			this.classItem2 = "navigation-item inactive post-active";
 		}
 		if (route == "/test") {
 			console.log("url == /test!");
-			this.classDashboard = "navigation-item first-item pre-active";
-			this.classTest = "navigation-item active";
-			this.classTest2 = "navigation-item inactive post-active";
+			this.classItem1 = "navigation-item first-item pre-active";
+			this.classItem2 = "navigation-item active";
+			this.classItem3 = "navigation-item inactive post-active";
 		}
 		if (route == "/test2") {
 			console.log("url == /test2!");
-			this.classTest = "navigation-item first-item pre-active";
-			this.classTest2 = "navigation-item active";
-			this.classTest3 = "navigation-item inactive post-active";
+			this.classItem1 = "navigation-item first-item pre-active";
+			this.classItem2 = "navigation-item active";
+			this.classItem3 = "navigation-item inactive post-active";
 		}
 	}
 
