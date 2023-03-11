@@ -34,10 +34,11 @@ export class NavigationComponent implements OnInit {
 		}
 		if (route == "/test2") {
 			console.log("url == /test2!");
-			this.classItem1 = "navigation-item first-item pre-active";
-			this.classItem2 = "navigation-item active";
-			this.classItem3 = "navigation-item inactive post-active";
-		}
+			this.classItem1 = "navigation-item first-item inactive";
+			this.classItem2 = "navigation-item inactive pre-active";
+			this.classItem3 = "navigation-item active";
+			this.classItem4 = "navigation-item inactive post-active";
+		}		
 	}
 
 
