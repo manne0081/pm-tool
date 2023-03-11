@@ -15,26 +15,25 @@ export class NavigationComponent implements OnInit {
 	constructor(private route: Router) { }
 
 	ngOnInit(): void {
-		this.setCssToItem(this.route.url);
+		this.setCssClassToItem(this.route.url);
 	}
 	
-	// setting the right css-classes to the navigation-items
+	// sets the right css-classes to the navigation-items
 	// -----------------------------------------------------
-	setCssToItem(route: string): void {
+	setCssClassToItem(route: string): void {
 		if (route == "/dashboard") {
 			console.log("url == /dashboard!");
 			this.classItem1 = "navigation-item first-item active";
 			this.classItem2 = "navigation-item inactive post-active";
 		}
-		if (route == "/test") {
-			console.log("url == /test!");
+		if (route == "/teamMember") {
+			console.log("url == /teamMember");
 			this.classItem1 = "navigation-item first-item pre-active";
 			this.classItem2 = "navigation-item active";
 			this.classItem3 = "navigation-item inactive post-active";
 		}
 		if (route == "/test2") {
 			console.log("url == /test2!");
-			this.classItem1 = "navigation-item first-item inactive";
 			this.classItem2 = "navigation-item inactive pre-active";
 			this.classItem3 = "navigation-item active";
 			this.classItem4 = "navigation-item inactive post-active";

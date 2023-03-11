@@ -59,16 +59,6 @@
     border-radius: 0px 0px 12px 0px;
 }
 
-
-
-
-
-
-
-
-
-
-// .navigation-item.pre-active:hover, .navigation-item.post-active:hover {
 .navigation-item:not(.active):hover {
     background-color: #2f333d;
     width: 48px;
@@ -76,24 +66,7 @@
     padding: 12px 0 0 12px;
 }
 
-// .navigation-item-active  {
-//     background-color: #212530;
-//     width: 48px;
-//     height: 48px;
-//     padding: 12px 0 0 12px;
-// }
 
-// .navigation-item-next  {
-//     background-color: #3d414d;
-//     width: 48px;
-//     height: 48px;
-//     padding: 12px 0 0 12px;
-//     border-radius: 0 12px 0 0;
-// }
-
-// .navigation-item-next:hover {
-//     background-color: #2f333d;
-// }
 
 .item-1 {
     background-image: url("../../../assets/grid.png");
@@ -104,7 +77,7 @@
 }
 
 .item-2 {
-    background-image: url("../../../assets/stift_schraubenschlussel_606468.png");
+    background-image: url("../../../assets/collaborationGrau.svg");
     background-size: 24px;
     background-repeat: no-repeat;
     height: 24px;

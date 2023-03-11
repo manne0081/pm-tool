@@ -14,6 +14,7 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
 import { TestComponent } from './test/test.component';
 import { QuicklinksComponent } from './private/quicklinks/quicklinks.component';
 import { Test2Component } from './shared/test2/test2.component';
+import { TeamMemberComponent } from './private/team-member/team-member.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { Test2Component } from './shared/test2/test2.component';
         NavigationComponent,
         TestComponent,
         QuicklinksComponent,
-        Test2Component
+        Test2Component,
+        TeamMemberComponent
     ],
     imports: [
         BrowserModule,
