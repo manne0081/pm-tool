@@ -32,7 +32,7 @@ export class NavigationComponent implements OnInit {
 			this.classItem2 = "navigation-item active";
 			this.classItem3 = "navigation-item inactive post-active";
 		}
-		if (route == "/test2") {
+		if (route == "/test") {
 			console.log("url == /test2!");
 			this.classItem2 = "navigation-item inactive pre-active";
 			this.classItem3 = "navigation-item active";

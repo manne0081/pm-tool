@@ -51,14 +51,14 @@
 
 /* === FLEX-BOX === */
 /* ================ */
-.flex-container {
-    background-color: lime;
-    position: relative;
-    top: 0px;
-    display: flex;
-    flex-direction: row;
-    height: 800px;
-}
+// .flex-container {
+//     background-color: lime;
+//     position: relative;
+//     top: 0px;
+//     display: flex;
+//     flex-direction: row;
+//     height: 800px;
+// }
 
 .navigation {
     position: fixed;
@@ -85,6 +85,11 @@
     padding-top: 10px;
     position: relative;
     left: 296px;
+}
+
+p {
+    display: inline;
+    margin-right: 20px;
 }
 
 .content-header-background {
