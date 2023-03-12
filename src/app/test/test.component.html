@@ -1,178 +1,32 @@
 <app-header></app-header>
 
-<div class="row">
+<div class="flex-container">
 
-    <div class="col-1 navigation">
+    <div class="navigation">
         <app-navigation></app-navigation>
     </div>
 
-    <div class="col-1 quicklinks">
+    <div class="quicklinks">
         <app-quicklinks></app-quicklinks>
     </div>
 
-    <div class="col-10 content">
+    <div class="content">
         
-        <div class="content-header-background">
-            <div class="content-header-container">
-                <p>{{objectName}}</p>
+        <div class="content-header-wrapper">
+            <div class="content-header-background">
+                test
             </div>
         </div>
 
-        <div class="content-value">
-            
-            <!-- CONTENT ROW I -->
-            <div class="row-content">
-                <div class="col-3">
-                    <label for="">Nummer</label>
-                    <input type="text" value="{{number}}" disabled class="disabled">
-                </div>
-            
-                <div class="col-3">
-                    <label for="">Vorname</label>
-                    <input type="text" [(ngModel)]="firstName">
-                </div>
 
-                <div class="col-3">
-                    <label for="">Nachname</label>
-                    <input type="text" [(ngModel)]="lastName">
-                </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        
+        
 
-                <div class="col-3">
-                    <label for="">Keine Ahnung</label>
-                    <input type="text">
-                </div>                                
-            </div>
+        <p>test</p>
 
-            <!-- CONTENT ROW II -->
-            <div class="row-content">
-                <div class="col-3">
-                    <label for="">Straße</label>
-                    <input type="text" [(ngModel)]="street">
-                </div>
-            
-                <div class="col-3">
-                    <label for="">Hausnummer</label>
-                    <input type="text" [(ngModel)]="houseNumber">
-                </div>
-
-                <div class="col-3">
-                    <label for="">PLZ</label>
-                    <input type="text" [(ngModel)]="postCode">
-                </div>
-
-                <div class="col-3">
-                    <label for="">Ort</label>
-                    <input type="text" [(ngModel)]="city">
-                </div>                                
-            </div>
-            
-            <!-- <hr> -->
-            <div style="height: 100px;"></div>
-
-            <div class="row">
-                <div class="col-1">
-                    <label for="" style="position: relative; top: 6px;">Nummer</label>
-                </div>
-                <div class="col-2">
-                    <input type="text" value="{{number}}" disabled class="disabled" style="width: 80%;">
-                </div>
-
-                <div class="col-1">
-                    <label for="" style="position: relative; top: 6px;">Vorname</label>
-                </div>
-                <div class="col-2">
-                    <input type="text" [(ngModel)]="firstName" style="width: 80%;">
-                </div>
-
-                <div class="col-1">
-                    <label for="" style="position: relative; top: 6px;">Nachname</label>
-                </div>
-                <div class="col-2">
-                    <input type="text" [(ngModel)]="lastName" style="width: 80%;">
-                </div>
-
-                <div class="col-1">
-                    <label for="" style="position: relative; top: 6px;">Keine Ahnung</label>
-                </div>
-                <div class="col-2">
-                    <input type="text" style="width: 80%;">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-1">
-                    <label for="" style="position: relative; top: 6px;">Straße</label>
-                </div>
-                <div class="col-2">
-                    <input type="text" [(ngModel)]="street" style="width: 80%;">
-                </div>
-
-                <div class="col-1">
-                    <label for="" style="position: relative; top: 6px;">Hausnummer</label>
-                </div>
-                <div class="col-2">
-                    <input type="text" [(ngModel)]="houseNumber" style="width: 80%;">
-                </div>
-
-                <div class="col-1">
-                    <label for="" style="position: relative; top: 6px;">PLZ</label>
-                </div>
-                <div class="col-2">
-                    <input type="text" [(ngModel)]="postCode" style="width: 80%;">
-                </div>
-
-                <div class="col-1">
-                    <label for="" style="position: relative; top: 6px;">Ort</label>
-                </div>
-                <div class="col-2">
-                    <input type="text" [(ngModel)]="city"  style="width: 80%;">
-                </div>
-            </div>
-            
-            <!-- <hr> -->
-            <div style="height: 100px;"></div>
-            
-            
-            <div class="content-test">
-                <div class="row-content light-background">
-                    <div class="col-4">test</div>
-                </div>
-                <div class="row-content light-background">
-                    <div class="col-4">test</div>
-                </div>
-                <div class="row-content light-background">
-                    <div class="col-4">test</div>
-                </div>
-            </div>
-            
-            
-            <!-- <hr> -->
-            <div style="height: 800px;"></div>
-
-            <!-- CONTENT ROW Bottom -->
-            <div class="row-content">
-                <div class="col-3">
-                    <label for="">Straße</label>
-                    <input type="text" [(ngModel)]="street">
-                </div>
-            
-                <div class="col-3">
-                    <label for="">Hausnummer</label>
-                    <input type="text" [(ngModel)]="houseNumber">
-                </div>
-
-                <div class="col-3">
-                    <label for="">PLZ</label>
-                    <input type="text" [(ngModel)]="postCode">
-                </div>
-
-                <div class="col-3">
-                    <label for="">Ort</label>
-                    <input type="text" [(ngModel)]="city">
-                </div>                                
-            </div>
-
-        </div>
 
     </div>
 

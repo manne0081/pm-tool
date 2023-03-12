@@ -1,3 +1,41 @@
+// GENERAL STYLING CSS
+// ===================
+
+// === GRID-System ===
+.row {
+    position: relative;
+    top: 48px;
+}
+
+.row-content {
+    position: relative;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 100%;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 0px;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
 /* === SCROLL-BAR === */
 /* Works on Firefox */
 * {
@@ -17,66 +55,32 @@
     border: 3px solid rgb(230, 206, 161);
 }
 
-/* === GRID-System === */
-/* =================== */
-.row {
-    position: relative;
-    top: 48px;
-}
-
-.row-content {
-    position: relative;
-}
-
-.row::after {
-    content: "";
-    clear: both;
-    display: block;
-    // height: 100%;
-}
-
-[class*="col-"] {
-    float: left;
-    /* padding: 15px;     */
-}
-
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
-/* === FLEX-BOX === */
-/* ================ */
+// === FLEX-BOX ===
 .flex-container {
-    background-color: lime;
-    position: relative;
-    top: 0px;
     display: flex;
     flex-direction: row;
-    height: 800px;
+    flex-wrap: nowrap;
+    position: fixed;
+    top: 48px;
+    height: 84px;
+    width: 100%;
 }
 
+// === STANDARD-STYLING for NAVIGATION ===
 .navigation {
+    background-color: #3d414d;
+    flex-basis: 48px;
     position: fixed;
     height: 100%;
-    background-color: #3d414d;
-    width: 48px;
 }
 
+// === STANDARD-STYLING for QUICKLINKS ===
 .quicklinks {
+    background-color: #212530;
+    flex-basis: 236px;
     position: fixed;
     left: 48px;
     height: 100%;
-    background-color: #212530;
-    width: 236px;
     color: rgb(216, 216, 216);
     padding: 10px 20px;
     box-sizing: border-box;
@@ -84,91 +88,25 @@
     border-right: 1px solid #212530;
 }
 
+// === CONTENT-STYLING ===
 .content {
-    color: rgb(216, 216, 216);
-    padding-top: 10px;
     position: relative;
-    left: 296px;
+    left: 288px;
+    width: 100%;
+    overflow: auto;
+}
+
+.content-header-wrapper {
+    height: 60px;
+    padding: 12px;
+    position: fixed;
+    width: 100%;
 }
 
 .content-header-background {
-    background-color: #3d414d;
-    margin-bottom: 12px;
-    height: 84px;
-    width: 100%;
-    padding: 5px 10px;
-    position: fixed;
-    top: 48px;
-    left: 285px;
-    z-index: 50;
-    box-shadow: 5px 10px 5px #3d414d;
-}
-
-.content-header-container {
     background-color: #212530;
-    margin-bottom: 16px;
-    height: 64px;
-    border-radius: 12px;
-    padding: 8px 16px;
-    position: fixed;
-    top: 49px;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.content-header-container > p {
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.content-value {
-    position: relative;
-    top: 72px;
-    margin: 8px;
-}
-
-.row-content > div {
-    padding-top: 4px;
-}
-
-.row-content > div label {
-    display: block; 
-    font-size: .8em;
-    // font-weight: bold; 
-    // padding-left: 10px;
-}
-
-.row-content > div input, .row .col-2 > input {
-    width: 90%;
-    border-style: none;
-    background-color: rgb(180, 180, 180);
-}
-
-.row-content > div input:hover, .row .col-2 > input:hover {
-    border-style: none;
-    background-color: rgb(210, 210, 210);
-    // border-bottom: 1px solid red;
-}
-
-.row-content > div input:focus, .row .col-2 > input:focus {
-    background-color: rgb(210, 210, 210);
-    outline: none;
-    // border-bottom: 1px solid lime; 
-    box-shadow: inset 0px -1px 1px lime; 
-}
-
-.row-content > div input.disabled, .row .col-2 > input.disabled {
-    background-color: transparent;
-    color: rgb(210, 210, 210);
-    border-style: none;
-}
-
-.content-test {
-    background-color: rgb(210, 210, 210);
+    height: 56px;
     border-radius: 8px;
-    height: auto;
-}
-
-.row-content .light-background {
-    background-color: lime;
+    padding: 4px 8px;
+    color: whitesmoke;
 }

@@ -5,7 +5,9 @@ import { Component, OnInit } from '@angular/core';
 	templateUrl: './team-member.component.html',
 	styleUrls: ['./team-member.component.scss']
 })
+
 export class TeamMemberComponent implements OnInit {
+	id: number;
 	number: string = "";
 	firstName: string = "";
 	lastName: string = "";
@@ -18,7 +20,9 @@ export class TeamMemberComponent implements OnInit {
 	isDeveloper: boolean = false;
 	test: string = "";
 
-	constructor() { }
+	constructor() {
+		this.id = 0;
+	}
 
 	ngOnInit(): void {
 		this.number = "01-01";
@@ -54,7 +58,6 @@ export class TeamMemberComponent implements OnInit {
 	}
 
 	onFocusOutName() {
-		// this.shortName = this.createShortName(this.firstName, this.lastName);
 		if(this.email == "") {
 			this.email = this.firstName.substring(0,1).toLowerCase() + "." + this.lastName.toLowerCase() + "@systaro.de";
 		}

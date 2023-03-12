@@ -7,7 +7,6 @@ import { LoginComponent } from './shared/login/login.component';
 import { DashboardComponent } from './private/dashboard/dashboard.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { TestComponent } from './test/test.component';
-import { Test2Component } from './shared/test2/test2.component';
 import { TeamMemberComponent } from './private/team-member/team-member.component';
 
 const routes: Routes = [
@@ -17,7 +16,6 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'teamMember', component: TeamMemberComponent },
     { path: 'test', component: TestComponent },
-    { path: 'test2', component: Test2Component },
     { path: '**', component: PageNotFoundComponent },
 ];
 

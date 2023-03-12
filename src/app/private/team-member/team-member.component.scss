@@ -162,3 +162,13 @@ p {
     color: rgb(210, 210, 210);
     border-style: none;
 }
+
+.sub-object {
+    background-color: rgba(200,200,200,0.2);
+    width: 100%;
+    position: relative;
+    top: 200px;
+    margin-left: 10px;
+    border-radius: 12px;
+    padding: 12px;
+}
