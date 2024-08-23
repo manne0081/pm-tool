@@ -1,0 +1,232 @@
+// Complete Page Structure
+// -----------------------
+.page-structure {
+    background-color: var(--app-background);
+    display: grid;
+    grid-template-rows: 52px auto;
+    height: 100vh;
+    overflow: visible;
+
+    // Page Header
+    // -----------
+    .page-header-container {
+        z-index: 100;
+    }
+
+    // Page Content
+    // ------------
+    .page-content-container {
+        background-color: white;
+        margin: 12px;
+        border-radius: 8px;
+        display: grid;
+        grid-template-rows: 40px auto;
+
+        .content-title-container {
+            background-color: white;
+            border-bottom: 1px solid #b9b9b9;
+            align-items: center;
+            margin-top: -1px;
+            padding: 0 10px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+
+            button {
+                border: 1px solid rgba(44, 80, 103, .16);
+                border-radius: 16px;
+                padding: 4px 8px;
+                font-size: .9em;
+            }
+
+            button.active {
+                background-color: rgba(44, 80, 103, .3);
+                border: 1px solid rgba(44, 80, 103, .2);
+                padding: 2px 6px;
+            }
+
+            button:hover {
+                background-color: rgba(44, 80, 103, .6);
+                color: white;
+                cursor: pointer;
+            }
+
+            .content-title-quicklinks {
+                margin: 0 10px 0 0;
+            }
+
+            .content-title-value {
+                color: #2c5067;
+                font-size: 1.4em;
+                font-weight: bold;
+                margin-top: 1px;
+            }
+
+            .content-title-addinfo {
+                margin: 0 0 0 10px;
+            }
+        }
+
+
+
+        // Page-Content-Container-Width > With Quicklinks, Content and AddInfo
+        // *******************************************************************
+        .content-container-full {
+            background-color: #d6d6d6;
+            display: grid;
+            grid-template-columns: 250px auto 250px;
+        }
+
+        .content-container-without-quicklinks {
+            background-color: #d6d6d6;
+            display: grid;
+            grid-template-columns: auto 250px;
+        }
+
+        .content-container-without-addinfo {
+            background-color: #d6d6d6;
+            display: grid;
+            grid-template-columns: 250px auto;
+        }
+
+        .content-container-tiles-only {
+            background-color: #d6d6d6;
+            display: grid;
+            grid-template-columns: auto;
+        }
+
+        .quicklinks-container {
+            border-right: 1px solid rgb(180, 180, 180);
+            overflow-y: scroll;
+        }
+
+        .main-content-container {
+            background-color: orange;
+            background-image: url(../../../assets/img/background_3.jpg);
+            display: grid;
+            grid-template-rows: min-content auto 48px;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .main-content-container-dashboard {
+            background-color: orange;
+            background-image: url(../../../assets/img/background_3.jpg);
+            display: grid;
+            grid-template-rows: auto;
+            position: relative;
+        }
+
+        .content-header-container {
+            background-color: white;
+            box-shadow: 0px 6px 4px -2px rgba(0, 0, 0, .20);
+            border-radius: 0 0 12px 12px;
+            padding: 4px 17px 4px 13px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 0px 10px;
+            overflow: visible;
+
+            .add-filter-wrapper {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+                overflow: visible;
+
+                .searching-wrapper {
+                    background-color: rgb(225, 225, 225);
+                    display: flex;
+                    align-items: center;
+                    flex-grow: 1;
+                    margin-top: 8px;
+                    margin-bottom: 8px;
+                    height: 28px;
+                    min-width: 400px;
+                    border: 1px solid #b9b9b9;
+                    border-radius: 4px;
+
+                    input {
+                        width: 100%;
+                        padding: 4px 6px;
+                        font-size: .9em;
+                    }
+
+                    .icon-cancel {
+                        border-radius: 14px;
+                        display: flex;
+                        align-items: center;
+                        height: 80%;
+                        width: 24px;
+                        margin: 0 3px 0 4px;
+                        justify-content: space-around;
+                    }
+
+                    .icon-cancel:hover {
+                        background-color: rgba(168, 40, 40, 0.6);
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .show-filter-wrapper {
+                align-items: center;
+                margin-bottom: 6px;
+
+                .show-filter-item-container {
+                    background-color: rgb(225, 225, 225);
+                    border: 1px solid #b9b9b9;
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 2px 8px;
+                    border-radius: 12px;
+                    position: relative;
+                    padding-right: 26px;
+                    margin-right: 6px;
+
+                    .icon-cancel {
+                        // background-color: red;
+                        display: flex;
+                        align-items: center;
+                        font-size: .9em;
+                        margin-left: 4px;
+                        border-radius: 8px;
+                        position: absolute;
+                        right: 3px;
+                        padding: 3px 2px 2px 2px;
+                    }
+
+                    .icon-cancel:hover {
+                        background-color: rgba(168, 40, 40, 0.6);
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .content-items {
+            margin: -48px 0;
+            padding: 62px 12px;
+            overflow-y: scroll;
+        }
+
+        .content-actions {
+            background-color: white;
+            box-shadow: 0px -6px 4px -2px rgba(0, 0, 0, .20);
+            border-radius: 12px 12px 0 0;
+            padding: 4px 8px;
+            z-index: 1;
+        }
+
+        .add-info-container {
+            // background-color: lime;
+            border-left: 1px solid rgb(180, 180, 180);
+            position: relative;
+        }
+    }
+
+
+
+
+}

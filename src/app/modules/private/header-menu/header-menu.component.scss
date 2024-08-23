@@ -1,0 +1,213 @@
+// LOCAL VARIABLES
+// ###############
+$buttonBorderRadius: 16px;
+
+// MAIN-MENU
+// *********
+.menu-container {
+    background-color: white;
+    height: 100%;
+    overflow: visible;
+
+    div, button {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-wrapper {
+        height: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        overflow: visible;
+    }
+
+    .menu-wrapper.left {
+        display: flex;
+        align-items: center;
+
+        // SPECIAL CONTAINER LOGO
+        // ----------------------
+        .logo {
+            background-color: white;
+            height: 100%;
+            width: max-content;
+            padding: 0 12px;
+
+            img {
+                height: 32px;
+            }
+        }
+
+        // Background-Container GREEN
+        // ##########################
+        .header-item-container-green {
+            background-color: lime;
+            background-color: #527083;
+            height: 44px;
+            position: relative;
+            top: 4px;
+            align-items: start;
+            border-radius: $buttonBorderRadius $buttonBorderRadius 0 0;
+            overflow: visible;
+
+            // Background-Container WHITE
+            // ##########################
+            .header-item-container-white {
+                background-color: orange;
+                background-color: white;
+                height: 100%;
+                align-items: start;
+                padding: 0 4px;
+
+                // ##  DROPDOWN  ##
+                // ################
+                .dropdown-container {
+                    // background-color: lime;
+                    position: relative;
+                    overflow: visible;
+                    z-index: 10;
+
+                    // ##  DROPDOWN-BUTTON  ##
+                    // #######################
+                    .drop-button {
+                        background-color: yellow;
+                        background-color: rgba(44, 80, 103, 0.2);
+                        border: 1px solid rgba(44, 80, 103, 0.12);
+                        position: relative;
+                        height: 36px;
+                        border-radius: $buttonBorderRadius;
+                        padding: 0 8px;
+
+                        .button-icon {
+                            font-size: 1.1em;
+                        }
+
+                        .button-icon-is-favorite {
+                            font-size: 1.4em;
+                            color: #fff982;
+                            text-shadow: 0 0 3px rgb(153, 145, 26), 0 0 5px rgb(105, 99, 12);
+                        }
+
+                        .button-text {
+                            margin-left: 4px;
+                        }
+                    }
+
+                    // ##  DROPDOWN-BUTTON : HOVER ##
+                    // ##############################
+                    .drop-button:hover {
+                        background-color: rgba(44, 80, 103, 0.3);
+                        border: 1px solid rgba(44, 80, 103, 0.18);
+                        cursor: pointer;
+                    }
+
+                    .drop-button.active:hover {
+                        background-color: transparent;
+                        border: 1px solid transparent;
+                        cursor: pointer;
+                    }
+
+                    // ##  DROPDOWN-CONTENT  ##
+                    // ########################
+                    .drop-content-container {
+                        background-color: orange;
+                        background-color: #D4DCE0;
+                        border: 1px solid rgba(44, 80, 103, 0.18);
+                        position: fixed;
+                        top: 48px;
+                        display: block;
+                        border-radius: 16px;
+                        min-width: 250px;
+
+                        // ##  DROPDOWN-ITEM  ##
+                        // #####################
+                        .drop-item-container {
+                            display: flex;
+                            justify-content: space-between;
+                            padding-right: 8px;
+
+                            .drop-item {
+                                padding: 12px 0px 12px 12px;
+                                width: 100%;
+                                min-width: 160px;
+                            }
+
+                            [class*="icon"] {
+                                border-radius: 12px;
+                                padding: 1px 4px 2px 2px;
+                                font-size: 1.4em;
+                                color: rgb(200, 200, 200);
+                                text-shadow: 0 0 3px rgb(200, 200, 200), 0 0 5px rgb(240, 240, 240);
+                                transition: background-color .2s, border .2s, color .2s;
+                            }
+
+                            .is-favorite {
+                                color: #fff982;
+                                text-shadow: 0 0 3px rgb(153, 145, 26), 0 0 5px rgb(105, 99, 12);
+                            }
+                        }
+
+                        // ##  DROPDOWN-ITEM : HOVER  ##
+                        // #############################
+                        .drop-item-container:hover {
+                            background-color: rgba(44, 80, 103, 0.2);
+                            cursor: pointer;
+
+                            [class*="icon"] {
+                                color: rgb(180, 180, 180);
+                            }
+
+                            .is-favorite {
+                                color: #fff982;
+                                text-shadow: 0 0 3px rgb(153, 145, 26), 0 0 5px rgb(105, 99, 12);
+                            }
+
+                            [class*="icon"]:hover {
+                                background-color: rgba(255, 255, 255, 0.8);
+                            }
+
+                            .is-favorite:hover {
+                                background-color: rgba(0, 0, 0, 0.2);
+                                color: #fff982;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // ##  CONTAINER / BUTTON - STATUS  ##
+            // ###################################
+            .header-item-container-white.pre-active {
+                border-radius: 0 0 $buttonBorderRadius 0;
+                padding-right: 8px;
+            }
+
+            .header-item-container-white.active {
+                background-color: transparent;
+
+                .drop-button.active {
+                    background-color: transparent;
+                    border: 1px solid transparent;
+                    cursor: default;
+
+                    span {
+                        color: white;
+                    }
+                }
+            }
+
+            .header-item-container-white.post-active {
+                border-radius: 0 0 0 $buttonBorderRadius;
+                padding-left: 8px;
+            }
+        }
+    }
+
+    .menu-wrapper.right {
+        justify-self: right;
+        display: flex;
+        align-items: center;
+        margin-right: 12px;
+    }
+
+}

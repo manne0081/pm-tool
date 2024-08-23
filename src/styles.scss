@@ -6,7 +6,8 @@
 // GLOBAL VARIABLES
 // ****************
 :root {
-    --app-background: #2c5067;      // rgb(44, 80, 103)
+    --app-background: #527083;      // rgb(82, 112, 131)
+    --font-color-primary: #4f4f4f;
 }
 
 
@@ -16,8 +17,9 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
     margin: 0px;
     padding: 0px;
+    color: var(--font-color-primary);
     box-sizing: border-box;
-    // overflow: hidden;
+    overflow: hidden;
 }
 
 input {

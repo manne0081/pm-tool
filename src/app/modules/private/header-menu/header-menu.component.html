@@ -1,0 +1,85 @@
+<div class="menu-container">
+
+    <div class="menu-wrapper">
+
+        <!-- HEADER LEFT -->
+        <!-- *********** -->
+        <div class="menu-wrapper left">
+
+            <!-- Logo -->
+            <!-- **** -->
+            <div class="header-item-container-1 logo">
+                <img src="../../../assets/img/logo-design-49570.png" alt="">
+            </div>
+
+            <!-- Menu-Buttons and Dropdowns / The values come from 'menuItems' and 'menuSubItems' -->
+            <!-- ******************************************************************************** -->
+            <div class="header-item-container-green" *ngFor="let menuItem of menuItems, index">
+                <div class="header-item-container-white" [ngClass]="menuItem.status">
+                    <div #dropdown class="dropdown-container">
+
+                        <!-- MENU-BUTTON (Dashboard) / When the menu-item has no dropdown and have the url-link directly -->
+                        <!-- ******************************************************************************************* -->
+                        <ng-container *ngIf="menuItem.hasLink; else noLink">
+                            <button #dropdownButton class="drop-button" [ngClass]="menuItem.status" *ngIf="menuItem.name !== 'placeholder'"
+                                (click)="openDropdown(menuItem.name)" (click)="markMenuItemAsActive(menuItem.name)" (click)="onSelectItem(menuItem.name!)"
+                                [routerLink]="menuItem.hasLink ? menuItem.route : ''"
+                            >
+                                <span [class]="'button-icon ' + menuItem.iconClass" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
+                                <span class="button-text" *ngIf="menuItem.hasTitle">{{menuItem.title}}</span>
+                            </button>
+                        </ng-container>
+
+                        <!-- MENU-BUTTON (!Dashboard) / When the menu-item has a dropdown and dont have an url-link -->
+                        <!-- ************************************************************************************** -->
+                        <ng-template #noLink>
+                            <button #dropdownButton class="drop-button" [ngClass]="menuItem.status" *ngIf="menuItem.name !== 'placeholder'"
+                                (click)="openDropdown(menuItem.name)"
+                            >
+                                <span [class]="'button-icon ' + menuItem.iconClass" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
+                                <span class="button-text" *ngIf="menuItem.hasTitle">{{menuItem.title}}</span>
+                            </button>
+                        </ng-template>
+
+                        <!-- DROPDOWN-CONTENT if the clicked menuItem.name is searching -->
+                        <!-- ********************************************************** -->
+                        <div class="drop-content-container" *ngIf="menuItem.showDropdown && menuItem.name === 'searching'"
+                             style="padding: 8px 16px; font-size: 2em; min-width: 500px; min-height: 200px; display: flex; align-items: center; justify-content: space-around;"
+                        >
+                            WIP
+
+                            <!-- todo -->
+
+                        </div>
+
+                        <!-- DROPDOWN-CONTENT if the clicked menuItem.name is not searching -->
+                        <!-- ************************************************************** -->
+                        <div class="drop-content-container" *ngIf="menuItem.showDropdown && menuItem.name !== 'searching'">
+                            <ng-container *ngFor="let menuSubItem of menuSubItems, index as i">
+                                <div class="drop-item-container" *ngIf="menuSubItem.parentName == menuItem.name"
+                                        [routerLink]="menuSubItem.route" (click)="markMenuItemAsActive(menuSubItem.parentForMenuItemState)" (click)="closeAllDropdowns()"
+                                        (click)="onSelectItem(menuSubItem.name)"
+                                >
+                                    <span class="drop-item">{{menuSubItem.title}}</span>
+                                    <span [ngClass]="menuSubItem.isFavorite == true ? 'icon-star is-favorite' : 'icon-star'"
+                                          (click)="toggleFavorite(menuSubItem.name); $event.stopPropagation()"
+                                    ></span>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- HEADER RIGHT -->
+        <!-- ************ -->
+        <div class="menu-wrapper right" (click)="testFunction()">
+            WIP
+        </div>
+
+    </div>
+
+</div>

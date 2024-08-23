@@ -1,1 +1,143 @@
-<p>private works!</p>
+<!-- Page-Structure -->
+<!-- -------------- -->
+<div class="page-structure">
+
+    <!-- Header -->
+    <!-- ------ -->
+    <header class="page-header-container" style="overflow: visible">
+        <app-header-menu (selectedMenuItem)="onSelectMenuItem($event)"></app-header-menu>
+    </header>
+
+    <!-- Main-Content -->
+    <!-- ------------ -->
+    <main class="page-content-container">
+
+        <!-- Content-Title -->
+        <!-- ------------- -->
+        <div class="content-title-container">
+
+            <!-- Button toggle Quicklinks -->
+            <!-- ------------------------ -->
+            <button class="content-title-quicklinks" (click)="toggleQuicklinkVisibility()">
+                Quicklinks
+            </button>
+
+            <!-- Menuname -->
+            <!-- -------- -->
+            <span class="content-title-value">
+                {{selectedValueFromMainMenu | uppercase}}
+            </span>
+
+            <!-- Button toggle AddInfos -->
+            <!-- ---------------------- -->
+            <button class="content-title-addinfo" (click)="toggleAddInfoVisibility()" *ngIf="selectedValueFromMainMenu !== 'dashboard'">
+                Add Info
+            </button>
+
+        </div>
+
+        <!-- Content (Quicklinks - Tiles - AddInfo) -->
+        <!-- Different Classes wether quicklinks or addInfo should be visible or not -->
+        <!-- ----------------------------------------------------------------------- -->
+        <div [ngClass]="{
+                'content-container-full': quicklinksVisible && addInfoVisible,
+                'content-container-without-quicklinks': !quicklinksVisible && addInfoVisible,
+                'content-container-without-addinfo': quicklinksVisible && !addInfoVisible,
+                'content-container-tiles-only': !quicklinksVisible && !addInfoVisible
+            }"
+        >
+            <!-- QUICKLINKS -->
+            <!-- ---------- -->
+            <div class="quicklinks-container" *ngIf="quicklinksVisible">
+                <app-quicklinks (selectedQuicklink)="onSelectQuicklink($event)"></app-quicklinks>
+            </div>
+
+            <!-- Content -->
+            <!-- ------- -->
+            <div [ngClass]="selectedValueFromMainMenu === 'Dashboard' ? 'main-content-container-dashboard' : 'main-content-container'">
+
+                <!-- Content-Header -->
+                <!-- -------------- -->
+                <div class="content-header-container" *ngIf="selectedValueFromMainMenu !== 'dashboard'">
+                    <div class="add-filter-wrapper" style="overflow: visible">
+                        <!-- Searching-Area -->
+                        <!-- -------------- -->
+                        <div class="searching-wrapper">
+                            <!-- <input type="text" placeholder="Searching..." [(ngModel)]="searchTerm" (keyup)="onSearchTermChanged($event)"/>
+                            <div class="icon-cancel" *ngIf="searchTerm != ''" (click)="removeSearchTerm()"></div> -->
+                        </div>
+
+                        <!-- DROPDOWN - Component - TEST -->
+                        <!-- --------------------------- -->
+                        <!-- <app-tile-view-dropdown style="overflow: visible"
+                            [buttonValue]="'filter'"
+                            [buttonIcon]="'icon-filter'"
+                            [dropdownContent]="'filter'"
+                        ></app-tile-view-dropdown> -->
+
+                        <!-- <app-tile-view-dropdown style="overflow: visible"
+                            [buttonValue]="'sort'"
+                            [buttonIcon]="'icon-sort'"
+                            [dropdownContent]="'sort'"
+                        ></app-tile-view-dropdown> -->
+
+                        <!-- <app-tile-view-dropdown style="overflow: visible"
+                            [buttonValue]="'group'"
+                            [buttonIcon]="'icon-drawer'"
+                            [dropdownContent]="'group'"
+                        ></app-tile-view-dropdown> -->
+                    </div>
+
+                    <!-- Filter-Elements when exists -->
+                    <!-- --------------------------- -->
+                    <div class="show-filter-wrapper">       <!--  *ngIf="activeFilterItems.length > 0"-->
+                        <div class="show-filter-item-container">        <!--  *ngFor="let item of activeFilterItems"-->
+                            <!-- <span>{{ item.name }}</span> -->
+                            <span>item-name</span>
+                            <div class="icon-cancel"></div>     <!--  (click)="removeFilterItem(item)"-->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <!-- ------- -->
+                <div class="content-items">
+                    <router-outlet></router-outlet>
+                </div>
+
+                <!-- Content-Actions -->
+                <!-- --------------- -->
+                <div class="content-actions" *ngIf="selectedValueFromMainMenu !== 'dashboard'">
+                    Actions
+                </div>
+            </div>
+
+            <!-- ADDITIONAL INFORMATION -->
+            <!-- ---------------------- -->
+            <div class="add-info-container" *ngIf="addInfoVisible">
+                <!-- <app-add-info [addInfoObject]="addInfoObject"></app-add-info> -->
+
+                <!-- note -->
+                <!-- Only for testing -->
+                <!-- <app-dropdown style="position:absolute; top: 48px; left: 12px;"
+                    [buttonValue]="'test'"
+                    [buttonIcon]="'icon-grid'"
+                    [contentOption]="'object-test'"
+                ></app-dropdown> -->
+                <!-- End for testing -->
+
+            </div>
+        </div>
+
+
+
+
+
+    </main>
+</div>
+
+
+
+
+
+<!-- <router-outlet></router-outlet> -->

@@ -1,0 +1,35 @@
+<div class="quicklink-header">
+
+    <div class="headline-wrapper">
+        <span>My Quicklinks</span>
+        <div class="icon-add add-button" (click)="onAddQuicklink()"></div>
+    </div>
+
+    <div class="searching-wrapper">
+        <input type="text" placeholder="Searching..." [(ngModel)]="searchTerm">
+        <div class="icon-cancel" *ngIf="searchTerm != ''" (click)="removeSearchTerm()"></div>
+    </div>
+
+</div>
+
+<div class="quicklink-items-wrapper example-list" cdkDropList
+    (cdkDropListDropped)="moveDropdown($event)">
+
+    <div class="quicklink-item-container example-box"
+        *ngFor="let item of filteredQuicklinks; index as i" cdkDrag>
+
+        <div class="quicklink-drag" cdkDragHandle>
+            <span class="icon-fullscreen"></span>
+        </div>
+
+        <div class="quicklink-value" (click)="onSelectQuicklink(item)">
+            <span>{{ truncateText(item.title, 20) }}</span>
+        </div>
+
+        <div class="quicklink-more" (click)="openContext(item)">
+            <span class="icon-more-vert"></span>
+        </div>
+
+    </div>
+
+</div>
