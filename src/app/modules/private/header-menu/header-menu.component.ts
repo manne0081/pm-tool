@@ -2,6 +2,9 @@ import { Component, Output, EventEmitter, HostListener, ElementRef, AfterViewIni
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 
+import { HeaderMenu } from '../../../mocks/header-menu-mock';
+import { HeaderMenuService } from './header-menu.service';
+
 @Component({
     selector: 'app-header-menu',
     standalone: true,
@@ -18,6 +21,11 @@ export class HeaderMenuComponent implements AfterViewInit{
 
     @ViewChildren('dropdownButton') buttons!: QueryList<ElementRef>;
     @ViewChildren('dropdown') dropdowns!: QueryList<ElementRef>;
+
+    menuItems2: HeaderMenu[] = [];
+
+
+
 
     menuItems: { name: string, iconClass: string, hasDropdown: boolean, hasTitle: boolean, title?: string, status?: string, showDropdown?: boolean, isFavorite?: boolean, buttonRef?: ElementRef, dropdownRef?: ElementRef, hasLink: boolean, route?: string } [] = [
         { name: 'searching', iconClass: 'icon-search', hasDropdown: true, showDropdown: false, hasTitle: false, hasLink: false },
@@ -47,6 +55,7 @@ export class HeaderMenuComponent implements AfterViewInit{
     ]
 
     constructor (
+        private headerMenuService: HeaderMenuService,
         private router: Router,
         private eRef: ElementRef,
         // private quicklinkService: QuicklinksService,
@@ -55,11 +64,20 @@ export class HeaderMenuComponent implements AfterViewInit{
 
     ngOnInit(): void {
         // Add some items to favorite for testing
-        this.toggleFavorite('task');
-        this.toggleFavorite('company');
+        this.toggleFavorite('customer');
+        this.toggleFavorite('project');
+
+        this.getHeaderMenu();
+
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
         // });
+    }
+
+    getHeaderMenu(): void {
+        this.headerMenuService.getHeaderMenu().subscribe((data: HeaderMenu[]) => {
+            this.menuItems2 = data;
+        });
     }
 
     ngAfterViewInit() {
