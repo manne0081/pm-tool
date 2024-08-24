@@ -1,16 +1,23 @@
 export interface HeaderMenu {
     id: number;
     name: string;
+    hasDropdown: boolean;
+    hasLink: boolean;
+
     title?: string;
     icon?: string;
+    status?: string;
+    showDropdown?: boolean;
+    isFavorite?: boolean;
+    route?: string
 }
 
 export const HEADERMENU_MOCK: HeaderMenu[] = [
-    { id: 0, name: 'search', icon: 'icon-search' },
-    { id: 1, name: 'favorite', icon: 'icon-star' },
-    { id: 2, name: 'dashboard', title: 'Dashboard', icon: 'icon-grid' },
-    { id: 3, name: 'folder', title: 'Kunden' },
-    { id: 4, name: 'project', title: 'Projekte' },
+    { id: 0, name: 'search', hasDropdown: true, hasLink: false, icon: 'icon-search', isFavorite: false, showDropdown: false },
+    { id: 1, name: 'favorite', hasDropdown: true, hasLink: false, icon: 'icon-star', isFavorite: false, showDropdown: false, status: 'pre-active' },
+    { id: 2, name: 'dashboard', hasDropdown: false, hasLink: true, title: 'Dashboard', icon: 'icon-grid', isFavorite: false, showDropdown: false, status: 'active', route: '/dashboard' },
+    { id: 3, name: 'folder', hasDropdown: false, hasLink: false, title: 'Kunden', isFavorite: true, showDropdown: false, status: 'post-active' },
+    { id: 4, name: 'project', hasDropdown: false, hasLink: false, title: 'Projekte', isFavorite: true, showDropdown: false },
 ];
 
 // menuItems: { name: string, iconClass: string, hasDropdown: boolean, hasTitle: boolean, title?: string, status?: string, showDropdown?: boolean, isFavorite?: boolean, buttonRef?: ElementRef, dropdownRef?: ElementRef, hasLink: boolean, route?: string } [] = [
@@ -26,12 +33,17 @@ export const HEADERMENU_MOCK: HeaderMenu[] = [
 export interface HeaderSubMenu {
     id: number;
     name: string;
+    parentName: String;
+    title: string;
+    route: string;
+
+    isFavorite?: boolean;
 }
 
 export const HEADERSUBMENU_MOCK: HeaderSubMenu[] = [
-    { id: 0, name: 'Gmbh / Name=desc' },
-    { id: 1, name: 'task=web' },
-    { id: 2, name: 'Unternehmen=Solution' },
+    { id: 0, name: 'test-1', parentName: 'folder', title: 'TEST-1', route: 'test' },
+    { id: 1, name: 'test-2', parentName: 'folder', title: 'TEST-2', route: 'test' },
+    { id: 2, name: 'test-3', parentName: 'folder', title: 'TEST-3', route: 'test' },
 ];
 
 // menuSubItems: { parentName: string, name: string, title: string, isFavorite: boolean, route: string, parentForMenuItemState: string } [] = [
