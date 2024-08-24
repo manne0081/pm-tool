@@ -43,7 +43,7 @@ export interface HeaderSubMenu {
 export const HEADERSUBMENU_MOCK: HeaderSubMenu[] = [
     { id: 0, name: 'test-1', parentName: 'folder', title: 'TEST-1', route: 'test' },
     { id: 1, name: 'test-2', parentName: 'folder', title: 'TEST-2', route: 'test' },
-    { id: 2, name: 'test-3', parentName: 'folder', title: 'TEST-3', route: 'test' },
+    { id: 2, name: 'test-3', parentName: 'project', title: 'TEST-3', route: 'test' },
 ];
 
 // menuSubItems: { parentName: string, name: string, title: string, isFavorite: boolean, route: string, parentForMenuItemState: string } [] = [
