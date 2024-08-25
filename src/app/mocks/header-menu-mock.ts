@@ -14,7 +14,7 @@ export interface HeaderMenu {
 
 export const HEADERMENU_MOCK: HeaderMenu[] = [
     { id: 0, name: 'search', hasDropdown: true, hasLink: false, icon: 'icon-search', isFavorite: false, showDropdown: false },
-    { id: 1, name: 'favorite', hasDropdown: true, hasLink: false, icon: 'icon-star', isFavorite: false, showDropdown: false, status: 'pre-active' },
+    { id: 1, name: 'favorite', hasDropdown: true, hasLink: false, icon: 'icon-star', isFavorite: true, showDropdown: false, status: 'pre-active' },
     { id: 2, name: 'dashboard', hasDropdown: false, hasLink: true, title: 'Dashboard', icon: 'icon-grid', isFavorite: false, showDropdown: false, status: 'active', route: '/dashboard' },
     { id: 3, name: 'folder', hasDropdown: false, hasLink: false, title: 'Kunden', isFavorite: true, showDropdown: false, status: 'post-active' },
     { id: 4, name: 'project', hasDropdown: false, hasLink: false, title: 'Projekte', isFavorite: true, showDropdown: false },

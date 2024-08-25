@@ -77,6 +77,7 @@ export class HeaderMenuComponent implements AfterViewInit{
     getHeaderMenu(): void {
         this.headerMenuService.getHeaderMenu().subscribe((data: HeaderMenu[]) => {
             this.menuItems2 = data;
+            console.log(data);
         });
     }
 

@@ -17,9 +17,14 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
     margin: 0px;
     padding: 0px;
+    font-size: 16px;
     color: var(--font-color-primary);
     box-sizing: border-box;
     overflow: hidden;
+}
+
+img.menu-item {
+    width: 24px;
 }
 
 input {

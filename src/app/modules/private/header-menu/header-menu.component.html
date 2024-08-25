@@ -14,7 +14,7 @@
 
             <!-- Menu-Buttons and Dropdowns / The values come from 'menuItems' and 'menuSubItems' -->
             <!-- ******************************************************************************** -->
-            <div class="header-item-container-green" *ngFor="let menuItem of menuItems, index">
+            <div class="header-item-container-green" *ngFor="let menuItem of menuItems2, index">
                 <div class="header-item-container-white" [ngClass]="menuItem.status">
                     <div #dropdown class="dropdown-container">
 
@@ -25,7 +25,7 @@
                                 (click)="openDropdown(menuItem.name)" (click)="markMenuItemAsActive(menuItem.name)" (click)="onSelectItem(menuItem.name!)"
                                 [routerLink]="menuItem.hasLink ? menuItem.route : ''"
                             >
-                                <span [class]="'button-icon ' + menuItem.iconClass" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
+                                <span [class]="'button-icon ' + menuItem.icon" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
                                 <span class="button-text" *ngIf="menuItem.title">{{menuItem.title}}</span>
                             </button>
                         </ng-container>
@@ -36,7 +36,7 @@
                             <button #dropdownButton class="drop-button" [ngClass]="menuItem.status" *ngIf="menuItem.name !== 'placeholder'"
                                 (click)="openDropdown(menuItem.name)"
                             >
-                                <span [class]="'button-icon ' + menuItem.iconClass" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
+                                <span [class]="'button-icon ' + menuItem.icon" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
                                 <span class="button-text" *ngIf="menuItem.title">{{menuItem.title}}</span>
                             </button>
                         </ng-template>
