@@ -23,6 +23,8 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
+            { path: 'folder', component: DashboardComponent },
+            { path: 'project', component: DashboardComponent },
         ]
     },
 

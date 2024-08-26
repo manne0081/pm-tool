@@ -55,7 +55,7 @@
                         <!-- DROPDOWN-CONTENT if the clicked menuItem.name is not searching -->
                         <!-- ************************************************************** -->
                         <div class="drop-content-container" *ngIf="menuItem.showDropdown && menuItem.name !== 'searching'">
-                            <!-- <ng-container *ngFor="let menuSubItem of menuSubItems, index as i">
+                            <ng-container *ngFor="let menuSubItem of menuSubItems, index as i">
                                 <div class="drop-item-container" *ngIf="menuSubItem.parentName == menuItem.name"
                                         [routerLink]="menuSubItem.route" (click)="markMenuItemAsActive(menuSubItem.parentForMenuItemState)" (click)="closeAllDropdowns()"
                                         (click)="onSelectItem(menuSubItem.name)"
@@ -65,7 +65,7 @@
                                           (click)="toggleFavorite(menuSubItem.name); $event.stopPropagation()"
                                     ></span>
                                 </div>
-                            </ng-container> -->
+                            </ng-container>
                         </div>
                     </div>
                 </div>
