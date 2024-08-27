@@ -14,4 +14,8 @@ export class HeaderMenuService {
     getHeaderMenu(): Observable<HeaderMenu[]> {
         return of(HEADERMENU_MOCK);
     }
+
+    getHeaderSubMenu(): Observable<HeaderSubMenu[]> {
+        return of(HEADERSUBMENU_MOCK);
+    }
 }

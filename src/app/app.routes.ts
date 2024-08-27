@@ -10,6 +10,8 @@ import { AuthComponent } from './modules/public/auth/auth.component';
 // ******************
 import { DashboardComponent } from './modules/private/dashboard/dashboard.component';
 import { PrivateComponent } from './modules/private/private.component';
+import { ClientListComponent } from './modules/private/client/client-list/client-list.component';
+import { ProjectListComponent } from './modules/private/project/project-list/project-list.component';
 
 // ROUTES
 // ******
@@ -23,8 +25,8 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
-            { path: 'folder', component: DashboardComponent },
-            { path: 'project', component: DashboardComponent },
+            { path: 'clients', component: ClientListComponent },
+            { path: 'projects', component: ProjectListComponent},
         ]
     },
 

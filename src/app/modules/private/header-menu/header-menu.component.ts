@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter, HostListener, ElementRef, AfterViewIni
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 
-import { HeaderMenu } from '../../../mocks/header-menu-mock';
+import { HeaderMenu, HeaderSubMenu } from '../../../mocks/header-menu-mock';
 import { HeaderMenuService } from './header-menu.service';
 
 @Component({
@@ -22,7 +22,8 @@ export class HeaderMenuComponent implements AfterViewInit{
     @ViewChildren('dropdownButton') buttons!: QueryList<ElementRef>;
     @ViewChildren('dropdown') dropdowns!: QueryList<ElementRef>;
 
-    menuItems2: HeaderMenu[] = [];
+    headerMenuItems: HeaderMenu[] = [];
+    headerSubMenuItems: HeaderSubMenu[] = [];
 
 
 
@@ -66,16 +67,19 @@ export class HeaderMenuComponent implements AfterViewInit{
         this.toggleFavorite('customer');
         this.toggleFavorite('project');
 
-        this.getHeaderMenu();
+        this.getHeaderMenuItems();
 
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
         // });
     }
 
-    getHeaderMenu(): void {
+    /**
+     * Subscribes the Header-Menu-Items from the Mock-Data
+     */
+    getHeaderMenuItems(): void {
         this.headerMenuService.getHeaderMenu().subscribe((data: HeaderMenu[]) => {
-            this.menuItems2 = data;
+            this.headerMenuItems = data;
             console.log(data);
         });
     }
@@ -103,9 +107,10 @@ export class HeaderMenuComponent implements AfterViewInit{
      * @param name
      */
     openDropdown(name: string): void {
+        console.log('headerMenu - openDropdown: ', name);
         this.closeAllDropdowns();
 
-        this.menuItems.forEach((item, index) => {
+        this.headerMenuItems.forEach((item, index) => {
             if (item.name == name) {
                 if (item.hasDropdown) {
                     item.showDropdown = true;

@@ -16,8 +16,8 @@ export const HEADERMENU_MOCK: HeaderMenu[] = [
     { id: 0, name: 'search', hasDropdown: true, hasLink: false, icon: 'icon-search', isFavorite: false, showDropdown: false },
     { id: 1, name: 'favorite', hasDropdown: true, hasLink: false, icon: 'icon-star', isFavorite: true, showDropdown: false, status: 'pre-active' },
     { id: 2, name: 'dashboard', hasDropdown: false, hasLink: true, title: 'Dashboard', icon: 'icon-grid', isFavorite: false, showDropdown: false, status: 'active', route: '/dashboard' },
-    { id: 3, name: 'folder', hasDropdown: false, hasLink: false, title: 'Kunden', icon: 'icon-group', showDropdown: false, status: 'post-active', route: '/folder' },
-    { id: 4, name: 'project', hasDropdown: true, hasLink: false, title: 'Projekte', icon: 'icon-grid', showDropdown: false, route: '/project' },
+    { id: 3, name: 'clients', hasDropdown: false, hasLink: false, title: 'Kunden', icon: 'icon-group', showDropdown: false, status: 'post-active', route: '/clients' },
+    { id: 4, name: 'projects', hasDropdown: true, hasLink: false, title: 'Projekte', icon: 'icon-grid', showDropdown: false, route: '/projects' },
 ];
 
 // menuItems: { name: string, iconClass: string, hasDropdown: boolean, hasTitle: boolean, title?: string, status?: string, showDropdown?: boolean, isFavorite?: boolean, buttonRef?: ElementRef, dropdownRef?: ElementRef, hasLink: boolean, route?: string } [] = [
@@ -33,7 +33,7 @@ export const HEADERMENU_MOCK: HeaderMenu[] = [
 export interface HeaderSubMenu {
     id: number;
     name: string;
-    parentName: String;
+    parentName: string;
     title: string;
     route: string;
 
