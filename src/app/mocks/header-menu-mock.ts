@@ -38,6 +38,6 @@ export interface HeaderSubMenu {
 }
 
 export const HEADERSUBMENU_MOCK: HeaderSubMenu[] = [
-    { id: 0, name: 'team-members', parentName: 'team', title: 'Mitarbeiter', route: 'teamMember', isFavorite: false },
-    { id: 1, name: 'time-model', parentName: 'team', title: 'Zeitmodelle', route: 'teamMember', isFavorite: false },
+    { id: 0, name: 'teamMembers', parentName: 'team', title: 'Mitarbeiter', route: 'teamMember', isFavorite: false },
+    { id: 1, name: 'timeModel', parentName: 'team', title: 'Zeitmodelle', route: 'teamMember', isFavorite: false },
 ];

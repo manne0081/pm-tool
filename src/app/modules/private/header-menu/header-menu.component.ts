@@ -40,7 +40,7 @@ export class HeaderMenuComponent implements AfterViewInit{
         this.getHeaderMenuItems();
 
         //For testing
-        this.toggleFavorite('test-1');
+        this.toggleFavorite('teamMembers');
 
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
@@ -139,7 +139,6 @@ export class HeaderMenuComponent implements AfterViewInit{
             if (item.name === name) {
                 // Mark the subMenuItem
                 item.isFavorite = !item.isFavorite;
-                console.log(item.name, ' - ', name, ' - ', item.isFavorite);
 
                 // Add the subMenuItem to the favorites-array
                 if (item.isFavorite) {
