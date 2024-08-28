@@ -34,13 +34,11 @@ export class HeaderMenuComponent implements AfterViewInit{
     ) {}
 
     ngOnInit(): void {
-        // Add some items to favorite for testing
-        this.toggleFavorite('customer');
-        this.toggleFavorite('project');
         this.getHeaderMenuItems();
 
-        //For testing
-        this.toggleFavorite('teamMembers');
+        // Add some items to favorite for testing
+        // this.toggleFavorite('teamMember');
+        // this.toggleFavorite('timeModel');
 
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
@@ -53,11 +51,9 @@ export class HeaderMenuComponent implements AfterViewInit{
     getHeaderMenuItems(): void {
         this.headerMenuService.getHeaderMenu().subscribe((data: HeaderMenu[]) => {
             this.headerMenuItems = data;
-            // console.log(data);
         });
         this.headerMenuService.getHeaderSubMenu().subscribe((data: HeaderSubMenu[]) => {
             this.headerMenuSubItems = data;
-            // console.log(data);
         });
     }
 
@@ -137,30 +133,16 @@ export class HeaderMenuComponent implements AfterViewInit{
         this.headerMenuSubItems.forEach(item => {
 
             if (item.name === name) {
-                // Mark the subMenuItem
-                item.isFavorite = !item.isFavorite;
+                // Mark the subMenuItem as Favorite
+                this.headerMenuService.setHeaderSubItemToFavorite(item);
 
-                // Add the subMenuItem to the favorites-array
-                if (item.isFavorite) {
-                    let newId: number = this.headerMenuSubItems.length;
-
-                    const favoriteItem = {
-                        id: newId,
-                        name: item.name,
-                        parentName: 'favorites',
-                        parentForMenuItemState: item.parentName,
-                        title: item.title,
-                        isFavorite: true,
-                        route: item.route,
-                    };
-
-                    this.headerMenuSubItems.push(favoriteItem);
+                if (item.markAsFavorite) {
+                    // Add the subMenuItem as Favorite to the headerMenuSubItems-Array
+                    this.headerMenuService.addHeaderSubItemToFavorite(item);
 
                 } else {
-                    // Remove the subMenuItem from the favorites-array
-                    this.headerMenuSubItems = this.headerMenuSubItems.filter(subItem =>
-                        !(subItem.parentName === 'favorites' && subItem.name === item.name)
-                    );
+                    // Remove the subMenuItem from the array
+                    this.headerMenuService.removeSubItemFromFavorite(item);
                 }
             }
         });

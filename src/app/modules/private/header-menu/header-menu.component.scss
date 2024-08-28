@@ -1,7 +1,7 @@
 // LOCAL VARIABLES
 // ###############
 $buttonBorderRadius: 12px;
-$activeButtonBorderRadius: 18px;
+$activeButtonBorderRadius: calc($buttonBorderRadius + 6px);
 
 // MAIN-MENU
 // *********

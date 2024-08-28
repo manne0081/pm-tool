@@ -61,7 +61,7 @@
                                         (click)="onSelectItem(menuSubItem)"
                                 >
                                     <span class="drop-item">{{menuSubItem.title}}</span>
-                                    <span [ngClass]="menuSubItem.isFavorite == true ? 'icon-star is-favorite' : 'icon-star'"
+                                    <span [ngClass]="menuSubItem.markAsFavorite == true ? 'icon-star is-favorite' : 'icon-star'"
                                           (click)="toggleFavorite(menuSubItem.name); $event.stopPropagation()"
                                     ></span>
                                 </div>

@@ -48,6 +48,7 @@ export class PrivateComponent implements OnInit {
      * @param menuItem
      */
     onSelectMenuItem(menuItem: any) {
+
         // Set selectedMenuItem to Dashboard at App loading
         if (menuItem === 'Dashboard') {
             this.selectedMenuItem = menuItem;
@@ -56,7 +57,7 @@ export class PrivateComponent implements OnInit {
         }
 
         // Toggl visibility from the add-info area when selected Item is Dashboard or not
-        if (menuItem.name === 'dashboard') {
+        if (menuItem === 'Dashboard') {
             this.addInfoVisible = false;
         } else {
             this.addInfoVisible = true;
