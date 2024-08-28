@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, HostListener, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { v4 as uuidv4 } from 'uuid';
 
 import { HeaderMenu, HeaderSubMenu } from '../../../mocks/header-menu-mock';
 import { HeaderMenuService } from './header-menu.service';
@@ -18,46 +17,13 @@ import { HeaderMenuService } from './header-menu.service';
 })
 
 export class HeaderMenuComponent implements AfterViewInit{
-    @Output() selectedMenuItem: EventEmitter<string> = new EventEmitter<string>();
+    @Output() selectedMenuItem: EventEmitter<any> = new EventEmitter<any>();
 
     @ViewChildren('dropdownButton') buttons!: QueryList<ElementRef>;
     @ViewChildren('dropdown') dropdowns!: QueryList<ElementRef>;
 
     headerMenuItems: HeaderMenu[] = [];
     headerMenuSubItems: HeaderSubMenu[] = [];
-
-    menuButtonUuid: string = uuidv4();
-    dropdownUuid: string = uuidv4();
-
-
-
-
-    // menuItems: { name: string, iconClass: string, hasDropdown: boolean, hasTitle: boolean, title?: string, status?: string, showDropdown?: boolean, isFavorite?: boolean, buttonRef?: ElementRef, dropdownRef?: ElementRef, hasLink: boolean, route?: string } [] = [
-    //     { name: 'searching', iconClass: 'icon-search', hasDropdown: true, showDropdown: false, hasTitle: false, hasLink: false },
-    //     { name: 'favorites', iconClass: 'icon-star', hasDropdown: true, showDropdown: false, hasTitle: false, status: 'pre-active', isFavorite: true, hasLink: false },
-    //     { name: 'dashboard', iconClass: 'icon-grid', hasDropdown: false, hasTitle: true, title: 'Dashboard', status: 'active', hasLink: true, route: '/private/dashboard' },
-    //     { name: 'workspace', iconClass: 'icon-pencilwrench', hasDropdown: true, hasTitle: true, title: 'Workspace', showDropdown: false, status: 'post-active', hasLink: false },
-    //     { name: 'contacts', iconClass: 'icon-group', hasDropdown: true, hasTitle: true, title: 'Kontakte', showDropdown: false, hasLink: false },
-    //     { name: 'placeholder', iconClass: '', hasDropdown: true, showDropdown: false, hasTitle: false, hasLink: false },
-    // ]
-
-    // menuSubItems: { parentName: string, name: string, title: string, isFavorite: boolean, route: string, parentForMenuItemState: string } [] = [
-    //     { parentName: 'searching', name: 'searching', title: 'Test', isFavorite: false, route: '/private/searching', parentForMenuItemState: 'searching' },
-
-    //     { parentName: 'workspace', name: 'task', title: 'Aufgaben', isFavorite: false, route: '/private/task', parentForMenuItemState: 'workspace' },
-    //     { parentName: 'workspace', name: 'planner', title: 'Planner', isFavorite: false, route: '/private/planner', parentForMenuItemState: 'workspace' },
-    //     { parentName: 'workspace', name: 'campagne', title: 'Kampagnen', isFavorite: false, route: '/private/campagne', parentForMenuItemState: 'workspace' },
-    //     { parentName: 'workspace', name: 'email', title: 'E-Mail', isFavorite: false, route: '/private/email', parentForMenuItemState: 'workspace' },
-
-    //     { parentName: 'contacts', name: 'company', title: 'Unternehmen', isFavorite: false, route: '/private/company', parentForMenuItemState: 'contacts' },
-    //     { parentName: 'contacts', name: 'supplier', title: 'Lieferanten', isFavorite: false, route: '/private/supplier', parentForMenuItemState: 'contacts' },
-    //     { parentName: 'contacts', name: 'contact', title: 'Ansprechpartner', isFavorite: false, route: '/private/contact', parentForMenuItemState: 'contacts' },
-    //     { parentName: 'contacts', name: 'user', title: 'Benutzer', isFavorite: false, route: '/private/user', parentForMenuItemState: 'contacts' },
-    //     { parentName: 'contacts', name: 'module-auth', title: 'Modulberechtigungen', isFavorite: false, route: '/private/module-auth', parentForMenuItemState: 'contacts' },
-    //     { parentName: 'contacts', name: 'company-wiki', title: 'Unternehmens-Wiki', isFavorite: false, route: '/private/company-wiki', parentForMenuItemState: 'contacts' },
-    //     { parentName: 'contacts', name: 'debitor-data', title: 'Debitor Daten', isFavorite: false, route: '/private/debitor-data', parentForMenuItemState: 'contacts' },
-    //     { parentName: 'contacts', name: 'address', title: 'Adressen', isFavorite: false, route: '/private/address', parentForMenuItemState: 'contacts' },
-    // ]
 
     constructor (
         private headerMenuService: HeaderMenuService,
@@ -71,7 +37,6 @@ export class HeaderMenuComponent implements AfterViewInit{
         // Add some items to favorite for testing
         this.toggleFavorite('customer');
         this.toggleFavorite('project');
-
         this.getHeaderMenuItems();
 
         //For testing
@@ -88,11 +53,11 @@ export class HeaderMenuComponent implements AfterViewInit{
     getHeaderMenuItems(): void {
         this.headerMenuService.getHeaderMenu().subscribe((data: HeaderMenu[]) => {
             this.headerMenuItems = data;
-            console.log(data);
+            // console.log(data);
         });
         this.headerMenuService.getHeaderSubMenu().subscribe((data: HeaderSubMenu[]) => {
             this.headerMenuSubItems = data;
-            console.log(data);
+            // console.log(data);
         });
     }
 
@@ -115,6 +80,27 @@ export class HeaderMenuComponent implements AfterViewInit{
         } else {
             console.error('Buttons QueryList is not initialized or empty');
         }
+    }
+
+    /**
+     * Sends the name of the current selected menu-item to the parant (private) component to show the menu-name at the content title
+     * @param selectedValue
+     */
+    onSelectItem(item: any): void {
+        this.selectedMenuItem.emit(item);
+
+        // this.contentTileViewService.setNumberFilterConditions(0);
+        // todo
+        // remove all filter items by changing the menu-point
+    }
+
+    /**
+     *
+     * @param item
+     */
+    onSelectQuicklink(item: any): void {
+        // console.log(item);
+        this.markMenuItemAsActive(item.parent);
     }
 
     /**
@@ -181,30 +167,10 @@ export class HeaderMenuComponent implements AfterViewInit{
     }
 
     /**
-     * Close the opened dropdowns when klicking outside of the dropdown
-     * @param event
-     */
-    @HostListener('document:click', ['$event'])
-    onClickOutsid(event: Event) {
-        const target = event.target as HTMLElement;
-
-        this.headerMenuItems.forEach(item => {
-            if (item.showDropdown &&
-                item.dropdownRef &&
-                item.buttonRef &&
-                !item.dropdownRef.nativeElement.contains(target) &&
-                !item.buttonRef.nativeElement.contains(target)) {
-                item.showDropdown = false;
-            }
-        });
-    }
-
-    /**
      * Changes the CSS-Classes from the active / pre-active / post-active menu-item
      * @param name
      */
     markMenuItemAsActive(name: string): void {
-
         if (name == 'searching') {
             console.log("Funktion wird unterbrochen.");
             return;
@@ -240,20 +206,22 @@ export class HeaderMenuComponent implements AfterViewInit{
     }
 
     /**
-     * Sends the name of the current selected menu-item to the parant (private) component to show the menu-name at the content title
-     * @param selectedValue
+     * Close the opened dropdowns when klicking outside of the dropdown
+     * @param event
      */
-    onSelectItem(selectedValue: string): void {
-        this.selectedMenuItem.emit(selectedValue);
+    @HostListener('document:click', ['$event'])
+    onClickOutsid(event: Event) {
+        const target = event.target as HTMLElement;
 
-        // this.contentTileViewService.setNumberFilterConditions(0);
-        // todo
-        // remove all filter items by changing the menu-point
-    }
-
-    onSelectQuicklink(item: any): void {
-        // console.log(item);
-        this.markMenuItemAsActive(item.parent);
+        this.headerMenuItems.forEach(item => {
+            if (item.showDropdown &&
+                item.dropdownRef &&
+                item.buttonRef &&
+                !item.dropdownRef.nativeElement.contains(target) &&
+                !item.buttonRef.nativeElement.contains(target)) {
+                item.showDropdown = false;
+            }
+        });
     }
 
     async testFunction() {

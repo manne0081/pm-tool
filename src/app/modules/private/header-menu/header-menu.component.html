@@ -9,7 +9,7 @@
             <!-- Logo -->
             <!-- **** -->
             <div class="header-item-container-1 logo">
-                <img src="../../../assets/img/logo-design-49570.png" alt="">
+                <img src="../../../assets/img/logo-design-49570-2.png" alt="">
             </div>
 
             <!-- Menu-Buttons and Dropdowns / The values come from 'headerMenuItems' and 'headerMenuSubItems' -->
@@ -22,7 +22,7 @@
                         <!-- ******************************************************************************************* -->
                         <ng-container *ngIf="menuItem.hasLink; else noLink">
                             <button #dropdownButton class="drop-button" [ngClass]="menuItem.status" *ngIf="menuItem.name !== 'placeholder'"
-                                (click)="openDropdown(menuItem.name)" (click)="markMenuItemAsActive(menuItem.name)" (click)="onSelectItem(menuItem.name!)"
+                                (click)="openDropdown(menuItem.name)" (click)="markMenuItemAsActive(menuItem.name)" (click)="onSelectItem(menuItem)"
                                 [routerLink]="menuItem.hasLink ? menuItem.route : ''"
                             >
                                 <span [class]="'button-icon ' + menuItem.icon" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
@@ -58,7 +58,7 @@
                             <ng-container *ngFor="let menuSubItem of headerMenuSubItems, index as i">
                                 <div class="drop-item-container" *ngIf="menuSubItem.parentName == menuItem.name"
                                         [routerLink]="menuSubItem.route" (click)="markMenuItemAsActive(menuSubItem.parentName)" (click)="closeAllDropdowns()"
-                                        (click)="onSelectItem(menuSubItem.name)"
+                                        (click)="onSelectItem(menuSubItem)"
                                 >
                                     <span class="drop-item">{{menuSubItem.title}}</span>
                                     <span [ngClass]="menuSubItem.isFavorite == true ? 'icon-star is-favorite' : 'icon-star'"

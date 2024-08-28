@@ -54,3 +54,10 @@ fs.mkdir(modulePath, { recursive: true }, (err) => {
         console.log(stdout);
     });
 });
+
+/**
+ * Use this, to create a new component at the private components ->
+ *
+ * node script/createModule.js [componentName]
+ * -------------------------------------------
+ */

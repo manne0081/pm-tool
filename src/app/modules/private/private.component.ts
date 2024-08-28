@@ -19,14 +19,14 @@ import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 })
 
 export class PrivateComponent implements OnInit {
-    selectedValueFromMainMenu: string | null = null;
+    selectedMenuItem: any;
     quicklinksVisible?: boolean;
     addInfoVisible?: boolean;
 
     ngOnInit(): void {
         this.toggleQuicklinkVisibility();
         this.toggleAddInfoVisibility();
-        this.onSelectMenuItem('dashboard');
+        this.onSelectMenuItem('Dashboard');
     }
 
     /**
@@ -47,13 +47,21 @@ export class PrivateComponent implements OnInit {
      *
      * @param menuItem
      */
-    onSelectMenuItem(menuItem: string) {
-        this.selectedValueFromMainMenu = menuItem;
-        if (menuItem === 'dashboard') {
+    onSelectMenuItem(menuItem: any) {
+        // Set selectedMenuItem to Dashboard at App loading
+        if (menuItem === 'Dashboard') {
+            this.selectedMenuItem = menuItem;
+        } else {
+            this.selectedMenuItem = menuItem.title;
+        }
+
+        // Toggl visibility from the add-info area when selected Item is Dashboard or not
+        if (menuItem.name === 'dashboard') {
             this.addInfoVisible = false;
         } else {
             this.addInfoVisible = true;
         }
+
         // this.setAddInfoObject(menuItem);
         // this.addInfoObject = '';
         // this.removeAllFilterItems();

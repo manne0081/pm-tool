@@ -1,6 +1,7 @@
 // LOCAL VARIABLES
 // ###############
-$buttonBorderRadius: 18px;
+$buttonBorderRadius: 12px;
+$activeButtonBorderRadius: 18px;
 
 // MAIN-MENU
 // *********
@@ -35,6 +36,7 @@ $buttonBorderRadius: 18px;
 
             img {
                 height: 32px;
+                width: auto;
             }
         }
 
@@ -179,6 +181,7 @@ $buttonBorderRadius: 18px;
             // ###################################
             .header-item-container-white.pre-active {
                 border-radius: 0 0 $buttonBorderRadius 0;
+                border-radius: 0 0 $activeButtonBorderRadius 0;
                 padding-right: 8px;
             }
 
@@ -198,7 +201,13 @@ $buttonBorderRadius: 18px;
 
             .header-item-container-white.post-active {
                 border-radius: 0 0 0 $buttonBorderRadius;
+                border-radius: 0 0 0 $activeButtonBorderRadius;
                 padding-left: 8px;
+                min-width: 22px;
+            }
+
+            .placeholder {
+                width: $activeButtonBorderRadius;
             }
         }
     }

@@ -25,12 +25,13 @@
             <!-- Menuname -->
             <!-- -------- -->
             <span class="content-title-value">
-                {{selectedValueFromMainMenu | uppercase}}
+                <!-- {{selectedValueFromMainMenu | uppercase}} -->
+                {{ selectedMenuItem }}
             </span>
 
             <!-- Button toggle AddInfos -->
             <!-- ---------------------- -->
-            <button class="content-title-addinfo" (click)="toggleAddInfoVisibility()" *ngIf="selectedValueFromMainMenu !== 'dashboard'">
+            <button class="content-title-addinfo" (click)="toggleAddInfoVisibility()" *ngIf="selectedMenuItem !== 'dashboard'">
                 Add Info
             </button>
 
@@ -54,11 +55,11 @@
 
             <!-- Content -->
             <!-- ------- -->
-            <div [ngClass]="selectedValueFromMainMenu === 'Dashboard' ? 'main-content-container-dashboard' : 'main-content-container'">
+            <div [ngClass]="selectedMenuItem === 'dashboard' ? 'main-content-container-dashboard' : 'main-content-container'">
 
                 <!-- Content-Header -->
                 <!-- -------------- -->
-                <div class="content-header-container" *ngIf="selectedValueFromMainMenu !== 'dashboard'">
+                <div class="content-header-container" *ngIf="selectedMenuItem !== 'dashboard'">
                     <div class="add-filter-wrapper" style="overflow: visible">
                         <!-- Searching-Area -->
                         <!-- -------------- -->
@@ -107,7 +108,7 @@
 
                 <!-- Content-Actions -->
                 <!-- --------------- -->
-                <div class="content-actions" *ngIf="selectedValueFromMainMenu !== 'dashboard'">
+                <div class="content-actions" *ngIf="selectedMenuItem !== 'dashboard'">
                     Actions
                 </div>
             </div>
