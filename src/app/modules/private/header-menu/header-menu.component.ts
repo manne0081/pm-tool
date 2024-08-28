@@ -32,32 +32,32 @@ export class HeaderMenuComponent implements AfterViewInit{
 
 
 
-    menuItems: { name: string, iconClass: string, hasDropdown: boolean, hasTitle: boolean, title?: string, status?: string, showDropdown?: boolean, isFavorite?: boolean, buttonRef?: ElementRef, dropdownRef?: ElementRef, hasLink: boolean, route?: string } [] = [
-        { name: 'searching', iconClass: 'icon-search', hasDropdown: true, showDropdown: false, hasTitle: false, hasLink: false },
-        { name: 'favorites', iconClass: 'icon-star', hasDropdown: true, showDropdown: false, hasTitle: false, status: 'pre-active', isFavorite: true, hasLink: false },
-        { name: 'dashboard', iconClass: 'icon-grid', hasDropdown: false, hasTitle: true, title: 'Dashboard', status: 'active', hasLink: true, route: '/private/dashboard' },
-        { name: 'workspace', iconClass: 'icon-pencilwrench', hasDropdown: true, hasTitle: true, title: 'Workspace', showDropdown: false, status: 'post-active', hasLink: false },
-        { name: 'contacts', iconClass: 'icon-group', hasDropdown: true, hasTitle: true, title: 'Kontakte', showDropdown: false, hasLink: false },
-        { name: 'placeholder', iconClass: '', hasDropdown: true, showDropdown: false, hasTitle: false, hasLink: false },
-    ]
+    // menuItems: { name: string, iconClass: string, hasDropdown: boolean, hasTitle: boolean, title?: string, status?: string, showDropdown?: boolean, isFavorite?: boolean, buttonRef?: ElementRef, dropdownRef?: ElementRef, hasLink: boolean, route?: string } [] = [
+    //     { name: 'searching', iconClass: 'icon-search', hasDropdown: true, showDropdown: false, hasTitle: false, hasLink: false },
+    //     { name: 'favorites', iconClass: 'icon-star', hasDropdown: true, showDropdown: false, hasTitle: false, status: 'pre-active', isFavorite: true, hasLink: false },
+    //     { name: 'dashboard', iconClass: 'icon-grid', hasDropdown: false, hasTitle: true, title: 'Dashboard', status: 'active', hasLink: true, route: '/private/dashboard' },
+    //     { name: 'workspace', iconClass: 'icon-pencilwrench', hasDropdown: true, hasTitle: true, title: 'Workspace', showDropdown: false, status: 'post-active', hasLink: false },
+    //     { name: 'contacts', iconClass: 'icon-group', hasDropdown: true, hasTitle: true, title: 'Kontakte', showDropdown: false, hasLink: false },
+    //     { name: 'placeholder', iconClass: '', hasDropdown: true, showDropdown: false, hasTitle: false, hasLink: false },
+    // ]
 
-    menuSubItems: { parentName: string, name: string, title: string, isFavorite: boolean, route: string, parentForMenuItemState: string } [] = [
-        { parentName: 'searching', name: 'searching', title: 'Test', isFavorite: false, route: '/private/searching', parentForMenuItemState: 'searching' },
+    // menuSubItems: { parentName: string, name: string, title: string, isFavorite: boolean, route: string, parentForMenuItemState: string } [] = [
+    //     { parentName: 'searching', name: 'searching', title: 'Test', isFavorite: false, route: '/private/searching', parentForMenuItemState: 'searching' },
 
-        { parentName: 'workspace', name: 'task', title: 'Aufgaben', isFavorite: false, route: '/private/task', parentForMenuItemState: 'workspace' },
-        { parentName: 'workspace', name: 'planner', title: 'Planner', isFavorite: false, route: '/private/planner', parentForMenuItemState: 'workspace' },
-        { parentName: 'workspace', name: 'campagne', title: 'Kampagnen', isFavorite: false, route: '/private/campagne', parentForMenuItemState: 'workspace' },
-        { parentName: 'workspace', name: 'email', title: 'E-Mail', isFavorite: false, route: '/private/email', parentForMenuItemState: 'workspace' },
+    //     { parentName: 'workspace', name: 'task', title: 'Aufgaben', isFavorite: false, route: '/private/task', parentForMenuItemState: 'workspace' },
+    //     { parentName: 'workspace', name: 'planner', title: 'Planner', isFavorite: false, route: '/private/planner', parentForMenuItemState: 'workspace' },
+    //     { parentName: 'workspace', name: 'campagne', title: 'Kampagnen', isFavorite: false, route: '/private/campagne', parentForMenuItemState: 'workspace' },
+    //     { parentName: 'workspace', name: 'email', title: 'E-Mail', isFavorite: false, route: '/private/email', parentForMenuItemState: 'workspace' },
 
-        { parentName: 'contacts', name: 'company', title: 'Unternehmen', isFavorite: false, route: '/private/company', parentForMenuItemState: 'contacts' },
-        { parentName: 'contacts', name: 'supplier', title: 'Lieferanten', isFavorite: false, route: '/private/supplier', parentForMenuItemState: 'contacts' },
-        { parentName: 'contacts', name: 'contact', title: 'Ansprechpartner', isFavorite: false, route: '/private/contact', parentForMenuItemState: 'contacts' },
-        { parentName: 'contacts', name: 'user', title: 'Benutzer', isFavorite: false, route: '/private/user', parentForMenuItemState: 'contacts' },
-        { parentName: 'contacts', name: 'module-auth', title: 'Modulberechtigungen', isFavorite: false, route: '/private/module-auth', parentForMenuItemState: 'contacts' },
-        { parentName: 'contacts', name: 'company-wiki', title: 'Unternehmens-Wiki', isFavorite: false, route: '/private/company-wiki', parentForMenuItemState: 'contacts' },
-        { parentName: 'contacts', name: 'debitor-data', title: 'Debitor Daten', isFavorite: false, route: '/private/debitor-data', parentForMenuItemState: 'contacts' },
-        { parentName: 'contacts', name: 'address', title: 'Adressen', isFavorite: false, route: '/private/address', parentForMenuItemState: 'contacts' },
-    ]
+    //     { parentName: 'contacts', name: 'company', title: 'Unternehmen', isFavorite: false, route: '/private/company', parentForMenuItemState: 'contacts' },
+    //     { parentName: 'contacts', name: 'supplier', title: 'Lieferanten', isFavorite: false, route: '/private/supplier', parentForMenuItemState: 'contacts' },
+    //     { parentName: 'contacts', name: 'contact', title: 'Ansprechpartner', isFavorite: false, route: '/private/contact', parentForMenuItemState: 'contacts' },
+    //     { parentName: 'contacts', name: 'user', title: 'Benutzer', isFavorite: false, route: '/private/user', parentForMenuItemState: 'contacts' },
+    //     { parentName: 'contacts', name: 'module-auth', title: 'Modulberechtigungen', isFavorite: false, route: '/private/module-auth', parentForMenuItemState: 'contacts' },
+    //     { parentName: 'contacts', name: 'company-wiki', title: 'Unternehmens-Wiki', isFavorite: false, route: '/private/company-wiki', parentForMenuItemState: 'contacts' },
+    //     { parentName: 'contacts', name: 'debitor-data', title: 'Debitor Daten', isFavorite: false, route: '/private/debitor-data', parentForMenuItemState: 'contacts' },
+    //     { parentName: 'contacts', name: 'address', title: 'Adressen', isFavorite: false, route: '/private/address', parentForMenuItemState: 'contacts' },
+    // ]
 
     constructor (
         private headerMenuService: HeaderMenuService,
@@ -73,8 +73,10 @@ export class HeaderMenuComponent implements AfterViewInit{
         this.toggleFavorite('project');
 
         this.getHeaderMenuItems();
-        console.log(this.dropdownUuid);
-        console.log(this.menuButtonUuid);
+
+        //For testing
+        this.toggleFavorite('test-1');
+
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
         // });
@@ -94,22 +96,25 @@ export class HeaderMenuComponent implements AfterViewInit{
         });
     }
 
+    /**
+     * Puts the ElementRef to the Button and Dropdown, needs for the HostListner for check the outside clicks
+     */
     ngAfterViewInit() {
-        // if (this.buttons && this.buttons.toArray().length > 0) {
-        //     this.buttons.forEach((button, index) => {
-        //         this.menuItems[index].buttonRef = button;
-        //     });
-        // } else {
-        //     console.error('Buttons QueryList is not initialized or empty');
-        // }
+        if (this.dropdowns && this.dropdowns.toArray().length > 0) {
+            this.dropdowns.forEach((dropdown, index) => {
+                this.headerMenuItems[index].dropdownRef = dropdown;
+            });
+        } else {
+            console.error('Dropdowns QueryList is not initialized or empty');
+        }
 
-        // if (this.dropdowns && this.dropdowns.toArray().length > 0) {
-        //     this.dropdowns.forEach((dropdown, index) => {
-        //         this.menuItems[index].dropdownRef = dropdown;
-        //     });
-        // } else {
-        //     console.error('Dropdowns QueryList is not initialized or empty');
-        // }
+        if (this.buttons && this.buttons.toArray().length > 0) {
+            this.buttons.forEach((button, index) => {
+                this.headerMenuItems[index].buttonRef = button;
+            });
+        } else {
+            console.error('Buttons QueryList is not initialized or empty');
+        }
     }
 
     /**
@@ -117,7 +122,7 @@ export class HeaderMenuComponent implements AfterViewInit{
      * @param name
      */
     openDropdown(name: string): void {
-        console.log('headerMenu - openDropdown: ', name);
+        // console.log('headerMenu - openDropdown: ', name);
         this.closeAllDropdowns();
 
         this.headerMenuItems.forEach((item, index) => {
@@ -133,7 +138,7 @@ export class HeaderMenuComponent implements AfterViewInit{
      * Closing all dropdowns from the header-menu
      */
     closeAllDropdowns() {
-        this.menuItems.forEach(item => {
+        this.headerMenuItems.forEach(item => {
             item.showDropdown = false;
         });
     }
@@ -143,25 +148,31 @@ export class HeaderMenuComponent implements AfterViewInit{
     * @param name
     */
     toggleFavorite(name: string) {
-        this.menuSubItems.forEach(item => {
+        this.headerMenuSubItems.forEach(item => {
+
             if (item.name === name) {
                 // Mark the subMenuItem
                 item.isFavorite = !item.isFavorite;
+                console.log(item.name, ' - ', name, ' - ', item.isFavorite);
 
                 // Add the subMenuItem to the favorites-array
                 if (item.isFavorite) {
+                    let newId: number = this.headerMenuSubItems.length;
+
                     const favoriteItem = {
+                        id: newId,
+                        name: item.name,
                         parentName: 'favorites',
                         parentForMenuItemState: item.parentName,
-                        name: item.name,
                         title: item.title,
                         isFavorite: true,
                         route: item.route,
                     };
-                    this.menuSubItems.push(favoriteItem);
+                    this.headerMenuSubItems.push(favoriteItem);
+                    console.log(this.headerMenuSubItems);
                 } else {
                     // Remove the subMenuItem from the favorites-array
-                    this.menuSubItems = this.menuSubItems.filter(subItem =>
+                    this.headerMenuSubItems = this.headerMenuSubItems.filter(subItem =>
                         !(subItem.parentName === 'favorites' && subItem.name === item.name)
                     );
                 }
@@ -177,7 +188,7 @@ export class HeaderMenuComponent implements AfterViewInit{
     onClickOutsid(event: Event) {
         const target = event.target as HTMLElement;
 
-        this.menuItems.forEach(item => {
+        this.headerMenuItems.forEach(item => {
             if (item.showDropdown &&
                 item.dropdownRef &&
                 item.buttonRef &&
@@ -201,13 +212,13 @@ export class HeaderMenuComponent implements AfterViewInit{
 
         // At first, all menu-items will be resetet
         // ----------------------------------------
-        this.menuItems.forEach((item) => {
+        this.headerMenuItems.forEach((item) => {
             item.status = '';
         });
 
         // Sets the status for the activated menu-item and the pre-active and the post-active elements
         // -------------------------------------------------------------------------------------------
-        this.menuItems.forEach((item, index) => {
+        this.headerMenuItems.forEach((item, index) => {
 
             if (item.name === name) {
                 // Set 'active' for the clicked item
@@ -215,12 +226,12 @@ export class HeaderMenuComponent implements AfterViewInit{
 
                 // Set 'pre-active' for the previous item if it exists
                 if (index > 0) {
-                    this.menuItems[index - 1].status = 'pre-active';
+                    this.headerMenuItems[index - 1].status = 'pre-active';
                 }
 
                 // Set 'post-active' for the next item if it exists
-                if (index < this.menuItems.length - 1) {
-                    this.menuItems[index + 1].status = 'post-active';
+                if (index < this.headerMenuItems.length - 1) {
+                    this.headerMenuItems[index + 1].status = 'post-active';
                 } else {
                     console.log(`Next item at index ${index + 1} does not exist.`);
                 }

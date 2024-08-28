@@ -26,6 +26,7 @@ export class PrivateComponent implements OnInit {
     ngOnInit(): void {
         this.toggleQuicklinkVisibility();
         this.toggleAddInfoVisibility();
+        this.onSelectMenuItem('dashboard');
     }
 
     /**

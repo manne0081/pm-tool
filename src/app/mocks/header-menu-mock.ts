@@ -1,5 +1,6 @@
+import { ElementRef } from "@angular/core";
+
 export interface HeaderMenu {
-    [x: string]: any;
     id: number;
     name: string;
     hasDropdown: boolean;
@@ -10,12 +11,14 @@ export interface HeaderMenu {
     status?: string;
     showDropdown?: boolean;
     isFavorite?: boolean;
-    route?: string
+    route?: string;
+    buttonRef?: ElementRef;
+    dropdownRef?: ElementRef
 }
 
 export const HEADERMENU_MOCK: HeaderMenu[] = [
     { id: 0, name: 'search', hasDropdown: true, hasLink: false, title: 'Suche', icon: 'icon-search', isFavorite: false, showDropdown: false },
-    { id: 1, name: 'favorite', hasDropdown: true, hasLink: false, icon: 'icon-star', isFavorite: true, showDropdown: false, status: 'pre-active' },
+    { id: 1, name: 'favorites', hasDropdown: true, hasLink: false, icon: 'icon-star', isFavorite: true, showDropdown: false, status: 'pre-active' },
     { id: 2, name: 'dashboard', hasDropdown: false, hasLink: true, title: 'Dashboard', icon: 'icon-grid', isFavorite: false, showDropdown: false, status: 'active', route: '/dashboard' },
     { id: 3, name: 'clients', hasDropdown: true, hasLink: false, title: 'Kunden', icon: 'icon-group', showDropdown: false, status: 'post-active', route: '/clients' },
     { id: 4, name: 'projects', hasDropdown: true, hasLink: false, title: 'Projekte', icon: 'icon-grid', showDropdown: false, route: '/projects' },
@@ -39,12 +42,13 @@ export interface HeaderSubMenu {
     route: string;
 
     isFavorite?: boolean;
+    parentForMenuItemState?: string;
 }
 
 export const HEADERSUBMENU_MOCK: HeaderSubMenu[] = [
-    { id: 0, name: 'test-1', parentName: 'clients', title: 'TEST-1', route: 'test' },
-    { id: 1, name: 'test-2', parentName: 'clients', title: 'TEST-2', route: 'test' },
-    { id: 2, name: 'test-3', parentName: 'projects', title: 'TEST-3', route: 'test' },
+    { id: 0, name: 'test-1', parentName: 'clients', title: 'TEST-1', route: 'test', isFavorite: true },
+    { id: 1, name: 'test-2', parentName: 'clients', title: 'TEST-2', route: 'test', isFavorite: false },
+    { id: 2, name: 'test-3', parentName: 'projects', title: 'TEST-3', route: 'test', isFavorite: false },
 ];
 
 // menuSubItems: { parentName: string, name: string, title: string, isFavorite: boolean, route: string, parentForMenuItemState: string } [] = [
