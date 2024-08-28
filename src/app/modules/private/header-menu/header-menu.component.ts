@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, HostListener, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
 
 import { HeaderMenu, HeaderSubMenu } from '../../../mocks/header-menu-mock';
 import { HeaderMenuService } from './header-menu.service';
@@ -23,7 +24,11 @@ export class HeaderMenuComponent implements AfterViewInit{
     @ViewChildren('dropdown') dropdowns!: QueryList<ElementRef>;
 
     headerMenuItems: HeaderMenu[] = [];
-    headerSubMenuItems: HeaderSubMenu[] = [];
+    headerMenuSubItems: HeaderSubMenu[] = [];
+
+    menuButtonUuid: string = uuidv4();
+    dropdownUuid: string = uuidv4();
+
 
 
 
@@ -68,7 +73,8 @@ export class HeaderMenuComponent implements AfterViewInit{
         this.toggleFavorite('project');
 
         this.getHeaderMenuItems();
-
+        console.log(this.dropdownUuid);
+        console.log(this.menuButtonUuid);
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
         // });
@@ -82,24 +88,28 @@ export class HeaderMenuComponent implements AfterViewInit{
             this.headerMenuItems = data;
             console.log(data);
         });
+        this.headerMenuService.getHeaderSubMenu().subscribe((data: HeaderSubMenu[]) => {
+            this.headerMenuSubItems = data;
+            console.log(data);
+        });
     }
 
     ngAfterViewInit() {
-        if (this.buttons && this.buttons.toArray().length > 0) {
-            this.buttons.forEach((button, index) => {
-                this.menuItems[index].buttonRef = button;
-            });
-        } else {
-            console.error('Buttons QueryList is not initialized or empty');
-        }
+        // if (this.buttons && this.buttons.toArray().length > 0) {
+        //     this.buttons.forEach((button, index) => {
+        //         this.menuItems[index].buttonRef = button;
+        //     });
+        // } else {
+        //     console.error('Buttons QueryList is not initialized or empty');
+        // }
 
-        if (this.dropdowns && this.dropdowns.toArray().length > 0) {
-            this.dropdowns.forEach((dropdown, index) => {
-                this.menuItems[index].dropdownRef = dropdown;
-            });
-        } else {
-            console.error('Dropdowns QueryList is not initialized or empty');
-        }
+        // if (this.dropdowns && this.dropdowns.toArray().length > 0) {
+        //     this.dropdowns.forEach((dropdown, index) => {
+        //         this.menuItems[index].dropdownRef = dropdown;
+        //     });
+        // } else {
+        //     console.error('Dropdowns QueryList is not initialized or empty');
+        // }
     }
 
     /**

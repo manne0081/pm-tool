@@ -55,14 +55,14 @@
                         <!-- DROPDOWN-CONTENT if the clicked menuItem.name is not searching -->
                         <!-- ************************************************************** -->
                         <div class="drop-content-container" *ngIf="menuItem.showDropdown && menuItem.name !== 'searching'">
-                            <ng-container *ngFor="let SubMenuItem of headerSubMenuItems, index as i">
-                                <div class="drop-item-container" *ngIf="SubMenuItem.parentName == menuItem.name"
-                                        [routerLink]="SubMenuItem.route" (click)="markMenuItemAsActive(SubMenuItem.parentName)" (click)="closeAllDropdowns()"
-                                        (click)="onSelectItem(SubMenuItem.name)"
+                            <ng-container *ngFor="let menuSubItem of headerMenuSubItems, index as i">
+                                <div class="drop-item-container" *ngIf="menuSubItem.parentName == menuItem.name"
+                                        [routerLink]="menuSubItem.route" (click)="markMenuItemAsActive(menuSubItem.parentName)" (click)="closeAllDropdowns()"
+                                        (click)="onSelectItem(menuSubItem.name)"
                                 >
-                                    <span class="drop-item">{{SubMenuItem.title}}</span>
-                                    <span [ngClass]="SubMenuItem.isFavorite == true ? 'icon-star is-favorite' : 'icon-star'"
-                                          (click)="toggleFavorite(SubMenuItem.name); $event.stopPropagation()"
+                                    <span class="drop-item">{{menuSubItem.title}}</span>
+                                    <span [ngClass]="menuSubItem.isFavorite == true ? 'icon-star is-favorite' : 'icon-star'"
+                                          (click)="toggleFavorite(menuSubItem.name); $event.stopPropagation()"
                                     ></span>
                                 </div>
                             </ng-container>
