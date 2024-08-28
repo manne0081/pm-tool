@@ -57,7 +57,7 @@
                         <div class="drop-content-container" *ngIf="menuItem.showDropdown && menuItem.name !== 'searching'">
                             <ng-container *ngFor="let menuSubItem of headerMenuSubItems, index as i">
                                 <div class="drop-item-container" *ngIf="menuSubItem.parentName == menuItem.name"
-                                        [routerLink]="menuSubItem.route" (click)="markMenuItemAsActive(menuSubItem.parentName)" (click)="closeAllDropdowns()"
+                                        [routerLink]="menuSubItem.route" (click)="markMenuItemAsActive(menuSubItem.parentForMenuItemState)" (click)="closeAllDropdowns()"
                                         (click)="onSelectItem(menuSubItem)"
                                 >
                                     <span class="drop-item">{{menuSubItem.title}}</span>

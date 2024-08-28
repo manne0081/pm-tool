@@ -153,8 +153,9 @@ export class HeaderMenuComponent implements AfterViewInit{
                         isFavorite: true,
                         route: item.route,
                     };
+
                     this.headerMenuSubItems.push(favoriteItem);
-                    console.log(this.headerMenuSubItems);
+
                 } else {
                     // Remove the subMenuItem from the favorites-array
                     this.headerMenuSubItems = this.headerMenuSubItems.filter(subItem =>
@@ -184,7 +185,6 @@ export class HeaderMenuComponent implements AfterViewInit{
         // Sets the status for the activated menu-item and the pre-active and the post-active elements
         // -------------------------------------------------------------------------------------------
         this.headerMenuItems.forEach((item, index) => {
-
             if (item.name === name) {
                 // Set 'active' for the clicked item
                 item.status = 'active';

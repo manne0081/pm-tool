@@ -29,15 +29,15 @@ export const HEADERMENU_MOCK: HeaderMenu[] = [
 export interface HeaderSubMenu {
     id: number;
     name: string;
-    parentName: string;
+    parentName: string;     // can be favorite, the parent for the headermenu-ui is the parentForMenuItemState
     title: string;
     route: string;
+    parentForMenuItemState: string;
 
     isFavorite?: boolean;
-    parentForMenuItemState?: string;
 }
 
 export const HEADERSUBMENU_MOCK: HeaderSubMenu[] = [
-    { id: 0, name: 'teamMembers', parentName: 'team', title: 'Mitarbeiter', route: 'teamMember', isFavorite: false },
-    { id: 1, name: 'timeModel', parentName: 'team', title: 'Zeitmodelle', route: 'teamMember', isFavorite: false },
+    { id: 0, name: 'teamMembers', parentName: 'team', title: 'Mitarbeiter', route: 'teamMember', isFavorite: false, parentForMenuItemState: 'team' },
+    { id: 1, name: 'timeModel', parentName: 'team', title: 'Zeitmodelle', route: 'teamMember', isFavorite: false, parentForMenuItemState: 'team' },
 ];
