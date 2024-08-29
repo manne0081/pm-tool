@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter, HostListener, ElementRef, AfterViewIni
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 
-import { HeaderMenu, HeaderSubMenu } from '../../../mocks/header-menu-mock';
+import { HeaderMenu, HeaderSubMenu } from '../../../mocks/headerMenu-mock';
 import { HeaderMenuService } from './header-menu.service';
 
 @Component({

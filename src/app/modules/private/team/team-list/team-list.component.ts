@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Team } from '../../../../mocks/team-mock';
@@ -14,7 +14,7 @@ import { TeamService } from '../team.service';
     styleUrl: './team-list.component.scss'
 })
 
-export class TeamListComponent {
+export class TeamListComponent implements OnInit {
     teamItems: Team[] = [];
 
     constructor (
@@ -22,13 +22,13 @@ export class TeamListComponent {
     ) {}
 
     ngOnInit(): void {
-        this.getHeaderMenuItems();
+        this.getTeamItems();
     }
 
     /**
      * Subscribes the Header-Menu-Items from the Mock-Data
      */
-    getHeaderMenuItems(): void {
+    getTeamItems(): void {
         this.teamService.getTeam().subscribe((data: Team[]) => {
             this.teamItems = data;
         });

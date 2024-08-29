@@ -1,0 +1,5 @@
+<div *ngFor="let workSchedule of WorkScheduleItems">
+    <div *ngIf="getTeamMemberById(workSchedule.employeeId) as teamMember">
+        {{workSchedule.employeeId}} - {{teamMember.firstName}} {{teamMember.lastName}}
+    </div>
+</div>

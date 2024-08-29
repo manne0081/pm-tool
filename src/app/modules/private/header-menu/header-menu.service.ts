@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { HeaderMenu, HEADERMENU_MOCK, HeaderSubMenu, HEADERSUBMENU_MOCK } from '../../../mocks/header-menu-mock';
+import { HeaderMenu, HEADERMENU_MOCK, HeaderSubMenu, HEADERSUBMENU_MOCK } from '../../../mocks/headerMenu-mock';
 
 @Injectable({
     providedIn: 'root'
