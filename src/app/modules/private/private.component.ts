@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
@@ -23,9 +23,16 @@ export class PrivateComponent implements OnInit {
     quicklinksVisible?: boolean;
     addInfoVisible?: boolean;
 
+    constructor(
+        private router: Router,
+    ){}
+
     ngOnInit(): void {
         this.toggleQuicklinkVisibility();
         this.toggleAddInfoVisibility();
+
+        // To load the dashboard at starting the app
+        this.router.navigate(['dashboard']);
         this.onSelectMenuItem('Dashboard');
     }
 

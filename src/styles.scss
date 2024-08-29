@@ -2,12 +2,22 @@
 // ************************
 @import './assets/fonts/style.css';
 
+// CSS VARIABLES
+// *************
+$primaryColor: #3e90b7;
+$primaryColor: #333333;
+$primaryColor: #396097;
+$primaryColor: #273f61;
 
 // GLOBAL VARIABLES
 // ****************
 :root {
-    --app-background: #527083;      // rgb(82, 112, 131)
+    --primary-color: #273f61;
     --font-color-primary: #4f4f4f;
+    --font-color-inverted: #e0e0e0;
+
+    --app-background: #527083;      // rgb(82, 112, 131)
+    --app-background: var(--primary-color);
 }
 
 

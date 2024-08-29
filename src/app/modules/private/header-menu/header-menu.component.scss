@@ -1,7 +1,8 @@
 // LOCAL VARIABLES
 // ###############
-$buttonBorderRadius: 12px;
+$buttonBorderRadius: 16px;
 $activeButtonBorderRadius: calc($buttonBorderRadius + 6px);
+$buttonBackground: var(--primary-color);
 
 // MAIN-MENU
 // *********
@@ -43,8 +44,7 @@ $activeButtonBorderRadius: calc($buttonBorderRadius + 6px);
         // Background-Container GREEN
         // ##########################
         .header-item-container-green {
-            background-color: lime;
-            background-color: #527083;
+            background-color: $buttonBackground;
             height: 44px;
             position: relative;
             top: 4px;

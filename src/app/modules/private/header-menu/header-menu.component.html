@@ -9,7 +9,7 @@
             <!-- Logo -->
             <!-- **** -->
             <div class="header-item-container-1 logo">
-                <img src="../../../assets/img/logo-design-49570-2.png" alt="">
+                <img src="../../../assets/img/logo-systaro.png" alt="">
             </div>
 
             <!-- Menu-Buttons and Dropdowns / The values come from 'headerMenuItems' and 'headerMenuSubItems' -->
@@ -22,7 +22,7 @@
                         <!-- ******************************************************************************************* -->
                         <ng-container *ngIf="menuItem.hasLink; else noLink">
                             <button #dropdownButton class="drop-button" [ngClass]="menuItem.status" *ngIf="menuItem.name !== 'placeholder'"
-                                (click)="openDropdown(menuItem.name)" (click)="markMenuItemAsActive(menuItem.name)" (click)="onSelectItem(menuItem)"
+                                (click)="openDropdown(menuItem.name)" (click)="markMenuItemAsActive(menuItem.name)" (click)="onSelectMenuItem(menuItem)"
                                 [routerLink]="menuItem.hasLink ? menuItem.route : ''"
                             >
                                 <span [class]="'button-icon ' + menuItem.icon" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
@@ -55,14 +55,14 @@
                         <!-- DROPDOWN-CONTENT if the clicked menuItem.name is not searching -->
                         <!-- ************************************************************** -->
                         <div class="drop-content-container" *ngIf="menuItem.showDropdown && menuItem.name !== 'searching'">
-                            <ng-container *ngFor="let menuSubItem of headerMenuSubItems, index as i">
+                            <ng-container *ngFor="let menuSubItem of headerMenuSubItems">
                                 <div class="drop-item-container" *ngIf="menuSubItem.parentName == menuItem.name"
                                         [routerLink]="menuSubItem.route" (click)="markMenuItemAsActive(menuSubItem.parentForMenuItemState)" (click)="closeAllDropdowns()"
-                                        (click)="onSelectItem(menuSubItem)"
+                                        (click)="onSelectMenuItem(menuSubItem)"
                                 >
                                     <span class="drop-item">{{menuSubItem.title}}</span>
                                     <span [ngClass]="menuSubItem.markAsFavorite == true ? 'icon-star is-favorite' : 'icon-star'"
-                                          (click)="toggleFavorite(menuSubItem.name); $event.stopPropagation()"
+                                          (click)="toggleFavorite(menuSubItem); $event.stopPropagation()"
                                     ></span>
                                 </div>
                             </ng-container>

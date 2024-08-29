@@ -36,10 +36,6 @@ export class HeaderMenuComponent implements AfterViewInit{
     ngOnInit(): void {
         this.getHeaderMenuItems();
 
-        // Add some items to favorite for testing
-        // this.toggleFavorite('teamMember');
-        // this.toggleFavorite('timeModel');
-
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
         // });
@@ -82,7 +78,7 @@ export class HeaderMenuComponent implements AfterViewInit{
      * Sends the name of the current selected menu-item to the parant (private) component to show the menu-name at the content title
      * @param selectedValue
      */
-    onSelectItem(item: any): void {
+    onSelectMenuItem(item: any): void {
         this.selectedMenuItem.emit(item);
 
         // this.contentTileViewService.setNumberFilterConditions(0);
@@ -104,11 +100,10 @@ export class HeaderMenuComponent implements AfterViewInit{
      * @param name
      */
     openDropdown(name: string): void {
-        // console.log('headerMenu - openDropdown: ', name);
         this.closeAllDropdowns();
 
-        this.headerMenuItems.forEach((item, index) => {
-            if (item.name == name) {
+        this.headerMenuItems.forEach((item) => {
+            if (item.name === name) {
                 if (item.hasDropdown) {
                     item.showDropdown = true;
                 }
@@ -126,26 +121,27 @@ export class HeaderMenuComponent implements AfterViewInit{
     }
 
     /**
-    * Toggles the favorites icon at the menu-sub-items
+    * Toggle the favorites icon at the menu-sub-items and add or remove the item as favorite to the mocks
     * @param name
     */
-    toggleFavorite(name: string) {
-        this.headerMenuSubItems.forEach(item => {
-
-            if (item.name === name) {
-                // Mark the subMenuItem as Favorite
-                this.headerMenuService.setHeaderSubItemToFavorite(item);
-
-                if (item.markAsFavorite) {
-                    // Add the subMenuItem as Favorite to the headerMenuSubItems-Array
-                    this.headerMenuService.addHeaderSubItemToFavorite(item);
-
-                } else {
-                    // Remove the subMenuItem from the array
-                    this.headerMenuService.removeSubItemFromFavorite(item);
-                }
+    toggleFavorite(clickedItem: any) {
+        if (clickedItem.parentName !== 'favorites') {
+            if (!clickedItem.markAsFavorite) {
+                // Mark the subMenuItem as favorite and add a new favorite-item to the array
+                this.headerMenuService.setHeaderSubItemToFavorite(clickedItem);
+                this.headerMenuService.addHeaderSubItemToFavorite(clickedItem);
+            } else {
+                // Mark the subMenuItem as NO-favorite and remove the favorite-item from the array
+                this.headerMenuService.setHeaderSubItemToFavorite(clickedItem);
+                this.headerMenuService.removeSubItemFromFavorite(clickedItem);
             }
-        });
+        } else {
+            if (clickedItem.markAsFavorite) {
+                // Remove the favorite-item from the array and mark the subMenuItem as NO-favorite
+                this.headerMenuService.removeSubItemFromFavorite(clickedItem);
+                this.headerMenuService.setHeaderSubItemToFavorite(clickedItem);
+            }
+        }
     }
 
     /**
