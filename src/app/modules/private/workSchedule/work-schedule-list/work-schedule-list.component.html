@@ -1,5 +1,8 @@
-<div *ngFor="let workSchedule of WorkScheduleItems">
-    <div *ngIf="getTeamMemberById(workSchedule.employeeId) as teamMember">
-        {{workSchedule.employeeId}} - {{teamMember.firstName}} {{teamMember.lastName}}
-    </div>
+<div *ngFor="let workSchedule of workScheduleItems">
+    <div><b>{{workSchedule.name}}</b></div>
+    <ul>
+        <li *ngFor="let day of workSchedule.workDays">
+            {{day.dayOfWeek}}: {{day.startTime}} - {{day.endTime}}
+        </li>
+    </ul>
 </div>

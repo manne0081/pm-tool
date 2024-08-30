@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { WorkSchedule, WORKSCHEDULE_MOCK } from '../../../mocks/workSchedule-mock';
+import { StandardWorkSchedule, STANDARD_WORKSCHEDULE_MOCK, TeamMemberWorkSchedule, TEAMMEMBER_WORKSCHEDULE_MOCK } from '../../../mocks/workSchedule-mock';
 
 @Injectable({
     providedIn: 'root'
@@ -11,8 +11,11 @@ export class WorkScheduleService {
 
     constructor() { }
 
-    getWorkSchedule(): Observable<WorkSchedule[]> {
-        return of(WORKSCHEDULE_MOCK);
+    getStandardWorkSchedule(): Observable<StandardWorkSchedule[]> {
+        return of(STANDARD_WORKSCHEDULE_MOCK);
     }
 
+    getTeamMemberWorkSchedule(): Observable<TeamMemberWorkSchedule[]> {
+        return of(TEAMMEMBER_WORKSCHEDULE_MOCK);
+    }
 }

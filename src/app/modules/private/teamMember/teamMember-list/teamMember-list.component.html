@@ -1,0 +1,14 @@
+<div class="test" *ngFor="let teamMember of teamMemberItems">
+    {{ teamMember.id }} - {{ teamMember.firstName }} {{ teamMember.lastName }}
+
+
+    <!-- Zeige das Arbeitszeitmodell -->
+    <div *ngIf="getWorkScheduleForMember(teamMember.id) as workSchedule">
+        <!-- {{ workSchedule.standardScheduleId }} -->
+        {{ getStandardWorkScheduleName(workSchedule.standardScheduleId) }}
+        <div *ngFor="let workDay of workSchedule.customWorkDays">
+            {{ workDay.dayOfWeek }} - {{ workDay.startTime }} - {{ workDay.endTime }}
+        </div>
+    </div>
+
+</div>
