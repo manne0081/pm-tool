@@ -40,21 +40,21 @@ export class TeamMemberListComponent implements OnInit {
     getTeamMemberItems(): void {
         this.teamMemberService.getTeamMembers().subscribe((data: TeamMember[]) => {
             this.teamMemberItems = data;
-            console.log(this.teamMemberItems);
+            // console.log(this.teamMemberItems);
         });
     }
 
     getStandardWorkSchedule(): void {
         this.workScheduleService.getStandardWorkSchedule().subscribe((data: StandardWorkSchedule[]) => {
             this.standardWorkSchedule = data;
-            console.log(this.standardWorkSchedule);
+            // console.log(this.standardWorkSchedule);
         });
     }
 
     getTeamMemberWorkSchedule(): void {
         this.workScheduleService.getTeamMemberWorkSchedule().subscribe((data: TeamMemberWorkSchedule[]) => {
             this.teamMemberWorkSchedule = data;
-            console.log(this.teamMemberWorkSchedule);
+            // console.log(this.teamMemberWorkSchedule);
         });
     }
 
@@ -66,12 +66,11 @@ export class TeamMemberListComponent implements OnInit {
         }
 
         // Standardmodell finden
-        const standardSchedule = this.teamMemberWorkSchedule.find(schedule => schedule.teamMemberId === teamMember.id);
-        if (!standardSchedule) {
+        const teamMemberWorkSchedule = this.teamMemberWorkSchedule.find(schedule => schedule.teamMemberId === teamMember.id);
+        if (!teamMemberWorkSchedule) {
             return null;
         }
-
-        return standardSchedule
+        return teamMemberWorkSchedule
     }
 
     getStandardWorkScheduleName(scheduleId: number | undefined): string {

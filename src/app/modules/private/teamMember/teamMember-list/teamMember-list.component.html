@@ -5,22 +5,21 @@
         (click)="onSelectTeamMember(teamMember)"
         [ngClass]="{ 'selected': teamMember.id === selectedTeamMemberId }"
     >
-        {{ teamMember.id }} - {{ teamMember.firstName }} {{ teamMember.lastName }}
-
+        <span>{{ teamMember.id }} - <b>{{ teamMember.firstName }} {{ teamMember.lastName }}</b></span>
+        <br><br>
+        <span>{{ teamMember.phone }}</span>
+        <br>
+        <span>{{ teamMember.email }}</span>
         <br><br>
 
-        <!-- Zeige das Arbeitszeitmodell -->
         <div *ngIf="getWorkScheduleForMember(teamMember.id) as workSchedule">
-            <!-- {{ workSchedule.standardScheduleId }} -->
-            {{ getStandardWorkScheduleName(workSchedule.standardScheduleId) }}
 
-            <br><br>
+            <span style="font-size: .86rem; font-weight: bold;">{{ getStandardWorkScheduleName(workSchedule.standardScheduleId) }}</span>
 
             <div *ngFor="let workDay of workSchedule.customWorkDays">
-                {{ workDay.dayOfWeek }} - {{ workDay.startTime }} - {{ workDay.endTime }}
+                <span style="font-size: .86rem">{{ workDay.dayOfWeek }} - {{ workDay.startTime }} - {{ workDay.endTime }}</span>
             </div>
+
         </div>
-
     </div>
-
 </div>
