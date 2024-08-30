@@ -21,6 +21,8 @@ export class TeamMemberListComponent implements OnInit {
     standardWorkSchedule: StandardWorkSchedule[] = [];
     teamMemberWorkSchedule: TeamMemberWorkSchedule[] = [];
 
+    selectedTeamMemberId: number | null = null;
+
     constructor (
         private teamMemberService: TeamMemberService,
         private workScheduleService: WorkScheduleService,
@@ -75,5 +77,9 @@ export class TeamMemberListComponent implements OnInit {
     getStandardWorkScheduleName(scheduleId: number | undefined): string {
         const schedule = this.standardWorkSchedule.find(s => s.id === scheduleId);
         return schedule ? schedule.name : 'Kein Standardmodell';
+    }
+
+    onSelectTeamMember(teamMember: TeamMember):void {
+        this.selectedTeamMemberId = teamMember.id
     }
 }

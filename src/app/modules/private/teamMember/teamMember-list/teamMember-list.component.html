@@ -1,14 +1,26 @@
-<div class="test" *ngFor="let teamMember of teamMemberItems">
-    {{ teamMember.id }} - {{ teamMember.firstName }} {{ teamMember.lastName }}
+<div class="grid-container">
 
+    <div class="item-container"
+        *ngFor="let teamMember of teamMemberItems"
+        (click)="onSelectTeamMember(teamMember)"
+        [ngClass]="{ 'selected': teamMember.id === selectedTeamMemberId }"
+    >
+        {{ teamMember.id }} - {{ teamMember.firstName }} {{ teamMember.lastName }}
 
-    <!-- Zeige das Arbeitszeitmodell -->
-    <div *ngIf="getWorkScheduleForMember(teamMember.id) as workSchedule">
-        <!-- {{ workSchedule.standardScheduleId }} -->
-        {{ getStandardWorkScheduleName(workSchedule.standardScheduleId) }}
-        <div *ngFor="let workDay of workSchedule.customWorkDays">
-            {{ workDay.dayOfWeek }} - {{ workDay.startTime }} - {{ workDay.endTime }}
+        <br><br>
+
+        <!-- Zeige das Arbeitszeitmodell -->
+        <div *ngIf="getWorkScheduleForMember(teamMember.id) as workSchedule">
+            <!-- {{ workSchedule.standardScheduleId }} -->
+            {{ getStandardWorkScheduleName(workSchedule.standardScheduleId) }}
+
+            <br><br>
+
+            <div *ngFor="let workDay of workSchedule.customWorkDays">
+                {{ workDay.dayOfWeek }} - {{ workDay.startTime }} - {{ workDay.endTime }}
+            </div>
         </div>
+
     </div>
 
 </div>
