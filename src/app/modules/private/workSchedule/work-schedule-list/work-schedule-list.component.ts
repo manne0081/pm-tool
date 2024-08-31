@@ -16,6 +16,7 @@ import { WorkScheduleService } from '../work-schedule.service';
 
 export class WorkScheduleListComponent implements OnInit {
     workScheduleItems: StandardWorkSchedule[] = [];
+    selectedWorkScheduleId: number | null = null;
 
     constructor (
         private workScheduleService: WorkScheduleService,
@@ -32,5 +33,9 @@ export class WorkScheduleListComponent implements OnInit {
         this.workScheduleService.getStandardWorkSchedule().subscribe((data: StandardWorkSchedule[]) => {
             this.workScheduleItems = data;
         });
+    }
+
+    onSelectWorkSchedule(workSchedule: StandardWorkSchedule):void {
+        this.selectedWorkScheduleId = workSchedule.id
     }
 }
