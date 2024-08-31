@@ -20,8 +20,8 @@ export const HEADERMENU_MOCK: HeaderMenu[] = [
     { id: 1, name: 'favorites', hasDropdown: true, hasLink: false, icon: 'icon-star', showDropdown: false, status: 'pre-active', isFavorite: true },
     { id: 2, name: 'dashboard', hasDropdown: false, hasLink: true, title: 'Dashboard', icon: 'icon-grid', showDropdown: false, status: 'active', route: '/dashboard' },
     { id: 3, name: 'team', hasDropdown: true, hasLink: false, title: 'Team', icon: 'icon-group', showDropdown: false, status: 'post-active' },
-    { id: 4, name: 'clients', hasDropdown: false, hasLink: true, title: 'Kunden', icon: 'icon-building', route: '/clients' },
-    { id: 5, name: 'projects', hasDropdown: false, hasLink: true, title: 'Projekte', icon: 'icon-cubes', route: '/projects' },
+    { id: 4, name: 'clients', hasDropdown: false, hasLink: true, title: 'Kunden', icon: 'icon-building', route: '/client' },
+    { id: 5, name: 'projects', hasDropdown: false, hasLink: true, title: 'Projekte', icon: 'icon-cubes', route: '/project' },
     { id: 6, name: 'placeholder', hasDropdown: false, hasLink: false },
 ];
 

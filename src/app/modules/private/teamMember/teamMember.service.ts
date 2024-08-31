@@ -3,8 +3,6 @@ import { Observable, of } from 'rxjs';
 
 import { TeamMember, TEAMMEMBER_MOCK } from '../../../mocks/teamMember-mock';
 
-import { WorkScheduleService } from '../workSchedule/work-schedule.service';
-import { TeamMemberWorkSchedule } from '../../../mocks/workSchedule-mock';
 
 @Injectable({
     providedIn: 'root'
@@ -12,9 +10,7 @@ import { TeamMemberWorkSchedule } from '../../../mocks/workSchedule-mock';
 
 export class TeamMemberService {
 
-    constructor(
-        private workScheduleService: WorkScheduleService,
-    ) { }
+    constructor() { }
 
     getTeamMembers(): Observable<TeamMember[]> {
         return of(TEAMMEMBER_MOCK);

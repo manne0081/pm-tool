@@ -14,6 +14,7 @@ import { TeamMemberListComponent } from './modules/private/teamMember/teamMember
 import { WorkScheduleListComponent } from './modules/private/workSchedule/work-schedule-list/work-schedule-list.component';
 import { ClientListComponent } from './modules/private/client/client-list/client-list.component';
 import { ProjectListComponent } from './modules/private/project/project-list/project-list.component';
+import { ProjectDetailComponent } from './modules/private/project/project-detail/project-detail.component';
 
 // ROUTES
 // ******
@@ -29,8 +30,9 @@ export const routes: Routes = [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'teamMember', component: TeamMemberListComponent },
             { path: 'workSchedule', component: WorkScheduleListComponent },
-            { path: 'clients', component: ClientListComponent },
-            { path: 'projects', component: ProjectListComponent},
+            { path: 'client', component: ClientListComponent },
+            { path: 'project', component: ProjectListComponent},
+            { path: 'project/:id', component: ProjectDetailComponent},
         ]
     },
 

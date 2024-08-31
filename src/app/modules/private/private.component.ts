@@ -32,8 +32,8 @@ export class PrivateComponent implements OnInit {
         this.toggleAddInfoVisibility();
 
         // To load the dashboard at starting the app
-        this.router.navigate(['dashboard']);
         this.onSelectMenuItem('Dashboard');
+        this.router.navigate(['dashboard']);
     }
 
     /**
@@ -55,6 +55,7 @@ export class PrivateComponent implements OnInit {
      * @param menuItem
      */
     onSelectMenuItem(menuItem: any) {
+        console.log(menuItem);
 
         // Set selectedMenuItem to Dashboard at App loading
         if (menuItem === 'Dashboard') {
@@ -63,8 +64,8 @@ export class PrivateComponent implements OnInit {
             this.selectedMenuItem = menuItem.title;
         }
 
-        // Toggl visibility from the add-info area when selected Item is Dashboard or not
-        if (menuItem === 'Dashboard') {
+        // Toggle visibility from the add-info-area and the add-info-button when click header-menu-item
+        if (menuItem === 'Dashboard' || menuItem.name === 'dashboard') {
             this.addInfoVisible = false;
         } else {
             this.addInfoVisible = true;

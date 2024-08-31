@@ -1,1 +1,18 @@
-<p>project-list works!</p>
+<div class="grid-container">
+
+    <div class="item-container"
+        *ngFor="let item of projectItems"
+        (click)="onSelectProject(item)"
+        (dblclick)="onOpenProject(item)"
+        [ngClass]="{ 'selected': item.id === selectedItemId }"
+    >
+        <span>{{ item.id }} - <b>{{ item.name }}</b></span>
+        <br><br>
+        <span *ngIf="getClientName(item.clientId) as clientName"><b>{{ clientName }}</b></span>
+        <br><br>
+        <span>{{ item.description }}</span>
+        <br><br>
+        <span>{{ item.teamMembers }}</span>
+
+    </div>
+</div>

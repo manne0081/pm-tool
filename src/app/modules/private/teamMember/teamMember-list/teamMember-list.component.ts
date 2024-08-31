@@ -36,11 +36,11 @@ export class TeamMemberListComponent implements OnInit {
 
     /**
      * Subscribes the Header-Menu-Items from the Mock-Data
-     */
-    getTeamMemberItems(): void {
-        this.teamMemberService.getTeamMembers().subscribe((data: TeamMember[]) => {
-            this.teamMemberItems = data;
-            // console.log(this.teamMemberItems);
+    */
+   getTeamMemberItems(): void {
+       this.teamMemberService.getTeamMembers().subscribe((data: TeamMember[]) => {
+           this.teamMemberItems = data;
+           // console.log(this.teamMemberItems);
         });
     }
 

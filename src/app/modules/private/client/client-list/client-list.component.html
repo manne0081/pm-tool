@@ -1,1 +1,13 @@
-<p>client-list works!</p>
+<div class="grid-container">
+
+    <div class="item-container"
+        *ngFor="let item of clientItems"
+        (click)="onSelectClient(item)"
+        [ngClass]="{ 'selected': item.id === selectedItemId }"
+    >
+        <span>{{ item.id }} - <b>{{ item.name }}</b></span>
+        <br><br>
+        <span>{{ item.postCode }} {{ item.city }}</span>
+
+    </div>
+</div>
