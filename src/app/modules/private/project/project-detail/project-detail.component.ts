@@ -48,7 +48,7 @@ export class ProjectDetailComponent {
                 PROJECT_MOCK[index] = this.project;
             }
 
-            this.router.navigate(['/projects']); // Redirect to the project list or any other page after saving
+            this.router.navigate(['project']); // Redirect to the project list or any other page after saving
         }
     }
 
@@ -57,6 +57,6 @@ export class ProjectDetailComponent {
             this.project = JSON.parse(JSON.stringify(this.originalProject)); // Revert changes
         }
 
-        this.router.navigate(['/projects']); // Redirect to the project list or any other page
+        this.router.navigate(['project']); // Redirect to the project list or any other page
     }
 }

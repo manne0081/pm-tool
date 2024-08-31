@@ -1,6 +1,6 @@
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 4 gleich breite Spalten */
+    grid-template-columns: repeat(3, 1fr); /* 4 gleich breite Spalten */
     grid-gap: 10px; /* Optionaler Abstand zwischen den Elementen */
     width: 100%; /* Optional: Stellt sicher, dass der Container die volle Breite einnimmt */
 
