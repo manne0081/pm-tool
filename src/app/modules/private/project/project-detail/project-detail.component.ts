@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../../../../mocks/project-mock';
@@ -11,6 +12,7 @@ import { CLIENT_MOCK } from '../../../../mocks/client-mock';
     standalone: true,
     imports: [
         FormsModule,
+        CommonModule,
     ],
     templateUrl: './project-detail.component.html',
     styleUrl: './project-detail.component.scss'
@@ -20,6 +22,7 @@ export class ProjectDetailComponent {
     project: Project = {} as Project;
     clientItems = CLIENT_MOCK;
     originalProject: Project | undefined;
+    columns: number = 2; // Anzahl der Spalten (1 oder 2)
 
     constructor(
         private route: ActivatedRoute,
@@ -27,17 +30,8 @@ export class ProjectDetailComponent {
     ) {}
 
     ngOnInit(): void {
-        // const projectId = Number(this.route.snapshot.paramMap.get('id'));
-        // this.project = PROJECT_MOCK.find(proj => proj.id === projectId) ?? ({} as Project);
-
-        // if (this.project) {
-        //   // Deep copy of the project to allow canceling without modifying the original
-        //   this.originalProject = JSON.parse(JSON.stringify(this.project));
-        // }
-
         const projectId = Number(this.route.snapshot.paramMap.get('id'));
         this.project = PROJECT_MOCK.find(proj => proj.id === projectId) ?? ({} as Project);
-
     }
 
     onSave(): void {

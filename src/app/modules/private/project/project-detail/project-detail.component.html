@@ -1,4 +1,4 @@
-<div class="project-detail-container">
+<!-- <div class="project-detail-container">
 
     <form (ngSubmit)="onSave()" #projectForm="ngForm">
 
@@ -71,5 +71,81 @@
         <button type="submit" [disabled]="!projectForm.form.valid">Speichern</button>
         <button type="button" (click)="onCancel()">Abbrechen</button>
       </div>
+    </form>
+  </div> -->
+
+  <div class="project-detail-container">
+    <form (ngSubmit)="onSave()" #projectForm="ngForm">
+      <div class="form-row" [ngClass]="{'two-columns': columns === 2}">
+        <div class="form-group">
+          <label for="projectName">Projektname:</label>
+          <input type="text" id="projectName" [(ngModel)]="project.name" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="clientName">Client:</label>
+          <select id="clientName" [(ngModel)]="project.clientId" name="clientId" required>
+            <option *ngFor="let client of clientItems" [value]="client.id">
+              {{ client.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Beschreibung:</label>
+          <textarea id="description" [(ngModel)]="project.description" name="description" rows="4" class="resizable-textarea"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="startDate">Startdatum:</label>
+          <input type="date" id="startDate" [(ngModel)]="project.startDate" name="startDate">
+        </div>
+
+        <div class="form-group">
+          <label for="endDate">Enddatum:</label>
+          <input type="date" id="endDate" [(ngModel)]="project.endDate" name="endDate">
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <select id="status" [(ngModel)]="project.status" name="status">
+            <option value="Planned">Planned</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="budget">Budget:</label>
+          <input type="number" id="budget" [(ngModel)]="project.budget" name="budget" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="spent">Ausgaben:</label>
+          <input type="number" id="spent" [(ngModel)]="project.spent" name="spent" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="projectManager">Projektmanager:</label>
+          <input type="text" id="projectManager" [(ngModel)]="project.projectManager" name="projectManager">
+        </div>
+
+        <div class="form-group">
+          <label for="teamMembers">Team-Mitglieder:</label>
+          <input type="text" id="teamMembers" [(ngModel)]="project.teamMembers" name="teamMembers">
+          <small>Trennen Sie die Namen der Teammitglieder mit einem Komma.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="milestones">Meilensteine:</label>
+          <input type="text" id="milestones" [(ngModel)]="project.milestones" name="milestones">
+          <small>Trennen Sie die Meilensteine mit einem Komma.</small>
+        </div>
+      </div>
+
+      <!-- <div class="form-actions">
+        <button type="submit" [disabled]="!projectForm.form.valid">Speichern</button>
+        <button type="button" (click)="onCancel()">Abbrechen</button>
+      </div> -->
     </form>
   </div>
