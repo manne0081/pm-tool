@@ -40,11 +40,11 @@ export class HeaderMenuComponent implements AfterViewInit{
 
         // Set Dashboard to default by app-start
         const dashboardItem = this.headerMenuItems.find(item => item.name === 'dashboard');
-        if (dashboardItem) {
-            this.headerMenuService.setChoosenObjectByMenu(dashboardItem);
-        } else {
-            console.error('Dashboard item not found!');
-        }
+        // if (dashboardItem) {
+        //     this.headerMenuService.onSelectMenuItem(dashboardItem);
+        // } else {
+        //     console.error('Dashboard item not found!');
+        // }
 
 
 
@@ -93,7 +93,7 @@ export class HeaderMenuComponent implements AfterViewInit{
     onSelectMenuItem(item: any): void {
         // this.selectedMenuItem.emit(item);
 
-        this.headerMenuService.setChoosenObjectByMenu(item);
+        this.headerMenuService.onSelectMenuItem(item);
 
         // this.contentTileViewService.setNumberFilterConditions(0);
         // todo

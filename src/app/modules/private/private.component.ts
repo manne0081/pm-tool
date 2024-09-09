@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
@@ -35,12 +35,14 @@ export class PrivateComponent implements OnInit {
 
     constructor(
         private privateService: PrivateService,
+        private router: Router,
     ){}
 
     ngOnInit(): void {
         // Load the dashboard by app start
         // this.router.navigate(['dashboard']);
 
+        // Print some informations
         this.privateService.test();
 
         // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
@@ -61,19 +63,7 @@ export class PrivateComponent implements OnInit {
         // Show or hide (AddInfoArea)
         this.privateService.isAddInfoAreaVisible$.subscribe(data => {
             this.isAddInfoAreaVisible = data;
-            // console.log('ngOnInit - isAddInfoAreaVisible: ', data);
-            // console.log('ngOnInit - saveIsAddInfoAreaVisible: ', this.privateService.getSaveIsAddInfoAreaVisible());
         });
-
-        // To show or hide the the content-header / content-actions and the add-info-area
-        // this.privateService.isViewDashboard$.subscribe(data => {
-        //     this.isViewDashboard = data;
-        //     if (data && this.addInfoVisible) {
-        //         this.addInfoVisible = false;
-        //     } else {
-        //         this.addInfoVisible = true;
-        //     }
-        // });
 
         // Show the list- or the detail contentHeader
         this.privateService.viewType$.subscribe(data => this.viewType = data);
@@ -94,10 +84,10 @@ export class PrivateComponent implements OnInit {
      *
      */
     toggleAddInfoVisibility(): void {
-        if (this.isAddInfoAreaVisible) {
-            this.privateService.setIsAddInfoAreaVisible(false);
+        if (this.getCookie('isAddInfoAreaVisible') === 'true') {
+            this.setCookie('isAddInfoAreaVisible', 'false');
         } else {
-            this.privateService.setIsAddInfoAreaVisible(true);
+            this.setCookie('isAddInfoAreaVisible', 'true');
         }
     }
 
@@ -107,7 +97,6 @@ export class PrivateComponent implements OnInit {
      */
     onSelectMenuItem(menuItem: any) {
 
-        // Set selectedMenuItem to Dashboard at App loading
         if (menuItem === 'Dashboard') {
             this.selectedMenuItem = menuItem;
         } else {
@@ -143,4 +132,22 @@ export class PrivateComponent implements OnInit {
         // this.activeFilterItems.push({ id: 'searchTerm', name: item.title });
     }
 
+
+    setCookie(cookieName: string, cookieValue: string, duration?: number) {
+        if (duration) {
+            this.privateService.setCookie(cookieName, cookieValue, duration);
+        } else {
+            this.privateService.setCookie(cookieName, cookieValue);
+        }
+    }
+
+    getCookie(cookieName: string): string {
+        console.log(this.privateService.getCookie(cookieName));
+        return (this.privateService.getCookie(cookieName));
+    }
+
+
+    deleteCookie(cookieName: string) {
+        this.privateService.deleteCookie(cookieName);
+    }
 }

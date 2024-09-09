@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 import { clientFieldNames } from '../../mocks/client-mock';
 import { projectFieldNames } from '../../mocks/project-mock';
 import { teamMemberFieldNames } from '../../mocks/teamMember-mock';
+import { HeaderMenu, HEADERMENU_MOCK } from '../../mocks/headerMenu-mock';
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +18,10 @@ export class PrivateService {
      * -
      * -
     */
+
+    // Use to design the menuItems as active, pre-active and post-active
+    private selectedMenuItem = new BehaviorSubject<string>('dashboard');
+    selectedMenuItem$ = this.selectedMenuItem.asObservable();
 
     // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
     private isViewDashboard = new BehaviorSubject<boolean>(true);
@@ -33,9 +39,6 @@ export class PrivateService {
     private isAddInfoAreaVisible = new BehaviorSubject<boolean>(false);
     isAddInfoAreaVisible$ = this.isAddInfoAreaVisible.asObservable();
 
-    // Save the current Status (AddInfoArea)
-    private saveIsAddInfoAreaVisible: boolean = true;
-
     // Show the different content-headers (contentHeaderForList, contentHeaderForDetail)
     private viewType = new BehaviorSubject<string>('list');
     viewType$ = this.viewType.asObservable();
@@ -45,16 +48,43 @@ export class PrivateService {
     fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
 
     test(): void {
+        console.log('selectedMenuItem: ', this.selectedMenuItem.getValue());
         console.log('isViewDashboard: ', this.isViewDashboard.getValue());
         console.log('isQuicklinksAreaVisible: ', this.isQuicklinksAreaVisible.getValue());
         console.log('isAddInfoButtonVisible: ', this.isAddInfoButtonVisible.getValue());
         console.log('isAddInfoAreaVisible: ', this.isAddInfoAreaVisible.getValue());
-        console.log('saveIsAddInfoAreaVisible: ', this.saveIsAddInfoAreaVisible);
         console.log('viewType: ', this.viewType.getValue());
-        console.log('fieldNamesForFilter: ', this.fieldNamesForFilter.getValue());
     }
 
-    constructor() {}
+    constructor(
+        private cookieService: CookieService,
+    ) {
+        // Beispiel:
+        this.setActiveMenuByName(HEADERMENU_MOCK, this.selectedMenuItem.getValue());
+    }
+
+    // Set Cookie => With or Without duration
+    setCookie(cookieName: string, cookieValue: string, duration?: number) {
+        if (duration) {
+            this.cookieService.set(cookieName, cookieValue, duration);
+        } else {
+            this.cookieService.set(cookieName, cookieValue);
+        }
+    }
+
+    // Read Cookie
+    getCookie(cookieName: string) {
+        return this.cookieService.get(cookieName);
+    }
+
+    // Delete Cookie
+    deleteCookie(cookieName: string) {
+        this.cookieService.delete(cookieName);
+    }
+
+    setIsViewDashboard(isViewDashboard: boolean): void {
+        this.isViewDashboard.next(isViewDashboard);
+    }
 
     /**
      * Set isDashboard to 'true' or 'false'
@@ -62,23 +92,33 @@ export class PrivateService {
      * Set viewType to 'list' or 'detail'
      * @param object
      */
-    setChoosenObjectByMenu (object: any): void {
+    onSelectMenuItem (item: any): void {
         //
-        if (object.name === 'dashboard') {
-            // console.log('object.name:\n', object.name);
-            this.isViewDashboard.next(true);
+        if (item.name === 'dashboard') {
+            this.setIsViewDashboard(true);
             this.setIsAddInfoAreaVisible(false);
         } else {
-            // console.log('object.name:\n', object.name);
-            this.isViewDashboard.next(false);
-            this.setIsAddInfoAreaVisible(this.saveIsAddInfoAreaVisible);
+            this.setIsViewDashboard(false);
         }
+
+        // Set selectedMenuItem to the item.name
+        this.setSelectedMenuItem(item);
 
         // Set the viewType to list or detail to change the content-header-type
         this.setViewType('list');
 
         // Fieldnames for filter-function
-        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(object.name));
+        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
+    }
+
+    /**
+     * Set selectedMenuItem to the item.name
+     * @param item
+     */
+    setSelectedMenuItem(item: any): void {
+        const itemName = item.name;
+        this.selectedMenuItem.next(itemName);
+        console.log('selectedMenuItem: ', this.selectedMenuItem.getValue());
     }
 
     /**
@@ -108,11 +148,6 @@ export class PrivateService {
 
     setIsAddInfoAreaVisible(value: boolean): void {
         this.isAddInfoAreaVisible.next(value);
-        this.saveIsAddInfoAreaVisible = value;
-    }
-
-    getSaveIsAddInfoAreaVisible(): boolean {
-        return this.saveIsAddInfoAreaVisible;
     }
 
     /**
@@ -122,5 +157,36 @@ export class PrivateService {
     setViewType (data: string): void {
         this.viewType.next(data);
     }
+
+
+
+
+    setActiveMenuByName = (menuItems: HeaderMenu[], name: string) => {
+        // Finde den Index des gesuchten Objekts anhand des Namens
+        const index = menuItems.findIndex(item => item.name === name);
+
+        if (index === -1) {
+            console.log('Item nicht gefunden');
+            return;
+        }
+
+        // Setze den Status des gefundenen Objekts auf 'active'
+        menuItems[index].status = 'active';
+
+        // Wenn es ein Objekt davor gibt, setze den Status auf 'pre-active'
+        if (index > 0) {
+            menuItems[index - 1].status = 'pre-active';
+        }
+
+        // Wenn es ein Objekt danach gibt, setze den Status auf 'post-active'
+        if (index < menuItems.length - 1) {
+            menuItems[index + 1].status = 'post-active';
+        }
+
+        // Rückgabe des aktualisierten Arrays
+        return menuItems;
+    };
+
+
 
 }

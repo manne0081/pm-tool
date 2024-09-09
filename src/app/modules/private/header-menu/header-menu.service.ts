@@ -22,11 +22,10 @@ export class HeaderMenuService {
         return of(HEADERSUBMENU_MOCK);
     }
 
-    setChoosenObjectByMenu (item: any): void {
-        this.privateService.setChoosenObjectByMenu(item);
+    onSelectMenuItem (item: any): void {
+        this.privateService.onSelectMenuItem(item);
         if (item.name === 'dashboard') {
             this.privateService.setIsAddInfoAreaVisible(false);
-            // console.log('setChoosenObjectByMenu: ', item);
         }
     }
 
