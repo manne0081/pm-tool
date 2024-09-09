@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { HeaderMenu, HEADERMENU_MOCK, HeaderSubMenu, HEADERSUBMENU_MOCK } from '../../../mocks/headerMenu-mock';
+import { PrivateService } from '../private.service';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,9 @@ import { HeaderMenu, HEADERMENU_MOCK, HeaderSubMenu, HEADERSUBMENU_MOCK } from '
 
 export class HeaderMenuService {
 
-    constructor() { }
+    constructor(
+        private privateService: PrivateService,
+    ) { }
 
     getHeaderMenu(): Observable<HeaderMenu[]> {
         return of(HEADERMENU_MOCK);
@@ -17,6 +20,14 @@ export class HeaderMenuService {
 
     getHeaderSubMenu(): Observable<HeaderSubMenu[]> {
         return of(HEADERSUBMENU_MOCK);
+    }
+
+    setChoosenObjectByMenu (item: any): void {
+        this.privateService.setChoosenObjectByMenu(item);
+        if (item.name === 'dashboard') {
+            this.privateService.setIsAddInfoAreaVisible(false);
+            console.log('setChoosenObjectByMenu: ', item);
+        }
     }
 
     /**

@@ -4,6 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 
 import { HeaderMenu, HeaderSubMenu } from '../../../mocks/headerMenu-mock';
 import { HeaderMenuService } from './header-menu.service';
+import { PrivateService } from '../private.service';
 
 @Component({
     selector: 'app-header-menu',
@@ -17,7 +18,7 @@ import { HeaderMenuService } from './header-menu.service';
 })
 
 export class HeaderMenuComponent implements AfterViewInit{
-    @Output() selectedMenuItem: EventEmitter<any> = new EventEmitter<any>();
+    // @Output() selectedMenuItem: EventEmitter<any> = new EventEmitter<any>();
 
     @ViewChildren('dropdownButton') buttons!: QueryList<ElementRef>;
     @ViewChildren('dropdown') dropdowns!: QueryList<ElementRef>;
@@ -26,15 +27,26 @@ export class HeaderMenuComponent implements AfterViewInit{
     headerMenuSubItems: HeaderSubMenu[] = [];
 
     constructor (
-        private headerMenuService: HeaderMenuService,
         private router: Router,
         private eRef: ElementRef,
+        private headerMenuService: HeaderMenuService,
         // private quicklinkService: QuicklinksService,
         // private contentTileViewService: ContentTileViewService,
     ) {}
 
     ngOnInit(): void {
+        // Get all header-items
         this.getHeaderMenuItems();
+
+        // Set Dashboard to default by app-start
+        const dashboardItem = this.headerMenuItems.find(item => item.name === 'dashboard');
+        if (dashboardItem) {
+            this.headerMenuService.setChoosenObjectByMenu(dashboardItem);
+        } else {
+            console.error('Dashboard item not found!');
+        }
+
+
 
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
@@ -79,7 +91,9 @@ export class HeaderMenuComponent implements AfterViewInit{
      * @param selectedValue
      */
     onSelectMenuItem(item: any): void {
-        this.selectedMenuItem.emit(item);
+        // this.selectedMenuItem.emit(item);
+
+        this.headerMenuService.setChoosenObjectByMenu(item);
 
         // this.contentTileViewService.setNumberFilterConditions(0);
         // todo

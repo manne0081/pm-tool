@@ -4,6 +4,9 @@ import { Router, RouterModule } from '@angular/router';
 
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
+import { ContentHeaderForListComponent } from './content-header/content-header-for-list/content-header-for-list.component';
+import { ContentHeaderForDetailComponent } from './content-header/content-header-for-detail/content-header-for-detail.component';
+import { PrivateService } from './private.service';
 
 @Component({
     selector: 'app-private',
@@ -13,6 +16,8 @@ import { QuicklinksComponent } from './quicklinks/quicklinks.component';
         RouterModule,
         HeaderMenuComponent,
         QuicklinksComponent,
+        ContentHeaderForListComponent,
+        ContentHeaderForDetailComponent,
     ],
     templateUrl: './private.component.html',
     styleUrl: './private.component.scss'
@@ -20,34 +25,84 @@ import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 
 export class PrivateComponent implements OnInit {
     selectedMenuItem: any;
-    quicklinksVisible?: boolean;
-    addInfoVisible?: boolean;
+    isViewDashboard?: boolean;
+
+    areQuicklinksVisible?: boolean;
+    isAddInfoAreaVisible?: boolean;
+    isAddInfoButtonVisible?: boolean;
+
+    viewType: string = 'list'       // list or detail
 
     constructor(
+        private privateService: PrivateService,
         private router: Router,
     ){}
 
     ngOnInit(): void {
-        this.toggleQuicklinkVisibility();
-        this.toggleAddInfoVisibility();
+        // this.toggleQuicklinkVisibility();
+        // this.toggleAddInfoVisibility();
 
-        // To load the dashboard at starting the app
-        this.onSelectMenuItem('Dashboard');
+        //
+        this.privateService.isViewDashboard$.subscribe(data => {
+            this.isViewDashboard = data;
+            console.log('ngOnInit - isViewDashboard: ', this.isViewDashboard);
+        });
+
+        // Show and hide the Quicklinks...
+        this.privateService.areQuicklinksVisible$.subscribe(data => {
+            this.areQuicklinksVisible = data;
+            console.log('ngOnInit - areQuicklinksVisible: ', data);
+        });
+
+        // Show and hide the Add-Info-Area...
+        this.privateService.isAddInfoAreaVisible$.subscribe(data => {
+            this.isAddInfoAreaVisible = data;
+            console.log('ngOnInit - isAddInfoAreaVisible: ', data);
+        });
+
+        // Show and hide the Add-Info-Button...
+        this.privateService.isAddInfoButtonVisible$.subscribe(data => {
+            this.isAddInfoButtonVisible = data;
+            console.log('ngOnInit - isAddInfoButtonVisible: ', data);
+        });
+
+        // Load the dashboard by app start
         this.router.navigate(['dashboard']);
+
+        // To show or hide the the content-header / content-actions and the add-info-area
+        // this.privateService.isViewDashboard$.subscribe(data => {
+        //     this.isViewDashboard = data;
+        //     if (data && this.addInfoVisible) {
+        //         this.addInfoVisible = false;
+        //     } else {
+        //         this.addInfoVisible = true;
+        //     }
+        // });
+
+        // Show the list- or the detail contentHeader
+        this.privateService.viewType$.subscribe(data => this.viewType = data);
     }
 
     /**
      *
      */
     toggleQuicklinkVisibility(): void {
-        this.quicklinksVisible = !this.quicklinksVisible;
+        if (this.areQuicklinksVisible) {
+            this.privateService.setAreQuicklinksVisible(false);
+        } else {
+            this.privateService.setAreQuicklinksVisible(true);
+        }
     }
 
     /**
      *
      */
     toggleAddInfoVisibility(): void {
-        this.addInfoVisible = !this.addInfoVisible;
+        if (this.isAddInfoAreaVisible) {
+            this.privateService.setIsAddInfoAreaVisible(false);
+        } else {
+            this.privateService.setIsAddInfoAreaVisible(true);
+        }
     }
 
     /**
@@ -55,7 +110,6 @@ export class PrivateComponent implements OnInit {
      * @param menuItem
      */
     onSelectMenuItem(menuItem: any) {
-        console.log(menuItem);
 
         // Set selectedMenuItem to Dashboard at App loading
         if (menuItem === 'Dashboard') {
@@ -66,10 +120,12 @@ export class PrivateComponent implements OnInit {
 
         // Toggle visibility from the add-info-area and the add-info-button when click header-menu-item
         if (menuItem === 'Dashboard' || menuItem.name === 'dashboard') {
-            this.addInfoVisible = false;
+            this.isAddInfoAreaVisible = false;
         } else {
-            this.addInfoVisible = true;
+            this.isAddInfoAreaVisible = true;
         }
+
+        this.viewType = 'list'
 
         // this.setAddInfoObject(menuItem);
         // this.addInfoObject = '';

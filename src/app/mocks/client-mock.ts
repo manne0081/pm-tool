@@ -15,6 +15,9 @@ export interface Client {
     updatedAt: Date;            // Datum der letzten Aktualisierung
 }
 
+export const clientFieldNames: (keyof Client)[] = ['id', 'name', 'contactPerson', 'email', 'phoneNumber', 'address', 'city', 'postCode', 'country',
+    'industry', 'website', 'notes', 'createdAt', 'updatedAt'];
+
 export const CLIENT_MOCK: Client[] = [
     { id: 0, name: "Acme Corp", contactPerson: "John Doe", email: "john.doe@acme.com", phoneNumber: "+49123456789", address: "123 Main St", city: "Berlin", postCode: "10115", country: "Germany", industry: "Manufacturing", createdAt: new Date("2023-01-01"), updatedAt: new Date("2023-08-01") },
     { id: 1, name: "Beta Solutions", contactPerson: "Jane Smith", email: "jane.smith@beta.com", phoneNumber: "+49123456780", address: "456 Elm St", city: "Munich", postCode: "80331", country: "Germany", industry: "IT Services", createdAt: new Date("2023-02-15"), updatedAt: new Date("2023-08-01") },

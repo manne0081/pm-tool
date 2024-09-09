@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { Project } from '../../../../mocks/project-mock';
 import { Client } from '../../../../mocks/client-mock';
+
+import { PrivateService } from '../../private.service';
 import { ProjectService } from '../project.service';
 import { ClientService } from '../../client/client.service';
 @Component({
@@ -23,6 +25,7 @@ export class ProjectListComponent implements OnInit {
     selectedItemId: number | null = null;
 
     constructor (
+        private privateService: PrivateService,
         private router: Router,
         private projectService: ProjectService,
         private clientService: ClientService,
@@ -52,7 +55,7 @@ export class ProjectListComponent implements OnInit {
     }
 
     /**
-     *
+     * Use to show the infos at the ADD-INFO area
      * @param item
      */
     onSelectProject(item: any):void {
@@ -60,15 +63,16 @@ export class ProjectListComponent implements OnInit {
     }
 
     /**
-     *
+     * Use to open the item on the detail-page
      * @param item
-     */
+    */
     onOpenProject(item: any):void {
-        this.router.navigate(['/project', item.id]);  // Navigation zur Detailseite mit der ID
+        this.router.navigate(['/project', item.id]);     // Navigation zur Detailseite mit der ID
+        this.privateService.setViewType('detail');    // Change ContentHeader to detail
     }
 
     /**
-     *
+     * Use to show the client-name on the tile
      * @param clientId
      * @returns
      */

@@ -15,6 +15,8 @@ export interface Project {
     updatedAt: Date;            // Datum der letzten Aktualisierung
 }
 
+export const projectFieldNames: (keyof Project)[] = ['id', 'name', 'description', 'clientId', 'startDate', 'endDate', 'status', 'budget', 'spent', 'projectManager', 'teamMembers', 'milestones', 'createdAt', 'updatedAt'];
+
 export const PROJECT_MOCK: Project[] = [
     { id: 0, name: "Website Redesign", description: "Redesign der Unternehmenswebsite", clientId: 1, startDate: new Date("2023-02-01"), endDate: new Date("2023-05-01"), status: "Completed", budget: 50000, spent: 48000, projectManager: "John Doe", teamMembers: ["Alice", "Bob"], milestones: ["Design Phase", "Development Phase"], createdAt: new Date("2023-01-15"), updatedAt: new Date("2023-05-01") },
     { id: 1, name: "Mobile App Development", description: "Entwicklung einer mobilen App", clientId: 2, startDate: new Date("2023-03-01"), status: "In Progress", budget: 80000, spent: 30000, projectManager: "Jane Smith", teamMembers: ["Charlie", "Dave"], milestones: ["Requirement Gathering", "Prototyping"], createdAt: new Date("2023-02-01"), updatedAt: new Date("2023-08-01") },

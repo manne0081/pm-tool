@@ -14,4 +14,10 @@ export class ProjectService {
     getProjects(): Observable<Project[]> {
         return of(PROJECT_MOCK);
     }
+
+    setFieldnamesForFilter(): void {
+
+    }
+
+
 }

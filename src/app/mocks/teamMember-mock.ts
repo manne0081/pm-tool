@@ -20,6 +20,8 @@ export interface TeamMember {
     standardScheduleId?: number; // Optional, falls nicht immer vorhanden
 }
 
+export const teamMemberFieldNames: (keyof TeamMember)[] = ['id', 'firstName', 'lastName', 'email', 'position', 'department', 'hireDate', 'status', 'isManager', 'managerId', 'phone', 'location', 'profilePictureUrl', 'birthday', 'isRemote', 'notes', 'standardScheduleId'];
+
 export const TEAMMEMBER_MOCK: TeamMember[] = [
     { id: 0, firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', position: 'Software Engineer', department: 'Engineering', hireDate: new Date('2019-06-15'), status: 'Aktiv', isManager: false, phone: '+49 123 456789', location: 'Berlin', profilePictureUrl: 'https://example.com/profiles/john_doe.jpg', birthday: new Date('1990-04-23'), isRemote: true },
     { id: 1, firstName: 'Jane', lastName: 'Smith', email: 'jane.smith@example.com', position: 'Product Manager', department: 'Product', hireDate: new Date('2018-09-10'), status: 'Aktiv', isManager: true, managerId: 1, phone: '+49 987 654321', location: 'Hamburg', profilePictureUrl: 'https://example.com/profiles/jane_smith.jpg', birthday: new Date('1985-12-12'), isRemote: false },
