@@ -26,7 +26,7 @@ export class HeaderMenuService {
         this.privateService.setChoosenObjectByMenu(item);
         if (item.name === 'dashboard') {
             this.privateService.setIsAddInfoAreaVisible(false);
-            console.log('setChoosenObjectByMenu: ', item);
+            // console.log('setChoosenObjectByMenu: ', item);
         }
     }
 
@@ -95,4 +95,8 @@ export class HeaderMenuService {
             HEADERSUBMENU_MOCK.splice(index, 1);
         }
     }
+
+
+
+
 }

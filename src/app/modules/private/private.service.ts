@@ -10,72 +10,72 @@ import { teamMemberFieldNames } from '../../mocks/teamMember-mock';
 })
 
 export class PrivateService {
-
     /**
      * Infos i would need at the private.component
-     * *******************************************     *
-     * - Is the view === dashboard
-     * - Is the view === list or detail
-     * - Clicked project for add-info
-     * - Fieldnames for the filter-function (Dropdown-Values)
-     * - Show Quicklinks and show AddInfo, AddInfoButton
-     */
+     * *******************************************
+     * -
+     * -
+    */
 
-    // Use to show or hide the add-info-area or the content-header and actions-area
+    // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
     private isViewDashboard = new BehaviorSubject<boolean>(true);
     isViewDashboard$ = this.isViewDashboard.asObservable();
 
-    // Use to show or hide the quicklink area
-    private areQuicklinksVisible = new BehaviorSubject<boolean>(true);
-    areQuicklinksVisible$ = this.areQuicklinksVisible.asObservable();
+    // Show or hide (QuicklinksArea)
+    private isQuicklinksAreaVisible = new BehaviorSubject<boolean>(true);
+    isQuicklinksAreaVisible$ = this.isQuicklinksAreaVisible.asObservable();
 
-    // Use to show or hide the addInfoArea
-    private isAddInfoAreaVisible = new BehaviorSubject<boolean>(false);
-    isAddInfoAreaVisible$ = this.isAddInfoAreaVisible.asObservable();
-
-    // Use to save the current status of the addInfoArea
-    private saveIsAddInfoAreaVisible = new BehaviorSubject<boolean>(false);
-    saveIsAddInfoAreaVisible$ = this.saveIsAddInfoAreaVisible.asObservable();
-
-    // Use to show or hide the addInfoButton
+    // Show or hide (AddInfoButton)
     private isAddInfoButtonVisible = new BehaviorSubject<boolean>(false);
     isAddInfoButtonVisible$ = this.isAddInfoButtonVisible.asObservable();
 
-    // Use to show the content-header-for-list or content-header-for-detail
+    // Show or hide (AddInfoArea)
+    private isAddInfoAreaVisible = new BehaviorSubject<boolean>(false);
+    isAddInfoAreaVisible$ = this.isAddInfoAreaVisible.asObservable();
+
+    // Save the current Status (AddInfoArea)
+    private saveIsAddInfoAreaVisible: boolean = true;
+
+    // Show the different content-headers (contentHeaderForList, contentHeaderForDetail)
     private viewType = new BehaviorSubject<string>('list');
     viewType$ = this.viewType.asObservable();
-
-    // Use for the content-header-list, to get the object-fieldnames there
-    // Maybe this doesnt need, only the fieldnames are needed...
-    // private choosenMenuItem = new BehaviorSubject<any>('dashboard');
-    // choosenMenuItem$ = this.choosenMenuItem.asObservable();
 
     // Fieldnames of choosen MenuObject
     private fieldNamesForFilter = new BehaviorSubject<any>(undefined);
     fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
 
-    constructor() { }
-
-    setViewType (data: string): void {
-        this.viewType.next(data);
+    test(): void {
+        console.log('isViewDashboard: ', this.isViewDashboard.getValue());
+        console.log('isQuicklinksAreaVisible: ', this.isQuicklinksAreaVisible.getValue());
+        console.log('isAddInfoButtonVisible: ', this.isAddInfoButtonVisible.getValue());
+        console.log('isAddInfoAreaVisible: ', this.isAddInfoAreaVisible.getValue());
+        console.log('saveIsAddInfoAreaVisible: ', this.saveIsAddInfoAreaVisible);
+        console.log('viewType: ', this.viewType.getValue());
+        console.log('fieldNamesForFilter: ', this.fieldNamesForFilter.getValue());
     }
 
+    constructor() {}
+
+    /**
+     * Set isDashboard to 'true' or 'false'
+     * Set visibility of AddInfoArea to 'true' or 'false'
+     * Set viewType to 'list' or 'detail'
+     * @param object
+     */
     setChoosenObjectByMenu (object: any): void {
-        // Is clicked dashboard, set true or false to show or hide the content-header and the add-info-area + toggle-button
+        //
         if (object.name === 'dashboard') {
+            // console.log('object.name:\n', object.name);
             this.isViewDashboard.next(true);
+            this.setIsAddInfoAreaVisible(false);
         } else {
+            // console.log('object.name:\n', object.name);
             this.isViewDashboard.next(false);
+            this.setIsAddInfoAreaVisible(this.saveIsAddInfoAreaVisible);
         }
 
-
-
-        // Set the clicked object as active to get the fieldnames for the filter-function
-        // this.choosenMenuItem = object;
-        // this.choosenMenuItem.next(object);
-
         // Set the viewType to list or detail to change the content-header-type
-        this.viewType.next('list');
+        this.setViewType('list');
 
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(object.name));
@@ -83,7 +83,6 @@ export class PrivateService {
 
     /**
      * Preparing the fieldnames for the filter-function for the list-views
-     *
      * @param objectType
      * @returns
      */
@@ -99,19 +98,29 @@ export class PrivateService {
         }
     }
 
-    setAreQuicklinksVisible(value: boolean): void {
-        this.areQuicklinksVisible.next(value);
-    }
-
-    setIsAddInfoAreaVisible(value: boolean): void {
-        this.isAddInfoAreaVisible.next(value);
-    }
-
-    setSaveIsAddInfoAreaVisible(value: boolean): void {
-        this.saveIsAddInfoAreaVisible.next(value);
+    setIsQuicklinksAreaVisible(value: boolean): void {
+        this.isQuicklinksAreaVisible.next(value);
     }
 
     setIsAddInfoButtonVisible(value: boolean): void {
         this.isAddInfoButtonVisible.next(value);
     }
+
+    setIsAddInfoAreaVisible(value: boolean): void {
+        this.isAddInfoAreaVisible.next(value);
+        this.saveIsAddInfoAreaVisible = value;
+    }
+
+    getSaveIsAddInfoAreaVisible(): boolean {
+        return this.saveIsAddInfoAreaVisible;
+    }
+
+    /**
+     * Set viewType to 'detail' by double-click on a object-tile
+     * @param data
+     */
+    setViewType (data: string): void {
+        this.viewType.next(data);
+    }
+
 }

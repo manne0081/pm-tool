@@ -41,15 +41,15 @@
         <!-- Different Classes wether quicklinks or addInfo should be visible or not -->
         <!-- ----------------------------------------------------------------------- -->
         <div [ngClass]="{
-                'content-container-full': areQuicklinksVisible && isAddInfoAreaVisible,
-                'content-container-without-quicklinks': !areQuicklinksVisible && isAddInfoAreaVisible,
-                'content-container-without-addinfo': areQuicklinksVisible && !isAddInfoAreaVisible,
-                'content-container-tiles-only': !areQuicklinksVisible && !isAddInfoAreaVisible
+                'content-container-full': isQuicklinksAreaVisible && isAddInfoAreaVisible,
+                'content-container-without-quicklinks': !isQuicklinksAreaVisible && isAddInfoAreaVisible,
+                'content-container-without-addinfo': isQuicklinksAreaVisible && !isAddInfoAreaVisible,
+                'content-container-tiles-only': !isQuicklinksAreaVisible && !isAddInfoAreaVisible
         }">
 
             <!-- QUICKLINKS -->
             <!-- ---------- -->
-            <div class="quicklinks-container" *ngIf="areQuicklinksVisible">
+            <div class="quicklinks-container" *ngIf="isQuicklinksAreaVisible">
                 <app-quicklinks (selectedQuicklink)="onSelectQuicklink($event)"></app-quicklinks>
             </div>
 
@@ -81,8 +81,18 @@
 
             <!-- ADDITIONAL INFORMATION -->
             <!-- ---------------------- -->
-            <div class="add-info-container" *ngIf="!isViewDashboard && isAddInfoAreaVisible">
-                AddInfoArea...
+            <div class="add-info-container" *ngIf="isAddInfoAreaVisible">
+                <div style="padding: 8px 12px">
+                    <span style="font-weight: bold;">AddInfoArea...</span>
+                    <br><br>
+                    <span style="font-size: .86rem">
+                        Wie soll sich der Bereich verhalten, wenn ich den Menüpunkt wechsle?
+                        <br>
+                        Soll der Bereich immerwieder eingeblendet werden oder
+                        soll der Zustand beim wechseln beibehalten werden?
+                    </span>
+                </div>
+
                 <!-- <app-add-info [addInfoObject]="addInfoObject"></app-add-info> -->
 
                 <!-- note -->
