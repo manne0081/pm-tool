@@ -67,7 +67,7 @@ export class ProjectListComponent implements OnInit {
      * @param item
     */
     onOpenProject(item: any):void {
-        this.router.navigate(['/project', item.id]);     // Navigation zur Detailseite mit der ID
+        this.router.navigate(['private/project', item.id]);     // Navigation zur Detailseite mit der ID
         this.privateService.setViewType('detail');    // Change ContentHeader to detail
     }
 
