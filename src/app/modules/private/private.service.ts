@@ -6,6 +6,7 @@ import { clientFieldNames } from '../../mocks/client-mock';
 import { projectFieldNames } from '../../mocks/project-mock';
 import { teamMemberFieldNames } from '../../mocks/teamMember-mock';
 import { HeaderMenu, HEADERMENU_MOCK } from '../../mocks/headerMenu-mock';
+import { RouterService } from '../../core/services/router.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,9 +19,8 @@ export class PrivateService {
      * -
      * -
     */
-
     // Use to design the menuItems as active, pre-active and post-active
-    private selectedMenuItem = new BehaviorSubject<string>('dashboard');
+    private selectedMenuItem = new BehaviorSubject<string>('');
     selectedMenuItem$ = this.selectedMenuItem.asObservable();
 
     // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
@@ -58,9 +58,14 @@ export class PrivateService {
 
     constructor(
         private cookieService: CookieService,
+        private routerService: RouterService,
     ) {
-        // Beispiel:
-        this.setActiveMenuByName(HEADERMENU_MOCK, this.selectedMenuItem.getValue());
+        console.log('lastSegmentOfCurrentUrl:',this.routerService.getLastSegmentOfCurrentUrl());
+
+        const test: string = this.routerService.getLastSegmentOfCurrentUrl();
+
+        // this.setActiveMenuByName(HEADERMENU_MOCK, this.selectedMenuItem.getValue());
+        this.setActiveMenuByName(HEADERMENU_MOCK, test);
     }
 
     // Set Cookie => With or Without duration
@@ -99,6 +104,7 @@ export class PrivateService {
             this.setIsAddInfoAreaVisible(false);
         } else {
             this.setIsViewDashboard(false);
+            this.setIsAddInfoAreaVisible(false);
         }
 
         // Set selectedMenuItem to the item.name
@@ -118,7 +124,7 @@ export class PrivateService {
     setSelectedMenuItem(item: any): void {
         const itemName = item.name;
         this.selectedMenuItem.next(itemName);
-        console.log('selectedMenuItem: ', this.selectedMenuItem.getValue());
+        // console.log('selectedMenuItem: ', this.selectedMenuItem.getValue());
     }
 
     /**
@@ -158,9 +164,6 @@ export class PrivateService {
         this.viewType.next(data);
     }
 
-
-
-
     setActiveMenuByName = (menuItems: HeaderMenu[], name: string) => {
         // Finde den Index des gesuchten Objekts anhand des Namens
         const index = menuItems.findIndex(item => item.name === name);
@@ -186,7 +189,5 @@ export class PrivateService {
         // Rückgabe des aktualisierten Arrays
         return menuItems;
     };
-
-
 
 }

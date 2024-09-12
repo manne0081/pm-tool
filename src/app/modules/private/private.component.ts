@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+
+// import { RouterService } from '../../core/services/router.service';
 
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
@@ -33,17 +35,16 @@ export class PrivateComponent implements OnInit {
 
     viewType: string = 'list'       // list or detail
 
+    productId?: string | undefined | null;
+
     constructor(
         private privateService: PrivateService,
-        private router: Router,
+        // private routerService: RouterService,
     ){}
 
     ngOnInit(): void {
-        // Load the dashboard by app start
-        // this.router.navigate(['dashboard']);
-
         // Print some informations
-        this.privateService.test();
+        // this.privateService.test();
 
         // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
         this.privateService.isViewDashboard$.subscribe(data => {

@@ -24,7 +24,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'auth', component: AuthComponent },
 
-    { path: '', component: PrivateComponent,
+    { path: 'private', component: PrivateComponent,
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },

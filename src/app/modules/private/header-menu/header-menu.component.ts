@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, HostListener, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 import { HeaderMenu, HEADERMENU_MOCK, HeaderSubMenu } from '../../../mocks/headerMenu-mock';
 import { HeaderMenuService } from './header-menu.service';
@@ -28,6 +28,7 @@ export class HeaderMenuComponent implements AfterViewInit{
 
     constructor (
         private router: Router,
+        private route: ActivatedRoute,
         private eRef: ElementRef,
         private headerMenuService: HeaderMenuService,
         // private quicklinkService: QuicklinksService,
@@ -39,13 +40,12 @@ export class HeaderMenuComponent implements AfterViewInit{
         this.getHeaderMenuItems();
 
         // Set Dashboard to default by app-start
-        const dashboardItem = this.headerMenuItems.find(item => item.name === 'dashboard');
+        // const dashboardItem = this.headerMenuItems.find(item => item.name === 'dashboard');
         // if (dashboardItem) {
         //     this.headerMenuService.onSelectMenuItem(dashboardItem);
         // } else {
         //     console.error('Dashboard item not found!');
         // }
-
 
 
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
@@ -98,6 +98,9 @@ export class HeaderMenuComponent implements AfterViewInit{
         // this.contentTileViewService.setNumberFilterConditions(0);
         // todo
         // remove all filter items by changing the menu-point
+
+
+
     }
 
     /**
