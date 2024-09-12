@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-// import { RouterService } from '../../core/services/router.service';
-
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { ContentHeaderForListComponent } from './content-header/content-header-for-list/content-header-for-list.component';
@@ -35,16 +33,13 @@ export class PrivateComponent implements OnInit {
 
     viewType: string = 'list'       // list or detail
 
-    productId?: string | undefined | null;
-
     constructor(
         private privateService: PrivateService,
-        // private routerService: RouterService,
     ){}
 
     ngOnInit(): void {
         // Print some informations
-        // this.privateService.test();
+        this.privateService.test();
 
         // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
         this.privateService.isViewDashboard$.subscribe(data => {
@@ -85,10 +80,10 @@ export class PrivateComponent implements OnInit {
      *
      */
     toggleAddInfoVisibility(): void {
-        if (this.getCookie('isAddInfoAreaVisible') === 'true') {
-            this.setCookie('isAddInfoAreaVisible', 'false');
+        if (this.isAddInfoAreaVisible) {
+            this.privateService.setIsAddInfoAreaVisible(false);
         } else {
-            this.setCookie('isAddInfoAreaVisible', 'true');
+            this.privateService.setIsAddInfoAreaVisible(true);
         }
     }
 
@@ -143,7 +138,7 @@ export class PrivateComponent implements OnInit {
     }
 
     getCookie(cookieName: string): string {
-        console.log(this.privateService.getCookie(cookieName));
+        console.log('cookieName',this.privateService.getCookie(cookieName));
         return (this.privateService.getCookie(cookieName));
     }
 

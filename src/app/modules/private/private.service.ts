@@ -13,12 +13,7 @@ import { RouterService } from '../../core/services/router.service';
 })
 
 export class PrivateService {
-    /**
-     * Infos i would need at the private.component
-     * *******************************************
-     * -
-     * -
-    */
+
     // Use to design the menuItems as active, pre-active and post-active
     private selectedMenuItem = new BehaviorSubject<string>('');
     selectedMenuItem$ = this.selectedMenuItem.asObservable();
@@ -32,11 +27,11 @@ export class PrivateService {
     isQuicklinksAreaVisible$ = this.isQuicklinksAreaVisible.asObservable();
 
     // Show or hide (AddInfoButton)
-    private isAddInfoButtonVisible = new BehaviorSubject<boolean>(false);
+    private isAddInfoButtonVisible = new BehaviorSubject<boolean>(true);
     isAddInfoButtonVisible$ = this.isAddInfoButtonVisible.asObservable();
 
     // Show or hide (AddInfoArea)
-    private isAddInfoAreaVisible = new BehaviorSubject<boolean>(false);
+    private isAddInfoAreaVisible = new BehaviorSubject<boolean>(true);
     isAddInfoAreaVisible$ = this.isAddInfoAreaVisible.asObservable();
 
     // Show the different content-headers (contentHeaderForList, contentHeaderForDetail)
@@ -62,10 +57,32 @@ export class PrivateService {
     ) {
         console.log('lastSegmentOfCurrentUrl:',this.routerService.getLastSegmentOfCurrentUrl());
 
-        const test: string = this.routerService.getLastSegmentOfCurrentUrl();
+        // Mark menuItem as active when click refresh / F5
+        const route: string = this.routerService.getLastSegmentOfCurrentUrl();
+        this.setActiveMenuByName(HEADERMENU_MOCK, route);
+        console.log('route:',route);
 
-        // this.setActiveMenuByName(HEADERMENU_MOCK, this.selectedMenuItem.getValue());
-        this.setActiveMenuByName(HEADERMENU_MOCK, test);
+        // Show or hide addInfoButton when click refresh / F5
+        if (route != 'dashboard') {
+            this.setIsAddInfoButtonVisible(true);
+        } else {
+            this.setIsAddInfoButtonVisible(false);
+        }
+
+        // Show or hide content-header and content-action when
+        if (route === 'dashboard') {
+            this.setIsViewDashboard(true);
+        } else {
+            this.setIsViewDashboard(false);
+        }
+
+        // Show or hide addInfoArea when click refresh / F5
+        const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
+        if (isAddInfoVisible === 'true') {
+            this.isAddInfoAreaVisible.next(true);
+        } else {
+            this.isAddInfoAreaVisible.next(false);
+        }
     }
 
     // Set Cookie => With or Without duration
@@ -101,10 +118,20 @@ export class PrivateService {
         //
         if (item.name === 'dashboard') {
             this.setIsViewDashboard(true);
-            this.setIsAddInfoAreaVisible(false);
+            this.isAddInfoAreaVisible.next(false);
+            this.setIsAddInfoButtonVisible(false);
         } else {
             this.setIsViewDashboard(false);
-            this.setIsAddInfoAreaVisible(false);
+
+            // this.setIsAddInfoAreaVisible(true);
+            const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
+            if (isAddInfoVisible === 'true') {
+                this.setIsAddInfoAreaVisible(true);
+            } else {
+                this.setIsAddInfoAreaVisible(false);
+            }
+
+            this.setIsAddInfoButtonVisible(true);
         }
 
         // Set selectedMenuItem to the item.name
@@ -153,7 +180,9 @@ export class PrivateService {
     }
 
     setIsAddInfoAreaVisible(value: boolean): void {
+        this.setCookie('isAddInfoAreaVisible', value.toString());
         this.isAddInfoAreaVisible.next(value);
+        console.log('test6',value.toString());
     }
 
     /**
