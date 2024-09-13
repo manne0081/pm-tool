@@ -38,8 +38,6 @@ export class PrivateComponent implements OnInit {
     ){}
 
     ngOnInit(): void {
-        // Print some informations
-        this.privateService.test();
 
         // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
         this.privateService.isViewDashboard$.subscribe(data => {
@@ -80,11 +78,13 @@ export class PrivateComponent implements OnInit {
      *
      */
     toggleAddInfoVisibility(): void {
+        console.log('this.isAddInfoAreaVisible1:',this.isAddInfoAreaVisible);
         if (this.isAddInfoAreaVisible) {
             this.privateService.setIsAddInfoAreaVisible(false);
         } else {
             this.privateService.setIsAddInfoAreaVisible(true);
         }
+        console.log('this.isAddInfoAreaVisible2:',this.isAddInfoAreaVisible);
     }
 
     /**

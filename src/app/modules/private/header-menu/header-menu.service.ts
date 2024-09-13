@@ -24,9 +24,6 @@ export class HeaderMenuService {
 
     onSelectMenuItem (item: any): void {
         this.privateService.onSelectMenuItem(item);
-        if (item.name === 'dashboard') {
-            this.privateService.setIsAddInfoAreaVisible(false);
-        }
     }
 
     /**

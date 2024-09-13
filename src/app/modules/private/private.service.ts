@@ -27,11 +27,11 @@ export class PrivateService {
     isQuicklinksAreaVisible$ = this.isQuicklinksAreaVisible.asObservable();
 
     // Show or hide (AddInfoButton)
-    private isAddInfoButtonVisible = new BehaviorSubject<boolean>(true);
+    private isAddInfoButtonVisible = new BehaviorSubject<boolean>(false);
     isAddInfoButtonVisible$ = this.isAddInfoButtonVisible.asObservable();
 
     // Show or hide (AddInfoArea)
-    private isAddInfoAreaVisible = new BehaviorSubject<boolean>(true);
+    private isAddInfoAreaVisible = new BehaviorSubject<boolean>(false);
     isAddInfoAreaVisible$ = this.isAddInfoAreaVisible.asObservable();
 
     // Show the different content-headers (contentHeaderForList, contentHeaderForDetail)
@@ -42,31 +42,34 @@ export class PrivateService {
     private fieldNamesForFilter = new BehaviorSubject<any>(undefined);
     fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
 
-    test(): void {
-        console.log('selectedMenuItem: ', this.selectedMenuItem.getValue());
-        console.log('isViewDashboard: ', this.isViewDashboard.getValue());
-        console.log('isQuicklinksAreaVisible: ', this.isQuicklinksAreaVisible.getValue());
-        console.log('isAddInfoButtonVisible: ', this.isAddInfoButtonVisible.getValue());
-        console.log('isAddInfoAreaVisible: ', this.isAddInfoAreaVisible.getValue());
-        console.log('viewType: ', this.viewType.getValue());
-    }
-
     constructor(
         private cookieService: CookieService,
         private routerService: RouterService,
     ) {
-        console.log('lastSegmentOfCurrentUrl:',this.routerService.getLastSegmentOfCurrentUrl());
+        this.test();
+
+        // this.cookieService.set('isAddInfoAreaVisible', 'true');
+
+        const route: string = this.routerService.getLastSegmentOfCurrentUrl();      // For example: client, project
+        const cookieIsAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
 
         // Mark menuItem as active when click refresh / F5
-        const route: string = this.routerService.getLastSegmentOfCurrentUrl();
         this.setActiveMenuByName(HEADERMENU_MOCK, route);
-        console.log('route:',route);
 
         // Show or hide addInfoButton when click refresh / F5
         if (route != 'dashboard') {
             this.setIsAddInfoButtonVisible(true);
         } else {
             this.setIsAddInfoButtonVisible(false);
+        }
+
+        // Show or hide addInfoArea when click refresh / F5
+        if (cookieIsAddInfoVisible === 'true') {
+            console.log('cookieService - isAddInfoAreaVisible = true');
+            this.isAddInfoAreaVisible.next(true);
+        } else {
+            console.log('cookieService - isAddInfoAreaVisible = false');
+            this.isAddInfoAreaVisible.next(false);
         }
 
         // Show or hide content-header and content-action when
@@ -76,13 +79,17 @@ export class PrivateService {
             this.setIsViewDashboard(false);
         }
 
-        // Show or hide addInfoArea when click refresh / F5
-        const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
-        if (isAddInfoVisible === 'true') {
-            this.isAddInfoAreaVisible.next(true);
-        } else {
-            this.isAddInfoAreaVisible.next(false);
-        }
+        // console.log('lastSegmentOfCurrentUrl:',this.routerService.getLastSegmentOfCurrentUrl());
+
+    }
+
+    test(): void {
+        console.log('selectedMenuItem: ', this.selectedMenuItem.getValue());
+        console.log('isViewDashboard: ', this.isViewDashboard.getValue());
+        console.log('isQuicklinksAreaVisible: ', this.isQuicklinksAreaVisible.getValue());
+        console.log('isAddInfoButtonVisible: ', this.isAddInfoButtonVisible.getValue());
+        console.log('isAddInfoAreaVisible: ', this.isAddInfoAreaVisible.getValue());
+        console.log('viewType: ', this.viewType.getValue());
     }
 
     // Set Cookie => With or Without duration
@@ -115,30 +122,33 @@ export class PrivateService {
      * @param object
      */
     onSelectMenuItem (item: any): void {
-        //
-        if (item.name === 'dashboard') {
-            this.setIsViewDashboard(true);
-            this.isAddInfoAreaVisible.next(false);
-            this.setIsAddInfoButtonVisible(false);
-        } else {
-            this.setIsViewDashboard(false);
-
-            // this.setIsAddInfoAreaVisible(true);
-            const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
-            if (isAddInfoVisible === 'true') {
-                this.setIsAddInfoAreaVisible(true);
-            } else {
-                this.setIsAddInfoAreaVisible(false);
-            }
-
-            this.setIsAddInfoButtonVisible(true);
-        }
+        console.log('clicked-menu-item:',item);
 
         // Set selectedMenuItem to the item.name
         this.setSelectedMenuItem(item);
 
-        // Set the viewType to list or detail to change the content-header-type
-        this.setViewType('list');
+        if (item.name === 'dashboard') {
+            console.log('clicked-menu-item === dashboard');
+
+            this.setIsViewDashboard(true);
+            this.setIsAddInfoButtonVisible(false);
+            this.isAddInfoAreaVisible.next(false);
+        } else {
+            console.log('clicked-menu-item !== dashboard');
+
+            this.setViewType('list');
+            this.setIsViewDashboard(false);
+            this.setIsAddInfoButtonVisible(true);
+
+            const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
+            if (isAddInfoVisible === 'true') {
+                console.log('clicked-menu-item / cookie - isAddInfoAreaVisible = true');
+                this.setIsAddInfoAreaVisible(true);
+            } else {
+                console.log('clicked-menu-item / cookie - isAddInfoAreaVisible = false');
+                this.setIsAddInfoAreaVisible(false);
+            }
+        }
 
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
