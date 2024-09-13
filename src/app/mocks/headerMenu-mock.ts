@@ -37,5 +37,5 @@ export interface HeaderSubMenu {
 export const HEADERSUBMENU_MOCK: HeaderSubMenu[] = [
     { id: 0, name: 'teamMember', parentName: 'team', title: 'Mitarbeiter', route: 'teamMember', parentForMenuItemState: 'team', markAsFavorite: true },
     { id: 1, name: 'timeModel', parentName: 'team', title: 'Zeitmodelle', route: 'workSchedule', parentForMenuItemState: 'team' },
-    { id: 2, name: 'teamMember', parentName: 'favorites', title: 'Mitarbeiter', route: 'teamMember', parentForMenuItemState: 'team', markAsFavorite: true },
+    { id: 2, name: 'teamMember', parentName: 'favorite', title: 'Mitarbeiter', route: 'teamMember', parentForMenuItemState: 'team', markAsFavorite: true },
 ];

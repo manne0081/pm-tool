@@ -46,11 +46,9 @@ export class PrivateService {
         private cookieService: CookieService,
         private routerService: RouterService,
     ) {
-        this.test();
+        // this.test();
 
-        // this.cookieService.set('isAddInfoAreaVisible', 'true');
-
-        const route: string = this.routerService.getLastSegmentOfCurrentUrl();      // For example: client, project
+        const route: string = this.routerService.getLastSegmentOfCurrentUrl();      // For example: dashboard, client, project
         const cookieIsAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
 
         // Mark menuItem as active when click refresh / F5
@@ -64,11 +62,9 @@ export class PrivateService {
         }
 
         // Show or hide addInfoArea when click refresh / F5
-        if (cookieIsAddInfoVisible === 'true') {
-            console.log('cookieService - isAddInfoAreaVisible = true');
+        if (cookieIsAddInfoVisible === 'true' && route !== 'dashboard') {
             this.isAddInfoAreaVisible.next(true);
         } else {
-            console.log('cookieService - isAddInfoAreaVisible = false');
             this.isAddInfoAreaVisible.next(false);
         }
 
@@ -79,8 +75,8 @@ export class PrivateService {
             this.setIsViewDashboard(false);
         }
 
-        // console.log('lastSegmentOfCurrentUrl:',this.routerService.getLastSegmentOfCurrentUrl());
-
+        // Fieldnames for filter-function
+        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(route));
     }
 
     test(): void {
@@ -122,19 +118,14 @@ export class PrivateService {
      * @param object
      */
     onSelectMenuItem (item: any): void {
-        console.log('clicked-menu-item:',item);
-
-        // Set selectedMenuItem to the item.name
-        this.setSelectedMenuItem(item);
+        this.selectedMenuItem.next(item.name);
 
         if (item.name === 'dashboard') {
-            console.log('clicked-menu-item === dashboard');
 
             this.setIsViewDashboard(true);
             this.setIsAddInfoButtonVisible(false);
             this.isAddInfoAreaVisible.next(false);
         } else {
-            console.log('clicked-menu-item !== dashboard');
 
             this.setViewType('list');
             this.setIsViewDashboard(false);
@@ -142,10 +133,8 @@ export class PrivateService {
 
             const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
             if (isAddInfoVisible === 'true') {
-                console.log('clicked-menu-item / cookie - isAddInfoAreaVisible = true');
                 this.setIsAddInfoAreaVisible(true);
             } else {
-                console.log('clicked-menu-item / cookie - isAddInfoAreaVisible = false');
                 this.setIsAddInfoAreaVisible(false);
             }
         }
@@ -155,19 +144,9 @@ export class PrivateService {
     }
 
     /**
-     * Set selectedMenuItem to the item.name
-     * @param item
-     */
-    setSelectedMenuItem(item: any): void {
-        const itemName = item.name;
-        this.selectedMenuItem.next(itemName);
-        // console.log('selectedMenuItem: ', this.selectedMenuItem.getValue());
-    }
-
-    /**
      * Preparing the fieldnames for the filter-function for the list-views
-     * @param objectType
-     * @returns
+     * @param objectType (client, project)
+     * @returns fieldnames as array
      */
     getFieldNamesOfObject(objectType: any): string[] {
         if (objectType === 'client') {
@@ -192,7 +171,6 @@ export class PrivateService {
     setIsAddInfoAreaVisible(value: boolean): void {
         this.setCookie('isAddInfoAreaVisible', value.toString());
         this.isAddInfoAreaVisible.next(value);
-        console.log('test6',value.toString());
     }
 
     /**

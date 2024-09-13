@@ -51,13 +51,6 @@
             <!-- ---------- -->
             <div class="quicklinks-container" *ngIf="isQuicklinksAreaVisible">
                 <app-quicklinks (selectedQuicklink)="onSelectQuicklink($event)"></app-quicklinks>
-                <!-- Cookietest -->
-                <button (click)="setCookie('isAddInfoAreaVisible', 'false', 1)">Set/Update Cookie</button>
-                <button (click)="getCookie('isAddInfoAreaVisible')">Get Cookie</button>
-                <button (click)="deleteCookie('isAddInfoAreaVisible')">Delete Cookie</button>
-                <br><br>
-                <b>cookie 'isAddInfoAreaVisible' <br>
-                = {{isAddInfoAreaVisible}}</b>
             </div>
 
             <!-- Content -->

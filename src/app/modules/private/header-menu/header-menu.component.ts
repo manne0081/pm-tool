@@ -39,15 +39,6 @@ export class HeaderMenuComponent implements AfterViewInit{
         // Get all header-items
         this.getHeaderMenuItems();
 
-        // Set Dashboard to default by app-start
-        // const dashboardItem = this.headerMenuItems.find(item => item.name === 'dashboard');
-        // if (dashboardItem) {
-        //     this.headerMenuService.onSelectMenuItem(dashboardItem);
-        // } else {
-        //     console.error('Dashboard item not found!');
-        // }
-
-
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
         // });
@@ -59,9 +50,11 @@ export class HeaderMenuComponent implements AfterViewInit{
     getHeaderMenuItems(): void {
         this.headerMenuService.getHeaderMenu().subscribe((data: HeaderMenu[]) => {
             this.headerMenuItems = data;
+            // console.log(data);
         });
         this.headerMenuService.getHeaderSubMenu().subscribe((data: HeaderSubMenu[]) => {
             this.headerMenuSubItems = data;
+            console.log(data);
         });
     }
 
@@ -98,9 +91,6 @@ export class HeaderMenuComponent implements AfterViewInit{
         // this.contentTileViewService.setNumberFilterConditions(0);
         // todo
         // remove all filter items by changing the menu-point
-
-
-
     }
 
     /**
@@ -155,8 +145,8 @@ export class HeaderMenuComponent implements AfterViewInit{
         } else {
             if (clickedItem.markAsFavorite) {
                 // Remove the favorite-item from the array and mark the subMenuItem as NO-favorite
-                this.headerMenuService.removeSubItemFromFavorite(clickedItem);
                 this.headerMenuService.setHeaderSubItemToFavorite(clickedItem);
+                this.headerMenuService.removeSubItemFromFavorite(clickedItem);
             }
         }
     }

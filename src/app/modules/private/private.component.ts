@@ -78,13 +78,11 @@ export class PrivateComponent implements OnInit {
      *
      */
     toggleAddInfoVisibility(): void {
-        console.log('this.isAddInfoAreaVisible1:',this.isAddInfoAreaVisible);
         if (this.isAddInfoAreaVisible) {
             this.privateService.setIsAddInfoAreaVisible(false);
         } else {
             this.privateService.setIsAddInfoAreaVisible(true);
         }
-        console.log('this.isAddInfoAreaVisible2:',this.isAddInfoAreaVisible);
     }
 
     /**
@@ -99,14 +97,6 @@ export class PrivateComponent implements OnInit {
             this.selectedMenuItem = menuItem.title;
         }
 
-        // Toggle visibility from the add-info-area and the add-info-button when click header-menu-item
-        // if (menuItem === 'Dashboard' || menuItem.name === 'dashboard') {
-        //     this.isAddInfoAreaVisible = false;
-        // } else {
-        //     this.isAddInfoAreaVisible = true;
-        // }
-
-        // this.viewType = 'list'
 
         // this.setAddInfoObject(menuItem);
         // this.addInfoObject = '';
@@ -126,24 +116,5 @@ export class PrivateComponent implements OnInit {
         // this.addInfoObject = '';
         // this.removeAllFilterItems();
         // this.activeFilterItems.push({ id: 'searchTerm', name: item.title });
-    }
-
-
-    setCookie(cookieName: string, cookieValue: string, duration?: number) {
-        if (duration) {
-            this.privateService.setCookie(cookieName, cookieValue, duration);
-        } else {
-            this.privateService.setCookie(cookieName, cookieValue);
-        }
-    }
-
-    getCookie(cookieName: string): string {
-        console.log('cookieName',this.privateService.getCookie(cookieName));
-        return (this.privateService.getCookie(cookieName));
-    }
-
-
-    deleteCookie(cookieName: string) {
-        this.privateService.deleteCookie(cookieName);
     }
 }

@@ -31,7 +31,7 @@ export class HeaderMenuService {
      * @param subMenuItem
      */
     setHeaderSubItemToFavorite(subMenuItem: any): void {
-        if (subMenuItem.parentName !== 'favorites') {
+        if (subMenuItem.parentName !== 'favorite') {
             HEADERSUBMENU_MOCK.forEach(item => {
                 if (item.id === subMenuItem.id) {
                     if (!item.markAsFavorite) {
@@ -70,7 +70,7 @@ export class HeaderMenuService {
         const favoriteItem = {
             id: newId,
             name: clickedItem.name,
-            parentName: 'favorites',
+            parentName: 'favorite',
             parentForMenuItemState: clickedItem.parentName,
             title: clickedItem.title,
             markAsFavorite: true,
@@ -85,7 +85,7 @@ export class HeaderMenuService {
      */
     removeSubItemFromFavorite(clickedItem: any): void {
         const index = HEADERSUBMENU_MOCK.findIndex(item =>
-            item.name === clickedItem.name && item.parentName === 'favorites'
+            item.name === clickedItem.name && item.parentName === 'favorite'
         );
         if (index !== -1) {
             HEADERSUBMENU_MOCK.splice(index, 1);
