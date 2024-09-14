@@ -26,6 +26,8 @@ export class HeaderMenuComponent implements AfterViewInit{
     headerMenuItems: HeaderMenu[] = [];
     headerMenuSubItems: HeaderSubMenu[] = [];
 
+    favoriteHasItems?: boolean;
+
     constructor (
         private router: Router,
         private route: ActivatedRoute,
@@ -38,6 +40,8 @@ export class HeaderMenuComponent implements AfterViewInit{
     ngOnInit(): void {
         // Get all header-items
         this.getHeaderMenuItems();
+
+        this.getFavoriteHasItems();
 
         // this.quicklinkService.selectedQuicklink$.subscribe(item => {
         //     this.onSelectQuicklink(item);
@@ -54,8 +58,13 @@ export class HeaderMenuComponent implements AfterViewInit{
         });
         this.headerMenuService.getHeaderSubMenu().subscribe((data: HeaderSubMenu[]) => {
             this.headerMenuSubItems = data;
-            console.log(data);
+            // console.log(data);
         });
+    }
+
+    getFavoriteHasItems(): void {
+        const hasFavorite = this.headerMenuSubItems.some(item => item.parentName === 'favorite');
+        this.favoriteHasItems = hasFavorite;
     }
 
     /**
@@ -111,8 +120,18 @@ export class HeaderMenuComponent implements AfterViewInit{
 
         this.headerMenuItems.forEach((item) => {
             if (item.name === name) {
-                if (item.hasDropdown) {
-                    item.showDropdown = true;
+                if (item.name === 'favorite') {
+                    if (this.favoriteHasItems) {
+                        if (item.hasDropdown) {
+                            item.showDropdown = true;
+                        }
+                    } else {
+                        item.showDropdown = false;
+                    }
+                } else {
+                    if (item.hasDropdown) {
+                        item.showDropdown = true;
+                    }
                 }
             }
         });
@@ -132,21 +151,27 @@ export class HeaderMenuComponent implements AfterViewInit{
     * @param name
     */
     toggleFavorite(clickedItem: any) {
-        if (clickedItem.parentName !== 'favorites') {
+        if (clickedItem.parentName !== 'favorite') {
             if (!clickedItem.markAsFavorite) {
                 // Mark the subMenuItem as favorite and add a new favorite-item to the array
                 this.headerMenuService.setHeaderSubItemToFavorite(clickedItem);
                 this.headerMenuService.addHeaderSubItemToFavorite(clickedItem);
+                this.getFavoriteHasItems();
             } else {
                 // Mark the subMenuItem as NO-favorite and remove the favorite-item from the array
                 this.headerMenuService.setHeaderSubItemToFavorite(clickedItem);
                 this.headerMenuService.removeSubItemFromFavorite(clickedItem);
+                this.getFavoriteHasItems();
             }
         } else {
             if (clickedItem.markAsFavorite) {
                 // Remove the favorite-item from the array and mark the subMenuItem as NO-favorite
                 this.headerMenuService.setHeaderSubItemToFavorite(clickedItem);
                 this.headerMenuService.removeSubItemFromFavorite(clickedItem);
+                this.getFavoriteHasItems();
+                if (!this.favoriteHasItems) {
+                    this.closeAllDropdowns();
+                }
             }
         }
     }
