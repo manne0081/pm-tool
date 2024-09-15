@@ -64,31 +64,35 @@ export class QuicklinksComponent {
         moveItemInArray(this.quicklinkItems, event.previousIndex, event.currentIndex);
     }
 
-    openQuicklink(item: any): void {
-        window.alert(item.title + " clicked!");
-        // this.router.navigate([item.url]);
-    }
+    // openQuicklink(item: any): void {
+    //     window.alert(item.title + " clicked!");
+    //     this.router.navigate([item.url]);
+    // }
 
     onSelectQuicklink(item: Quicklinks): void {
+        console.log(item);
+
         const urlParts = item.url.split('?');
         const path = urlParts[0];
         const queryParamsString = urlParts[1];
 
-        let queryParams: Record<string, string> = {};
-        if (queryParamsString) {
-            queryParams = queryParamsString.split('&').reduce((params, param) => {
-                const [key, value] = param.split('=');
-                params[key] = value;
-                return params;
-            }, {}  as Record<string, string> );
-        }
+        console.log('urlParts',urlParts, '\npath',path, '\nqueryParamsString',queryParamsString);
 
-        this.router.navigate([path], { queryParams });
+        // let queryParams: Record<string, string> = {};
+        // if (queryParamsString) {
+        //     queryParams = queryParamsString.split('&').reduce((params, param) => {
+        //         const [key, value] = param.split('=');
+        //         params[key] = value;
+        //         return params;
+        //     }, {}  as Record<string, string> );
+        // }
+
+        // this.router.navigate([path], { queryParams });
 
         // For sharing the selected Quicklink-Item with the private.component, to show the add-info-container
         // and to show the Content-Header and the Actions Container
         // this.onSelectQuicklink.emit(item);
-        this.quicklinkService.onSelectQuicklink(item);
+        // this.quicklinkService.onSelectQuicklink(item);
     }
 
     onAddQuicklink(): void {

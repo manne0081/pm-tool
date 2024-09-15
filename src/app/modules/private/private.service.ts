@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
+import { RouterService } from '../../core/services/router.service';
+import { HeaderMenu, HEADERMENU_MOCK, HEADERSUBMENU_MOCK } from '../../mocks/headerMenu-mock';
+
 import { clientFieldNames } from '../../mocks/client-mock';
 import { projectFieldNames } from '../../mocks/project-mock';
 import { teamMemberFieldNames } from '../../mocks/teamMember-mock';
-import { HeaderMenu, HEADERMENU_MOCK } from '../../mocks/headerMenu-mock';
-import { RouterService } from '../../core/services/router.service';
 
 @Injectable({
     providedIn: 'root'
@@ -57,7 +58,21 @@ export class PrivateService {
         const cookieIsQuicklinksVisible: string = this.cookieService.get('isQuicklinkAreaVisible');
 
         // Mark menuItem as active when click refresh / F5
-        this.setActiveMenuByName(HEADERMENU_MOCK, route);
+        const isMenuItemActive = HEADERMENU_MOCK.some(item => item.name === route);
+        const isSubMenuItemActive = HEADERSUBMENU_MOCK.some(item => item.name === route);
+        if (isMenuItemActive) {
+            // console.log('route is MenuItem');
+            this.setActiveMenuByName(HEADERMENU_MOCK, route);
+        } else if (isSubMenuItemActive) {
+            // console.log('route is SubMenuItem');
+            const menuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === route);
+            // console.log('menuSubItem passend zu route', menuSubItem);
+            const menuItem = menuSubItem!.parentForMenuItemState;
+            // console.log('menuItem passend zu menuSubItem', menuItem);
+            this.setActiveMenuByName(HEADERMENU_MOCK, menuItem);
+        } else {
+            console.log('route doesnt exist...');
+        }
 
         // Show or hide addInfoButton when click refresh / F5
         if (route != 'dashboard') {

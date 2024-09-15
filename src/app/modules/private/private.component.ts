@@ -35,7 +35,7 @@ export class PrivateComponent implements OnInit {
 
     viewType: string = 'list'       // list or detail
 
-    addInfoObject: any;
+    // addInfoObject: any;
 
     constructor(
         private privateService: PrivateService,
@@ -65,8 +65,6 @@ export class PrivateComponent implements OnInit {
 
         // Show the list- or the detail contentHeader
         this.privateService.viewType$.subscribe(data => this.viewType = data);
-
-        // this.privateService.selectedObject$.subscribe(data => this.addInfoObject = data);
 
     }
 

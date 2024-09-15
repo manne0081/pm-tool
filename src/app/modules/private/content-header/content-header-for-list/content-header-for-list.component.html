@@ -1,2 +1,33 @@
-<p style="font-size: 1.2rem">content-header-for-list works!</p>
-<p style="font-size: .84rem">{{fieldNamesForFilter}}</p>
+<div class="add-filter-wrapper" style="overflow: visible">
+
+    <!-- Searching-Area -->
+    <!-- -------------- -->
+    <div class="searching-wrapper">
+        <input type="text" placeholder="Searching..." [(ngModel)]="searchTerm" (keyup)="onSearchTermChanged($event)"/>
+        <div class="icon-cancel" *ngIf="searchTerm != ''" (click)="removeSearchTerm()"></div>
+    </div>
+
+
+    <!-- DROPDOWN - Component - TEST -->
+    <!-- --------------------------- -->
+    <!-- <app-tile-view-dropdown style="overflow: visible"
+        [buttonValue]="'filter'"
+        [buttonIcon]="'icon-filter'"
+        [dropdownContent]="'filter'"
+    ></app-tile-view-dropdown>
+
+    <app-tile-view-dropdown style="overflow: visible"
+        [buttonValue]="'sort'"
+        [buttonIcon]="'icon-sort'"
+        [dropdownContent]="'sort'"
+    ></app-tile-view-dropdown>
+
+    <app-tile-view-dropdown style="overflow: visible"
+        [buttonValue]="'group'"
+        [buttonIcon]="'icon-drawer'"
+        [dropdownContent]="'group'"
+    ></app-tile-view-dropdown> -->
+
+</div>
+
+<p style="font-size: .84rem; padding: 6px 6px;">{{fieldNamesForFilter}}</p>
