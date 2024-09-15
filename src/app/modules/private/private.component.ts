@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
+import { AddInfoComponent } from './add-info/add-info.component';
 import { ContentHeaderForListComponent } from './content-header/content-header-for-list/content-header-for-list.component';
 import { ContentHeaderForDetailComponent } from './content-header/content-header-for-detail/content-header-for-detail.component';
 import { PrivateService } from './private.service';
@@ -16,6 +17,7 @@ import { PrivateService } from './private.service';
         RouterModule,
         HeaderMenuComponent,
         QuicklinksComponent,
+        AddInfoComponent,
         ContentHeaderForListComponent,
         ContentHeaderForDetailComponent,
     ],
@@ -32,6 +34,8 @@ export class PrivateComponent implements OnInit {
     isAddInfoButtonVisible?: boolean;
 
     viewType: string = 'list'       // list or detail
+
+    addInfoObject: any;
 
     constructor(
         private privateService: PrivateService,
@@ -61,6 +65,9 @@ export class PrivateComponent implements OnInit {
 
         // Show the list- or the detail contentHeader
         this.privateService.viewType$.subscribe(data => this.viewType = data);
+
+        // this.privateService.selectedObject$.subscribe(data => this.addInfoObject = data);
+
     }
 
     /**

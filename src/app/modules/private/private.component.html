@@ -82,41 +82,11 @@
             <!-- ADDITIONAL INFORMATION -->
             <!-- ---------------------- -->
             <div class="add-info-container" *ngIf="isAddInfoAreaVisible">
-                <div style="padding: 8px 12px">
-                    <span style="font-weight: bold;">AddInfoArea...</span>
-                    <br><br>
-                    <span style="font-size: .86rem">
-                        Wie soll sich der Bereich verhalten, wenn ich den Menüpunkt wechsle?
-                        <br>
-                        Soll der Bereich immerwieder eingeblendet werden oder
-                        soll der Zustand beim wechseln beibehalten werden?
-                        <br><br>
-                    </span>
-                </div>
-
-                <!-- <app-add-info [addInfoObject]="addInfoObject"></app-add-info> -->
-
-                <!-- note -->
-                <!-- Only for testing -->
-                <!-- <app-dropdown style="position:absolute; top: 48px; left: 12px;"
-                    [buttonValue]="'test'"
-                    [buttonIcon]="'icon-grid'"
-                    [contentOption]="'object-test'"
-                ></app-dropdown> -->
-                <!-- End for testing -->
-
+                <app-add-info></app-add-info>
             </div>
         </div>
-
-
-
-
-
     </main>
 </div>
-
-
-
 
 
 <!-- <router-outlet></router-outlet> -->

@@ -42,6 +42,10 @@ export class PrivateService {
     private fieldNamesForFilter = new BehaviorSubject<any>(undefined);
     fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
 
+    // Selected Object for Additional Informations
+    private selectedObject = new BehaviorSubject<any>(undefined);
+    selectedObject$ = this.selectedObject.asObservable();
+
     constructor(
         private cookieService: CookieService,
         private routerService: RouterService,
@@ -149,6 +153,8 @@ export class PrivateService {
 
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
+
+        this.setSelectedObject(null);
     }
 
     /**
@@ -215,5 +221,11 @@ export class PrivateService {
         // Rückgabe des aktualisierten Arrays
         return menuItems;
     };
+
+    setSelectedObject (selectedObject: any): void {
+        this.selectedObject.next(selectedObject);
+    }
+
+
 
 }

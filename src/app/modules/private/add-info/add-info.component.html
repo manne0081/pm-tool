@@ -1,20 +1,35 @@
 <div class="add-info-header">
-    <span>Additional Informations</span><br>
+    <span>Zusatzinformationen...</span><br>
 </div>
 
-<div class="add-info-wrapper" *ngIf="addInfoObject"> <!--  *ngIf="addInfoObject"-->
-    <div class="fst">
+<br>
+
+<div class="add-info-wrapper" *ngIf="addInfoObject">
+
+    <div class="1st">
         <div class="add-info-item-id">
             ID: {{addInfoObject.id}}
         </div>
-        <hr style="margin: 4px 0px;" *ngIf="addInfoObject.name">
+    </div>
+
+    <hr style="margin: 4px 0px;">
+
+    <div class="2nd" *ngIf="addInfoObject.name">
         <div class="add-info-item-name" *ngIf="addInfoObject.name">
             {{addInfoObject.name}}
         </div>
     </div>
-    <div class="snd" *ngIf="addInfoObject.title">
+
+    <div class="3rd" *ngIf="addInfoObject.title">
         <div class="add-info-item-id">
             {{addInfoObject.title}}
         </div>
     </div>
+
+    <div class="4th" *ngIf="addInfoObject">
+        <div class="add-info-item-id">
+            {{addInfoObject.firstName}} {{addInfoObject.lastName}}
+        </div>
+    </div>
+
 </div>

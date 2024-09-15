@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { PrivateService } from '../private.service';
+
 @Component({
     selector: 'app-add-info',
     standalone: true,
@@ -12,13 +14,15 @@ import { CommonModule } from '@angular/common';
 })
 
 export class AddInfoComponent {
-    @Input() addInfoObject: any;
+    addInfoObject: any
 
-    constructor() {
-    }
+    constructor(
+        private privateService: PrivateService,
+    ) {}
 
     ngOnInit(): void {
-        // console.log('add-info - ngOnInit: ');
-        this.addInfoObject = null;
+        this.privateService.selectedObject$.subscribe(data => {
+            this.addInfoObject = data;
+        });
     }
 }

@@ -32,11 +32,11 @@ export class ClientListComponent implements OnInit {
     getClientItems(): void {
         this.clientService.getClients().subscribe((data: Client[]) => {
             this.clientItems = data;
-            // console.log(this.teamMemberItems);
         });
     }
 
     onSelectClient(item: any):void {
         this.selectedItemId = item.id
+        this.clientService.setSelectedObject(item);
     }
 }

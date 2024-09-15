@@ -80,5 +80,6 @@ export class TeamMemberListComponent implements OnInit {
 
     onSelectTeamMember(teamMember: TeamMember):void {
         this.selectedTeamMemberId = teamMember.id
+        this.teamMemberService.setSelectedObject(teamMember);
     }
 }

@@ -22,10 +22,9 @@ export class ProjectListComponent implements OnInit {
     projectItems: Project[] = [];
     clientItems: Client[] = [];
 
-    selectedItemId: number | null = null;
+    selectedItemId: number | null = null;       // Needed for UI
 
     constructor (
-        private privateService: PrivateService,
         private router: Router,
         private projectService: ProjectService,
         private clientService: ClientService,
@@ -59,7 +58,8 @@ export class ProjectListComponent implements OnInit {
      * @param item
      */
     onSelectProject(item: any):void {
-        this.selectedItemId = item.id
+        this.selectedItemId = item.id       // Needed for UI
+        this.projectService.setSelectedObject(item);
     }
 
     /**
@@ -68,7 +68,7 @@ export class ProjectListComponent implements OnInit {
     */
     onOpenProject(item: any):void {
         this.router.navigate(['private/project', item.id]);     // Navigation zur Detailseite mit der ID
-        this.privateService.setViewType('detail');    // Change ContentHeader to detail
+        this.projectService.setViewType('detail');    // Change ContentHeader to detail
     }
 
     /**
