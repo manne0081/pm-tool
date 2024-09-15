@@ -50,6 +50,7 @@ export class PrivateService {
 
         const route: string = this.routerService.getLastSegmentOfCurrentUrl();      // For example: dashboard, client, project
         const cookieIsAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
+        const cookieIsQuicklinksVisible: string = this.cookieService.get('isQuicklinkAreaVisible');
 
         // Mark menuItem as active when click refresh / F5
         this.setActiveMenuByName(HEADERMENU_MOCK, route);
@@ -59,6 +60,13 @@ export class PrivateService {
             this.setIsAddInfoButtonVisible(true);
         } else {
             this.setIsAddInfoButtonVisible(false);
+        }
+
+        // Show or hide QuicklinkArea when click refresh / F5
+        if (cookieIsQuicklinksVisible === 'true') {
+            this.isQuicklinksAreaVisible.next(true);
+        } else {
+            this.isQuicklinksAreaVisible.next(false);
         }
 
         // Show or hide addInfoArea when click refresh / F5
@@ -162,6 +170,7 @@ export class PrivateService {
 
     setIsQuicklinksAreaVisible(value: boolean): void {
         this.isQuicklinksAreaVisible.next(value);
+        this.setCookie('isQuicklinkAreaVisible', value.toString());
     }
 
     setIsAddInfoButtonVisible(value: boolean): void {
