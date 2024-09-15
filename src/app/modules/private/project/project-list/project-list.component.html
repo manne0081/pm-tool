@@ -6,7 +6,7 @@
         (dblclick)="onOpenProject(item)"
         [ngClass]="{ 'selected': item.id === selectedItemId }"
     >
-        <span>{{ item.id }} - <b>{{ item.name }}</b></span>
+        <span><b>{{ item.name }}</b></span>
         <br><br>
         <span *ngIf="getClientName(item.clientId) as clientName"><b>{{ clientName }}</b></span>
         <br><br>
