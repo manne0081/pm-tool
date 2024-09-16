@@ -184,6 +184,7 @@ export class PrivateService {
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
         this.selectedMenuItemTitle.next(item.title);
         this.setSelectedObject(null);
+        this.setSearchTermFromContentHeader('');
     }
 
     /**

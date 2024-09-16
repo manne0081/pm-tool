@@ -80,4 +80,6 @@ export class ProjectListComponent implements OnInit {
         const client = this.clientItems.find(client => client.id === clientId);
         return client ? client.name : undefined;
     }
+
+
 }
