@@ -15,6 +15,7 @@ import { WorkScheduleListComponent } from './modules/private/workSchedule/work-s
 import { ClientListComponent } from './modules/private/client/client-list/client-list.component';
 import { ProjectListComponent } from './modules/private/project/project-list/project-list.component';
 import { ProjectDetailComponent } from './modules/private/project/project-detail/project-detail.component';
+import { DemoListComponent } from './modules/private/demo/demo-list/demo-list.component';
 
 // ROUTES
 // ******
@@ -33,6 +34,7 @@ export const routes: Routes = [
             { path: 'client', component: ClientListComponent },
             { path: 'project', component: ProjectListComponent},
             { path: 'project/:id', component: ProjectDetailComponent},
+            { path: 'demo', component: DemoListComponent},
         ]
     },
 

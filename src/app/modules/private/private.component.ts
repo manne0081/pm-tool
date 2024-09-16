@@ -26,16 +26,15 @@ import { PrivateService } from './private.service';
 })
 
 export class PrivateComponent implements OnInit {
-    selectedMenuItem: any;
-    isViewDashboard?: boolean;
+    selectedMenuItemTitle: any;                                 // Show the object-title at the content-title-container
 
-    isQuicklinksAreaVisible?: boolean;
-    isAddInfoAreaVisible?: boolean;
-    isAddInfoButtonVisible?: boolean;
+    isViewDashboard?: boolean;                                  // Save wether view is dashboard to show or hide some stuff
 
-    viewType: string = 'list'       // list or detail
+    isQuicklinksAreaVisible?: boolean;                          // Show or hide the QuicklinksArea
+    isAddInfoButtonVisible?: boolean;                           // Show or hide the AddInfoButton
+    isAddInfoAreaVisible?: boolean;                             // Show or hide the AddInfoArea
 
-    // addInfoObject: any;
+    viewType: string = 'list'                                   // list or detail
 
     constructor(
         private privateService: PrivateService,
@@ -46,6 +45,10 @@ export class PrivateComponent implements OnInit {
         // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
         this.privateService.isViewDashboard$.subscribe(data => {
             this.isViewDashboard = data;
+        });
+
+        this.privateService.selectedMenuItemTitle$.subscribe(data => {
+            this.selectedMenuItemTitle = data;
         });
 
         // Show or hide (QuicklinksArea)
@@ -92,26 +95,6 @@ export class PrivateComponent implements OnInit {
 
     /**
      *
-     * @param menuItem
-     */
-    onSelectMenuItem(menuItem: any) {
-
-        if (menuItem === 'Dashboard') {
-            this.selectedMenuItem = menuItem;
-        } else {
-            this.selectedMenuItem = menuItem.title;
-        }
-
-
-        // this.setAddInfoObject(menuItem);
-        // this.addInfoObject = '';
-        // this.removeAllFilterItems();
-
-        // this.loadActiveDataFromMock(menuItem);
-    }
-
-    /**
-     *
      * @param item
      */
     onSelectQuicklink(item: any): void {
@@ -122,4 +105,5 @@ export class PrivateComponent implements OnInit {
         // this.removeAllFilterItems();
         // this.activeFilterItems.push({ id: 'searchTerm', name: item.title });
     }
+
 }

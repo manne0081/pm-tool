@@ -12,14 +12,17 @@ export class ProjectService {
 
     constructor(
         private privateService: PrivateService,
-    ) {}
+    ) {
+        this.privateService.searchTermFromContentHeader$.subscribe(data => {
+            console.log('searchTerm:',data);
+        });
+    }
 
     getProjects(): Observable<Project[]> {
         return of(PROJECT_MOCK);
     }
 
     setFieldnamesForFilter(): void {
-
     }
 
     setViewType(viewType: string): void {

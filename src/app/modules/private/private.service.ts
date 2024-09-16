@@ -19,6 +19,9 @@ export class PrivateService {
     private selectedMenuItem = new BehaviorSubject<string>('');
     selectedMenuItem$ = this.selectedMenuItem.asObservable();
 
+    private selectedMenuItemTitle = new BehaviorSubject<string>('');
+    selectedMenuItemTitle$ = this.selectedMenuItemTitle.asObservable();
+
     // Show or hide (AddInfoArea, ContentHeader, ContentActions, AddInfoArea)
     private isViewDashboard = new BehaviorSubject<boolean>(true);
     isViewDashboard$ = this.isViewDashboard.asObservable();
@@ -39,7 +42,11 @@ export class PrivateService {
     private viewType = new BehaviorSubject<string>('list');
     viewType$ = this.viewType.asObservable();
 
-    // Fieldnames of choosen MenuObject
+    // Will be set from the content-header and will be subscribe from each object-list (project / client / etc.) //todo
+    private searchTermFromContentHeader = new BehaviorSubject<any>(undefined);
+    searchTermFromContentHeader$ = this.searchTermFromContentHeader.asObservable();
+
+    // Fieldnames of choosen MenuObject for the filter-function at the content-header
     private fieldNamesForFilter = new BehaviorSubject<any>(undefined);
     fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
 
@@ -53,19 +60,26 @@ export class PrivateService {
     ) {
         // this.test();
 
-        const route: string = this.routerService.getLastSegmentOfCurrentUrl();      // For example: dashboard, client, project
+        // Manage route
+        const route: string = this.routerService.getLastSegmentOfCurrentUrl();      // For example: dashboard, client, project incl. parameter
+        const trimmedRoute = route.split('?');                                      // splits the route in {object} and {parameter}
+
+        // Manage visibility
         const cookieIsAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
         const cookieIsQuicklinksVisible: string = this.cookieService.get('isQuicklinkAreaVisible');
 
+        console.log('url-object:',trimmedRoute[0]);
+        console.log('url-parameter:',trimmedRoute[1]);
+
         // Mark menuItem as active when click refresh / F5
-        const isMenuItemActive = HEADERMENU_MOCK.some(item => item.name === route);
-        const isSubMenuItemActive = HEADERSUBMENU_MOCK.some(item => item.name === route);
+        const isMenuItemActive = HEADERMENU_MOCK.some(item => item.name === trimmedRoute[0]);
+        const isSubMenuItemActive = HEADERSUBMENU_MOCK.some(item => item.name === trimmedRoute[0]);
         if (isMenuItemActive) {
             // console.log('route is MenuItem');
-            this.setActiveMenuByName(HEADERMENU_MOCK, route);
+            this.setActiveMenuByName(HEADERMENU_MOCK, trimmedRoute[0]);
         } else if (isSubMenuItemActive) {
             // console.log('route is SubMenuItem');
-            const menuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === route);
+            const menuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === trimmedRoute[0]);
             // console.log('menuSubItem passend zu route', menuSubItem);
             const menuItem = menuSubItem!.parentForMenuItemState;
             // console.log('menuItem passend zu menuSubItem', menuItem);
@@ -75,7 +89,7 @@ export class PrivateService {
         }
 
         // Show or hide addInfoButton when click refresh / F5
-        if (route != 'dashboard') {
+        if (trimmedRoute[0] != 'dashboard') {
             this.setIsAddInfoButtonVisible(true);
         } else {
             this.setIsAddInfoButtonVisible(false);
@@ -89,21 +103,21 @@ export class PrivateService {
         }
 
         // Show or hide addInfoArea when click refresh / F5
-        if (cookieIsAddInfoVisible === 'true' && route !== 'dashboard') {
+        if (cookieIsAddInfoVisible === 'true' && trimmedRoute[0] !== 'dashboard') {
             this.isAddInfoAreaVisible.next(true);
         } else {
             this.isAddInfoAreaVisible.next(false);
         }
 
         // Show or hide content-header and content-action when
-        if (route === 'dashboard') {
+        if (trimmedRoute[0] === 'dashboard') {
             this.setIsViewDashboard(true);
         } else {
             this.setIsViewDashboard(false);
         }
 
         // Fieldnames for filter-function
-        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(route));
+        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(trimmedRoute[0]));
     }
 
     test(): void {
@@ -168,7 +182,7 @@ export class PrivateService {
 
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
-
+        this.selectedMenuItemTitle.next(item.title);
         this.setSelectedObject(null);
     }
 
@@ -241,6 +255,8 @@ export class PrivateService {
         this.selectedObject.next(selectedObject);
     }
 
-
+    setSearchTermFromContentHeader(searchTerm: string): void {
+        this.searchTermFromContentHeader.next(searchTerm);
+    }
 
 }

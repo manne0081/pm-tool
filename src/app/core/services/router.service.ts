@@ -9,8 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 export class RouterService {
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
-        private router: Router
     ) { }
 
     /**
@@ -38,4 +38,10 @@ export class RouterService {
         const strippedUrl = parts[2];                           // Get the second part (index 2) assuming the URL is like '/private/project'
         return strippedUrl;
     }
+
+
+
+
+
+
 }

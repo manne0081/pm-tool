@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PrivateService } from '../private.service';
 
 @Injectable({
     providedIn: 'root'
@@ -6,7 +7,8 @@ import { Injectable } from '@angular/core';
 
 export class ContentHeaderService {
 
-    constructor() { }
-
+    constructor(
+        private privateService: PrivateService
+    ) {}
 
 }

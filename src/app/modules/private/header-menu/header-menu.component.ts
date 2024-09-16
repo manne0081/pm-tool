@@ -18,8 +18,6 @@ import { PrivateService } from '../private.service';
 })
 
 export class HeaderMenuComponent implements AfterViewInit{
-    // @Output() selectedMenuItem: EventEmitter<any> = new EventEmitter<any>();
-
     @ViewChildren('dropdownButton') buttons!: QueryList<ElementRef>;
     @ViewChildren('dropdown') dropdowns!: QueryList<ElementRef>;
 

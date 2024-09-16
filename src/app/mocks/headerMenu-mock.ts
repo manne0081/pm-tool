@@ -36,9 +36,9 @@ export interface HeaderSubMenu {
 }
 
 export const HEADERSUBMENU_MOCK: HeaderSubMenu[] = [
-    { id: 0, name: 'task', parentName: 'task', title: 'Tickets', route: 'dashboard', parentForMenuItemState: 'task', markAsFavorite: false },
-    { id: 1, name: 'calendar', parentName: 'task', title: 'Kalender', route: 'dashboard', parentForMenuItemState: 'task', markAsFavorite: false },
-    { id: 2, name: 'message', parentName: 'task', title: 'Nachrichten', route: 'dashboard', parentForMenuItemState: 'task', markAsFavorite: false },
+    { id: 0, name: 'task', parentName: 'task', title: 'Tickets', route: 'demo', parentForMenuItemState: 'task', markAsFavorite: false },
+    { id: 1, name: 'calendar', parentName: 'task', title: 'Kalender', route: 'demo', parentForMenuItemState: 'task', markAsFavorite: false },
+    { id: 2, name: 'message', parentName: 'task', title: 'Nachrichten', route: 'demo', parentForMenuItemState: 'task', markAsFavorite: false },
     { id: 3, name: 'teamMember', parentName: 'team', title: 'Mitarbeiter', route: 'teamMember', parentForMenuItemState: 'team', markAsFavorite: false },
     { id: 4, name: 'workSchedule', parentName: 'team', title: 'Zeitmodelle', route: 'workSchedule', parentForMenuItemState: 'team', markAsFavorite: false },
 ];

@@ -5,7 +5,7 @@
     <!-- Header -->
     <!-- ------ -->
     <header class="page-header-container" style="overflow: visible">
-        <app-header-menu (selectedMenuItem)="onSelectMenuItem($event)"></app-header-menu>
+        <app-header-menu></app-header-menu>
     </header>
 
     <!-- Main-Content -->
@@ -26,7 +26,7 @@
             <!-- -------- -->
             <span class="content-title-value">
                 <!-- {{selectedValueFromMainMenu | uppercase}} -->
-                {{ selectedMenuItem }}
+                {{ selectedMenuItemTitle }}
             </span>
 
             <!-- Button toggle AddInfos -->
@@ -55,7 +55,7 @@
 
             <!-- Content -->
             <!-- ------- -->
-            <div [ngClass]="selectedMenuItem === 'dashboard' ? 'main-content-container-dashboard' : 'main-content-container'">
+            <div [ngClass]="selectedMenuItemTitle === 'dashboard' ? 'main-content-container-dashboard' : 'main-content-container'">
 
                 <!-- Content-Header -->
                 <!-- -------------- -->
