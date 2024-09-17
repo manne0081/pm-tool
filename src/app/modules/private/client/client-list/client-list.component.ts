@@ -35,7 +35,7 @@ export class ClientListComponent implements OnInit {
         // Load clients
         this.route.queryParams.subscribe(params => {
             this.searchTerm = params['search'] || '';
-            this.sortingTerm = (params['sort'] || '');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
+            this.sortingTerm = (params['sort'] || 'id-asc');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
             this.getClientItems();
         });
     }
