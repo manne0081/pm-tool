@@ -35,7 +35,7 @@ export class RouterService {
     getLastSegmentOfCurrentUrl(): string {
         const url = this.router.routerState.snapshot.url;
         const parts = url.split('/');                           // Split URL by '/'
-        const strippedUrl = parts[2];                           // Get the second part (index 2) assuming the URL is like '/private/project'
+        const strippedUrl = parts[1];                           // Get the second part (index 2) assuming the URL is like '/private/project'
         return strippedUrl;
     }
 

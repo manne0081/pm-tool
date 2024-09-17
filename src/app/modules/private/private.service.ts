@@ -59,13 +59,11 @@ export class PrivateService {
         // Manage route
         const route: string = this.routerService.getLastSegmentOfCurrentUrl();      // For example: dashboard, client, project incl. parameter
         const trimmedRoute = route.split('?');                                      // splits the route in {object} and {parameter}
+        // console.log(trimmedRoute[0]);
 
         // Manage visibility
         const cookieIsAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
         const cookieIsQuicklinksVisible: string = this.cookieService.get('isQuicklinkAreaVisible');
-
-        // console.log('url-object:',trimmedRoute[0]);
-        // console.log('url-parameter:',trimmedRoute[1]);
 
         // Mark menuItem as active when click refresh / F5
         const isMenuItemActive = HEADERMENU_MOCK.some(item => item.name === trimmedRoute[0]);
@@ -114,6 +112,8 @@ export class PrivateService {
 
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(trimmedRoute[0]));
+
+        this.setSelectedMenuItemTitle(trimmedRoute[0]);
     }
 
     test(): void {
@@ -134,6 +134,11 @@ export class PrivateService {
         }
     }
 
+    /**
+     * Possible cookies: 'isAddInfoAreaVisible', 'isQuicklinkAreaVisible'
+     * @param cookieName
+     * @returns
+     */
     // Read Cookie
     getCookie(cookieName: string) {
         return this.cookieService.get(cookieName);
@@ -178,7 +183,7 @@ export class PrivateService {
 
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
-        this.selectedMenuItemTitle.next(item.title);
+        this.setSelectedMenuItemTitle(item);
         this.setSelectedObject(null);
         // this.setSearchTermFromContentHeader('');
     }
@@ -225,31 +230,51 @@ export class PrivateService {
     setActiveMenuByName = (menuItems: HeaderMenu[], name: string) => {
         // Finde den Index des gesuchten Objekts anhand des Namens
         const index = menuItems.findIndex(item => item.name === name);
-
         if (index === -1) {
             console.log('Item nicht gefunden');
             return;
         }
-
         // Setze den Status des gefundenen Objekts auf 'active'
         menuItems[index].status = 'active';
-
         // Wenn es ein Objekt davor gibt, setze den Status auf 'pre-active'
         if (index > 0) {
             menuItems[index - 1].status = 'pre-active';
         }
-
         // Wenn es ein Objekt danach gibt, setze den Status auf 'post-active'
         if (index < menuItems.length - 1) {
             menuItems[index + 1].status = 'post-active';
         }
-
         // Rückgabe des aktualisierten Arrays
         return menuItems;
     };
 
+    /**
+     * Set selected object für add-info-area
+     * @param selectedObject
+     */
     setSelectedObject (selectedObject: any): void {
         this.selectedObject.next(selectedObject);
+    }
+
+    /**
+     * Set content-title about the url-object
+     * @param data
+     */
+    setSelectedMenuItemTitle(titleItem: any): void {
+        if (typeof(titleItem) === 'string') {
+            const foundMenuItem = HEADERMENU_MOCK.find(item => item.name === titleItem);
+            const foundMenuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === titleItem);
+
+            if (foundMenuItem) {
+                this.selectedMenuItemTitle.next(foundMenuItem.title!);
+            } else if (foundMenuSubItem) {
+                this.selectedMenuItemTitle.next(foundMenuSubItem.title!);
+            } else {
+                console.log('Element nicht gefunden');
+            }
+        } else {
+            this.selectedMenuItemTitle.next(titleItem.title);
+        }
     }
 
 }

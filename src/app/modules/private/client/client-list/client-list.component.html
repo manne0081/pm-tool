@@ -5,7 +5,7 @@
         (click)="onSelectClient(item)"
         [ngClass]="{ 'selected': item.id === selectedItemId }"
     >
-        <span><b>{{ item.name }}</b></span>
+        <span><b>{{ item.id}} - {{ item.name }}</b></span>
         <br><br>
         <span>{{ item.postCode }} {{ item.city }}</span>
         <br>
