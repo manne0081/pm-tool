@@ -227,7 +227,6 @@ export class PrivateService {
     }
 
     setActiveMenuByName = (menuItems: HeaderMenu[], name: string) => {
-
         // Finde den Index des gesuchten Objekts anhand des Namens
         const index = menuItems.findIndex(item => item.name === name);
 
@@ -237,18 +236,15 @@ export class PrivateService {
         }
 
         // Setze den Status des gefundenen Objekts auf 'active'
-        console.log(index);
         menuItems[index].status = 'active';
 
         // Wenn es ein Objekt davor gibt, setze den Status auf 'pre-active'
         if (index > 0) {
-            console.log(index-1);
             menuItems[index - 1].status = 'pre-active';
         }
 
         // Wenn es ein Objekt danach gibt, setze den Status auf 'post-active'
         if (index < menuItems.length - 1) {
-            console.log(index+1);
             menuItems[index + 1].status = 'post-active';
         }
 
@@ -289,12 +285,12 @@ export class PrivateService {
      * To mark the Menu-Item as active
      */
     onSelectQuicklink(item: any): void {
-        console.log(item.parent);
+        // Set all header-item status to ''
+        HEADERMENU_MOCK.forEach(item => {
+            item.status = '';
+        });
 
-        HEADERMENU_MOCK.map(item => ({
-            status: '',           // alle bisherigen Eigenschaften des Elements kopieren
-        }));
-
+        // Set header-item status
         this.setActiveMenuByName(HEADERMENU_MOCK, item.parent);
     }
 

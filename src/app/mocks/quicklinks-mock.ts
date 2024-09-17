@@ -7,7 +7,7 @@ export interface Quicklinks {
 }
 
 export const QUICKLINKS_MOCK: Quicklinks[] = [
-    { id: 0, title: 'Name enth. web', url: 'project?search=web&sortingTerm=name-desc', parent: 'project', menuTitle: 'Projekt' },
-    { id: 1, title: 'Name enth. we', url: 'project?search=we&sortingTerm=', parent: 'project', menuTitle: 'Projekt' },
-    { id: 2, title: 'Name enth. Fin', url: 'client?search=fin&sortingTerm=', parent: 'client', menuTitle: 'Kunde' },
+    { id: 0, title: 'Projekt enth. web', url: 'project?search=web&sort=', parent: 'project', menuTitle: 'Projekt' },
+    { id: 1, title: 'Projekt enth. up', url: 'project?search=up&sort=id-desc', parent: 'project', menuTitle: 'Projekt' },
+    { id: 2, title: 'Kunde enth. he', url: 'client?search=he&sort=', parent: 'client', menuTitle: 'Kunde' },
 ];
