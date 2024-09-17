@@ -163,12 +163,10 @@ export class PrivateService {
         this.selectedMenuItem.next(item.name);
 
         if (item.name === 'dashboard') {
-
             this.setIsViewDashboard(true);
             this.setIsAddInfoButtonVisible(false);
             this.isAddInfoAreaVisible.next(false);
         } else {
-
             this.setViewType('list');
             this.setIsViewDashboard(false);
             this.setIsAddInfoButtonVisible(true);
@@ -183,9 +181,10 @@ export class PrivateService {
 
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
+        //
         this.setSelectedMenuItemTitle(item);
+        //
         this.setSelectedObject(null);
-        // this.setSearchTermFromContentHeader('');
     }
 
     /**
@@ -228,22 +227,31 @@ export class PrivateService {
     }
 
     setActiveMenuByName = (menuItems: HeaderMenu[], name: string) => {
+
         // Finde den Index des gesuchten Objekts anhand des Namens
         const index = menuItems.findIndex(item => item.name === name);
+
         if (index === -1) {
             console.log('Item nicht gefunden');
             return;
         }
+
         // Setze den Status des gefundenen Objekts auf 'active'
+        console.log(index);
         menuItems[index].status = 'active';
+
         // Wenn es ein Objekt davor gibt, setze den Status auf 'pre-active'
         if (index > 0) {
+            console.log(index-1);
             menuItems[index - 1].status = 'pre-active';
         }
+
         // Wenn es ein Objekt danach gibt, setze den Status auf 'post-active'
         if (index < menuItems.length - 1) {
+            console.log(index+1);
             menuItems[index + 1].status = 'post-active';
         }
+
         // Rückgabe des aktualisierten Arrays
         return menuItems;
     };
@@ -275,6 +283,19 @@ export class PrivateService {
         } else {
             this.selectedMenuItemTitle.next(titleItem.title);
         }
+    }
+
+    /**
+     * To mark the Menu-Item as active
+     */
+    onSelectQuicklink(item: any): void {
+        console.log(item.parent);
+
+        HEADERMENU_MOCK.map(item => ({
+            status: '',           // alle bisherigen Eigenschaften des Elements kopieren
+        }));
+
+        this.setActiveMenuByName(HEADERMENU_MOCK, item.parent);
     }
 
 }

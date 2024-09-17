@@ -101,15 +101,6 @@ export class HeaderMenuComponent implements AfterViewInit{
     }
 
     /**
-     *
-     * @param item
-     */
-    onSelectQuicklink(item: any): void {
-        // console.log(item);
-        this.markMenuItemAsActive(item.parent);
-    }
-
-    /**
      * Open the dropdown by clicking the header-menu-buttons
      * @param name
      */

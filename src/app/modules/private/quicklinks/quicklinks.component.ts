@@ -70,24 +70,26 @@ export class QuicklinksComponent {
     // }
 
     onSelectQuicklink(item: Quicklinks): void {
-        console.log(item);
+        // console.log(item);
 
         const urlParts = item.url.split('?');
         const path = urlParts[0];
         const queryParamsString = urlParts[1];
 
-        console.log('urlParts',urlParts, '\npath',path, '\nqueryParamsString',queryParamsString);
+        // console.log('urlParts',urlParts, '\npath',path, '\nqueryParamsString',queryParamsString);
 
-        // let queryParams: Record<string, string> = {};
-        // if (queryParamsString) {
-        //     queryParams = queryParamsString.split('&').reduce((params, param) => {
-        //         const [key, value] = param.split('=');
-        //         params[key] = value;
-        //         return params;
-        //     }, {}  as Record<string, string> );
-        // }
+        let queryParams: Record<string, string> = {};
+        if (queryParamsString) {
+            queryParams = queryParamsString.split('&').reduce((params, param) => {
+                const [key, value] = param.split('=');
+                params[key] = value;
+                return params;
+            }, {}  as Record<string, string> );
+        }
 
-        // this.router.navigate([path], { queryParams });
+        this.router.navigate([path], { queryParams });
+
+        this.quicklinkService.onSelectQuicklink(item);
 
         // For sharing the selected Quicklink-Item with the private.component, to show the add-info-container
         // and to show the Content-Header and the Actions Container
