@@ -11,4 +11,11 @@ export class ContentHeaderService {
         private privateService: PrivateService
     ) {}
 
+    setSearchTermFromContentHeader(searchTerm: string): void {
+        // this.privateService.setSearchTermFromContentHeader(searchTerm);
+    }
+
+    setSortingTermFromContentHeader(sortingTerm: string): void {
+        // this.privateService.setSortingTermFromContentHeader(sortingTerm);
+    }
 }

@@ -7,6 +7,7 @@
         <div class="icon-cancel" *ngIf="searchTerm != ''" (click)="removeSearchTerm()"></div>
     </div>
 
+    <input type="text" placeholder="id-asc by default" [(ngModel)]="sortingTerm" (keyup)="onSortingTermChanged($event)"/>
 
     <!-- DROPDOWN - Component - TEST -->
     <!-- --------------------------- -->

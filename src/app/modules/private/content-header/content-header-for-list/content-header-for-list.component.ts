@@ -27,9 +27,9 @@ export class ContentHeaderForListComponent implements OnInit {
     searchTerm: string = '';
     sortingTerm: string = '';
 
+    // Little Chips to show all filter-values
     activeFilterItems: FilterItem[] = [
         // { id: 0, name: 'wip-1' },
-        // { id: 1, name: 'wip-2' },
     ];
 
     constructor(
@@ -40,58 +40,49 @@ export class ContentHeaderForListComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        // Read search- and sort- parameter from url and save in variables by refresh / F5
+        this.route.queryParams.subscribe(params => {
+            this.searchTerm = params['search' || ''];
+            this.sortingTerm = (params['sort'] || '');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
+        });
+
+        // Read fieldNames for filter-dropdown
         this.privateService.fieldNamesForFilter$.subscribe(data => {
             this.fieldNamesForFilter = data;
         });
     }
 
-    // todo
-    // onSearchTermChanged and handleSearchTermChange should be in the private.component
-    // output from content-header to private.component...
-
     /**
      * Will be triggert by keyup -> Make two things
-     * 1. Loads the filtered objects
-     * 2. Changes the url, to make it possible to save this as quicklink
+     * 1. Add little filter-chips for UI
+     * 2. Add parameter to url -> the object-list subscibes the url and reads the parameter
      * @param event
      */
     onSearchTermChanged(event: Event) {
-        //
         // const inputElement = event.target as HTMLInputElement;
         // this.searchTerm = inputElement.value;
-        //
-        this.handleSearchTermChange(event);
+        this.addSearchTerm(event);
         this.updateRoute();
     }
 
     /**
-     * Load the objects by the searching-term
+     *
      * @param event
      */
-    handleSearchTermChange(event: Event): void {
+    onSortingTermChanged(event: Event): void {
+        this.updateRoute();
+    }
+
+    /**
+     * Add new searchTerms to show these as little chips
+     * @param event
+     */
+    addSearchTerm(event: Event): void {
         const inputElement = event.target as HTMLInputElement;
         const searchTerm = inputElement.value.trim();
-        // const searchTermItem = this.activeFilterItems.find(item => item.id === 'searchTerm');
+        const searchTermItem = this.activeFilterItems.find(item => item.id === 'searchTerm');
 
-        // console.log('handleSearchTermChange:', inputElement);
-        // console.log('handleSearchTermChange:', searchTerm);
 
-        this.privateService.setSearchTermFromContentHeader(searchTerm);
-
-        // console.log('handleSearchTermChange:', searchTermItem);
-
-        // if (searchTerm) {
-        //     if (searchTermItem) {
-        //         console.log('Update the existing searchTerm item');
-        //         searchTermItem.name = searchTerm;
-        //     } else {
-        //         console.log('Add a new searchTerm item');
-        //         this.activeFilterItems.push({ id: 'searchTerm', name: searchTerm });
-        //     }
-        // } else if (searchTermItem) {
-        //     console.log('Remove the searchTerm item if the input is empty');
-        //     this.activeFilterItems = this.activeFilterItems.filter(item => item.id !== 'searchTerm');
-        // }
     }
 
     /**
@@ -104,13 +95,13 @@ export class ContentHeaderForListComponent implements OnInit {
         // });
 
         this.router.navigate([], {
-            queryParams: { searchTerm: this.searchTerm, sortingTerm: this.sortingTerm },
+            queryParams: { search: this.searchTerm, sort: this.sortingTerm },
             queryParamsHandling: 'merge',
         }).then(success => {
             if (success) {
                 // console.log('Navigation successful');
             } else {
-                // console.log('Navigation failed');
+                console.log('Navigation failed');
             }
         });
     }

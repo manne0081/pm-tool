@@ -13,14 +13,7 @@ export class ProjectService {
 
     constructor(
         private privateService: PrivateService,
-    ) {
-        this.privateService.searchTermFromContentHeader$.subscribe(data => {
-            console.log('searchTerm:',data);
-
-            // todo
-            // load projects by filter...
-        });
-    }
+    ) {}
 
     getProjects(): Observable<Project[]> {
         return of(PROJECT_MOCK);

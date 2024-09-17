@@ -42,10 +42,6 @@ export class PrivateService {
     private viewType = new BehaviorSubject<string>('list');
     viewType$ = this.viewType.asObservable();
 
-    // Will be set from the content-header and will be subscribe from each object-list (project / client / etc.) //todo
-    private searchTermFromContentHeader = new BehaviorSubject<any>(undefined);
-    searchTermFromContentHeader$ = this.searchTermFromContentHeader.asObservable();
-
     // Fieldnames of choosen MenuObject for the filter-function at the content-header
     private fieldNamesForFilter = new BehaviorSubject<any>(undefined);
     fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
@@ -68,8 +64,8 @@ export class PrivateService {
         const cookieIsAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
         const cookieIsQuicklinksVisible: string = this.cookieService.get('isQuicklinkAreaVisible');
 
-        console.log('url-object:',trimmedRoute[0]);
-        console.log('url-parameter:',trimmedRoute[1]);
+        // console.log('url-object:',trimmedRoute[0]);
+        // console.log('url-parameter:',trimmedRoute[1]);
 
         // Mark menuItem as active when click refresh / F5
         const isMenuItemActive = HEADERMENU_MOCK.some(item => item.name === trimmedRoute[0]);
@@ -184,7 +180,7 @@ export class PrivateService {
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
         this.selectedMenuItemTitle.next(item.title);
         this.setSelectedObject(null);
-        this.setSearchTermFromContentHeader('');
+        // this.setSearchTermFromContentHeader('');
     }
 
     /**
@@ -254,10 +250,6 @@ export class PrivateService {
 
     setSelectedObject (selectedObject: any): void {
         this.selectedObject.next(selectedObject);
-    }
-
-    setSearchTermFromContentHeader(searchTerm: string): void {
-        this.searchTermFromContentHeader.next(searchTerm);
     }
 
 }
