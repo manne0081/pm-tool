@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -106,4 +106,24 @@ export class PrivateComponent implements OnInit {
         // this.activeFilterItems.push({ id: 'searchTerm', name: item.title });
     }
 
+    /**
+     *
+     * @param event
+     */
+    @HostListener('window:keydown', ['$event'])
+    handleKeyDown(event: KeyboardEvent) {
+        // check if strg + s has been clicked
+        if (event.ctrlKey && event.key === 's') {
+            event.preventDefault();                     // cancel default (save-dialog)
+            this.saveFunction();                        // call own function
+        }
+    }
+
+    /**
+     * maybe a save-function can be calling
+     */
+    saveFunction() {
+        console.log('Speichern-Funktion wurde aufgerufen');
+        // Hier kannst du deine Speichern-Logik einfügen
+    }
 }
