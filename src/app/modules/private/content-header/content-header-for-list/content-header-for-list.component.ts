@@ -85,7 +85,8 @@ export class ContentHeaderForListComponent implements OnInit {
         const searchTerm = inputElement.value.trim();
         const searchTermItem = this.activeFilterItems.find(item => item.id === 'searchTerm');
 
-
+        // todo
+        // little chips to show all filter items
     }
 
     /**
@@ -104,7 +105,7 @@ export class ContentHeaderForListComponent implements OnInit {
             if (success) {
                 // console.log('Navigation successful');
             } else {
-                console.log('Navigation failed');
+                // console.log('Navigation failed');
             }
         });
     }

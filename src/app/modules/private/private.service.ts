@@ -229,8 +229,10 @@ export class PrivateService {
      * To mark the Menu-Item as active
      */
     onSelectQuicklink(item: any): void {
+        this.isViewDashboard.next(false);
         this.setActiveMenuItemByName(item.parentName);
         this.setContentTitle(item.menuName);
+        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.menuName));
     }
 
     /**
@@ -319,7 +321,7 @@ export class PrivateService {
             } else if (foundMenuSubItem) {
                 this.selectedMenuItemTitle.next(foundMenuSubItem.title!);
             } else {
-                console.log('Element nicht gefunden');
+                // console.log('Element nicht gefunden');
             }
         } else {
             this.selectedMenuItemTitle.next(titleItem.title);
