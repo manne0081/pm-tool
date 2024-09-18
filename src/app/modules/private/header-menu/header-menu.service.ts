@@ -24,6 +24,7 @@ export class HeaderMenuService {
 
     onSelectMenuItem (item: any): void {
         this.privateService.onSelectMenuItem(item);
+        this.privateService.setActiveMenuItemByName(item.name);
     }
 
     /**

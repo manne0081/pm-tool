@@ -36,14 +36,9 @@ export class HeaderMenuComponent implements AfterViewInit{
     ) {}
 
     ngOnInit(): void {
-        // Get all header-items
+        // Get header-items
         this.getHeaderMenuItems();
-
         this.getFavoriteHasItems();
-
-        // this.quicklinkService.selectedQuicklink$.subscribe(item => {
-        //     this.onSelectQuicklink(item);
-        // });
     }
 
     /**
@@ -60,6 +55,9 @@ export class HeaderMenuComponent implements AfterViewInit{
         });
     }
 
+    /**
+     *
+     */
     getFavoriteHasItems(): void {
         const hasFavorite = this.headerMenuSubItems.some(item => item.parentName === 'favorite');
         this.favoriteHasItems = hasFavorite;
@@ -91,13 +89,7 @@ export class HeaderMenuComponent implements AfterViewInit{
      * @param selectedValue
      */
     onSelectMenuItem(item: any): void {
-        // this.selectedMenuItem.emit(item);
-
         this.headerMenuService.onSelectMenuItem(item);
-
-        // this.contentTileViewService.setNumberFilterConditions(0);
-        // todo
-        // remove all filter items by changing the menu-point
     }
 
     /**
@@ -136,6 +128,25 @@ export class HeaderMenuComponent implements AfterViewInit{
     }
 
     /**
+     * Close the opened dropdowns when klicking outside of the dropdown
+     * @param event
+     */
+    @HostListener('document:click', ['$event'])
+    onClickOutsid(event: Event) {
+        const target = event.target as HTMLElement;
+
+        this.headerMenuItems.forEach(item => {
+            if (item.showDropdown &&
+                item.dropdownRef &&
+                item.buttonRef &&
+                !item.dropdownRef.nativeElement.contains(target) &&
+                !item.buttonRef.nativeElement.contains(target)) {
+                item.showDropdown = false;
+            }
+        });
+    }
+
+    /**
     * Toggle the favorites icon at the menu-sub-items and add or remove the item as favorite to the mocks
     * @param name
     */
@@ -163,63 +174,6 @@ export class HeaderMenuComponent implements AfterViewInit{
                 }
             }
         }
-    }
-
-    /**
-     * Changes the CSS-Classes from the active / pre-active / post-active menu-item
-     * @param name
-     */
-    markMenuItemAsActive(name: string): void {
-        if (name == 'searching') {
-            console.log("Funktion wird unterbrochen.");
-            return;
-        }
-
-        // At first, all menu-items will be resetet
-        // ----------------------------------------
-        this.headerMenuItems.forEach((item) => {
-            item.status = '';
-        });
-
-        // Sets the status for the activated menu-item and the pre-active and the post-active elements
-        // -------------------------------------------------------------------------------------------
-        this.headerMenuItems.forEach((item, index) => {
-            if (item.name === name) {
-                // Set 'active' for the clicked item
-                item.status = 'active';
-
-                // Set 'pre-active' for the previous item if it exists
-                if (index > 0) {
-                    this.headerMenuItems[index - 1].status = 'pre-active';
-                }
-
-                // Set 'post-active' for the next item if it exists
-                if (index < this.headerMenuItems.length - 1) {
-                    this.headerMenuItems[index + 1].status = 'post-active';
-                } else {
-                    console.log(`Next item at index ${index + 1} does not exist.`);
-                }
-            }
-        });
-    }
-
-    /**
-     * Close the opened dropdowns when klicking outside of the dropdown
-     * @param event
-     */
-    @HostListener('document:click', ['$event'])
-    onClickOutsid(event: Event) {
-        const target = event.target as HTMLElement;
-
-        this.headerMenuItems.forEach(item => {
-            if (item.showDropdown &&
-                item.dropdownRef &&
-                item.buttonRef &&
-                !item.dropdownRef.nativeElement.contains(target) &&
-                !item.buttonRef.nativeElement.contains(target)) {
-                item.showDropdown = false;
-            }
-        });
     }
 
     async testFunction() {

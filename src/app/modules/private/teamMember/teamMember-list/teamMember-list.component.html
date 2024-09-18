@@ -5,7 +5,7 @@
         (click)="onSelectTeamMember(teamMember)"
         [ngClass]="{ 'selected': teamMember.id === selectedTeamMemberId }"
     >
-        <span><b>{{ teamMember.firstName }} {{ teamMember.lastName }}</b></span>
+        <span><b>{{ teamMember.id }} - {{ teamMember.firstName }} {{ teamMember.lastName }}</b></span>
         <br><br>
         <span>{{ teamMember.phone }}</span>
         <br>

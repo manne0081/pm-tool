@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ClientService } from '../client.service';
-import { Client } from '../../../../mocks/client-mock';
 import { ActivatedRoute } from '@angular/router';
+
 import { DataService } from '../../../../core/services/data.service';
+import { ClientService } from '../client.service';
+
+import { Client } from '../../../../mocks/client-mock';
 
 @Component({
     selector: 'app-client-list',
@@ -18,11 +19,11 @@ import { DataService } from '../../../../core/services/data.service';
 
 export class ClientListComponent implements OnInit {
     clientItems: Client[] = [];
+    selectedItemId: number | null = null;       // Needed for UI
 
     searchTerm: string = '';
     sortingTerm: string = '';
 
-    selectedItemId: number | null = null;       // Needed for UI
 
     constructor (
         private route: ActivatedRoute,

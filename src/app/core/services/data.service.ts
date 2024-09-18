@@ -12,7 +12,7 @@ export class DataService {
     ) { }
 
     /**
-     * Sorting Data
+     * Sorting Data -> Dont works for teamMember, because it doesnt have the field name
      */
     sortObjectItems(objects: any, sortingTerm: string): any {
         const sortedObjects = objects.sort((a: { name: string; id: number; }, b: { name: string; id: number; }) => {
@@ -32,7 +32,7 @@ export class DataService {
     }
 
     /**
-     * Filtering Data
+     * Filtering Data -> Dont works for teamMember, because it doesnt have the field name
      */
     filterObjectItems(objects: any, searchingTerm: string): any {
         const filteredObjects = objects.filter((item: { name: string; }) => item.name.toLowerCase().includes(searchingTerm.toLowerCase()));

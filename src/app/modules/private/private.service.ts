@@ -70,14 +70,14 @@ export class PrivateService {
         const isSubMenuItemActive = HEADERSUBMENU_MOCK.some(item => item.name === trimmedRoute[0]);
         if (isMenuItemActive) {
             // console.log('route is MenuItem');
-            this.setActiveMenuByName(HEADERMENU_MOCK, trimmedRoute[0]);
+            this.setActiveMenuItemByName(trimmedRoute[0]);
         } else if (isSubMenuItemActive) {
             // console.log('route is SubMenuItem');
             const menuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === trimmedRoute[0]);
             // console.log('menuSubItem passend zu route', menuSubItem);
             const menuItem = menuSubItem!.parentForMenuItemState;
             // console.log('menuItem passend zu menuSubItem', menuItem);
-            this.setActiveMenuByName(HEADERMENU_MOCK, menuItem);
+            this.setActiveMenuItemByName(menuItem);
         } else {
             console.log('route doesnt exist...');
         }
@@ -113,7 +113,7 @@ export class PrivateService {
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(trimmedRoute[0]));
 
-        this.setSelectedMenuItemTitle(trimmedRoute[0]);
+        this.setContentTitle(trimmedRoute[0]);
     }
 
     test(): void {
@@ -149,8 +149,46 @@ export class PrivateService {
         this.cookieService.delete(cookieName);
     }
 
+    /**
+     *
+     * @param isViewDashboard
+     */
     setIsViewDashboard(isViewDashboard: boolean): void {
         this.isViewDashboard.next(isViewDashboard);
+    }
+
+    /**
+     * Set viewType to 'detail' by double-click on a object-tile
+     * @param data
+     */
+    setViewType (data: string): void {
+        this.viewType.next(data);
+    }
+
+    /**
+     *
+     * @param value
+     */
+    setIsQuicklinksAreaVisible(value: boolean): void {
+        this.isQuicklinksAreaVisible.next(value);
+        this.setCookie('isQuicklinkAreaVisible', value.toString());
+    }
+
+    /**
+     *
+     * @param value
+     */
+    setIsAddInfoButtonVisible(value: boolean): void {
+        this.isAddInfoButtonVisible.next(value);
+    }
+
+    /**
+     *
+     * @param value
+     */
+    setIsAddInfoAreaVisible(value: boolean): void {
+        this.setCookie('isAddInfoAreaVisible', value.toString());
+        this.isAddInfoAreaVisible.next(value);
     }
 
     /**
@@ -182,9 +220,17 @@ export class PrivateService {
         // Fieldnames for filter-function
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
         //
-        this.setSelectedMenuItemTitle(item);
+        this.setContentTitle(item);
         //
         this.setSelectedObject(null);
+    }
+
+    /**
+     * To mark the Menu-Item as active
+     */
+    onSelectQuicklink(item: any): void {
+        this.setActiveMenuItemByName(item.parentName);
+        this.setContentTitle(item.menuName);
     }
 
     /**
@@ -204,51 +250,50 @@ export class PrivateService {
         }
     }
 
-    setIsQuicklinksAreaVisible(value: boolean): void {
-        this.isQuicklinksAreaVisible.next(value);
-        this.setCookie('isQuicklinkAreaVisible', value.toString());
-    }
-
-    setIsAddInfoButtonVisible(value: boolean): void {
-        this.isAddInfoButtonVisible.next(value);
-    }
-
-    setIsAddInfoAreaVisible(value: boolean): void {
-        this.setCookie('isAddInfoAreaVisible', value.toString());
-        this.isAddInfoAreaVisible.next(value);
-    }
-
     /**
-     * Set viewType to 'detail' by double-click on a object-tile
-     * @param data
+     *
+     * @param name
+     * @returns
      */
-    setViewType (data: string): void {
-        this.viewType.next(data);
-    }
+    setActiveMenuItemByName = (name: string) => {
+        const menuItems = HEADERMENU_MOCK;
+        const menuSubItems = HEADERSUBMENU_MOCK;
+        let index: number;
 
-    setActiveMenuByName = (menuItems: HeaderMenu[], name: string) => {
-        // Finde den Index des gesuchten Objekts anhand des Namens
-        const index = menuItems.findIndex(item => item.name === name);
+        // Clear all marked header-item to status = '' (pre-active, active, post-active)
+        menuItems.forEach(item => {
+            item.status = '';
+        });
+
+        // Find the index of the menuItems based on the name paramater
+        index = menuItems.findIndex(item => item.name === name);
 
         if (index === -1) {
-            console.log('Item nicht gefunden');
-            return;
+            // If no item exists in menuItems -> searching about the name at the menuSubItems and set the name to parentName
+            const parentName = menuSubItems.find(item => item.name === name)?.parentName;
+            index = menuItems.findIndex(item => item.name === parentName);
+
+            if (index === -1) {
+                // If no item exists in menuSubItems -> Normally this cannot happen
+                console.log('No menuSubItem exists');
+                return;
+            }
         }
 
-        // Setze den Status des gefundenen Objekts auf 'active'
+        // Set the status of the clicked item to 'active'
         menuItems[index].status = 'active';
 
-        // Wenn es ein Objekt davor gibt, setze den Status auf 'pre-active'
+        // Set the status of the previous item to 'pre-active'
         if (index > 0) {
             menuItems[index - 1].status = 'pre-active';
         }
 
-        // Wenn es ein Objekt danach gibt, setze den Status auf 'post-active'
+        // Set the status of the following item to 'post-active'
         if (index < menuItems.length - 1) {
             menuItems[index + 1].status = 'post-active';
         }
 
-        // Rückgabe des aktualisierten Arrays
+        // Return the array
         return menuItems;
     };
 
@@ -264,7 +309,7 @@ export class PrivateService {
      * Set content-title about the url-object
      * @param data
      */
-    setSelectedMenuItemTitle(titleItem: any): void {
+    setContentTitle(titleItem: any): void {
         if (typeof(titleItem) === 'string') {
             const foundMenuItem = HEADERMENU_MOCK.find(item => item.name === titleItem);
             const foundMenuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === titleItem);
@@ -279,19 +324,6 @@ export class PrivateService {
         } else {
             this.selectedMenuItemTitle.next(titleItem.title);
         }
-    }
-
-    /**
-     * To mark the Menu-Item as active
-     */
-    onSelectQuicklink(item: any): void {
-        // Set all header-item status to ''
-        HEADERMENU_MOCK.forEach(item => {
-            item.status = '';
-        });
-
-        // Set header-item status
-        this.setActiveMenuByName(HEADERMENU_MOCK, item.parent);
     }
 
 }
