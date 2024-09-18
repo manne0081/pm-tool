@@ -233,6 +233,14 @@ export class PrivateService {
         this.setActiveMenuItemByName(item.parentName);
         this.setContentTitle(item.menuName);
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.menuName));
+        this.setIsAddInfoButtonVisible(true);
+
+        const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
+        if (isAddInfoVisible === 'true') {
+            this.setIsAddInfoAreaVisible(true);
+        } else {
+            this.setIsAddInfoAreaVisible(false);
+        }
     }
 
     /**
