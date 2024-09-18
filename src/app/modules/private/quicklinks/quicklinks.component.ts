@@ -98,7 +98,8 @@ export class QuicklinksComponent {
     }
 
     onAddQuicklink(): void {
-        window.alert('WIP');
+        // window.alert('WIP');
+        this.quicklinkService.addNewQuicklink();
     }
 
     openContext(item: any): void {

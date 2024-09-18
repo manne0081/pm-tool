@@ -8,6 +8,7 @@ import { HeaderMenu, HEADERMENU_MOCK, HEADERSUBMENU_MOCK } from '../../mocks/hea
 import { clientFieldNames } from '../../mocks/client-mock';
 import { projectFieldNames } from '../../mocks/project-mock';
 import { teamMemberFieldNames } from '../../mocks/teamMember-mock';
+import { DataService } from '../../core/services/data.service';
 
 @Injectable({
     providedIn: 'root'
@@ -53,6 +54,7 @@ export class PrivateService {
     constructor(
         private cookieService: CookieService,
         private routerService: RouterService,
+        private dataService: DataService,
     ) {
         // this.test();
 
@@ -316,24 +318,32 @@ export class PrivateService {
     }
 
     /**
-     * Set content-title about the url-object
+     * Set content-title about the url-object and return the content-title
      * @param data
      */
     setContentTitle(titleItem: any): void {
-        if (typeof(titleItem) === 'string') {
-            const foundMenuItem = HEADERMENU_MOCK.find(item => item.name === titleItem);
-            const foundMenuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === titleItem);
+        // console.log('test:',titleItem);
 
-            if (foundMenuItem) {
-                this.selectedMenuItemTitle.next(foundMenuItem.title!);
-            } else if (foundMenuSubItem) {
-                this.selectedMenuItemTitle.next(foundMenuSubItem.title!);
-            } else {
-                // console.log('Element nicht gefunden');
-            }
+        if (typeof(titleItem) === 'string') {
+            // const foundMenuItem = HEADERMENU_MOCK.find(item => item.name === titleItem);
+            // const foundMenuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === titleItem);
+
+            // if (foundMenuItem) {
+            //     this.selectedMenuItemTitle.next(foundMenuItem.title!);
+            // } else if (foundMenuSubItem) {
+            //     this.selectedMenuItemTitle.next(foundMenuSubItem.title!);
+            // } else {
+            //     // console.log('Element nicht gefunden');
+            // }
+
+            this.selectedMenuItemTitle.next(this.dataService.findContentTitleByMenuItemName(titleItem));
+
         } else {
             this.selectedMenuItemTitle.next(titleItem.title);
         }
+
+
+
     }
 
 }

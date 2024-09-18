@@ -39,7 +39,19 @@ export class RouterService {
         return strippedUrl;
     }
 
+    getObjectFromUrl(): string {
+        const strippedUrl = this.getLastSegmentOfCurrentUrl();
+        const trimmedRoute = strippedUrl.split('?');
+        // console.log('test:\n',trimmedRoute[0]);
+        return trimmedRoute[0];
+    }
 
+    getParamsFromUrl(): string {
+        const strippedUrl = this.getLastSegmentOfCurrentUrl();
+        const trimmedRoute = strippedUrl.split('?');
+        // console.log('test:\n', trimmedRoute[1]);
+        return trimmedRoute[1];
+    }
 
 
 
