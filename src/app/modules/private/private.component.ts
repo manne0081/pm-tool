@@ -95,19 +95,6 @@ export class PrivateComponent implements OnInit {
 
     /**
      *
-     * @param item
-     */
-    onSelectQuicklink(item: any): void {
-        // this.selectedValueFromMainMenu = item.menuTitle;
-        // this.addInfoVisible = true;
-        // this.setAddInfoObject(item.title);
-        // this.addInfoObject = '';
-        // this.removeAllFilterItems();
-        // this.activeFilterItems.push({ id: 'searchTerm', name: item.title });
-    }
-
-    /**
-     *
      * @param event
      */
     @HostListener('window:keydown', ['$event'])
@@ -123,7 +110,6 @@ export class PrivateComponent implements OnInit {
      * maybe a save-function can be calling
      */
     saveFunction() {
-        console.log('Speichern-Funktion wurde aufgerufen');
-        // Hier kannst du deine Speichern-Logik einfügen
+        // console.log('Speichern-Funktion wurde aufgerufen');
     }
 }
