@@ -54,7 +54,6 @@ export class DropdownDataSortComponent implements OnInit {
     }
 
     onChooseOption(option: string): void {
-        console.log(option);
         this.sortingTerm = option;
         this.updateRoute();
     }
@@ -70,7 +69,7 @@ export class DropdownDataSortComponent implements OnInit {
             if (success) {
                 // console.log('Navigation successful');
             } else {
-                console.log('Navigation failed');
+                // console.log('Navigation failed');
             }
         });
     }

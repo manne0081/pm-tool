@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import { HeaderMenu, HEADERMENU_MOCK, HeaderSubMenu, HEADERSUBMENU_MOCK } from '../../../mocks/headerMenu-mock';
 import { PrivateService } from '../private.service';
+import { DropdownService } from '../_shared/dropdown/dropdown.service';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,7 @@ export class HeaderMenuService {
 
     constructor(
         private privateService: PrivateService,
+        private dropdownService: DropdownService,
     ) { }
 
     getHeaderMenu(): Observable<HeaderMenu[]> {
@@ -25,6 +27,7 @@ export class HeaderMenuService {
     onSelectMenuItem (item: any): void {
         this.privateService.onSelectMenuItem(item);
         this.privateService.setActiveMenuItemByName(item.name);
+        this.dropdownService.setOpenedDropdownId('');
     }
 
     /**
