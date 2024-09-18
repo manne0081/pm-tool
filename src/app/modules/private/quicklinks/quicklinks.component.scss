@@ -101,8 +101,8 @@
             // background-color: orange;
 
             span {
-                // color: lime;
-                color: #aaa;
+                color: lime;
+                color: #818181;
             }
         }
 
@@ -124,7 +124,6 @@
 
     .quicklink-item-container:hover {
         background-color: #fff;
-        // cursor: pointer;
 
         .quicklink-drag {
             span {
@@ -152,10 +151,6 @@
             background-color: rgba(44, 80, 103, .2);
             border: 1px solid rgba(44, 80, 103, .1);
             display: inline;
-
-            span {
-                // color: #5e5e5e;
-            }
         }
     }
 }
@@ -174,7 +169,7 @@
 }
 
 .example-box {
-    background-color: rgba(255, 255, 255, .8);
+    background-color: rgba(255, 255, 255, .72);
     // background-color: yellow;
     border-bottom: solid 1px #ccc;
     border-radius: 4px;
