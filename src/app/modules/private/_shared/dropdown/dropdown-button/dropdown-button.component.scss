@@ -1,0 +1,72 @@
+.drop-button {
+    background-color: rgb(225, 225, 225);
+    border: 1px solid #b9b9b9;
+    position: relative;
+    border-radius: 4px;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 28px; /* Beispielhöhe */
+    margin-top: 1px;
+    margin-bottom: 4px;
+
+    &.filter-button.active {
+        background-color: #ffcccc; /* Rot für Filter wenn aktiv */
+    }
+
+    &.sort-button.active {
+        background-color: #ccffcc; /* Grün für Sort wenn aktiv */
+    }
+
+    &.group-button.active {
+        background-color: #ccccff; /* Blau für Group wenn aktiv */
+    }
+
+    &:hover {
+        background-color: #d3d3d3; /* Hellgrau bei Hover */
+        cursor: pointer;
+    }
+
+    div {
+        margin-right: 4px;
+        font-size: 1.2em
+    }
+
+    .icon-sort {
+        position: relative;
+        top: -1px;
+    }
+
+    .icon-drawer {
+        position: relative;
+        top: -3px;
+    }
+}
+
+.drop-button-active-filter {
+    background-color: #a2f3c4;
+
+    &:hover {
+        background-color: #a2f3c4;
+        border: 1px solid #479266;
+    }
+}
+
+.drop-button-active-sort {
+    background-color: #c0e1f5;
+
+    &:hover {
+        background-color: #c0e1f5;
+        border: 1px solid #497794;
+    }
+}
+
+.drop-button-active-group {
+    background-color: #f3fc92;
+
+    &:hover {
+        background-color: #f3fc92;
+        border: 1px solid #898f46;
+    }
+}

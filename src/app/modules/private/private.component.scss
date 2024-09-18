@@ -127,82 +127,81 @@
             gap: 0px 10px;
             overflow: visible;
 
-            .add-filter-wrapper {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                gap: 10px;
-                overflow: visible;
+            // .add-filter-wrapper {
+            //     display: flex;
+            //     flex-direction: row;
+            //     align-items: center;
+            //     gap: 10px;
+            //     overflow: visible;
 
-                .searching-wrapper {
-                    background-color: rgb(225, 225, 225);
-                    display: flex;
-                    align-items: center;
-                    flex-grow: 1;
-                    margin-top: 8px;
-                    margin-bottom: 8px;
-                    height: 28px;
-                    min-width: 400px;
-                    border: 1px solid #b9b9b9;
-                    border-radius: 4px;
+            //     .searching-wrapper {
+            //         background-color: rgb(225, 225, 225);
+            //         display: flex;
+            //         align-items: center;
+            //         flex-grow: 1;
+            //         margin-top: 8px;
+            //         margin-bottom: 8px;
+            //         height: 28px;
+            //         min-width: 400px;
+            //         border: 1px solid #b9b9b9;
+            //         border-radius: 4px;
 
-                    input {
-                        width: 100%;
-                        padding: 4px 6px;
-                        font-size: .9em;
-                    }
+            //         input {
+            //             width: 100%;
+            //             padding: 4px 6px;
+            //             font-size: .9em;
+            //         }
 
-                    .icon-cancel {
-                        border-radius: 14px;
-                        display: flex;
-                        align-items: center;
-                        height: 80%;
-                        width: 24px;
-                        margin: 0 3px 0 4px;
-                        justify-content: space-around;
-                    }
+            //         .icon-cancel {
+            //             border-radius: 14px;
+            //             display: flex;
+            //             align-items: center;
+            //             height: 80%;
+            //             width: 24px;
+            //             margin: 0 3px 0 4px;
+            //             justify-content: space-around;
+            //         }
 
-                    .icon-cancel:hover {
-                        background-color: rgba(168, 40, 40, 0.6);
-                        color: white;
-                        cursor: pointer;
-                    }
-                }
-            }
+            //         .icon-cancel:hover {
+            //             background-color: rgba(168, 40, 40, 0.6);
+            //             color: white;
+            //             cursor: pointer;
+            //         }
+            //     }
+            // }
 
-            .show-filter-wrapper {
-                align-items: center;
-                margin-bottom: 6px;
+            // .show-filter-wrapper {
+            //     align-items: center;
+            //     margin-bottom: 6px;
 
-                .show-filter-item-container {
-                    background-color: rgb(225, 225, 225);
-                    border: 1px solid #b9b9b9;
-                    display: inline-flex;
-                    align-items: center;
-                    padding: 2px 8px;
-                    border-radius: 12px;
-                    position: relative;
-                    padding-right: 26px;
-                    margin-right: 6px;
+            //     .show-filter-item-container {
+            //         background-color: rgb(225, 225, 225);
+            //         border: 1px solid #b9b9b9;
+            //         display: inline-flex;
+            //         align-items: center;
+            //         padding: 2px 8px;
+            //         border-radius: 12px;
+            //         position: relative;
+            //         padding-right: 26px;
+            //         margin-right: 6px;
 
-                    .icon-cancel {
-                        // background-color: red;
-                        display: flex;
-                        align-items: center;
-                        font-size: .9em;
-                        margin-left: 4px;
-                        border-radius: 8px;
-                        position: absolute;
-                        right: 3px;
-                        padding: 3px 2px 2px 2px;
-                    }
+            //         .icon-cancel {
+            //             display: flex;
+            //             align-items: center;
+            //             font-size: .9em;
+            //             margin-left: 4px;
+            //             border-radius: 8px;
+            //             position: absolute;
+            //             right: 3px;
+            //             padding: 3px 2px 2px 2px;
+            //         }
 
-                    .icon-cancel:hover {
-                        background-color: rgba(168, 40, 40, 0.6);
-                        color: white;
-                    }
-                }
-            }
+            //         .icon-cancel:hover {
+            //             background-color: rgba(168, 40, 40, 0.6);
+            //             color: white;
+            //         }
+            //     }
+            // }
         }
 
         .content-items {

@@ -1,0 +1,12 @@
+<button id="id-drop-button" class="drop-button" (click)="onClickButton($event)"
+    [ngClass]="{
+        'drop-button-active-filter': haveFilterConditions === true && buttonValue === 'filter',
+        'drop-button-active-sort': haveSortConditions === true && buttonValue === 'sort',
+        'drop-button-active-group': haveGroupConditions === true && buttonValue === 'group'
+    }"
+>
+
+    <div class="{{ buttonIcon }}"></div>
+    <p style="margin-right: 2px">{{ buttonValue | titlecase }}</p>
+
+</button>

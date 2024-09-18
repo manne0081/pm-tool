@@ -7,20 +7,18 @@
         <div class="icon-cancel" *ngIf="searchTerm != ''" (click)="removeSearchTerm()"></div>
     </div>
 
-    <input type="text" placeholder="id-asc by default" [(ngModel)]="sortingTerm" (keyup)="onSortingTermChanged($event)"/>
-
     <!-- DROPDOWN - Component - TEST -->
     <!-- --------------------------- -->
+    <app-dropdown-base style="overflow: visible"
+        [buttonValue]="'sort'"
+        [buttonIcon]="'icon-sort'"
+        [dropdownContent]="'sort'">
+    </app-dropdown-base>
+
     <!-- <app-tile-view-dropdown style="overflow: visible"
         [buttonValue]="'filter'"
         [buttonIcon]="'icon-filter'"
         [dropdownContent]="'filter'"
-    ></app-tile-view-dropdown>
-
-    <app-tile-view-dropdown style="overflow: visible"
-        [buttonValue]="'sort'"
-        [buttonIcon]="'icon-sort'"
-        [dropdownContent]="'sort'"
     ></app-tile-view-dropdown>
 
     <app-tile-view-dropdown style="overflow: visible"

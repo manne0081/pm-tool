@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PrivateService } from '../../private.service';
 import { ContentHeaderService } from '../content-header.service';
+import { DropdownBaseComponent } from '../../_shared/dropdown/dropdown-base/dropdown-base.component';
 
 interface FilterItem {
     id: number | string;
@@ -16,6 +17,7 @@ interface FilterItem {
     imports: [
         CommonModule,
         FormsModule,
+        DropdownBaseComponent,
     ],
     templateUrl: './content-header-for-list.component.html',
     styleUrl: './content-header-for-list.component.scss'
