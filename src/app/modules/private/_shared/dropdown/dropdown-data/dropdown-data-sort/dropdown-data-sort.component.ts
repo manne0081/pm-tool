@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { DropdownService } from '../../dropdown.service';
 
@@ -22,12 +22,17 @@ export class DropdownDataSortComponent implements OnInit {
 
     constructor(
         private router: Router,
+        private route: ActivatedRoute,
         private dropdownService: DropdownService,
     ) {}
 
     ngOnInit(): void {
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);
+        });
+        this.route.queryParams.subscribe(params => {
+            this.searchTerm = params['search'] || '';
+            this.sortingTerm = (params['sort'] || 'id-asc');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
         });
     }
 
