@@ -56,6 +56,7 @@ export class DropdownDataSortComponent implements OnInit {
     onChooseOption(option: string): void {
         this.sortingTerm = option;
         this.updateRoute();
+        this.showDropContent = false;
     }
 
     /**

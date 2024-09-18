@@ -4,16 +4,18 @@
     <!-- -------------- -->
     <div class="searching-wrapper">
         <input type="text" placeholder="Searching..." [(ngModel)]="searchTerm" (keyup)="onSearchTermChanged($event)"/>
-        <div class="icon-cancel" *ngIf="searchTerm != ''" (click)="removeSearchTerm()"></div>
+        <div class="icon-cancel" *ngIf="searchTerm !== ''" (click)="removeSearchTerm()"></div>
     </div>
 
-    <!-- DROPDOWN - Component - TEST -->
-    <!-- --------------------------- -->
+    <!-- DROPDOWN - Component -->
+    <!-- -------------------- -->
     <app-dropdown-base style="overflow: visible"
         [buttonValue]="'sort'"
         [buttonIcon]="'icon-sort'"
         [dropdownContent]="'sort'">
     </app-dropdown-base>
+
+    <!-- todo -->
 
     <!-- <app-tile-view-dropdown style="overflow: visible"
         [buttonValue]="'filter'"
@@ -29,4 +31,4 @@
 
 </div>
 
-<p style="font-size: .84rem; padding: 6px 6px;">WIP ~ {{ fieldNamesForFilter }}</p>
+<p style="color: rgb(192, 192, 192); font-size: .84rem; padding: 6px 6px;">WIP - {{ fieldNamesForFilter }}</p>

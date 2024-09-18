@@ -24,8 +24,13 @@
         border-radius: 4px;
 
         &:hover {
-            background-color: rgb(240, 240, 240);
+            background-color: rgb(245, 245, 245);
             cursor: pointer;
         }
+    }
+
+    li.active {
+        background-color: rgb(235, 235, 235);        /* Beispiel: Leichtes Grau für aktive Option */
+        font-weight: bold;                  /* Beispiel: Fettschrift für aktive Option */
     }
 }

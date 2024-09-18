@@ -44,7 +44,8 @@ export class ContentHeaderForListComponent implements OnInit {
     ngOnInit(): void {
         // Read search- and sort- parameter from url and save in variables by refresh / F5
         this.route.queryParams.subscribe(params => {
-            this.searchTerm = params['search' || ''];
+            //this.searchTerm = params['search' || ''];     // Hier wird nicht '' zugewiesen, der ||-Teil wird ignoriert und es wird direkt undefined oder ähnlich zugewiesen
+            this.searchTerm = (params['search'] || '');     // Hier wird '' zugewiesen, wenn kein parameter existiert.
             this.sortingTerm = (params['sort'] || '');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
         });
 
