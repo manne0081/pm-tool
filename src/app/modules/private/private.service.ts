@@ -231,10 +231,12 @@ export class PrivateService {
      * To mark the Menu-Item as active
      */
     onSelectQuicklink(item: any): void {
+        // console.log(item);
+
         this.isViewDashboard.next(false);
         this.setActiveMenuItemByName(item.parentName);
-        // this.setContentTitle(item.menuName);
-        // this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.menuName));
+        this.setContentTitle(item.menuItemName);
+        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.menuItemName));
         this.setIsAddInfoButtonVisible(true);
 
         const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
