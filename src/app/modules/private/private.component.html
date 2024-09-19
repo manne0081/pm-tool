@@ -83,6 +83,16 @@
             <!-- ---------------------- -->
             <div class="add-info-container" *ngIf="isAddInfoAreaVisible">
                 <app-add-info></app-add-info>
+
+                <br>
+                <button (click)="openDialog()">Pick one</button>
+                <br>
+                @if (animal) {
+                    <li>
+                      You chose: <em>{{animal}}</em>
+                    </li>
+                }
+
             </div>
         </div>
     </main>
@@ -90,3 +100,4 @@
 
 
 <!-- <router-outlet></router-outlet> -->
+

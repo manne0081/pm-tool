@@ -1,28 +1,43 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
+import {Dialog, DialogRef, DIALOG_DATA, DialogModule} from '@angular/cdk/dialog';
+
+import { PrivateService } from './private.service';
+import { ModalService } from './_shared/modal/modal.service';
 
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { AddInfoComponent } from './add-info/add-info.component';
 import { ContentHeaderForListComponent } from './content-header/content-header-for-list/content-header-for-list.component';
 import { ContentHeaderForDetailComponent } from './content-header/content-header-for-detail/content-header-for-detail.component';
-import { PrivateService } from './private.service';
+import { ModalComponent } from './_shared/modal/modal.component';
+import { DialogComponent } from './_shared/dialog/dialog.component';
+
+export interface DialogData {
+    animal: string;
+    name: string;
+}
 
 @Component({
     selector: 'app-private',
     standalone: true,
     imports: [
-        CommonModule,
         RouterModule,
+        CommonModule,
+        FormsModule,
         HeaderMenuComponent,
         QuicklinksComponent,
         AddInfoComponent,
         ContentHeaderForListComponent,
         ContentHeaderForDetailComponent,
+        ModalComponent,
     ],
     templateUrl: './private.component.html',
-    styleUrl: './private.component.scss'
+    styleUrl: './private.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],  // Allow using custom elements (Web Components)
 })
 
 export class PrivateComponent implements OnInit {
@@ -38,6 +53,7 @@ export class PrivateComponent implements OnInit {
 
     constructor(
         private privateService: PrivateService,
+        protected modalService: ModalService,
     ){}
 
     ngOnInit(): void {
@@ -112,4 +128,24 @@ export class PrivateComponent implements OnInit {
     saveFunction() {
         // console.log('Speichern-Funktion wurde aufgerufen');
     }
+
+
+
+    dialog = inject(Dialog);
+    animal: string | undefined;
+    name: string | undefined;
+
+    openDialog(): void {
+        const dialogRef = this.dialog.open<string>(DialogComponent, {
+            data: {name: this.name, animal: this.animal},
+        });
+
+        dialogRef.closed.subscribe(result => {
+            console.log('The dialog was closed');
+            this.animal = result;
+        });
+    }
+
+
+
 }
