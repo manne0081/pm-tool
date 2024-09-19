@@ -48,7 +48,6 @@ export class DataService {
     findContentTitleByMenuItemName(menuItemName: string): string {
         const foundMenuItem = HEADERMENU_MOCK.find(item => item.name === menuItemName);
         const foundMenuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === menuItemName);
-        const contentTitle: string = '';
 
         if (foundMenuItem) {
             return foundMenuItem.title || '';
@@ -57,6 +56,23 @@ export class DataService {
         } else {
             return '';
         }
+    }
 
+    /**
+     *
+     * @param menuItemName
+     * @returns
+     */
+    findParentForMenuItemState(menuItemName: string): string {
+        const foundMenuItem = HEADERMENU_MOCK.find(item => item.name === menuItemName);
+        const foundMenuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === menuItemName);
+
+        if (foundMenuItem) {
+            return foundMenuItem.name || '';
+        } else if (foundMenuSubItem) {
+            return foundMenuSubItem.parentForMenuItemState;
+        } else {
+            return '';
+        }
     }
 }

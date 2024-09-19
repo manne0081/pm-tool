@@ -233,8 +233,8 @@ export class PrivateService {
     onSelectQuicklink(item: any): void {
         this.isViewDashboard.next(false);
         this.setActiveMenuItemByName(item.parentName);
-        this.setContentTitle(item.menuName);
-        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.menuName));
+        // this.setContentTitle(item.menuName);
+        // this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.menuName));
         this.setIsAddInfoButtonVisible(true);
 
         const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
@@ -325,25 +325,11 @@ export class PrivateService {
         // console.log('test:',titleItem);
 
         if (typeof(titleItem) === 'string') {
-            // const foundMenuItem = HEADERMENU_MOCK.find(item => item.name === titleItem);
-            // const foundMenuSubItem = HEADERSUBMENU_MOCK.find(item => item.name === titleItem);
-
-            // if (foundMenuItem) {
-            //     this.selectedMenuItemTitle.next(foundMenuItem.title!);
-            // } else if (foundMenuSubItem) {
-            //     this.selectedMenuItemTitle.next(foundMenuSubItem.title!);
-            // } else {
-            //     // console.log('Element nicht gefunden');
-            // }
 
             this.selectedMenuItemTitle.next(this.dataService.findContentTitleByMenuItemName(titleItem));
-
         } else {
+
             this.selectedMenuItemTitle.next(titleItem.title);
         }
-
-
-
     }
-
 }

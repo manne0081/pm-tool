@@ -32,22 +32,19 @@ export class QuicklinksService {
         const index = QUICKLINKS_MOCK.length;
         const title = 'New Quicklink';
         const url = this.routerService.getLastSegmentOfCurrentUrl();
-        const menuName = this.routerService.getObjectFromUrl();                             // To set the right content-title
-        const parentName = this.dataService.findContentTitleByMenuItemName(menuName);       // To set the right menu-item as active
-        // todo => parentName oder menuName stimmt noch nicht...
+        const menuItemName = this.routerService.getObjectFromUrl();                         // To set the right content-title
+        const parentItemName = this.dataService.findParentForMenuItemState(menuItemName);       // To set the right menu-item as active
 
         const newQuicklink = {
             id: index,
             title: title,
             url: url,
-            menuName: menuName,
-            parentName: parentName,
+            menuItemName: menuItemName,
+            parentName: parentItemName,
         }
 
         console.log(newQuicklink);
-
         QUICKLINKS_MOCK.push(newQuicklink);
     }
-
 
 }
