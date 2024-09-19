@@ -43,7 +43,7 @@ export class QuicklinksService {
             parentName: parentItemName,
         }
 
-        console.log(newQuicklink);
+        // console.log(newQuicklink);
         QUICKLINKS_MOCK.push(newQuicklink);
     }
 

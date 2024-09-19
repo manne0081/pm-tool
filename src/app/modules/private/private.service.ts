@@ -323,12 +323,9 @@ export class PrivateService {
      */
     setContentTitle(titleItem: any): void {
         // console.log('test:',titleItem);
-
         if (typeof(titleItem) === 'string') {
-
             this.selectedMenuItemTitle.next(this.dataService.findContentTitleByMenuItemName(titleItem));
         } else {
-
             this.selectedMenuItemTitle.next(titleItem.title);
         }
     }
