@@ -85,13 +85,16 @@
                 <app-add-info></app-add-info>
 
                 <br>
-                <button (click)="openDialog()">Pick one</button>
+
+                <!-- <button (click)="openDialog()">Pick one</button>
                 <br>
                 @if (animal) {
                     <li>
                       You chose: <em>{{animal}}</em>
                     </li>
-                }
+                } -->
+                <input [(ngModel)]="name" placeholder="Enter your name">
+                <button (click)="openDialog2()">Open Dialog 2</button>
 
             </div>
         </div>

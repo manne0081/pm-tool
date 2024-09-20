@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import {Dialog, DialogRef, DIALOG_DATA, DialogModule} from '@angular/cdk/dialog';
+import { Dialog, DialogRef, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
 
 import { PrivateService } from './private.service';
 import { ModalService } from './_shared/modal/modal.service';
@@ -17,7 +17,7 @@ import { ModalComponent } from './_shared/modal/modal.component';
 import { DialogComponent } from './_shared/dialog/dialog.component';
 
 export interface DialogData {
-    animal: string;
+    // animal: string;
     name: string;
 }
 
@@ -33,11 +33,13 @@ export interface DialogData {
         AddInfoComponent,
         ContentHeaderForListComponent,
         ContentHeaderForDetailComponent,
+
         ModalComponent,
+        DialogModule,
     ],
     templateUrl: './private.component.html',
     styleUrl: './private.component.scss',
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],  // Allow using custom elements (Web Components)
+    // schemas: [CUSTOM_ELEMENTS_SCHEMA],  // Allow using custom elements (Web Components)
 })
 
 export class PrivateComponent implements OnInit {
@@ -53,8 +55,10 @@ export class PrivateComponent implements OnInit {
 
     constructor(
         private privateService: PrivateService,
+
         protected modalService: ModalService,
-    ){}
+        private dialog: Dialog,
+    ) {}
 
     ngOnInit(): void {
 
@@ -84,7 +88,6 @@ export class PrivateComponent implements OnInit {
 
         // Show the list- or the detail contentHeader
         this.privateService.viewType$.subscribe(data => this.viewType = data);
-
     }
 
     /**
@@ -131,20 +134,37 @@ export class PrivateComponent implements OnInit {
 
 
 
-    dialog = inject(Dialog);
-    animal: string | undefined;
+    // dialog = inject(Dialog);
+    // animal: string | undefined;
     name: string | undefined;
 
-    openDialog(): void {
-        const dialogRef = this.dialog.open<string>(DialogComponent, {
-            data: {name: this.name, animal: this.animal},
+    // openDialog(): void {
+    //     const dialogRef = this.dialog.open<string>(DialogComponent, {
+    //         width: '250px',
+    //         data: {name: this.name, animal: this.animal},
+    //     });
+
+    //     dialogRef.closed.subscribe(result => {
+    //         console.log('The dialog was closed');
+    //         this.animal = result;
+    //     });
+    // }
+
+    openDialog2() {
+        const dialogRef: DialogRef<string, DialogComponent> = this.dialog.open<string, undefined, DialogComponent>(DialogComponent, {
+            // data: {name: this.name},
+            hasBackdrop: true,  // Definiert, ob ein Hintergrund beim Öffnen des Dialogs angezeigt wird
+            backdropClass: '',  // Möglichkeit zur Anpassung des Backdrop-CSS
+            disableClose: false,  // Definiert, ob der Dialog geschlossen wird, wenn der Benutzer außerhalb klickt
         });
 
-        dialogRef.closed.subscribe(result => {
-            console.log('The dialog was closed');
-            this.animal = result;
+        dialogRef.closed.subscribe(() => {
+            console.log('Dialog geschlossen');
         });
+
     }
+
+
 
 
 
