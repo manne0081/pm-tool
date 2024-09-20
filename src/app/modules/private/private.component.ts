@@ -13,11 +13,10 @@ import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { AddInfoComponent } from './add-info/add-info.component';
 import { ContentHeaderForListComponent } from './content-header/content-header-for-list/content-header-for-list.component';
 import { ContentHeaderForDetailComponent } from './content-header/content-header-for-detail/content-header-for-detail.component';
-import { ModalComponent } from './_shared/modal/modal.component';
 import { DialogComponent } from './_shared/dialog/dialog.component';
 
 export interface DialogData {
-    // animal: string;
+    animal: string;
     name: string;
 }
 
@@ -34,12 +33,10 @@ export interface DialogData {
         ContentHeaderForListComponent,
         ContentHeaderForDetailComponent,
 
-        ModalComponent,
         DialogModule,
     ],
     templateUrl: './private.component.html',
     styleUrl: './private.component.scss',
-    // schemas: [CUSTOM_ELEMENTS_SCHEMA],  // Allow using custom elements (Web Components)
 })
 
 export class PrivateComponent implements OnInit {
@@ -55,9 +52,8 @@ export class PrivateComponent implements OnInit {
 
     constructor(
         private privateService: PrivateService,
-
         protected modalService: ModalService,
-        private dialog: Dialog,
+        public dialog: Dialog,
     ) {}
 
     ngOnInit(): void {
@@ -133,39 +129,23 @@ export class PrivateComponent implements OnInit {
     }
 
 
-
-    // dialog = inject(Dialog);
-    // animal: string | undefined;
+    animal: string | undefined;
     name: string | undefined;
 
-    // openDialog(): void {
-    //     const dialogRef = this.dialog.open<string>(DialogComponent, {
-    //         width: '250px',
-    //         data: {name: this.name, animal: this.animal},
-    //     });
-
-    //     dialogRef.closed.subscribe(result => {
-    //         console.log('The dialog was closed');
-    //         this.animal = result;
-    //     });
-    // }
-
-    openDialog2() {
-        const dialogRef: DialogRef<string, DialogComponent> = this.dialog.open<string, undefined, DialogComponent>(DialogComponent, {
-            // data: {name: this.name},
-            hasBackdrop: true,  // Definiert, ob ein Hintergrund beim Öffnen des Dialogs angezeigt wird
-            backdropClass: '',  // Möglichkeit zur Anpassung des Backdrop-CSS
-            disableClose: false,  // Definiert, ob der Dialog geschlossen wird, wenn der Benutzer außerhalb klickt
+    openDialog(): void {
+        const dialogRef = this.dialog.open<string>(DialogComponent, {
+            width: '250px',
+            data: {name: this.name, animal: this.animal},
+            backdropClass: 'cdk-overlay-backdrop', // Optional: Sicherstellen, dass der Backdrop richtig geladen wird
         });
 
-        dialogRef.closed.subscribe(() => {
-            console.log('Dialog geschlossen');
-        });
+        console.log(dialogRef);
 
+        dialogRef.closed.subscribe(result => {
+            console.log('The dialog was closed');
+            this.animal = result;
+        });
     }
-
-
-
 
 
 }

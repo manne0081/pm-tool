@@ -85,16 +85,21 @@
                 <app-add-info></app-add-info>
 
                 <br>
-
-                <!-- <button (click)="openDialog()">Pick one</button>
-                <br>
-                @if (animal) {
+                <ol>
                     <li>
-                      You chose: <em>{{animal}}</em>
+                      <label id="dialog-user-name">What's your name?</label>
+                      <input for="dialog-user-name" [(ngModel)]="name" placeholder="Enter your name">
                     </li>
-                } -->
-                <input [(ngModel)]="name" placeholder="Enter your name">
-                <button (click)="openDialog2()">Open Dialog 2</button>
+                    <li>
+                      <button (click)="openDialog()">Pick one</button>
+                    </li>
+                    @if (animal) {
+                      <li>
+                        You chose: <em>{{animal}}</em>
+                      </li>
+                    }
+                  </ol>
+
 
             </div>
         </div>

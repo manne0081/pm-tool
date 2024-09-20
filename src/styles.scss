@@ -77,3 +77,15 @@ input {
     background: #2c5067;
     background: rgba(44, 80, 103, .6);
 }
+
+
+
+.cdk-overlay-container {
+    position: relative;
+    z-index: 1000; /* Sicherstellen, dass der Container über allem liegt */
+}
+
+.cdk-overlay-backdrop {
+    z-index: 999; /* Der Backdrop sollte knapp unter dem Dialog sein */
+    background-color: rgba(0, 0, 0, 0.5); /* Schwarzer, transparenter Hintergrund */
+}

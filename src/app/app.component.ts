@@ -1,3 +1,4 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -16,4 +17,6 @@ export interface DialogData {
 
 export class AppComponent {
     title = 'PM-Tool';
+
+    constructor(private overlayContainer: OverlayContainer) {}
 }

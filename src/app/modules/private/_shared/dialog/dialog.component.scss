@@ -1,39 +1,28 @@
 :host {
-    background: #fff;
     display: block;
+    background: #fff;
+    background: lime;
     border-radius: 8px;
-    padding: 8px 16px 16px;
-
-    // position: fixed;
-    // z-index: 10000;
-    // top: 0;
-    // left: 0;
-
-    background: rgba(0, 0, 0, .5);
-    width: 100vw;
-    height: 100vw;
-    position: fixed;
-    z-index: 10000;
-    top: 0;
-    left: 0;
-    padding: 120px;
-
-    .popup-background {
-        background: #fff;
-        padding: 8px 16px 16px;
-        border-radius: 8px;
-        width: max-content;
-        min-width: 360px;
-        height: max-content;
-        min-height: 160px;
-
-    }
+    padding: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: custom-dialog-enter .8s ease;
 }
 
 input {
     margin: 8px 0;
+    width: 100%; /* Damit das Eingabefeld die volle Breite nutzt */
 }
 
 button + button {
     margin-left: 8px;
+}
+
+@keyframes custom-dialog-enter {
+    from {
+      transform: scale(-1) rotate(360deg);
+    }
+
+    to {
+      transform: none;
+    }
 }

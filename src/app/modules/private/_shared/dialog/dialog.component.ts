@@ -1,9 +1,9 @@
-import { Component, Inject, inject } from '@angular/core';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Dialog, DialogRef, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
 
 export interface DialogData {
-    // animal: string;
+    animal: string;
     name: string;
 }
 
@@ -18,16 +18,9 @@ export interface DialogData {
 })
 
 export class DialogComponent {
+    constructor(
+        public dialogRef: DialogRef<string>,
+        @Inject(DIALOG_DATA) public data: DialogData,
+    ) {}
 
-    // constructor(
-    //     @Inject(DIALOG_DATA) public data: { name: string },  // Hier wird `DialogData` injiziert
-    //     private dialogRef: DialogRef<string>  // Hier gibst du den Rückgabewert `string` an
-    // ) {}
-
-    // closeDialog() {
-    //     this.dialogRef.close('Dialog closed');  // Rückgabewert vom Typ `string`
-    // }
-
-    dialogRef = inject<DialogRef<string>>(DialogRef<string>);
-    data = inject(DIALOG_DATA);
 }
