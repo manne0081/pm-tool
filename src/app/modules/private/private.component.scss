@@ -104,8 +104,8 @@
             background-image: url(../../../assets/img/background_3.jpg);
             display: grid;
             grid-template-rows: min-content auto 48px;
-            position: relative;
-            overflow-y: auto;
+            // position: relative;
+            // overflow-y: auto;
         }
 
         .main-content-container-dashboard {
@@ -224,5 +224,12 @@
             position: relative;
             padding: 8px 12px
         }
+    }
+}
+
+
+.dialog-test {
+    &:hover {
+        cursor: pointer;
     }
 }

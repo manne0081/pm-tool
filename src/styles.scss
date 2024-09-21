@@ -80,12 +80,32 @@ input {
 
 
 
+
+
 .cdk-overlay-container {
-    position: relative;
-    z-index: 1000; /* Sicherstellen, dass der Container über allem liegt */
+    position: fixed;
+    top: 0;
+    left: 0;
+    // width: 100vw;
+    // height: 100vh;
+    z-index: 10000; /* Sicherstellen, dass der Container über allem liegt */
 }
 
 .cdk-overlay-backdrop {
-    z-index: 999; /* Der Backdrop sollte knapp unter dem Dialog sein */
-    background-color: rgba(0, 0, 0, 0.5); /* Schwarzer, transparenter Hintergrund */
+    z-index: 10001; /* Der Backdrop sollte knapp unter dem Dialog sein */
+    background-color: rgba(0, 0, 0, .4); /* Schwarzer, transparenter Hintergrund */
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
+
+.cdk-overlay-pane {
+    position: fixed; /* Sicherstellen, dass der Dialog über dem Rest der Seite angezeigt wird */
+    z-index: 10002;  /* Höher als der Backdrop */
+    top: 50%;         /* Zentriert vertikal */
+    left: 50%;        /* Zentriert horizontal */
+}
+
+

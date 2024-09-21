@@ -1,11 +1,12 @@
 :host {
     display: block;
     background: #fff;
-    background: lime;
+    // background: lime;
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: custom-dialog-enter .8s ease;
+    // z-index: 10001;
 }
 
 input {

@@ -136,7 +136,6 @@ export class PrivateComponent implements OnInit {
         const dialogRef = this.dialog.open<string>(DialogComponent, {
             width: '250px',
             data: {name: this.name, animal: this.animal},
-            backdropClass: 'cdk-overlay-backdrop', // Optional: Sicherstellen, dass der Backdrop richtig geladen wird
         });
 
         console.log(dialogRef);
