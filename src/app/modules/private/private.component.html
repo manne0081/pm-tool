@@ -87,16 +87,17 @@
                 <br>
                 <ol>
                     <li>
-                      <label id="dialog-user-name">What's your name?</label>
-                      <input for="dialog-user-name" [(ngModel)]="name" placeholder="Enter your name">
+                        <span>WIP Dialog-Test</span><br>
+                        <label id="dialog-user-name">What's your name?</label>
+                        <input for="dialog-user-name" [(ngModel)]="name" placeholder="Enter your name">
                     </li>
                     <li>
-                      <button class="dialog-test" (click)="openDialog()">Pick one</button>
+                        <button class="dialog-test" (click)="openDialog()">Pick one</button>
                     </li>
                     @if (animal) {
-                      <li>
-                        You chose: <em>{{animal}}</em>
-                      </li>
+                        <li>
+                            You chose: <em>{{animal}}</em>
+                        </li>
                     }
                   </ol>
 
