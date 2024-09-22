@@ -83,11 +83,12 @@ input {
 
 
 .cdk-overlay-container {
+    background-color: lime;
     position: fixed;
     top: 0;
     left: 0;
-    // width: 100vw;
-    // height: 100vh;
+    // width: 100%;
+    // height: 100%;
     z-index: 10000; /* Sicherstellen, dass der Container über allem liegt */
 }
 
@@ -108,4 +109,12 @@ input {
     left: 50%;        /* Zentriert horizontal */
 }
 
-
+.cdk-global-overlay-wrapper {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+    left: 50%;
+    right: 50%;
+    top: 80px;
+}

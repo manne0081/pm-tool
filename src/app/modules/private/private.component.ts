@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { Dialog, DialogRef, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
+import { Dialog, DialogRef, DIALOG_DATA, DialogModule, CdkDialogContainer } from '@angular/cdk/dialog';
 
 import { PrivateService } from './private.service';
 import { ModalService } from './_shared/modal/modal.service';

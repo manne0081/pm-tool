@@ -1,4 +1,4 @@
-import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef, CdkDialogContainer } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
