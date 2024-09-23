@@ -24,5 +24,4 @@ export class DialogComponent {
     ) {
         console.log('item: ', data.name);
     }
-
 }

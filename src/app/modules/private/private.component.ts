@@ -117,7 +117,7 @@ export class PrivateComponent implements OnInit {
      * maybe a save-function can be calling
      */
     saveFunction() {
-        // console.log('Speichern-Funktion wurde aufgerufen');
+        console.log('"Strg + s" has been clicked');
     }
 
 }

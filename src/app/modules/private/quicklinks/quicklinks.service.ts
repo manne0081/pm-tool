@@ -50,9 +50,8 @@ export class QuicklinksService {
         this.newQuicklink.next(newQuicklink);
     }
 
-    setQuicklinks(quicklink: Quicklinks): void {
+    updateQuicklink(quicklink: Quicklinks): void {
         const index = quicklink.id;  // Finde den Index des Quicklinks
         QUICKLINKS_MOCK[index] = { ...quicklink };
     }
-
 }

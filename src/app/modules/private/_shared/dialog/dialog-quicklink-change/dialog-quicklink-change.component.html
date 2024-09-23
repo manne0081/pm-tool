@@ -1,13 +1,13 @@
-<h1>WIP - Change Quicklink</h1>
-<span>Todo: URL updaten durch Button</span>
-<br>
+<h1>Change Quicklink</h1>
+<!-- todo: URL updaten durch Button -->
 
 <br>
 <div>
     <label id="favorite-animal">Please enter a new name</label>
     <input for="favorite-animal" class="input-field" [(ngModel)]="editedQuicklink.title" placeholder="">
 </div>
-<div>
+<br>
+<div class="action">
     <button (click)="dialogRef.close(editedQuicklink)">OK</button>
     <button (click)="dialogRef.close()">Cancel</button>
 </div>

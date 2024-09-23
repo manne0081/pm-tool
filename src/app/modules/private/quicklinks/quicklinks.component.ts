@@ -106,10 +106,8 @@ export class QuicklinksComponent {
 
         dialogRef.closed.subscribe((result: Quicklinks | undefined) => {
             if (result) {
-                this.quicklinkService.setQuicklinks(result);
+                this.quicklinkService.updateQuicklink(result);
             }
         });
-
-
     }
 }
