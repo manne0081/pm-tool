@@ -50,13 +50,13 @@
             <ol>
                 <li>
                     <label id="dialog-user-name">What's your name?</label><br>
-                    <input for="dialog-user-name" style="background-color: lime;" [(ngModel)]="name" placeholder="Enter your name">
+                    <input for="dialog-user-name" [(ngModel)]="name" placeholder="Enter your name">
                 </li>
                 <li>
                     <button class="dialog-test" (click)="openDialog()">Pick one</button>
                 </li>
                 @if (animal) {
-                    <li style="background-color: yellow;">
+                    <li>
                         You chose: <em>{{animal}}</em>
                     </li>
                 }

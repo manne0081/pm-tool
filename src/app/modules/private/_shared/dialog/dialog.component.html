@@ -1,7 +1,7 @@
 <h1>Hi {{data.name}}</h1>
 <div>
     <label id="favorite-animal">What's your favorite animal?</label>
-    <input for="favorite-animal" style="background-color: lime;" [(ngModel)]="data.animal" placeholder="Enter a animal">
+    <input for="favorite-animal" [(ngModel)]="data.animal" placeholder="Enter a animal">
 </div>
 <div>
     <button (click)="dialogRef.close(data.animal)">OK</button>
