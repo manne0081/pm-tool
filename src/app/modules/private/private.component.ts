@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { Dialog, DialogRef, DIALOG_DATA, DialogModule, CdkDialogContainer } from '@angular/cdk/dialog';
-
 import { PrivateService } from './private.service';
 
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
@@ -12,7 +10,6 @@ import { QuicklinksComponent } from './quicklinks/quicklinks.component';
 import { AddInfoComponent } from './add-info/add-info.component';
 import { ContentHeaderForListComponent } from './content-header/content-header-for-list/content-header-for-list.component';
 import { ContentHeaderForDetailComponent } from './content-header/content-header-for-detail/content-header-for-detail.component';
-import { DialogComponent } from './_shared/dialog/dialog.component';
 
 export interface DialogData {
     animal: string;
@@ -31,8 +28,6 @@ export interface DialogData {
         AddInfoComponent,
         ContentHeaderForListComponent,
         ContentHeaderForDetailComponent,
-
-        DialogModule,
     ],
     templateUrl: './private.component.html',
     styleUrl: './private.component.scss',
@@ -51,7 +46,6 @@ export class PrivateComponent implements OnInit {
 
     constructor(
         private privateService: PrivateService,
-        public dialog: Dialog,
     ) {}
 
     ngOnInit(): void {
@@ -125,24 +119,5 @@ export class PrivateComponent implements OnInit {
     saveFunction() {
         // console.log('Speichern-Funktion wurde aufgerufen');
     }
-
-
-    animal: string | undefined;
-    name: string | undefined;
-
-    openDialog(): void {
-        const dialogRef = this.dialog.open<string>(DialogComponent, {
-            width: '250px',
-            data: {name: this.name, animal: this.animal},
-        });
-
-        console.log(dialogRef);
-
-        dialogRef.closed.subscribe(result => {
-            console.log('The dialog was closed');
-            this.animal = result;
-        });
-    }
-
 
 }
