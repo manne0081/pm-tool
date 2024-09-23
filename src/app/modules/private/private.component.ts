@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { Dialog, DialogRef, DIALOG_DATA, DialogModule, CdkDialogContainer } from '@angular/cdk/dialog';
 
 import { PrivateService } from './private.service';
-import { ModalService } from './_shared/modal/modal.service';
 
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { QuicklinksComponent } from './quicklinks/quicklinks.component';
@@ -52,7 +51,6 @@ export class PrivateComponent implements OnInit {
 
     constructor(
         private privateService: PrivateService,
-        protected modalService: ModalService,
         public dialog: Dialog,
     ) {}
 
