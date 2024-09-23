@@ -7,12 +7,6 @@ export interface DialogData {
     name: string;
 }
 
-// @Component({
-//     selector: 'my-dialog-container',
-//     templateUrl: './test.html',
-// })
-// class MyDialogContainer extends CdkDialogContainer {}
-
 @Component({
     selector: 'app-dialog',
     standalone: true,

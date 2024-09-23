@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 
 import { RouterService } from '../../../core/services/router.service';
 import { Quicklinks, QUICKLINKS_MOCK } from '../../../mocks/quicklinks-mock';
@@ -13,6 +13,9 @@ import { DataService } from '../../../core/services/data.service';
 export class QuicklinksService {
     private selectedQuicklinkSource = new Subject<Quicklinks>();
     selectedQuicklink$ = this.selectedQuicklinkSource.asObservable();
+
+    private newQuicklink = new Subject<Quicklinks>();
+    newQuicklink$ = this.newQuicklink.asObservable();
 
     constructor(
         private routerService: RouterService,
@@ -43,8 +46,8 @@ export class QuicklinksService {
             parentName: parentItemName,
         }
 
-        // console.log(newQuicklink);
         QUICKLINKS_MOCK.push(newQuicklink);
+        this.newQuicklink.next(newQuicklink);
     }
 
 }

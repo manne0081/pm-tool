@@ -30,6 +30,7 @@ export class QuicklinksComponent {
     quicklinkItems: Quicklinks[] = [];
     quicklinksVisible:boolean = true;
     searchTerm: string = '';
+    newQuicklink?: Quicklinks;
 
     constructor(
         private router: Router,
@@ -39,6 +40,9 @@ export class QuicklinksComponent {
 
     ngOnInit(): void {
         this.getQuicklinks();
+        this.quicklinkService.newQuicklink$.subscribe(data => {
+            this.newQuicklink = data;
+        });
     }
 
     getQuicklinks(): void {
@@ -82,12 +86,12 @@ export class QuicklinksComponent {
         }
 
         this.router.navigate([path], { queryParams });
-
         this.quicklinkService.onSelectQuicklink(item);
     }
 
     onAddQuicklink(): void {
         this.quicklinkService.addNewQuicklink();
+        this.openDialog(this.newQuicklink);
     }
 
     openContext(item: any): void {
