@@ -14,17 +14,20 @@ import { Quicklinks } from '../../../../../mocks/quicklinks-mock';
 })
 
 export class DialogQuicklinkChangeComponent {
-    // public editedQuicklink: Quicklinks;
+    public editedQuicklink: Quicklinks;
 
     constructor(
         public dialogRef: DialogRef<Quicklinks>,
         @Inject(DIALOG_DATA) public data: { quicklink: Quicklinks },
     ) {
-        // console.log('data: ', data);
-        // console.log('data.title: ', data.quicklink.title);
+        this.editedQuicklink = { ...data.quicklink };
+    }
 
-        // this.editedQuicklink = { ...data };
-        // console.log('Initial data:', this.editedQuicklink);
+    onSave(): void {
+        this.dialogRef.close(this.editedQuicklink);
+    }
 
+    onClose(): void {
+        this.dialogRef.close();
     }
 }

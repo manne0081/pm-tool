@@ -104,9 +104,12 @@ export class QuicklinksComponent {
             data: {quicklink: item},
         });
 
-        dialogRef.closed.subscribe(result => {
-            console.log('The dialog was closed', result);
-            // this.animal = result;
+        dialogRef.closed.subscribe((result: Quicklinks | undefined) => {
+            if (result) {
+                this.quicklinkService.setQuicklinks(result);
+            }
         });
+
+
     }
 }
