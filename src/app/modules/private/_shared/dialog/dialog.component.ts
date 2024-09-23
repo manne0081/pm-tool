@@ -8,6 +8,20 @@ export interface DialogData {
 }
 
 @Component({
+    selector: 'my-dialog-container',
+    styles: [`
+      :host {
+        display: block;
+        background: #orange;
+        border-radius: 8px;
+        padding: 16px;
+      }
+    `],
+    templateUrl: './test.html',
+})
+class MyDialogContainer extends CdkDialogContainer {}
+
+@Component({
     selector: 'app-dialog',
     standalone: true,
     imports: [

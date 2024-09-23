@@ -5,6 +5,7 @@
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 1;
     animation: custom-dialog-enter .8s ease;
     // z-index: 10001;
 }
@@ -20,8 +21,9 @@ button + button {
 
 @keyframes custom-dialog-enter {
     from {
-      transform: scale(-1) rotate(360deg);
-    }
+    //   transform: scale(-1) rotate(360deg);
+    opacity: 0;
+    transition: opacity 0.2s ease-in;    }
 
     to {
       transform: none;

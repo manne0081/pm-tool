@@ -89,13 +89,13 @@
                     <li>
                         <span>WIP Dialog-Test</span><br>
                         <label id="dialog-user-name">What's your name?</label>
-                        <input for="dialog-user-name" [(ngModel)]="name" placeholder="Enter your name">
+                        <input for="dialog-user-name" style="background-color: lime;" [(ngModel)]="name" placeholder="Enter your name">
                     </li>
                     <li>
                         <button class="dialog-test" (click)="openDialog()">Pick one</button>
                     </li>
                     @if (animal) {
-                        <li>
+                        <li style="background-color: yellow;">
                             You chose: <em>{{animal}}</em>
                         </li>
                     }
