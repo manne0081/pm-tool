@@ -146,6 +146,14 @@ export class PrivateService {
         return this.cookieService.get(cookieName);
     }
 
+    getCookieAddInfoArea(cookie: string): boolean {
+        if (this.getCookie(cookie) === 'true') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // Delete Cookie
     deleteCookie(cookieName: string) {
         this.cookieService.delete(cookieName);
@@ -231,13 +239,23 @@ export class PrivateService {
      * To mark the Menu-Item as active
      */
     onSelectQuicklink(item: any): void {
-        // console.log(item);
+        console.log(item);
 
-        this.isViewDashboard.next(false);
+        if (item.parentName === 'dashboard') {
+            this.isViewDashboard.next(true);
+            // todo
+            this.setIsAddInfoButtonVisible(false);
+            this.isAddInfoAreaVisible.next(false);
+        } else {
+            this.isViewDashboard.next(false);
+            this.setIsAddInfoButtonVisible(true);
+            console.log(this.getCookieAddInfoArea('isAddInfoAreaVisible'));
+            this.setIsAddInfoAreaVisible(this.getCookieAddInfoArea('isAddInfoAreaVisible'));
+        }
+
         this.setActiveMenuItemByName(item.parentName);
         this.setContentTitle(item.menuItemName);
         this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.menuItemName));
-        this.setIsAddInfoButtonVisible(true);
 
         const isAddInfoVisible: string = this.cookieService.get('isAddInfoAreaVisible');
         if (isAddInfoVisible === 'true') {

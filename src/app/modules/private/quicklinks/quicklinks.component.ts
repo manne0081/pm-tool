@@ -100,7 +100,7 @@ export class QuicklinksComponent {
 
     openDialog(item: any): void {
         const dialogRef = this.dialog.open<Quicklinks>(DialogQuicklinkChangeComponent, {
-            width: '280px',
+            width: '320px',
             data: {quicklink: item},
         });
 
@@ -109,5 +109,7 @@ export class QuicklinksComponent {
                 this.quicklinkService.updateQuicklink(result);
             }
         });
+
+        // todo -> Bei Abbruch des Dialogs, bei Erstellung eines neuen Quicklinks müsste der Quicklink wieder gelöscht werden
     }
 }
