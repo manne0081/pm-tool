@@ -7,19 +7,11 @@ export interface DialogData {
     name: string;
 }
 
-@Component({
-    selector: 'my-dialog-container',
-    styles: [`
-      :host {
-        display: block;
-        background: #orange;
-        border-radius: 8px;
-        padding: 16px;
-      }
-    `],
-    templateUrl: './test.html',
-})
-class MyDialogContainer extends CdkDialogContainer {}
+// @Component({
+//     selector: 'my-dialog-container',
+//     templateUrl: './test.html',
+// })
+// class MyDialogContainer extends CdkDialogContainer {}
 
 @Component({
     selector: 'app-dialog',
@@ -35,6 +27,8 @@ export class DialogComponent {
     constructor(
         public dialogRef: DialogRef<string>,
         @Inject(DIALOG_DATA) public data: DialogData,
-    ) {}
+    ) {
+        console.log('item: ', data.name);
+    }
 
 }

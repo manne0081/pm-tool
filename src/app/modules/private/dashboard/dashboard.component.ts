@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { Dialog, DialogRef, DIALOG_DATA, DialogModule, CdkDialogContainer } from '@angular/cdk/dialog';
 import { DialogComponent } from '../_shared/dialog/dialog.component';
 
-
 @Component({
     selector: 'app-dashboard',
     standalone: true,
@@ -17,12 +16,12 @@ import { DialogComponent } from '../_shared/dialog/dialog.component';
 
 export class DashboardComponent {
 
-    animal: string | undefined;
-    name: string | undefined;
-
     constructor(
         public dialog: Dialog,
     ) {}
+
+    animal: string | undefined;
+    name: string | undefined;
 
     openDialog(): void {
         const dialogRef = this.dialog.open<string>(DialogComponent, {
@@ -30,14 +29,9 @@ export class DashboardComponent {
             data: {name: this.name, animal: this.animal},
         });
 
-        console.log(dialogRef);
-
         dialogRef.closed.subscribe(result => {
-            console.log('The dialog was closed');
+            console.log('The dialog was closed', result);
             this.animal = result;
         });
     }
-
-
-
 }

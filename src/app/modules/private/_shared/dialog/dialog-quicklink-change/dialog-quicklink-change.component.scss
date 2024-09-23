@@ -1,0 +1,33 @@
+:host {
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    opacity: 1;
+    animation: custom-dialog-enter .6s ease;
+}
+
+input {
+    margin: 8px 0;
+    width: 100%; /* Damit das Eingabefeld die volle Breite nutzt */
+    background-color: rgb(221, 221, 221);
+    padding: 4px 6px;
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 4px;
+}
+
+button + button {
+    margin-left: 8px;
+}
+
+@keyframes custom-dialog-enter {
+    from {
+        transform: scale(-1) rotate(180deg);
+        opacity: 0;
+        // transition: opacity 0.04s ease-in;
+    }
+
+    to {
+        transform: none;
+    }
+}
