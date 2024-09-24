@@ -6,10 +6,16 @@ import { PrivateService } from '../private.service';
 })
 
 export class ContentHeaderService {
+    fieldNamesForFilter?: string[];
 
     constructor(
         private privateService: PrivateService
-    ) {}
+    ) {
+        // Read fieldNames for filter-dropdown
+        // this.privateService.fieldNamesForFilter$.subscribe(data => {
+        //     this.fieldNamesForFilter = data;
+        // });
+    }
 
     setSearchTermFromContentHeader(searchTerm: string): void {
         // this.privateService.setSearchTermFromContentHeader(searchTerm);
@@ -18,4 +24,6 @@ export class ContentHeaderService {
     setSortingTermFromContentHeader(sortingTerm: string): void {
         // this.privateService.setSortingTermFromContentHeader(sortingTerm);
     }
+
+
 }

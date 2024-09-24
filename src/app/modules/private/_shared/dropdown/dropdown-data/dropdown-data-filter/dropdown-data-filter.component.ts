@@ -17,6 +17,7 @@ import { DropdownService } from '../../dropdown.service';
 
 export class DropdownDataFilterComponent {
     showDropContent: boolean = false;
+    fieldNamesForFilter?: string[];
 
     searchTerm: string = '';
     sortingTerm: string = '';
@@ -29,18 +30,21 @@ export class DropdownDataFilterComponent {
 
     ngOnInit(): void {
         this.dropdownService.clickedButton$.subscribe(item => {
-            // console.log('item',item);
             this.setShowDropdown(item);
         });
+        this.fieldNamesForFilter = this.dropdownService.getFieldnameForFilter();
     }
 
     setShowDropdown(dropdownId: any): void {
-        // console.log(dropdownId);
         if (dropdownId === 'filter') {
             this.showDropContent = true;
         } else {
             this.showDropContent = false;
         }
+    }
+
+    getFieldNamesWithLineBreaks(): string {
+        return this.fieldNamesForFilter?.join('<br/>') || '';
     }
 
     @HostListener('document:click', ['$event'])

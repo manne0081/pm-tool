@@ -7,6 +7,6 @@
 >
 
     <div class="{{ buttonIcon }}"></div>
-    <p style="margin-right: 2px">{{ buttonValue | titlecase }}</p>
+    <p style="margin-right: 2px">{{ buttonValue | titlecase }}<span *ngIf="buttonValue === 'filter'"> / WIP</span> </p>
 
 </button>

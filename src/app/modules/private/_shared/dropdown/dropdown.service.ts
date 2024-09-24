@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
+import { PrivateService } from '../../private.service';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class DropdownService {
+    fieldNamesForFilter?: string[];
+
     private clickedButton = new BehaviorSubject<any>(null);
     clickedButton$ = this.clickedButton.asObservable();
 
@@ -18,8 +21,17 @@ export class DropdownService {
     private numberGroupConditions = new BehaviorSubject<any>(null);
     numberGroupConditions$ = this.numberGroupConditions.asObservable();
 
-    constructor() {
-        // console.log('test', this.clickedButton.getValue());
+    constructor(
+        private privateService: PrivateService,
+    ) {
+        // Read fieldNames for filter-dropdown
+        this.privateService.fieldNamesForFilter$.subscribe(data => {
+            this.fieldNamesForFilter = data;
+        });
+    }
+
+    getFieldnameForFilter(): string[] | undefined {
+        return this.fieldNamesForFilter;
     }
 
     setOpenedDropdownId(clickedButtonValue: string): void {

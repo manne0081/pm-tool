@@ -24,7 +24,7 @@ interface FilterItem {
 })
 
 export class ContentHeaderForListComponent implements OnInit {
-    fieldNamesForFilter?: string[];
+    // fieldNamesForFilter?: string[];
 
     searchTerm: string = '';
     sortingTerm: string = '';
@@ -50,9 +50,9 @@ export class ContentHeaderForListComponent implements OnInit {
         });
 
         // Read fieldNames for filter-dropdown
-        this.privateService.fieldNamesForFilter$.subscribe(data => {
-            this.fieldNamesForFilter = data;
-        });
+        // this.privateService.fieldNamesForFilter$.subscribe(data => {
+        //     this.fieldNamesForFilter = data;
+        // });
     }
 
     /**

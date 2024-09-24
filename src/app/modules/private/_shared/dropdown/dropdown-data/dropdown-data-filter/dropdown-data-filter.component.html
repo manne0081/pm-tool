@@ -1,9 +1,13 @@
 <!-- INNER Dropdown (Content) -->
 <div id="test" class="drop-content-container" *ngIf="showDropContent" (click)="$event.stopPropagation()">
 
-    <h3>Filter by (WIP)</h3>
+    <h3>Filter by</h3>
 
     <hr>
+
+    <!-- todo -->
+    <!-- {{ fieldNamesForFilter }} -->
+    <div [innerHTML]="getFieldNamesWithLineBreaks()"></div>
 
     <ul>
         <!-- <li [ngClass]="{'active': sortingTerm === 'id-asc'}" (click)="onChooseOption('id-asc')"><span>id-asc</span><br></li>
