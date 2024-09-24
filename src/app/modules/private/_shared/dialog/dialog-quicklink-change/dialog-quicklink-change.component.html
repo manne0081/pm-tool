@@ -1,4 +1,4 @@
-<h1>Change Quicklink</h1>
+<h1>WIP > Change Quicklink</h1>
 <!-- todo -> URL updaten durch Button -->
 
 <br>
@@ -8,10 +8,9 @@
 </div>
 <br>
 <div class="action">
-    <button (click)="dialogRef.close(editedQuicklink)">OK</button>
-    <button (click)="dialogRef.close()">Cancel</button>
-    <button>Löschen (WIP)</button>
 
-    <!-- todo -> Quicklink löschen -->
+    <button (click)="onSave()">OK</button>
+    <button (click)="onCancel()">Cancel</button>
+    <button (click)="onDelete()" *ngIf="!isNew">Löschen</button>
 
 </div>

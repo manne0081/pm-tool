@@ -91,25 +91,51 @@ export class QuicklinksComponent {
 
     onAddQuicklink(): void {
         this.quicklinkService.addNewQuicklink();
-        this.openDialog(this.newQuicklink);
+        this.openDialog(this.newQuicklink, true);
     }
 
     openContext(item: any): void {
         this.openDialog(item);
     }
 
-    openDialog(item: any): void {
+    openDialog(item: any, isNew: boolean = false): void {
         const dialogRef = this.dialog.open<Quicklinks>(DialogQuicklinkChangeComponent, {
-            width: '320px',
-            data: {quicklink: item},
+            width: '280px',
+            data: {quicklink: item, isNew},
         });
 
-        dialogRef.closed.subscribe((result: Quicklinks | undefined) => {
-            if (result) {
-                this.quicklinkService.updateQuicklink(result);
+        // dialogRef.closed.subscribe((result: Quicklinks | undefined) => {
+        //     if (result) {
+        //     }
+        // });
+
+        dialogRef.closed.subscribe(result => {
+            const castResult = result as unknown as { action: string, quicklink?: Quicklinks, id?: number };  // Ergebnis manuell casten
+
+            if (castResult) {
+                switch (castResult.action) {
+                    case 'save':
+                    // Aktualisiere den Quicklink
+                    if (castResult.quicklink) {
+                        this.quicklinkService.updateQuicklink(castResult.quicklink);
+                        // console.log('Quicklink wurde aktualisiert:', castResult.quicklink);
+                    }
+                    break;
+
+                    case 'cancel':
+                        // console.log('Dialog wurde geschlossen ohne Änderungen.');
+                    break;
+
+                    case 'delete':
+                    // Entferne den Quicklink
+                        if (castResult.id) {
+                            this.quicklinkService.deleteQuicklink(castResult.id);
+                            // console.log('Quicklink wurde gelöscht:', castResult.id);
+                        }
+                    break;
+                }
             }
         });
 
-        // todo -> Bei Abbruch des Dialogs, bei Erstellung eines neuen Quicklinks müsste der Quicklink wieder gelöscht werden
     }
 }

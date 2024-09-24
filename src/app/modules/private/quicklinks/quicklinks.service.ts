@@ -54,4 +54,9 @@ export class QuicklinksService {
         const index = quicklink.id;  // Finde den Index des Quicklinks
         QUICKLINKS_MOCK[index] = { ...quicklink };
     }
+
+    deleteQuicklink(quicklinkId: number): void {
+        const index = quicklinkId;
+        QUICKLINKS_MOCK.splice(index, 1);  // Entferne den Quicklink aus dem Array
+    }
 }
