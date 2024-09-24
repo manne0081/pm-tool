@@ -7,13 +7,51 @@
 
     <!-- todo -->
     <!-- {{ fieldNamesForFilter }} -->
-    <div [innerHTML]="getFieldNamesWithLineBreaks()"></div>
+    <div [innerHTML]="fieldNamesForFilter"></div>
 
-    <ul>
-        <!-- <li [ngClass]="{'active': sortingTerm === 'id-asc'}" (click)="onChooseOption('id-asc')"><span>id-asc</span><br></li>
-        <li [ngClass]="{'active': sortingTerm === 'id-desc'}" (click)="onChooseOption('id-desc')"><span>id-desc</span></li>
-        <li [ngClass]="{'active': sortingTerm === 'name-asc'}" (click)="onChooseOption('name-asc')"><span>name-asc</span><br></li>
-        <li [ngClass]="{'active': sortingTerm === 'name-desc'}" (click)="onChooseOption('name-desc')"><span>name-desc</span><br></li> -->
-    </ul>
+    <!-- Content for FILTER -->
+    <div style="overflow: visible;">
+        <div class="filter-wrapper">
+            <div class="filter-item-wrapper" *ngFor="let condition of filterConditions, let i = index">
+
+                <div class="filter-item-operator label" *ngIf="i === 0">Where</div>
+
+                <!-- <app-filter-data-dropdown style="overflow: visible" *ngIf="i === 1"
+                    [buttonType]="'operator'"
+                    (selectedOperator)="getSelectedOperator($event)"
+                ></app-filter-data-dropdown> -->
+
+                <!-- <div class="filter-item-operator label" *ngIf="i > 1">{{selectedOperator || 'and'}}</div> -->
+
+                <!-- <app-filter-data-dropdown style="overflow: visible"
+                    [buttonType]="'fieldname'"
+                ></app-filter-data-dropdown> -->
+
+                <!-- <app-filter-data-dropdown style="overflow: visible"
+                    [buttonType]="'condition'"
+                ></app-filter-data-dropdown> -->
+
+                <div class="filter-item input">
+                    <input type="text" placeholder="Enter a Value...">
+                </div>
+
+                <!-- <div class="filter-item remove" (click)="removeFilter($event, condition.index)">
+                    <span class="icon-cancel-circle"></span>
+                </div> -->
+
+            </div>
+        </div>
+
+        <!-- Add conditions / -group -->
+        <!-- ----------------------- -->
+        <div class="filter-actions">
+
+            <button class="filter-action-button" (click)="addCondition($event)">
+                <span class="icon-add"></span>
+                <span>Add condition</span>
+            </button>
+
+        </div>
+    </div>
 
 </div>

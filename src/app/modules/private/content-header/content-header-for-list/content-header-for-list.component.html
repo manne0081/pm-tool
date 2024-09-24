@@ -10,12 +10,14 @@
     <!-- DROPDOWN - Component -->
     <!-- -------------------- -->
     <app-dropdown-base style="overflow: visible"
-        [buttonValue]="'filter'"
-        [buttonIcon]="'icon-filter'"
-        [dropdownContent]="'filter'">
+        [buttonType] = "'content-header-button'"
+        [buttonValue] = "'filter'"
+        [buttonIcon] = "'icon-filter'"
+        [dropdownContent] = "'filter'">
     </app-dropdown-base>
 
     <app-dropdown-base style="overflow: visible"
+        [buttonType] = "'content-header-button'"
         [buttonValue]="'sort'"
         [buttonIcon]="'icon-sort'"
         [dropdownContent]="'sort'">

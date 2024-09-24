@@ -1,4 +1,4 @@
-<button id="id-drop-button" class="drop-button" (click)="onClickButton($event)"
+<button id="id-drop-button" class="drop-button" *ngIf="buttonType==='content-header-button'" (click)="onClickButton($event)"
     [ngClass]="{
         'drop-button-active-filter': haveFilterConditions === true && buttonValue === 'filter',
         'drop-button-active-sort': haveSortConditions === true && buttonValue === 'sort',

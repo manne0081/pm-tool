@@ -7,7 +7,10 @@ import { PrivateService } from '../../private.service';
 })
 
 export class DropdownService {
-    fieldNamesForFilter?: string[];
+    // fieldNamesForFilter?: string[];
+
+    private fieldNamesForFilter = new BehaviorSubject<any>(null);
+    fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
 
     private clickedButton = new BehaviorSubject<any>(null);
     clickedButton$ = this.clickedButton.asObservable();
@@ -26,12 +29,8 @@ export class DropdownService {
     ) {
         // Read fieldNames for filter-dropdown
         this.privateService.fieldNamesForFilter$.subscribe(data => {
-            this.fieldNamesForFilter = data;
+            this.fieldNamesForFilter.next(data);
         });
-    }
-
-    getFieldnameForFilter(): string[] | undefined {
-        return this.fieldNamesForFilter;
     }
 
     setOpenedDropdownId(clickedButtonValue: string): void {
@@ -40,5 +39,9 @@ export class DropdownService {
 
     setNumberFilterConditions(number: Number) {
         this.numberFilterConditions.next(number);
+    }
+
+    transformFieldNamesWithLineBreaks(fieldNames: string[]): string {
+        return fieldNames.join('<br/>') || '';
     }
 }

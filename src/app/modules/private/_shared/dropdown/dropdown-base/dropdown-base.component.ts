@@ -19,6 +19,7 @@ import { DropdownDataSortComponent } from '../dropdown-data/dropdown-data-sort/d
 })
 
 export class DropdownBaseComponent {
+    @Input() buttonType: string = '';           // for example:
     @Input() buttonValue: string = '';          // for example: sort, filter, group
     @Input() buttonIcon: string = '';           // for example: icon-sort, icon-filter, icon-drawer,
     @Input() dropdownContent: string = '';      // for example: sort, filter, group

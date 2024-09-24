@@ -17,10 +17,12 @@ import { DropdownService } from '../../dropdown.service';
 
 export class DropdownDataFilterComponent {
     showDropContent: boolean = false;
-    fieldNamesForFilter?: string[];
+    fieldNamesForFilter?: string;
+    filterConditions: { index: number, label: string, name: string, condition: string, value: string } [] = [];
+    private newFilterConditionIndex: number = 0;
 
-    searchTerm: string = '';
-    sortingTerm: string = '';
+    // searchTerm: string = '';
+    // sortingTerm: string = '';
 
     constructor(
         private router: Router,
@@ -32,7 +34,9 @@ export class DropdownDataFilterComponent {
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);
         });
-        this.fieldNamesForFilter = this.dropdownService.getFieldnameForFilter();
+        this.dropdownService.fieldNamesForFilter$.subscribe(data => {
+            this.fieldNamesForFilter = this.dropdownService.transformFieldNamesWithLineBreaks(data);
+        });
     }
 
     setShowDropdown(dropdownId: any): void {
@@ -43,10 +47,6 @@ export class DropdownDataFilterComponent {
         }
     }
 
-    getFieldNamesWithLineBreaks(): string {
-        return this.fieldNamesForFilter?.join('<br/>') || '';
-    }
-
     @HostListener('document:click', ['$event'])
     closeDropdown(event: Event): void {
         const target = event.target as HTMLElement;
@@ -54,5 +54,16 @@ export class DropdownDataFilterComponent {
         if (!target.closest('.drop-content-container')) {
             this.showDropContent = false;
         }
+    }
+
+    /**
+     * Calculates the new filter-array-index and push the new condition into the filter-array
+     * @param event
+     */
+    addCondition(event: Event): void {
+        event.stopPropagation();
+        this.newFilterConditionIndex++;
+        this.filterConditions.push({ index: this.newFilterConditionIndex, label: 'and', name: '', condition: '', value: '' });
+        // this.contentTileViewService.setNumberFilterConditions(this.filterConditions.length);
     }
 }

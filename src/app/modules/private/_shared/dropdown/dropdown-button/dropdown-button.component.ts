@@ -14,6 +14,7 @@ import { DropdownService } from '../dropdown.service';
 })
 
 export class DropdownButtonComponent {
+    @Input() buttonType: string = '';
     @Input() buttonValue: string = '';
     @Input() buttonIcon: string = '';
 
