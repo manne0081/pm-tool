@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DropdownButtonComponent } from '../dropdown-button/dropdown-button.component';
+import { DropdownDataFilterComponent } from '../dropdown-data/dropdown-data-filter/dropdown-data-filter.component';
 import { DropdownDataSortComponent } from '../dropdown-data/dropdown-data-sort/dropdown-data-sort.component';
 
 @Component({
@@ -10,6 +11,7 @@ import { DropdownDataSortComponent } from '../dropdown-data/dropdown-data-sort/d
     imports: [
         CommonModule,
         DropdownButtonComponent,
+        DropdownDataFilterComponent,
         DropdownDataSortComponent,
     ],
     templateUrl: './dropdown-base.component.html',
@@ -20,4 +22,5 @@ export class DropdownBaseComponent {
     @Input() buttonValue: string = '';          // for example: sort, filter, group
     @Input() buttonIcon: string = '';           // for example: icon-sort, icon-filter, icon-drawer,
     @Input() dropdownContent: string = '';      // for example: sort, filter, group
+
 }

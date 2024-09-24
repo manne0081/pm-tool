@@ -10,6 +10,12 @@
     <!-- DROPDOWN - Component -->
     <!-- -------------------- -->
     <app-dropdown-base style="overflow: visible"
+        [buttonValue]="'filter'"
+        [buttonIcon]="'icon-filter'"
+        [dropdownContent]="'filter'">
+    </app-dropdown-base>
+
+    <app-dropdown-base style="overflow: visible"
         [buttonValue]="'sort'"
         [buttonIcon]="'icon-sort'"
         [dropdownContent]="'sort'">
@@ -18,12 +24,6 @@
     <!-- todo -->
 
     <!-- <app-tile-view-dropdown style="overflow: visible"
-        [buttonValue]="'filter'"
-        [buttonIcon]="'icon-filter'"
-        [dropdownContent]="'filter'"
-    ></app-tile-view-dropdown>
-
-    <app-tile-view-dropdown style="overflow: visible"
         [buttonValue]="'group'"
         [buttonIcon]="'icon-drawer'"
         [dropdownContent]="'group'"

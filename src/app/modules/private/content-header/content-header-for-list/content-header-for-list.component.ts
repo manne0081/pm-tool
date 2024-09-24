@@ -90,6 +90,15 @@ export class ContentHeaderForListComponent implements OnInit {
     }
 
     /**
+     * removes the searching-term and the additional-informations
+     */
+    removeSearchTerm(): void {
+        this.searchTerm = '';
+        this.activeFilterItems = this.activeFilterItems.filter(filterItem => filterItem.id !== 'searchTerm');
+        this.updateRoute();
+    }
+
+    /**
      * Change the route, so you can set this as quicklink
      */
     updateRoute(): void {
@@ -110,13 +119,5 @@ export class ContentHeaderForListComponent implements OnInit {
         });
     }
 
-    /**
-     * removes the searching-term and the additional-informations
-     */
-    removeSearchTerm(): void {
-        this.searchTerm = '';
-        this.activeFilterItems = this.activeFilterItems.filter(filterItem => filterItem.id !== 'searchTerm');
-        this.updateRoute();
-    }
 
 }

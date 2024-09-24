@@ -5,9 +5,7 @@
     <app-dropdown-button [buttonValue]="buttonValue" [buttonIcon]="buttonIcon"></app-dropdown-button>
 
     <!-- INNER DROPDOWN > Dropdown-Content -->
+    <app-dropdown-data-filter *ngIf="dropdownContent === 'filter'"></app-dropdown-data-filter>
     <app-dropdown-data-sort *ngIf="dropdownContent === 'sort'"></app-dropdown-data-sort>
-    <!-- <app-dropdown-data-filter *ngIf="dropdownContent === 'filter'"></app-dropdown-data-filter>
-    <app-dropdown-data-sort *ngIf="dropdownContent === 'sort'"></app-dropdown-data-sort>
-    <app-dropdown-data-group *ngIf="dropdownContent === 'group'"></app-dropdown-data-group> -->
 
 </div>

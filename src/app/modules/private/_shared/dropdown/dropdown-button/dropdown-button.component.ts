@@ -36,6 +36,7 @@ export class DropdownButtonComponent {
     }
 
     onClickButton(event: Event): void {
+        // console.log('clicked', event);
         event.stopPropagation();
         this.dropdownService.setOpenedDropdownId(this.buttonValue);
     }

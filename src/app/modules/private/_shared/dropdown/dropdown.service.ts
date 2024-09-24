@@ -18,7 +18,9 @@ export class DropdownService {
     private numberGroupConditions = new BehaviorSubject<any>(null);
     numberGroupConditions$ = this.numberGroupConditions.asObservable();
 
-    constructor() {}
+    constructor() {
+        // console.log('test', this.clickedButton.getValue());
+    }
 
     setOpenedDropdownId(clickedButtonValue: string): void {
         this.clickedButton.next(clickedButtonValue);

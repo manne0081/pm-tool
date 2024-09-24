@@ -26,7 +26,7 @@ export class DialogQuicklinkChangeComponent {
         @Inject(DIALOG_DATA) public data: { quicklink: Quicklinks, isNew: boolean },
         private quicklinkService: QuicklinksService,
     ) {
-        console.log('dialogRef + data:', dialogRef, '\n', data);
+        // console.log('dialogRef + data:', dialogRef, '\n', data);
         this.editedQuicklink = { ...data.quicklink };
         this.isNew = data.isNew;  // Das Flag `isNew` wird gesetzt
     }

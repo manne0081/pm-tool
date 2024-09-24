@@ -37,6 +37,7 @@ export class DropdownDataSortComponent implements OnInit {
     }
 
     setShowDropdown(dropdownId: any): void {
+        // console.log(dropdownId);
         if (dropdownId === 'sort') {
             this.showDropContent = true;
         } else {

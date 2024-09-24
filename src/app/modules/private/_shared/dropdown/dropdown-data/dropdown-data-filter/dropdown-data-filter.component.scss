@@ -1,0 +1,37 @@
+.drop-content-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 1000;
+    min-width: 240px;
+    border-radius: 4px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 8px 0px rgba(44, 80, 103, 0.4);
+    overflow: visible;
+
+    h3 {
+        font-size: .8rem;
+        padding-left: 11px;
+        margin-top: 2px;
+        margin-bottom: 8px;
+    }
+
+    li {
+        margin: 2px 0px;
+        padding: 8px 12px;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: rgb(245, 245, 245);
+            cursor: pointer;
+        }
+    }
+
+    li.active {
+        background-color: rgb(235, 235, 235);        /* Beispiel: Leichtes Grau für aktive Option */
+        font-weight: bold;                  /* Beispiel: Fettschrift für aktive Option */
+    }
+}
