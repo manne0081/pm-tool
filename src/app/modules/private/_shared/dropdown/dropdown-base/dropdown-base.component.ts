@@ -23,5 +23,4 @@ export class DropdownBaseComponent {
     @Input() buttonValue: string = '';          // for example: sort, filter, group
     @Input() buttonIcon: string = '';           // for example: icon-sort, icon-filter, icon-drawer,
     @Input() dropdownContent: string = '';      // for example: sort, filter, group
-
 }

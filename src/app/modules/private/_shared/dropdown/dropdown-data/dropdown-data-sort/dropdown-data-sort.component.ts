@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ import { DropdownService } from '../../dropdown.service';
 
 export class DropdownDataSortComponent implements OnInit {
     showDropContent: boolean = false;
+    @Input() dropdownId: string = '';
 
     searchTerm: string = '';
     sortingTerm: string = '';
@@ -27,6 +28,8 @@ export class DropdownDataSortComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        console.log(this.dropdownId);
+
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);
         });
@@ -37,7 +40,7 @@ export class DropdownDataSortComponent implements OnInit {
     }
 
     setShowDropdown(dropdownId: any): void {
-        if (dropdownId === 'sort') {
+        if (dropdownId === this.dropdownId) {
             this.showDropContent = true;
         } else {
             this.showDropContent = false;

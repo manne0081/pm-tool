@@ -6,7 +6,6 @@
     <hr>
 
     <!-- todo -->
-    <!-- {{ fieldNamesForFilter }} -->
     <div [innerHTML]="fieldNamesForFilter" style="background-color: rgb(238, 238, 238); margin: 8px 10px;"></div>
 
     <!-- Content for FILTER -->
@@ -14,6 +13,8 @@
         <div class="filter-wrapper">
             <div class="filter-item-wrapper" *ngFor="let condition of filterConditions, let i = index">
 
+                <!-- Where / And / Or -->
+                <!-- ---------------- -->
                 <div class="filter-item-operator label" *ngIf="i === 0">Where</div>
 
                 <!-- <app-filter-data-dropdown style="overflow: visible" *ngIf="i === 1"
@@ -23,9 +24,16 @@
 
                 <!-- <div class="filter-item-operator label" *ngIf="i > 1">{{selectedOperator || 'and'}}</div> -->
 
-                <!-- <app-filter-data-dropdown style="overflow: visible"
-                    [buttonType]="'fieldname'"
-                ></app-filter-data-dropdown> -->
+                <!-- FieldName-Dropdown -->
+                <!-- ------------------ -->
+                <!-- <app-dropdown-base style="overflow: visible"
+                    [buttonType] = "'content-header-button'"
+                    [buttonValue] = "'fieldname'"
+                    [buttonIcon] = "'icon-filter'"
+                    [dropdownContent] = "'filter'">
+                </app-dropdown-base> -->
+
+
 
                 <!-- <app-filter-data-dropdown style="overflow: visible"
                     [buttonType]="'condition'"

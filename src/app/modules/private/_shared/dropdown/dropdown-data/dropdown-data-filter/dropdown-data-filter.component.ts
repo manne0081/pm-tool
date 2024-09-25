@@ -1,8 +1,10 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DropdownService } from '../../dropdown.service';
+
+import { DropdownBaseComponent } from '../../dropdown-base/dropdown-base.component';
 
 @Component({
     selector: 'app-dropdown-data-filter',
@@ -10,12 +12,15 @@ import { DropdownService } from '../../dropdown.service';
     imports: [
         CommonModule,
         FormsModule,
+        DropdownBaseComponent,
     ],
     templateUrl: './dropdown-data-filter.component.html',
     styleUrl: './dropdown-data-filter.component.scss'
 })
 
 export class DropdownDataFilterComponent {
+    @Input() dropdownId: string = '';
+
     showDropContent: boolean = false;
     fieldNamesForFilter?: string;
     filterConditions: { index: number, label: string, name: string, condition: string, value: string } [] = [];
@@ -31,6 +36,8 @@ export class DropdownDataFilterComponent {
     ) {}
 
     ngOnInit(): void {
+        console.log(this.dropdownId);
+
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);
         });
@@ -40,7 +47,7 @@ export class DropdownDataFilterComponent {
     }
 
     setShowDropdown(dropdownId: any): void {
-        if (dropdownId === 'filter') {
+        if (dropdownId === this.dropdownId) {
             this.showDropContent = true;
         } else {
             this.showDropContent = false;
