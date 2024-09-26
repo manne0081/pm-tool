@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { DropdownBaseComponent } from '../../dropdown/dropdown-base/dropdown-base.component';
+
 @Component({
     selector: 'app-filter',
     standalone: true,
     imports: [
         CommonModule,
         ReactiveFormsModule,
+        DropdownBaseComponent,
     ],
     templateUrl: './filter.component.html',
     styleUrl: './filter.component.scss'

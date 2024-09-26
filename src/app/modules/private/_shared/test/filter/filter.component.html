@@ -19,13 +19,22 @@
                 <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
 
                     <!-- Dropdown für Feld-Auswahl -->
-                    <select formControlName="field">
-                    <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
-                    </select>
+                    <!-- <select formControlName="field">
+                        <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
+                    </select> -->
+
+                    <app-dropdown-base style="overflow: visible"
+                        [dropdownId] = "'content-filter'"
+                        [buttonType] = "'content-header-button'"
+                        [dropdownId] = "'content-filter'"
+                        [buttonValue] = "'Fieldname'"
+                        [buttonIcon] = "'icon-arrow-down'"
+                        [dropdownContent] = "'filter'">
+                    </app-dropdown-base>
 
                     <!-- Dropdown für Operator-Auswahl -->
                     <select formControlName="operator">
-                    <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
+                        <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
                     </select>
 
                     <!-- Eingabefeld für den Wert -->
