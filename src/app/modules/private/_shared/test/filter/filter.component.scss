@@ -2,36 +2,56 @@
     position: relative; /* Referenz für das positionierte Filter-Fenster */
     display: inline-block; /* Damit der Button und das Fenster relativ zueinander platziert werden */
     overflow: visible;
-  }
+}
 
-  .filter-btn {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
+.filter-btn {
+    background-color: rgb(225, 225, 225);
+    border: 1px solid #b9b9b9;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 8px;
+    height: 36px; /* Beispielhöhe */
 
-  .filter-container {
+    div, span {
+        color: #4f4f4f;
+    }
+
+    div {
+        margin-right: 4px;
+    }
+
+    div.icon-filter {
+        position: relative;
+        top: -1px;
+        font-size: 1.1rem;
+    }
+
+    &:hover {
+        background-color: #d3d3d3;
+        cursor: pointer;
+    }
+}
+
+.filter-container {
     position: absolute;
     top: 100%;  /* Platziere das Fenster direkt unter dem Button */
     right: 0;   /* Rechtsbündig zum Button */
     margin-top: 10px;
-    border: 1px solid #ccc;
+
     padding: 15px;
     background-color: #f9f9f9;
-    border-radius: 5px;
     min-width: 720px;
     z-index: 10; /* Damit es über anderen Elementen liegt */
-  }
+}
 
-  select, input {
+select, input {
     margin-right: 10px;
     padding: 5px;
     width: 120px;
-  }
+}
 
-  button {
+button {
     margin-left: 5px;
-  }
+}

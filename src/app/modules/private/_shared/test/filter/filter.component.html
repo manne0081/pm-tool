@@ -1,12 +1,17 @@
 <div class="filter-wrapper">
     <!-- Button zum Öffnen des Filter-Fensters -->
-    <button (click)="toggleFilters()" class="filter-btn">Filter hinzufügen</button>
+
+    <button (click)="toggleFilters()" class="filter-btn">
+        <div class="icon-filter"></div>
+        <span>Filter</span>
+    </button>
 
     <!-- Filter-Fenster -->
     <div *ngIf="showFilters" class="filter-container">
       <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
         <div formArrayName="conditions">
           <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
+
             <!-- Dropdown für Feld-Auswahl -->
             <select formControlName="field">
               <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
