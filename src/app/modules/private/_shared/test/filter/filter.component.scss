@@ -58,40 +58,72 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        // margin: 8px 0px;
 
         .filter-item-operator {
             width: 76px;
             margin-right: 12px;
             padding-left: 8px;
+
+            &.label {
+                margin-left: 9px;
+                margin-right: 3px;
+            }
         }
 
-    }
+        .filter-input {
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgb(200, 200, 200);
+            border-radius: 0 4px 4px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            top: 1px;
+            padding: 4px 8px;
+            box-sizing: border-box;
+            height: 32px;
+            width: 200px;
+            margin-right: 8px;
+        }
 
+        .filter-item-remove {
+            padding-top: 4px;
 
+        }
 
-    select, input {
-        margin-right: 10px;
-        padding: 5px;
-        width: 120px;
+        [class*="icon-cancel-"] {
+            font-size: 1.1em;
+        }
+
+        [class*="icon-cancel-"]:hover {
+            color: red;
+        }
     }
 
     button {
-        margin-left: 5px;
+        border: transparent;
+        background-color: transparent;
     }
+
+    // select, input {
+    //     margin-right: 10px;
+    //     padding: 5px;
+    //     width: 120px;
+    // }
+
+    // button {
+    //     margin-left: 5px;
+    // }
+
+
+
 
     .filter-action-button {
         display: flex;
-    }
-
-    button {
+        margin-top: 12px;
+        margin-left: 8px;
         background-color: transparent;
         border: 1px solid transparent;
-        border: 1px solid rgb(225, 225, 225);
-        margin: 4px 0px;
-        margin-right: 8px;
-        padding: 4px 6px;
-        border-radius: 4px;
 
         span {
             color: #afafaf;
@@ -100,12 +132,8 @@
 
         span.icon-add {
             position: relative;
-            top: 2px;
+            top: 1px;
             margin-right: 2px;
-        }
-
-        &:hover {
-            cursor: pointer;
         }
     }
 
@@ -113,4 +141,35 @@
         color: #727272;
         cursor: pointer;
     }
+
+
+    // button {
+    //     background-color: transparent;
+    //     border: 1px solid transparent;
+    //     border: 1px solid rgb(225, 225, 225);
+    //     margin: 4px 0px;
+    //     margin-right: 8px;
+    //     padding: 4px 6px;
+    //     border-radius: 4px;
+
+    //     span {
+    //         color: #afafaf;
+    //         font-size: .9em;
+    //     }
+
+    //     span.icon-add {
+    //         position: relative;
+    //         top: 2px;
+    //         margin-right: 2px;
+    //     }
+
+    //     &:hover {
+    //         cursor: pointer;
+    //     }
+    // }
+
+    // button:hover span {
+    //     color: #727272;
+    //     cursor: pointer;
+    // }
 }

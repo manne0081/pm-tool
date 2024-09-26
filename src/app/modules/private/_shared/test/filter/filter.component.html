@@ -14,7 +14,7 @@
         <hr>
 
         <!-- Content -->
-        <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" style="margin-top: 12px;">
             <div formArrayName="conditions">
                 <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
 
@@ -27,18 +27,18 @@
                             [dropdownId] = "'filter-condition'"
                             [buttonType] = "'button-01'"
                             [buttonValue] = "'and'"
-                            [buttonIcon] = "'icon-arrow-down'"
+                            [buttonIcon] = "'icon-chevron-down'"
                             [dropdownContent] = "'condition'">
                         </app-dropdown-base>
 
-                        <div class="filter-item-operator" *ngIf="i > 1">{{ 'and' }}</div> <!-- {{ selectedOperator || }}-->
+                        <div class="filter-item-operator label" *ngIf="i > 1">{{ 'and' }}</div> <!-- {{ selectedOperator || }}-->
 
                         <!-- dropdown for fieldname -->
-                        <app-dropdown-base style="overflow: visible"
+                        <app-dropdown-base style="overflow: visible;"
                             [dropdownId] = "'filter-fieldname'"
                             [buttonType] = "'button-01'"
                             [buttonValue] = "'fieldname'"
-                            [buttonIcon] = "'icon-arrow-down'"
+                            [buttonIcon] = "'icon-chevron-down'"
                             [dropdownContent] = "'fieldname'">
                         </app-dropdown-base>
 
@@ -47,15 +47,15 @@
                             [dropdownId] = "'filter-operator'"
                             [buttonType] = "'button-01'"
                             [buttonValue] = "'operator'"
-                            [buttonIcon] = "'icon-arrow-down'"
+                            [buttonIcon] = "'icon-chevron-down'"
                             [dropdownContent] = "'operator'">
                         </app-dropdown-base>
 
                         <!-- Input for filterValue -->
-                        <input formControlName="value" type="text" placeholder="Wert eingeben" />
+                        <input formControlName="value" type="text" placeholder="Enter a value..." class="filter-input"/>
 
                         <!-- Remove-Button -->
-                        <button type="button" (click)="removeCondition(i)">X</button>
+                        <button type="button" class="filter-item-remove" (click)="removeCondition(i)"><span class="icon-cancel-circle"></span></button>
                     </div>
                 </div>
             </div>

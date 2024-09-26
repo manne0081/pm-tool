@@ -9,7 +9,7 @@
     box-sizing: border-box;
     height: 28px; /* Beispielhöhe */
     margin-top: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 
     &.filter-button.active {
         background-color: #ffcccc; /* Rot für Filter wenn aktiv */
@@ -82,11 +82,11 @@
     align-items: center;
     position: relative;
     margin-top: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     padding: 4px 8px;
     box-sizing: border-box;
     height: 32px;
-    // width: 200px;
+    width: inherit;
 
     &:hover {
         background-color: rgb(245, 245, 245);
@@ -96,4 +96,21 @@
     p {
         margin-right: 8px;
     }
+
+    &.fieldname {
+        // background-color: lime;
+        width: 200px;
+        border-right: none;
+        border-radius: 4px 0 0 4px;
+    }
+
+    &.operator {
+        // background-color: orange;
+        width: 200px;
+        border-right: none;
+        border-radius: 0 0 0 0;
+    }
+
+
+
 }

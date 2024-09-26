@@ -15,7 +15,12 @@
 
 
 
-<button id="id-drop-button" class="drop-button-01" *ngIf="buttonType==='button-01'" (click)="onClickButton($event)">
+<button id="id-drop-button" class="drop-button-01" *ngIf="buttonType==='button-01'" (click)="onClickButton($event)"
+    [ngClass]="{
+        'fieldname': dropdownId === 'filter-fieldname',
+        'operator': dropdownId === 'filter-operator',
+    }"
+>
     <p>{{ buttonValue }}</p>
     <div class="{{buttonIcon}}"></div>
 </button>

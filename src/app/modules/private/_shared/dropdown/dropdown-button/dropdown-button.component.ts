@@ -28,6 +28,8 @@ export class DropdownButtonComponent {
     ) {}
 
     ngOnInit(): void {
+        console.log(this.dropdownId);
+
         this.dropdownService.numberFilterConditions$.subscribe(item => {
             if(item > 0) {
                 this.hasFilterConditions = true;
