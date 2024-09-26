@@ -19,9 +19,9 @@ export class DropdownButtonComponent {
     @Input() buttonValue: string = '';
     @Input() buttonIcon: string = '';
 
-    haveFilterConditions: boolean = false;
-    haveSortConditions: boolean = false;
-    haveGroupConditions: boolean = false;
+    hasFilterConditions: boolean = false;
+    hasSortConditions: boolean = false;
+    hasGroupConditions: boolean = false;
 
     constructor(
         private dropdownService: DropdownService,
@@ -30,15 +30,15 @@ export class DropdownButtonComponent {
     ngOnInit(): void {
         this.dropdownService.numberFilterConditions$.subscribe(item => {
             if(item > 0) {
-                this.haveFilterConditions = true;
+                this.hasFilterConditions = true;
             } else {
-                this.haveFilterConditions = false;
+                this.hasFilterConditions = false;
             }
         });
     }
 
     onClickButton(event: Event): void {
-        // console.log('clicked:', event);
+        // console.log('clicked:',this.dropdownId);
         event.stopPropagation();
         this.dropdownService.setOpenedDropdownId(this.dropdownId);
         this.dropdownService.setOpenedDropdownId2(this.dropdownId);

@@ -1,2 +1,33 @@
-<p>auth works!</p>
-<button [routerLink]="['/dashboard']">Anmelden</button>
+<div class="menu-container">
+    <div class="menu-wrapper">
+
+        <!-- HEADER LEFT -->
+        <!-- *********** -->
+        <div class="menu-wrapper left">
+
+            <!-- Logo -->
+            <!-- **** -->
+            <div class="header-item-container-1 logo">
+                <a href="/"><img src="../../../assets/img/logo-systaro.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh;background-color: #f0f2f5;;">
+    <div class="container">
+        <form class="login-form">
+            <h2>Login</h2>
+            <div class="input-group">
+                <label for="username">Benutzername</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Passwort</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" [routerLink]="['/dashboard']">Einloggen</button>
+            <p class="message">Noch kein Konto? <a href="#">Registrieren</a></p>
+        </form>
+    </div>
+</div>

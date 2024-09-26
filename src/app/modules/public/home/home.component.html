@@ -1,2 +1,24 @@
-<p>home works!</p>
-<button [routerLink]="['/auth']">Login</button>
+<div class="menu-container">
+    <div class="menu-wrapper">
+
+        <!-- HEADER LEFT -->
+        <!-- *********** -->
+        <div class="menu-wrapper left">
+
+            <!-- Logo -->
+            <!-- **** -->
+            <div class="header-item-container-1 logo">
+                <a href="/"><img src="../../../assets/img/logo-systaro.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div class="landing-container">
+        <h1>Willkommen!</h1>
+        <p>Entdecken Sie unsere großartigen Funktionen und Angebote.</p>
+        <a href="login.html" class="btn" [routerLink]="['/auth']">Jetzt einloggen</a>
+        <!-- <a href="register.html" class="btn secondary">Registrieren</a> -->
+    </div>
+</div>
