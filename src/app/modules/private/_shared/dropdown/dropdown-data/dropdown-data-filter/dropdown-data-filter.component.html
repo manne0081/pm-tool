@@ -27,13 +27,12 @@
                 <!-- FieldName-Dropdown -->
                 <!-- ------------------ -->
                 <!-- <app-dropdown-base style="overflow: visible"
-                    [buttonType] = "'content-header-button'"
+                    [buttonType] = "'filter-data-dropdown'"
+                    [dropdownId] = "'filter-data-fieldname'"
                     [buttonValue] = "'fieldname'"
-                    [buttonIcon] = "'icon-filter'"
-                    [dropdownContent] = "'filter'">
+                    [buttonIcon] = "''"
+                    [dropdownContent] = "'filter-data'">
                 </app-dropdown-base> -->
-
-
 
                 <!-- <app-filter-data-dropdown style="overflow: visible"
                     [buttonType]="'condition'"
@@ -43,9 +42,9 @@
                     <input type="text" placeholder="Enter a Value...">
                 </div>
 
-                <!-- <div class="filter-item remove" (click)="removeFilter($event, condition.index)">
+                <div class="filter-item remove" (click)="removeFilter($event, condition.index)">
                     <span class="icon-cancel-circle"></span>
-                </div> -->
+                </div>
 
             </div>
         </div>

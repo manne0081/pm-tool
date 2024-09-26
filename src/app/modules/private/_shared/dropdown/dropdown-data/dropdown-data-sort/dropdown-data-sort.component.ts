@@ -15,8 +15,10 @@ import { DropdownService } from '../../dropdown.service';
 })
 
 export class DropdownDataSortComponent implements OnInit {
-    showDropContent: boolean = false;
     @Input() dropdownId: string = '';
+    @Input() dropdownContent: string = '';
+
+    showDropContent: boolean = false;
 
     searchTerm: string = '';
     sortingTerm: string = '';
@@ -28,7 +30,7 @@ export class DropdownDataSortComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        console.log(this.dropdownId);
+        // console.log('inputValues:',this.dropdownId, this.dropdownContent);
 
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);
@@ -40,6 +42,8 @@ export class DropdownDataSortComponent implements OnInit {
     }
 
     setShowDropdown(dropdownId: any): void {
+        // console.log('showDropdownSort?');
+
         if (dropdownId === this.dropdownId) {
             this.showDropContent = true;
         } else {

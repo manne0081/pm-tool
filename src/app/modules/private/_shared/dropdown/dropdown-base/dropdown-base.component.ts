@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DropdownButtonComponent } from '../dropdown-button/dropdown-button.component';
@@ -18,9 +18,20 @@ import { DropdownDataSortComponent } from '../dropdown-data/dropdown-data-sort/d
     styleUrl: './dropdown-base.component.scss'
 })
 
-export class DropdownBaseComponent {
-    @Input() buttonType: string = '';           // for example:
-    @Input() buttonValue: string = '';          // for example: sort, filter, group
+export class DropdownBaseComponent implements OnInit {
+    @Input() dropdownId: string = '';           // for example: content-filter, content-sort,
+    @Input() buttonType: string = '';           // for example: content-header-button, filter-dropdown,
+    @Input() buttonValue: string = '';          // for example: sort, filter, group,
     @Input() buttonIcon: string = '';           // for example: icon-sort, icon-filter, icon-drawer,
-    @Input() dropdownContent: string = '';      // for example: sort, filter, group
+    @Input() dropdownContent: string = '';      // for example: sort, filter, group,
+
+    constructor() {}
+
+    ngOnInit(): void {
+        // console.log('dropdownId:', this.dropdownId);
+        // console.log('buttonType:', this.buttonType);
+        // console.log('buttonValue:', this.buttonValue);
+        // console.log('buttonIcon:', this.buttonIcon);
+        // console.log('dropdownContent:', this.dropdownContent);
+    }
 }

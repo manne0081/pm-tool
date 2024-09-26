@@ -14,6 +14,7 @@ import { DropdownService } from '../dropdown.service';
 })
 
 export class DropdownButtonComponent {
+    @Input() dropdownId: string = '';
     @Input() buttonType: string = '';
     @Input() buttonValue: string = '';
     @Input() buttonIcon: string = '';
@@ -37,8 +38,9 @@ export class DropdownButtonComponent {
     }
 
     onClickButton(event: Event): void {
-        console.log('clicked:', event);
+        // console.log('clicked:', event);
         event.stopPropagation();
-        this.dropdownService.setOpenedDropdownId(this.buttonValue);
+        this.dropdownService.setOpenedDropdownId(this.dropdownId);
+        this.dropdownService.setOpenedDropdownId2(this.dropdownId);
     }
 }

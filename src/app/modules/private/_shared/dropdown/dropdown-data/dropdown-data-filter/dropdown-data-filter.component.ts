@@ -20,6 +20,7 @@ import { DropdownBaseComponent } from '../../dropdown-base/dropdown-base.compone
 
 export class DropdownDataFilterComponent {
     @Input() dropdownId: string = '';
+    @Input() dropdownContent: string = '';
 
     showDropContent: boolean = false;
     fieldNamesForFilter?: string;
@@ -36,7 +37,7 @@ export class DropdownDataFilterComponent {
     ) {}
 
     ngOnInit(): void {
-        console.log(this.dropdownId);
+        // console.log('inputValues:',this.dropdownId, this.dropdownContent);
 
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);
@@ -47,6 +48,8 @@ export class DropdownDataFilterComponent {
     }
 
     setShowDropdown(dropdownId: any): void {
+        // console.log('showDropdownFilter?');
+
         if (dropdownId === this.dropdownId) {
             this.showDropContent = true;
         } else {
@@ -72,5 +75,19 @@ export class DropdownDataFilterComponent {
         this.newFilterConditionIndex++;
         this.filterConditions.push({ index: this.newFilterConditionIndex, label: 'and', name: '', condition: '', value: '' });
         // this.contentTileViewService.setNumberFilterConditions(this.filterConditions.length);
+    }
+
+    /**
+     * Gets the filter-array-index and remove the from the filter-array
+     * @param event
+     * @param index
+     */
+    removeFilter(event: Event, index: number): void {
+        event.stopPropagation();
+        const arrayIndex = this.filterConditions.findIndex(filter => filter.index === index);
+        if (arrayIndex !== -1) {
+            this.filterConditions.splice(arrayIndex, 1);
+        }
+        this.dropdownService.setNumberFilterConditions(this.filterConditions.length);
     }
 }
