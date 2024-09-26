@@ -42,7 +42,7 @@ export class DropdownDataSortComponent implements OnInit {
     }
 
     setShowDropdown(dropdownId: any): void {
-        // console.log('showDropdownSort?');
+        // console.log('showDropdownSort?', dropdownId, this.dropdownId);
 
         if (dropdownId === this.dropdownId) {
             this.showDropContent = true;

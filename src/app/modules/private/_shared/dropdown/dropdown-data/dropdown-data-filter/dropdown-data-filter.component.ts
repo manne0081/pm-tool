@@ -48,7 +48,7 @@ export class DropdownDataFilterComponent {
     }
 
     setShowDropdown(dropdownId: any): void {
-        // console.log('showDropdownFilter?');
+        // console.log('showDropdownFilter?', dropdownId, this.dropdownId);
 
         if (dropdownId === this.dropdownId) {
             this.showDropContent = true;
