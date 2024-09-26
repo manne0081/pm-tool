@@ -70,3 +70,33 @@
         border: 1px solid #898f46;
     }
 }
+
+
+
+.drop-button-01 {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #b9b9b9;
+    position: relative;
+    border-radius: 4px;
+    padding: 3px 6px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 28px; /* Beispielhöhe */
+    margin-top: 1px;
+    margin-bottom: 4px;
+
+
+    border: 1px solid rgb(200, 200, 200);
+    padding: 4px 8px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // width: 200px;
+
+    &:hover {
+        background-color: rgb(245, 245, 245);
+        cursor: pointer;
+    }
+}

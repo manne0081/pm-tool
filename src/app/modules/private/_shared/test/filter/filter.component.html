@@ -3,7 +3,7 @@
     <!-- Button -->
     <button (click)="toggleFilters()" class="filter-btn">
         <div class="icon-filter"></div>
-        <span>Filter</span>
+        <span>Filter (WIP)</span>
     </button>
 
     <!-- Content -->
@@ -18,30 +18,49 @@
             <div formArrayName="conditions">
                 <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
 
-                    <!-- Dropdown für Feld-Auswahl -->
-                    <!-- <select formControlName="field">
-                        <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
-                    </select> -->
+                    <div class="condition-wrapper">
+                        <!-- Dropdown für Feld-Auswahl -->
+                        <!-- <select formControlName="field">
+                            <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
+                        </select> -->
 
-                    <app-dropdown-base style="overflow: visible"
-                        [dropdownId] = "'content-filter'"
-                        [buttonType] = "'content-header-button'"
-                        [dropdownId] = "'content-filter'"
-                        [buttonValue] = "'Fieldname'"
-                        [buttonIcon] = "'icon-arrow-down'"
-                        [dropdownContent] = "'filter'">
-                    </app-dropdown-base>
+                        <!-- dropdown for condition -->
+                        <div class="filter-item-operator label" *ngIf="i === 0">Where</div>
 
-                    <!-- Dropdown für Operator-Auswahl -->
-                    <select formControlName="operator">
-                        <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
-                    </select>
+                        <app-dropdown-base style="overflow: visible" class="filter-item-operator" *ngIf="i === 1"
+                            [dropdownId] = "'filter-condition'"
+                            [buttonType] = "'button-01'"
+                            [buttonValue] = "'and'"
+                            [buttonIcon] = "'icon-arrow-down'"
+                            [dropdownContent] = "'condition'">
+                        </app-dropdown-base>
 
-                    <!-- Eingabefeld für den Wert -->
-                    <input formControlName="value" type="text" placeholder="Wert eingeben" />
+                        <div class="filter-item-operator label" *ngIf="i > 1">{{ 'and' }}</div> <!-- {{ selectedOperator || }}-->
 
-                    <!-- Entfernen-Button -->
-                    <button type="button" (click)="removeCondition(i)">X</button>
+                        <!-- dropdown for fieldname -->
+                        <app-dropdown-base style="overflow: visible"
+                            [dropdownId] = "'filter-fieldname'"
+                            [buttonType] = "'button-01'"
+                            [buttonValue] = "'fieldname'"
+                            [buttonIcon] = "'icon-arrow-down'"
+                            [dropdownContent] = "'fieldname'">
+                        </app-dropdown-base>
+
+                        <!-- dropdown for operator -->
+                        <app-dropdown-base style="overflow: visible"
+                            [dropdownId] = "'filter-operator'"
+                            [buttonType] = "'button-01'"
+                            [buttonValue] = "'operator'"
+                            [buttonIcon] = "'icon-arrow-down'"
+                            [dropdownContent] = "'operator'">
+                        </app-dropdown-base>
+
+                        <!-- Input for filterValue -->
+                        <input formControlName="value" type="text" placeholder="Wert eingeben" />
+
+                        <!-- Remove-Button -->
+                        <button type="button" (click)="removeCondition(i)">X</button>
+                    </div>
                 </div>
             </div>
 

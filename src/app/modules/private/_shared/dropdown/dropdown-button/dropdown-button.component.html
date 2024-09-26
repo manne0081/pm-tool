@@ -1,3 +1,4 @@
+<!-- Alte Version der Filter/Sort/Group - Buttons -->
 <button id="id-drop-button" class="drop-button" *ngIf="buttonType==='content-header-button'" (click)="onClickButton($event)"
     [ngClass]="{
         'drop-button-active-filter': hasFilterConditions === true && buttonValue === 'filter',
@@ -5,8 +6,16 @@
         'drop-button-active-group': hasGroupConditions === true && buttonValue === 'group'
     }"
 >
-
     <div class="{{ buttonIcon }}"></div>
     <p style="margin-right: 2px">{{ buttonValue | titlecase }}<span *ngIf="buttonValue === 'filter'"> / WIP</span> </p>
 
+</button>
+
+
+
+
+
+<button id="id-drop-button" class="drop-button-01" *ngIf="buttonType==='button-01'" (click)="onClickButton($event)">
+    <p style="margin-right: 2px">{{ buttonValue | titlecase }}<span *ngIf="buttonValue === 'filter'"> / WIP</span></p>
+    <div class="{{buttonIcon}}"></div>
 </button>

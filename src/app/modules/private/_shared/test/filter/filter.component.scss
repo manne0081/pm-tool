@@ -52,50 +52,65 @@
     box-sizing: border-box;
     box-shadow: 0px 2px 8px 0px rgba(44, 80, 103, 0.4);
     z-index: 10; /* Damit es über anderen Elementen liegt */
-}
 
-select, input {
-    margin-right: 10px;
-    padding: 5px;
-    width: 120px;
-}
+    .condition-wrapper {
+        // background-color: lime;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        // margin: 8px 0px;
 
-button {
-    margin-left: 5px;
-}
+        .filter-item-operator {
+            // width: 76px;
+            margin-right: 32px;
+            padding-left: 8px;
+        }
 
-
-
-.filter-action-button {
-    display: flex;
-}
-
-button {
-    background-color: transparent;
-    border: 1px solid transparent;
-    // border: 1px solid rgb(225, 225, 225);
-    margin: 4px 0px;
-    margin-right: 8px;
-    padding: 4px 6px;
-    border-radius: 4px;
-
-    span {
-        color: #afafaf;
-        font-size: .9em;
     }
 
-    span.icon-add {
-        position: relative;
-        top: 2px;
-        margin-right: 2px;
+
+
+    select, input {
+        margin-right: 10px;
+        padding: 5px;
+        width: 120px;
     }
 
-    &:hover {
+    button {
+        margin-left: 5px;
+    }
+
+    .filter-action-button {
+        display: flex;
+    }
+
+    button {
+        background-color: transparent;
+        border: 1px solid transparent;
+        border: 1px solid rgb(225, 225, 225);
+        margin: 4px 0px;
+        margin-right: 8px;
+        padding: 4px 6px;
+        border-radius: 4px;
+
+        span {
+            color: #afafaf;
+            font-size: .9em;
+        }
+
+        span.icon-add {
+            position: relative;
+            top: 2px;
+            margin-right: 2px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    button:hover span {
+        color: #727272;
         cursor: pointer;
     }
-}
-
-button:hover span {
-    color: #727272;
-    cursor: pointer;
 }
