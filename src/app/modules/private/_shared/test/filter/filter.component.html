@@ -1,20 +1,20 @@
-<!-- Button zum Öffnen des Filter-Fensters -->
-<button (click)="toggleFilters()" class="filter-btn">Filter hinzufügen</button>
+<div class="filter-wrapper">
+    <!-- Button zum Öffnen des Filter-Fensters -->
+    <button (click)="toggleFilters()" class="filter-btn">Filter hinzufügen</button>
 
-<!-- Filter-Fenster -->
-<div *ngIf="showFilters" class="filter-container">
-    <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+    <!-- Filter-Fenster -->
+    <div *ngIf="showFilters" class="filter-container">
+      <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
         <div formArrayName="conditions">
-        <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
-
+          <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
             <!-- Dropdown für Feld-Auswahl -->
             <select formControlName="field">
-            <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
+              <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
             </select>
 
             <!-- Dropdown für Operator-Auswahl -->
             <select formControlName="operator">
-            <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
+              <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
             </select>
 
             <!-- Eingabefeld für den Wert -->
@@ -22,7 +22,7 @@
 
             <!-- Entfernen-Button -->
             <button type="button" (click)="removeCondition(i)">X</button>
-        </div>
+          </div>
         </div>
 
         <!-- Button zum Hinzufügen einer Bedingung -->
@@ -30,5 +30,6 @@
 
         <!-- Formular senden -->
         <button type="submit">Filtern</button>
-    </form>
-</div>
+      </form>
+    </div>
+  </div>

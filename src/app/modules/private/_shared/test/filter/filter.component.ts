@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -56,5 +56,4 @@ export class FilterComponent {
     onSubmit() {
         console.log(this.filterForm.value);
     }
-
 }
