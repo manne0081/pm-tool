@@ -1,1 +1,15 @@
-<p>task-list works!</p>
+<div class="grid-container">
+
+    <div class="item-container"
+        *ngFor="let item of taskItems"
+        (click)="onSelectTask(item)"
+        [ngClass]="{ 'selected': item.id === selectedItemId }"
+    >
+        <span><b>{{ item.id}} - {{ item.title }}</b></span>
+        <br><br>
+        <!-- <span>{{ item.postCode }} {{ item.city }}</span>
+        <br>
+        <span>{{ item.phoneNumber }}</span> -->
+
+    </div>
+</div>
