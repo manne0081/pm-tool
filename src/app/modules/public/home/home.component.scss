@@ -1,3 +1,45 @@
+// MAIN-MENU
+// *********
+.menu-container {
+    background-color: white;
+    height: 100%;
+    overflow: visible;
+    height: 52px;
+    box-shadow: 0px 2px 8px 0px rgba(39, 63, 97, 0.28);
+    position: relative;
+    z-index: 5;
+
+    div, button {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-wrapper {
+        height: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        overflow: visible;
+    }
+
+    .menu-wrapper.left {
+        display: flex;
+        align-items: center;
+
+        .logo {
+            background-color: white;
+            height: 100%;
+            width: max-content;
+            padding: 0 8px 0 12px;
+
+            img {
+                height: 32px;
+                width: auto;
+            }
+        }
+    }
+}
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f2f5;
@@ -6,6 +48,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
 }
 
 .landing-container {
@@ -14,6 +57,8 @@ body {
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: -52px;
 }
 
 .landing-container h1 {
