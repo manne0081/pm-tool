@@ -1,0 +1,29 @@
+<div class="filter-container">
+    <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+      <div formArrayName="conditions">
+        <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
+          <!-- Feld-Auswahl -->
+          <select formControlName="field">
+            <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
+          </select>
+
+          <!-- Operator-Auswahl -->
+          <select formControlName="operator">
+            <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
+          </select>
+
+          <!-- Eingabefeld für den Wert -->
+          <input formControlName="value" type="text" placeholder="Wert eingeben" />
+
+          <!-- Entfernen-Button -->
+          <button type="button" (click)="removeCondition(i)">X</button>
+        </div>
+      </div>
+
+      <!-- Button zum Hinzufügen einer Bedingung -->
+      <button type="button" (click)="addCondition()">Bedingung hinzufügen</button>
+
+      <!-- Formular senden -->
+      <button type="submit">Filtern</button>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+select, input {
+    margin-right: 1rem;
+}
+
+button {
+    margin-left: 1rem;
+}

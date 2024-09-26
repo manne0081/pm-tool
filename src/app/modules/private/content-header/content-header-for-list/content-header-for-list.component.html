@@ -11,6 +11,7 @@
     <!-- -------------------- -->
     <app-dropdown-base style="overflow: visible"
         [buttonType] = "'content-header-button'"
+        [dropdownId] = "'content-filter'"
         [buttonValue] = "'filter'"
         [buttonIcon] = "'icon-filter'"
         [dropdownContent] = "'filter'">
@@ -18,10 +19,13 @@
 
     <app-dropdown-base style="overflow: visible"
         [buttonType] = "'content-header-button'"
+        [dropdownId] = "'content-sort'"
         [buttonValue]="'sort'"
         [buttonIcon]="'icon-sort'"
         [dropdownContent]="'sort'">
     </app-dropdown-base>
+
+    <app-filter></app-filter>
 
     <!-- todo -->
 
