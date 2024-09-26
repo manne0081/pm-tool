@@ -1,29 +1,34 @@
-<div class="filter-container">
+<!-- Button zum Öffnen des Filter-Fensters -->
+<button (click)="toggleFilters()" class="filter-btn">Filter hinzufügen</button>
+
+<!-- Filter-Fenster -->
+<div *ngIf="showFilters" class="filter-container">
     <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
-      <div formArrayName="conditions">
+        <div formArrayName="conditions">
         <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
-          <!-- Feld-Auswahl -->
-          <select formControlName="field">
+
+            <!-- Dropdown für Feld-Auswahl -->
+            <select formControlName="field">
             <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
-          </select>
+            </select>
 
-          <!-- Operator-Auswahl -->
-          <select formControlName="operator">
+            <!-- Dropdown für Operator-Auswahl -->
+            <select formControlName="operator">
             <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
-          </select>
+            </select>
 
-          <!-- Eingabefeld für den Wert -->
-          <input formControlName="value" type="text" placeholder="Wert eingeben" />
+            <!-- Eingabefeld für den Wert -->
+            <input formControlName="value" type="text" placeholder="Wert eingeben" />
 
-          <!-- Entfernen-Button -->
-          <button type="button" (click)="removeCondition(i)">X</button>
+            <!-- Entfernen-Button -->
+            <button type="button" (click)="removeCondition(i)">X</button>
         </div>
-      </div>
+        </div>
 
-      <!-- Button zum Hinzufügen einer Bedingung -->
-      <button type="button" (click)="addCondition()">Bedingung hinzufügen</button>
+        <!-- Button zum Hinzufügen einer Bedingung -->
+        <button type="button" (click)="addCondition()">Bedingung hinzufügen</button>
 
-      <!-- Formular senden -->
-      <button type="submit">Filtern</button>
+        <!-- Formular senden -->
+        <button type="submit">Filtern</button>
     </form>
 </div>

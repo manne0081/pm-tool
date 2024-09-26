@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 export class FilterComponent {
     filterForm: FormGroup;
+    showFilters: boolean = false;  // Steuert, ob das Filter-Fenster angezeigt wird
 
     fields = ['Category', 'Price', 'Stock', 'Date'];  // Beispiel-Felder
     operators = ['equals', 'greater than', 'less than'];  // Beispiel-Operatoren
@@ -34,9 +35,9 @@ export class FilterComponent {
     // Hinzufügen einer neuen Bedingung
     addCondition() {
         const conditionGroup = this.fb.group({
-            field: [''],  // z. B. "Category"
-            operator: [''],  // z. B. "equals"
-            value: ['']  // z. B. "Chairs"
+            field: [''],
+            operator: [''],
+            value: ['']
         });
         this.conditions.push(conditionGroup);
     }
@@ -46,10 +47,14 @@ export class FilterComponent {
         this.conditions.removeAt(index);
     }
 
+    // Anzeigen/Verstecken des Filter-Fensters
+    toggleFilters() {
+        this.showFilters = !this.showFilters;
+    }
+
     // Formular-Submit-Methode
     onSubmit() {
         console.log(this.filterForm.value);
-        // Hier könnte eine API oder eine Service-Funktion aufgerufen werden, um die Filter zu verarbeiten
     }
 
 }
