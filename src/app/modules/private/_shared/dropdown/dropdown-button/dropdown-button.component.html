@@ -7,7 +7,7 @@
     }"
 >
     <div class="{{ buttonIcon }}"></div>
-    <p style="margin-right: 2px">{{ buttonValue | titlecase }}<span *ngIf="buttonValue === 'filter'"> / WIP</span> </p>
+    <p style="margin-right: 2px">{{ buttonValue }}<span *ngIf="buttonValue === 'filter'"> / WIP</span> </p>
 
 </button>
 
@@ -16,6 +16,6 @@
 
 
 <button id="id-drop-button" class="drop-button-01" *ngIf="buttonType==='button-01'" (click)="onClickButton($event)">
-    <p style="margin-right: 2px">{{ buttonValue | titlecase }}<span *ngIf="buttonValue === 'filter'"> / WIP</span></p>
+    <p>{{ buttonValue }}</p>
     <div class="{{buttonIcon}}"></div>
 </button>
