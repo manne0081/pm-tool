@@ -1,40 +1,47 @@
 <div class="filter-wrapper">
-    <!-- Button zum Öffnen des Filter-Fensters -->
 
+    <!-- Button -->
     <button (click)="toggleFilters()" class="filter-btn">
         <div class="icon-filter"></div>
         <span>Filter</span>
     </button>
 
-    <!-- Filter-Fenster -->
+    <!-- Content -->
     <div *ngIf="showFilters" class="filter-container">
-      <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
-        <div formArrayName="conditions">
-          <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
 
-            <!-- Dropdown für Feld-Auswahl -->
-            <select formControlName="field">
-              <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
-            </select>
+        <!-- Content-Header -->
+        <h3 style="margin-left: 11px; font-size: .8rem; margin-bottom: 8px;">Filter by</h3>
+        <hr>
 
-            <!-- Dropdown für Operator-Auswahl -->
-            <select formControlName="operator">
-              <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
-            </select>
+        <!-- Content -->
+        <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+            <div formArrayName="conditions">
+                <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
 
-            <!-- Eingabefeld für den Wert -->
-            <input formControlName="value" type="text" placeholder="Wert eingeben" />
+                    <!-- Dropdown für Feld-Auswahl -->
+                    <select formControlName="field">
+                    <option *ngFor="let field of fields" [value]="field">{{ field }}</option>
+                    </select>
 
-            <!-- Entfernen-Button -->
-            <button type="button" (click)="removeCondition(i)">X</button>
-          </div>
-        </div>
+                    <!-- Dropdown für Operator-Auswahl -->
+                    <select formControlName="operator">
+                    <option *ngFor="let operator of operators" [value]="operator">{{ operator }}</option>
+                    </select>
 
-        <!-- Button zum Hinzufügen einer Bedingung -->
-        <button type="button" (click)="addCondition()">Bedingung hinzufügen</button>
+                    <!-- Eingabefeld für den Wert -->
+                    <input formControlName="value" type="text" placeholder="Wert eingeben" />
 
-        <!-- Formular senden -->
-        <button type="submit">Filtern</button>
+                    <!-- Entfernen-Button -->
+                    <button type="button" (click)="removeCondition(i)">X</button>
+                </div>
+            </div>
+
+            <!-- Button zum Hinzufügen einer Bedingung -->
+            <button class="filter-action-button" (click)="addCondition()">
+                <span class="icon-add"></span>
+                <span>Add condition</span>
+            </button>
       </form>
+
     </div>
   </div>

@@ -20,6 +20,11 @@
 
     div {
         margin-right: 4px;
+        font-size: 1.1rem;
+    }
+
+    span {
+        font-size: 1rem;
     }
 
     div.icon-filter {
@@ -35,14 +40,17 @@
 }
 
 .filter-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 4px;
     position: absolute;
     top: 100%;  /* Platziere das Fenster direkt unter dem Button */
     right: 0;   /* Rechtsbündig zum Button */
-    margin-top: 10px;
-
-    padding: 15px;
-    background-color: #f9f9f9;
+    margin-top: 4px;
     min-width: 720px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 8px 0px rgba(44, 80, 103, 0.4);
     z-index: 10; /* Damit es über anderen Elementen liegt */
 }
 
@@ -54,4 +62,40 @@ select, input {
 
 button {
     margin-left: 5px;
+}
+
+
+
+.filter-action-button {
+    display: flex;
+}
+
+button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    // border: 1px solid rgb(225, 225, 225);
+    margin: 4px 0px;
+    margin-right: 8px;
+    padding: 4px 6px;
+    border-radius: 4px;
+
+    span {
+        color: #afafaf;
+        font-size: .9em;
+    }
+
+    span.icon-add {
+        position: relative;
+        top: 2px;
+        margin-right: 2px;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+button:hover span {
+    color: #727272;
+    cursor: pointer;
 }
