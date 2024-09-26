@@ -123,7 +123,9 @@
         margin-top: 12px;
         margin-left: 8px;
         background-color: transparent;
-        border: 1px solid transparent;
+        border: 1px solid #afafaf;
+        border-radius: 4px;
+        padding: 4px 6px;
 
         span {
             color: #afafaf;
@@ -143,33 +145,4 @@
     }
 
 
-    // button {
-    //     background-color: transparent;
-    //     border: 1px solid transparent;
-    //     border: 1px solid rgb(225, 225, 225);
-    //     margin: 4px 0px;
-    //     margin-right: 8px;
-    //     padding: 4px 6px;
-    //     border-radius: 4px;
-
-    //     span {
-    //         color: #afafaf;
-    //         font-size: .9em;
-    //     }
-
-    //     span.icon-add {
-    //         position: relative;
-    //         top: 2px;
-    //         margin-right: 2px;
-    //     }
-
-    //     &:hover {
-    //         cursor: pointer;
-    //     }
-    // }
-
-    // button:hover span {
-    //     color: #727272;
-    //     cursor: pointer;
-    // }
 }
