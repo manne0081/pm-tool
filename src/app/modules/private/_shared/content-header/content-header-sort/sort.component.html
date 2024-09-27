@@ -1,24 +1,24 @@
 <div class="filter-wrapper">
 
     <!-- Button -->
-    <button (click)="toggleFilters()" class="filter-btn">
-        <div class="icon-filter"></div>
-        <span>Filter (WIP)</span>
+    <button (click)="toggleContent($event)" class="filter-btn">
+        <div class="icon-sort"></div>
+        <span>Sort</span>
     </button>
 
     <!-- Content -->
-    <div *ngIf="showFilters" class="filter-container">
+    <div *ngIf="showContent" class="sort-container" style="overflow: visible;">
 
         <!-- Content-Header -->
-        <h3 style="margin-left: 11px; font-size: .8rem; margin-bottom: 8px;">Filter by</h3>
+        <h3 style="margin-left: 11px; font-size: .8rem; margin-bottom: 8px;">Sort by (WIP)</h3>
         <hr>
 
         <!-- Content -->
-        <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" style="margin-top: 12px;">
-            <div formArrayName="conditions">
-                <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i">
+        <form [formGroup]="sortForm" (ngSubmit)="onSubmit()" style="margin-top: 12px;" style="overflow: visible;">
+            <div formArrayName="conditions" style="overflow: visible;">
+                <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i" style="overflow: visible;">
 
-                    <div class="condition-wrapper">
+                    <div class="condition-wrapper" style="overflow: visible;">
 
                         <!-- dropdown for condition -->
                         <div class="filter-item-operator label" *ngIf="i === 0">Where</div>

@@ -1,0 +1,71 @@
+<div class="filter-wrapper">
+
+    <!-- Button -->
+    <button (click)="toggleContent($event)" class="filter-btn">
+        <div class="icon-filter"></div>
+        <span>Filter</span>
+    </button>
+
+    <!-- Content -->
+    <div *ngIf="showContent" class="filter-container" style="overflow: visible;">
+
+        <!-- Content-Header -->
+        <h3 style="margin-left: 11px; font-size: .8rem; margin-bottom: 8px;">Filter by (WIP)</h3>
+        <hr>
+
+        <!-- Content -->
+        <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" style="margin-top: 12px;" style="overflow: visible;">
+            <div formArrayName="conditions" style="overflow: visible;">
+                <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i" style="overflow: visible;">
+
+                    <div class="condition-wrapper" style="overflow: visible;">
+
+                        <!-- dropdown for condition -->
+                        <div class="filter-item-operator label" *ngIf="i === 0">Where</div>
+
+                        <app-dropdown-base style="overflow: visible" class="filter-item-operator" *ngIf="i === 1"
+                            [dropdownId] = "'filter-condition'"
+                            [buttonType] = "'button-01'"
+                            [buttonValue] = "'and'"
+                            [buttonIcon] = "'icon-chevron-down'"
+                            [dropdownContent] = "'condition'">
+                        </app-dropdown-base>
+
+                        <div class="filter-item-operator label" *ngIf="i > 1">{{ 'and' }}</div> <!-- {{ selectedOperator || }}-->
+
+                        <!-- dropdown for fieldname -->
+                        <app-dropdown-base style="overflow: visible;"
+                            [dropdownId] = "'filter-fieldname'"
+                            [buttonType] = "'button-01'"
+                            [buttonValue] = "'fieldname'"
+                            [buttonIcon] = "'icon-chevron-down'"
+                            [dropdownContent] = "'fieldname'">
+                        </app-dropdown-base>
+
+                        <!-- dropdown for operator -->
+                        <app-dropdown-base style="overflow: visible"
+                            [dropdownId] = "'filter-operator'"
+                            [buttonType] = "'button-01'"
+                            [buttonValue] = "'operator'"
+                            [buttonIcon] = "'icon-chevron-down'"
+                            [dropdownContent] = "'operator'">
+                        </app-dropdown-base>
+
+                        <!-- Input for filterValue -->
+                        <input formControlName="value" type="text" placeholder="Enter a value..." class="filter-input"/>
+
+                        <!-- Remove-Button -->
+                        <button type="button" class="filter-item-remove" (click)="removeCondition(i)"><span class="icon-cancel-circle"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button zum Hinzufügen einer Bedingung -->
+            <button class="filter-action-button" (click)="addCondition()">
+                <span class="icon-add"></span>
+                <span>Add condition</span>
+            </button>
+      </form>
+
+    </div>
+  </div>

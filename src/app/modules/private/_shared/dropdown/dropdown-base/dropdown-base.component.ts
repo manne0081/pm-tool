@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { v4 as uuidv4 } from 'uuid';
 
 import { DropdownButtonComponent } from '../dropdown-button/dropdown-button.component';
 import { DropdownDataFilterComponent } from '../dropdown-data/dropdown-data-filter/dropdown-data-filter.component';

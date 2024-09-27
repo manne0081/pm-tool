@@ -1,0 +1,135 @@
+.filter-wrapper {
+    position: relative; /* Referenz für das positionierte Filter-Fenster */
+    display: inline-block; /* Damit der Button und das Fenster relativ zueinander platziert werden */
+    overflow: visible;
+}
+
+.filter-btn {
+    background-color: rgb(225, 225, 225);
+    border: 1px solid #b9b9b9;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 8px;
+    height: 36px; /* Beispielhöhe */
+
+    div, span {
+        color: #4f4f4f;
+    }
+
+    div {
+        margin-right: 4px;
+        font-size: 1.1rem;
+    }
+
+    span {
+        font-size: 1rem;
+    }
+
+    div.icon-filter {
+        position: relative;
+        top: -1px;
+        font-size: 1.1rem;
+    }
+
+    &:hover {
+        background-color: #d3d3d3;
+        cursor: pointer;
+    }
+}
+
+.sort-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 4px;
+    position: absolute;
+    top: 100%;  /* Platziere das Fenster direkt unter dem Button */
+    right: 0;   /* Rechtsbündig zum Button */
+    margin-top: 4px;
+    min-width: 280px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 8px 0px rgba(44, 80, 103, 0.4);
+    z-index: 10; /* Damit es über anderen Elementen liegt */
+
+    .condition-wrapper {
+        // background-color: lime;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .filter-item-operator {
+            width: 76px;
+            margin-right: 12px;
+            padding-left: 8px;
+
+            &.label {
+                margin-left: 9px;
+                margin-right: 3px;
+            }
+        }
+
+        .filter-input {
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgb(200, 200, 200);
+            border-radius: 0 4px 4px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            top: 1px;
+            padding: 4px 8px;
+            box-sizing: border-box;
+            height: 32px;
+            width: 200px;
+            margin-right: 8px;
+        }
+
+        .filter-item-remove {
+            padding-top: 4px;
+
+        }
+
+        [class*="icon-cancel-"] {
+            font-size: 1.1em;
+        }
+
+        [class*="icon-cancel-"]:hover {
+            color: red;
+        }
+    }
+
+    button {
+        border: transparent;
+        background-color: transparent;
+    }
+
+    .filter-action-button {
+        display: flex;
+        margin-top: 12px;
+        margin-left: 8px;
+        background-color: transparent;
+        border: 1px solid #afafaf;
+        border-radius: 4px;
+        padding: 4px 6px;
+
+        span {
+            color: #afafaf;
+            font-size: .9em;
+        }
+
+        span.icon-add {
+            position: relative;
+            top: 1px;
+            margin-right: 2px;
+        }
+    }
+
+    button:hover span {
+        color: #727272;
+        cursor: pointer;
+    }
+
+
+}

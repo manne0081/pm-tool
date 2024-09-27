@@ -37,11 +37,12 @@ export class DropdownDataFilterComponent {
     ) {}
 
     ngOnInit(): void {
-        // console.log('inputValues:',this.dropdownId, this.dropdownContent);
+        // console.log('ngOnInit > inputValues:',this.dropdownId, this.dropdownContent);
 
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);
         });
+
         this.dropdownService.fieldNamesForFilter$.subscribe(data => {
             this.fieldNamesForFilter = this.dropdownService.transformFieldNamesWithLineBreaks(data);
         });

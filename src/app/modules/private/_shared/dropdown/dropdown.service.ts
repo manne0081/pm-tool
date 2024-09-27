@@ -40,13 +40,13 @@ export class DropdownService {
     }
 
     setOpenedDropdownId(clickedButtonValue: string): void {
-        // console.log('id:', clickedButtonValue);
+        // console.log('clickedButtonValue:', clickedButtonValue);
         this.clickedButton.next(clickedButtonValue);
     }
 
     // Neu...
     setOpenedDropdownId2(dropdownId: string): void {
-        // console.log('id2:', dropdownId);
+        // console.log('dropdownId:', dropdownId);
         this.openedDropdownId.next(dropdownId);
     }
 

@@ -5,7 +5,8 @@
     <app-dropdown-button [dropdownId]="dropdownId" [buttonType]="buttonType" [buttonValue]="buttonValue" [buttonIcon]="buttonIcon"></app-dropdown-button>
 
     <!-- INNER DROPDOWN > Dropdown-Content -->
-    <app-dropdown-data-filter [dropdownId]="dropdownId" [dropdownContent]="dropdownContent" *ngIf="dropdownContent === 'filter'"></app-dropdown-data-filter>
+    <app-dropdown-data-filter [dropdownId]="dropdownId" [dropdownContent]="dropdownContent" *ngIf="dropdownContent === dropdownContent"></app-dropdown-data-filter>
+
     <app-dropdown-data-sort [dropdownId]="dropdownId" [dropdownContent]="dropdownContent" *ngIf="dropdownContent === 'sort'"></app-dropdown-data-sort>
 
 </div>

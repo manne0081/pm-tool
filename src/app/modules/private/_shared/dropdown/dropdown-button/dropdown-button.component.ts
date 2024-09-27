@@ -28,7 +28,7 @@ export class DropdownButtonComponent {
     ) {}
 
     ngOnInit(): void {
-        console.log(this.dropdownId);
+        // console.log('ngOnInit > dropdownId:',this.dropdownId);
 
         this.dropdownService.numberFilterConditions$.subscribe(item => {
             if(item > 0) {
@@ -40,7 +40,7 @@ export class DropdownButtonComponent {
     }
 
     onClickButton(event: Event): void {
-        // console.log('clicked:',this.dropdownId);
+        // console.log('dropdownId:',this.dropdownId);
         event.stopPropagation();
         this.dropdownService.setOpenedDropdownId(this.dropdownId);
         this.dropdownService.setOpenedDropdownId2(this.dropdownId);

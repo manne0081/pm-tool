@@ -30,7 +30,7 @@ export class DropdownDataSortComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // console.log('inputValues:',this.dropdownId, this.dropdownContent);
+        // console.log('ngOnInit > inputValues:',this.dropdownId, this.dropdownContent);
 
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);

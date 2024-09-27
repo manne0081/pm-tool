@@ -7,7 +7,8 @@ import { PrivateService } from '../../private.service';
 import { ContentHeaderService } from '../content-header.service';
 import { DropdownBaseComponent } from '../../_shared/dropdown/dropdown-base/dropdown-base.component';
 
-import { FilterComponent } from '../../_shared/test/filter/filter.component';
+import { SortComponent } from '../../_shared/content-header/content-header-sort/sort.component';
+import { FilterComponent } from '../../_shared/content-header/content-header-filter/filter.component';
 
 interface FilterItem {
     id: number | string;
@@ -20,6 +21,7 @@ interface FilterItem {
         CommonModule,
         FormsModule,
         DropdownBaseComponent,
+        SortComponent,
         FilterComponent,
     ],
     templateUrl: './content-header-for-list.component.html',
