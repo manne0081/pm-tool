@@ -1,0 +1,12 @@
+<div class="grid-container">
+
+    <div class="item-container"
+        *ngFor="let workSchedule of workScheduleItems"
+        (click)="onSelectWorkSchedule(workSchedule)"
+        [ngClass]="{ 'selected': workSchedule.id === selectedWorkScheduleId }"
+    >
+        <span>{{ workSchedule.id }} - <b>{{ workSchedule.name }}</b></span>
+        <br><br>
+
+    </div>
+</div>
