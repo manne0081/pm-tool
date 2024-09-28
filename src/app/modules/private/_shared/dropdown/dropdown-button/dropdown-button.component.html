@@ -16,8 +16,10 @@
 <!-- ---------------------------------------------------- -->
 <button id="id-drop-button" class="drop-button-01" *ngIf="buttonType==='button-01'" (click)="onClickButton($event)"
     [ngClass]="{
-        'fieldname': dropdownId === 'filter-fieldname',
-        'operator': dropdownId === 'filter-operator',
+        'filter-fieldname': dropdownId === 'filter-fieldname',
+        'filter-operator': dropdownId === 'filter-operator',
+        'sort-fieldname': dropdownId === 'sort-fieldname',
+        'sort-operator': dropdownId === 'sort-operator',
     }"
 >
     <p>{{ buttonValue }}</p>

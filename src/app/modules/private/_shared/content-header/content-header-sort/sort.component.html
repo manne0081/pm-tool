@@ -20,22 +20,9 @@
 
                     <div class="condition-wrapper" style="overflow: visible;">
 
-                        <!-- dropdown for condition -->
-                        <div class="filter-item-operator label" *ngIf="i === 0">Where</div>
-
-                        <app-dropdown-base style="overflow: visible" class="filter-item-operator" *ngIf="i === 1"
-                            [dropdownId] = "'filter-condition'"
-                            [buttonType] = "'button-01'"
-                            [buttonValue] = "'and'"
-                            [buttonIcon] = "'icon-chevron-down'"
-                            [dropdownContent] = "'condition'">
-                        </app-dropdown-base>
-
-                        <div class="filter-item-operator label" *ngIf="i > 1">{{ 'and' }}</div> <!-- {{ selectedOperator || }}-->
-
                         <!-- dropdown for fieldname -->
                         <app-dropdown-base style="overflow: visible;"
-                            [dropdownId] = "'filter-fieldname'"
+                            [dropdownId] = "'sort-fieldname'"
                             [buttonType] = "'button-01'"
                             [buttonValue] = "'fieldname'"
                             [buttonIcon] = "'icon-chevron-down'"
@@ -44,15 +31,12 @@
 
                         <!-- dropdown for operator -->
                         <app-dropdown-base style="overflow: visible"
-                            [dropdownId] = "'filter-operator'"
+                            [dropdownId] = "'sort-operator'"
                             [buttonType] = "'button-01'"
                             [buttonValue] = "'operator'"
                             [buttonIcon] = "'icon-chevron-down'"
                             [dropdownContent] = "'operator'">
                         </app-dropdown-base>
-
-                        <!-- Input for filterValue -->
-                        <input formControlName="value" type="text" placeholder="Enter a value..." class="filter-input"/>
 
                         <!-- Remove-Button -->
                         <button type="button" class="filter-item-remove" (click)="removeCondition(i)"><span class="icon-cancel-circle"></span></button>
