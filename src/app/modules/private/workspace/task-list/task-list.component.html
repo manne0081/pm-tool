@@ -1,4 +1,4 @@
-<div class="grid-container">
+<!-- <div class="grid-container">
 
     <div class="item-container"
         *ngFor="let item of taskItems"
@@ -7,9 +7,27 @@
     >
         <span><b>{{ item.id}} - {{ item.title }}</b></span>
         <br><br>
-        <!-- <span>{{ item.postCode }} {{ item.city }}</span>
-        <br>
-        <span>{{ item.phoneNumber }}</span> -->
-
     </div>
+</div> -->
+
+
+<div class="grid-container">
+
+    <div class="ticket-container"
+        *ngFor="let ticket of taskItems"
+        (click)="onSelectTask(ticket)"
+        [ngClass]="{ 'selected': ticket.id === selectedItemId }"
+    >
+        <!-- Ticket Header: ID und Titel -->
+        <span><b>{{ ticket.id }} - {{ ticket.title }}</b></span>
+        <br><br>
+
+        <!-- Ticket Details: Status, Priorität und Fälligkeitsdatum -->
+        <span>Status: {{ ticket.status }}</span>
+        <br>
+        <span>Priorität: {{ ticket.priority }}</span>
+        <br>
+        <span>Fälligkeitsdatum: {{ ticket.dueDate | date: 'dd.MM.yyyy' }}</span>
+    </div>
+
 </div>
