@@ -218,6 +218,31 @@ $buttonBackground: var(--primary-color);
         display: flex;
         align-items: center;
         margin-right: 12px;
+
+        .item-container {
+            background-color: rgba(44, 80, 103, 0.2);
+            border: 1px solid rgba(44, 80, 103, 0.12);
+            height: 36px;
+            border-radius: 10px;
+            padding: 0 8px;
+            margin-left: 8px;
+
+            &:hover {
+                background-color: rgba(44, 80, 103, 0.3);
+                cursor: pointer;
+            }
+
+            [class*="icon"] {
+                font-size: 1.6rem;
+            }
+        }
+
+        .item-container.profile span{
+            font-size: .84rem;
+            margin-left: 4px;
+            font-weight: 700;
+        }
+
     }
 
 }
