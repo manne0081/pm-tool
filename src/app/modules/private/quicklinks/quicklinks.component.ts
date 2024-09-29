@@ -94,20 +94,11 @@ export class QuicklinksComponent {
         this.openDialog(this.newQuicklink, true);
     }
 
-    openContext(item: any): void {
-        this.openDialog(item);
-    }
-
     openDialog(item: any, isNew: boolean = false): void {
         const dialogRef = this.dialog.open<Quicklinks>(DialogQuicklinkChangeComponent, {
             width: '280px',
             data: {quicklink: item, isNew},
         });
-
-        // dialogRef.closed.subscribe((result: Quicklinks | undefined) => {
-        //     if (result) {
-        //     }
-        // });
 
         dialogRef.closed.subscribe(result => {
             const castResult = result as unknown as { action: string, quicklink?: Quicklinks, id?: number };  // Ergebnis manuell casten
