@@ -109,12 +109,12 @@
         display: flex;
         margin-top: 12px;
         background-color: transparent;
-        border: 1px solid #afafaf;
+        border: 1px solid transparent;
         border-radius: 4px;
         padding: 4px 6px;
 
         span {
-            color: #afafaf;
+            color: #b9b9b9;
             font-size: .9em;
         }
 
@@ -125,12 +125,16 @@
         }
 
         &.locked {
-            background-color: orange;
+            opacity: .4;
         }
     }
 
-    button:hover span {
-        color: #727272;
+    .filter-action-button:hover:not(.locked) {
+        // border: 1px solid #b9b9b9;
+    }
+
+    button:hover:not(.locked) span {
+        color: #4f4f4f;
         cursor: pointer;
     }
 

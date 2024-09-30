@@ -51,7 +51,7 @@ export class SortComponent {
 
     addCondition(event: Event) {
         event.stopPropagation();
-        console.log(this.conditions.length);
+
         if (this.conditions.length < 3) {
 
             const conditionGroup = this.fb.group({
