@@ -51,11 +51,11 @@ export class DropdownDataFilterComponent {
     setShowDropdown(dropdownId: any): void {
         // console.log('showDropdownFilter?', dropdownId, this.dropdownId);
 
-        if (dropdownId === this.dropdownId) {
-            this.showDropContent = true;
-        } else {
-            this.showDropContent = false;
-        }
+        // if (dropdownId === this.dropdownId) {
+        //     this.showDropContent = true;
+        // } else {
+        //     this.showDropContent = false;
+        // }
     }
 
     @HostListener('document:click', ['$event'])

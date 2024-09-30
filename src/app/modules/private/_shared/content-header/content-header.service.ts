@@ -11,7 +11,7 @@ export class ContentHeaderService {
     constructor() { }
 
     setActiveDropdown(dropdownId: string | null): void {
-        console.log(dropdownId);
+        // console.log('test:',dropdownId);
         this.activeDropdown.next(dropdownId);
     }
 

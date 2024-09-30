@@ -1,10 +1,10 @@
 import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DropdownBaseComponent } from '../../dropdown/dropdown-base/dropdown-base.component';
-import { CommonModule } from '@angular/common';
 import { ContentHeaderService } from '../content-header.service';
 
 @Component({
@@ -30,10 +30,12 @@ export class SortComponent {
         private contentHeaderService: ContentHeaderService,
         private fb: FormBuilder,
     ) {
-        console.log(uuidv4());
+        // console.log('elementId:',uuidv4());
+
         this.sortForm = this.fb.group({
             conditions: this.fb.array([])  // Array für mehrere Bedingungen
         });
+
         this.contentHeaderService.getActiveDropdown().subscribe(activeDropdown => {
             if (activeDropdown !== this.elementId) {
                 this.showContent = false;
@@ -55,7 +57,8 @@ export class SortComponent {
         this.conditions.push(conditionGroup);
     }
 
-    removeCondition(index: number) {
+    removeCondition(event: Event, index: number) {
+        event.stopPropagation();
         this.conditions.removeAt(index);
     }
 
@@ -71,7 +74,7 @@ export class SortComponent {
     }
 
     onSubmit() {
-        console.log(this.sortForm.value);
+        // console.log(this.sortForm.value);
     }
 
     @HostListener('document:click', ['$event'])

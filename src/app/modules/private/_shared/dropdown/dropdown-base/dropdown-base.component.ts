@@ -26,9 +26,12 @@ export class DropdownBaseComponent implements OnInit {
     @Input() buttonIcon: string = '';           // for example: icon-sort, icon-filter, icon-drawer,
     @Input() dropdownContent: string = '';      // for example: sort, filter, group,
 
+    elementId: string = uuidv4();
+
     constructor() {}
 
     ngOnInit(): void {
+        // console.log('elementId:',this.elementId);
         // console.log('dropdownId:', this.dropdownId);
         // console.log('buttonType:', this.buttonType);
         // console.log('buttonValue:', this.buttonValue);

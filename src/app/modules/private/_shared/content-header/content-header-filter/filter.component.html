@@ -10,7 +10,7 @@
     <div *ngIf="showContent" class="filter-container" style="overflow: visible;">
 
         <!-- Content-Header -->
-        <h3 style="margin-left: 11px; font-size: .8rem; margin-bottom: 8px;">Filter by (WIP)</h3>
+        <h3 style="font-size: .8rem; margin-bottom: 8px;">Filter by (WIP)</h3>
         <hr>
 
         <!-- Content -->
@@ -55,7 +55,7 @@
                         <input formControlName="value" type="text" placeholder="Enter a value..." class="filter-input"/>
 
                         <!-- Remove-Button -->
-                        <button type="button" class="filter-item-remove" (click)="removeCondition(i)"><span class="icon-cancel-circle"></span></button>
+                        <button type="button" class="filter-item-remove" (click)="removeCondition($event, i)"><span class="icon-cancel-circle"></span></button>
                     </div>
                 </div>
             </div>

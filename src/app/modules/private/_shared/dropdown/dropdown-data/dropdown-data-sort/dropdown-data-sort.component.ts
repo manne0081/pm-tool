@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
 
 import { DropdownService } from '../../dropdown.service';
 
@@ -15,6 +16,7 @@ import { DropdownService } from '../../dropdown.service';
 })
 
 export class DropdownDataSortComponent implements OnInit {
+    @Input() elementId: string = '';
     @Input() dropdownId: string = '';
     @Input() dropdownContent: string = '';
 
@@ -30,14 +32,26 @@ export class DropdownDataSortComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // console.log('ngOnInit > inputValues:',this.dropdownId, this.dropdownContent);
+        // console.log('elementId:',this.elementId);
 
         this.dropdownService.clickedButton$.subscribe(item => {
             this.setShowDropdown(item);
         });
+
         this.route.queryParams.subscribe(params => {
             this.searchTerm = params['search'] || '';
             this.sortingTerm = (params['sort'] || 'id-asc');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
+            // console.log(this.sortingTerm, this.searchTerm);
+        });
+
+        // Beobachten des Dropdown-Zustands
+        this.dropdownService.getActiveDropdownId().subscribe(activeDropdownId => {
+            console.log('activeDdId und baseDdId',activeDropdownId, this.elementId);
+            if (activeDropdownId === this.elementId) {
+                this.showDropContent = true;  // Schließe, wenn ein anderer Dropdown aktiv ist
+            } else {
+                this.showDropContent = false;
+            }
         });
     }
 
@@ -49,6 +63,18 @@ export class DropdownDataSortComponent implements OnInit {
         } else {
             this.showDropContent = false;
         }
+    }
+
+    // Anzeigen/Verstecken des Filter-Fensters
+    toggleContent(event: Event) {
+        // event.stopPropagation();
+        // this.showContent = !this.showContent;
+
+        // if (this.showContent) {
+        //     this.contentHeaderService.setActiveDropdown(this.elementId);
+        // } else {
+        //     this.contentHeaderService.setActiveDropdown(null);
+        // }
     }
 
     @HostListener('document:click', ['$event'])
