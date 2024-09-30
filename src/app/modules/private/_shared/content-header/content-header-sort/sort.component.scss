@@ -123,6 +123,10 @@
             top: 1px;
             margin-right: 2px;
         }
+
+        &.locked {
+            background-color: orange;
+        }
     }
 
     button:hover span {

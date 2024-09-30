@@ -45,7 +45,7 @@
             </div>
 
             <!-- Button zum Hinzufügen einer Bedingung -->
-            <button class="filter-action-button" (click)="addCondition()">
+            <button class="filter-action-button" [ngClass]="{'locked' : isAddConditionLocked}" (click)="addCondition($event)">
                 <span class="icon-add"></span>
                 <span>Add condition</span>
             </button>

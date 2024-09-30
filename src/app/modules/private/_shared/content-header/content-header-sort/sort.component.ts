@@ -25,6 +25,7 @@ export class SortComponent {
     showContent: boolean = false;  // Steuert, ob das Filter-Fenster angezeigt wird
 
     fieldNames?: string;
+    isAddConditionLocked: boolean = false;
 
     constructor(
         private contentHeaderService: ContentHeaderService,
@@ -48,18 +49,29 @@ export class SortComponent {
         return this.sortForm.get('conditions') as FormArray;
     }
 
-    addCondition() {
-        const conditionGroup = this.fb.group({
-            field: [''],
-            operator: [''],
-            value: ['']
-        });
-        this.conditions.push(conditionGroup);
+    addCondition(event: Event) {
+        event.stopPropagation();
+        console.log(this.conditions.length);
+        if (this.conditions.length < 3) {
+
+            const conditionGroup = this.fb.group({
+                field: [''],
+                operator: [''],
+                value: ['']
+            });
+
+            this.conditions.push(conditionGroup);
+
+            if (this.conditions.length === 3) {
+                this.isAddConditionLocked = true;
+            }
+        }
     }
 
     removeCondition(event: Event, index: number) {
         event.stopPropagation();
         this.conditions.removeAt(index);
+        this.isAddConditionLocked = false;
     }
 
     toggleContent(event: Event) {

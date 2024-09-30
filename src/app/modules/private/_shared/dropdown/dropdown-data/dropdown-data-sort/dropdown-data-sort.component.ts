@@ -46,7 +46,7 @@ export class DropdownDataSortComponent implements OnInit {
 
         // Beobachten des Dropdown-Zustands
         this.dropdownService.getActiveDropdownId().subscribe(activeDropdownId => {
-            console.log('activeDdId und baseDdId',activeDropdownId, this.elementId);
+            // console.log('activeDdId und baseDdId',activeDropdownId, this.elementId);
             if (activeDropdownId === this.elementId) {
                 this.showDropContent = true;  // Schließe, wenn ein anderer Dropdown aktiv ist
             } else {
