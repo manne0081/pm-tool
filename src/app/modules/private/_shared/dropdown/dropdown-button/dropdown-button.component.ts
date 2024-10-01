@@ -31,20 +31,11 @@ export class DropdownButtonComponent {
     ngOnInit(): void {
         // console.log('elementId:',this.elementId);
 
-        this.dropdownService.numberFilterConditions$.subscribe(item => {
-            if(item > 0) {
-                this.hasFilterConditions = true;
-            } else {
-                this.hasFilterConditions = false;
-            }
-        });
     }
 
     onClickButton(event: Event): void {
         // console.log('dropdownId:',this.dropdownId);
         event.stopPropagation();
-        // this.dropdownService.setOpenedDropdownId(this.dropdownId);
-        // this.dropdownService.setOpenedDropdownId2(this.dropdownId);
         this.dropdownService.setActiveDropdownId(this.elementId);
     }
 

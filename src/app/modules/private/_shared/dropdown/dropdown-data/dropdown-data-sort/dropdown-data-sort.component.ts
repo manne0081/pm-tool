@@ -32,16 +32,11 @@ export class DropdownDataSortComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // console.log('elementId:',this.elementId);
-
-        this.dropdownService.clickedButton$.subscribe(item => {
-            this.setShowDropdown(item);
-        });
+        console.log('dropcontent:',this.dropdownContent);
 
         this.route.queryParams.subscribe(params => {
             this.searchTerm = params['search'] || '';
             this.sortingTerm = (params['sort'] || 'id-asc');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
-            // console.log(this.sortingTerm, this.searchTerm);
         });
 
         // Beobachten des Dropdown-Zustands
@@ -55,6 +50,10 @@ export class DropdownDataSortComponent implements OnInit {
         });
     }
 
+    /**
+     *
+     * @param dropdownId
+     */
     setShowDropdown(dropdownId: any): void {
         // console.log('showDropdownSort?', dropdownId, this.dropdownId);
 
@@ -65,27 +64,10 @@ export class DropdownDataSortComponent implements OnInit {
         }
     }
 
-    // Anzeigen/Verstecken des Filter-Fensters
-    toggleContent(event: Event) {
-        // event.stopPropagation();
-        // this.showContent = !this.showContent;
-
-        // if (this.showContent) {
-        //     this.contentHeaderService.setActiveDropdown(this.elementId);
-        // } else {
-        //     this.contentHeaderService.setActiveDropdown(null);
-        // }
-    }
-
-    @HostListener('document:click', ['$event'])
-    closeDropdown(event: Event): void {
-        const target = event.target as HTMLElement;
-
-        if (!target.closest('.drop-content-container')) {
-            this.showDropContent = false;
-        }
-    }
-
+    /**
+     *
+     * @param option
+     */
     onChooseOption(option: string): void {
         this.sortingTerm = option;
         this.updateRoute();
@@ -106,5 +88,18 @@ export class DropdownDataSortComponent implements OnInit {
                 // console.log('Navigation failed');
             }
         });
+    }
+
+    /**
+     *
+     * @param event
+     */
+    @HostListener('document:click', ['$event'])
+    closeDropdown(event: Event): void {
+        const target = event.target as HTMLElement;
+
+        if (!target.closest('.drop-content-container')) {
+            this.showDropContent = false;
+        }
     }
 }

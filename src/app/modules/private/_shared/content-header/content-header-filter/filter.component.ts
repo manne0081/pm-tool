@@ -88,9 +88,7 @@ export class FilterComponent {
     @HostListener('document:click', ['$event'])
     onClickOutside(event: Event): void {
         const target = event.target as HTMLElement;
-
         if (!target.closest('.filter-container') && this.showContent) {
-            console.log('clickedOutsideFilter', target);
             this.contentHeaderService.setActiveDropdown(null);  // Schließt den Filter-Container
         }
     }

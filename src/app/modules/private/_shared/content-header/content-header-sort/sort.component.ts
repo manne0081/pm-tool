@@ -1,11 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 
-import { DropdownBaseComponent } from '../../dropdown/dropdown-base/dropdown-base.component';
 import { ContentHeaderService } from '../content-header.service';
+import { DropdownBaseComponent } from '../../dropdown/dropdown-base/dropdown-base.component';
 
 @Component({
     selector: 'app-sort',
@@ -19,7 +19,7 @@ import { ContentHeaderService } from '../content-header.service';
     styleUrl: './sort.component.scss'
 })
 
-export class SortComponent {
+export class SortComponent implements OnInit{
     elementId: string = uuidv4();
     sortForm: FormGroup;
     showContent: boolean = false;  // Steuert, ob das Filter-Fenster angezeigt wird
@@ -28,15 +28,16 @@ export class SortComponent {
     isAddConditionLocked: boolean = false;
 
     constructor(
-        private contentHeaderService: ContentHeaderService,
         private fb: FormBuilder,
+        private contentHeaderService: ContentHeaderService,
     ) {
-        // console.log('elementId:',uuidv4());
-
         this.sortForm = this.fb.group({
             conditions: this.fb.array([])  // Array für mehrere Bedingungen
         });
+    }
 
+    ngOnInit(): void {
+        // console.log('elementId:',uuidv4());
         this.contentHeaderService.getActiveDropdown().subscribe(activeDropdown => {
             if (activeDropdown !== this.elementId) {
                 this.showContent = false;
@@ -44,11 +45,17 @@ export class SortComponent {
         });
     }
 
-    // Hilfsmethode zum Abrufen der Bedingungsgruppen
+    /**
+     * Hilfsmethode zum Abrufen der Bedingungsgruppen
+     */
     get conditions(): FormArray {
         return this.sortForm.get('conditions') as FormArray;
     }
 
+    /**
+     *
+     * @param event
+     */
     addCondition(event: Event) {
         event.stopPropagation();
 
@@ -56,8 +63,7 @@ export class SortComponent {
 
             const conditionGroup = this.fb.group({
                 field: [''],
-                operator: [''],
-                value: ['']
+                order: [''],
             });
 
             this.conditions.push(conditionGroup);
@@ -68,12 +74,21 @@ export class SortComponent {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @param index
+     */
     removeCondition(event: Event, index: number) {
         event.stopPropagation();
         this.conditions.removeAt(index);
         this.isAddConditionLocked = false;
     }
 
+    /**
+     *
+     * @param event
+     */
     toggleContent(event: Event) {
         event.stopPropagation();
         this.showContent = !this.showContent;
@@ -89,12 +104,14 @@ export class SortComponent {
         // console.log(this.sortForm.value);
     }
 
+    /**
+     *
+     * @param event
+     */
     @HostListener('document:click', ['$event'])
     onClickOutside(event: Event): void {
         const target = event.target as HTMLElement;
-
         if (!target.closest('.sort-container') && this.showContent) {
-            console.log('test');
             this.contentHeaderService.setActiveDropdown(null);
         }
     }
