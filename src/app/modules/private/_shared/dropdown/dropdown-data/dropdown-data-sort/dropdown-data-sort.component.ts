@@ -54,15 +54,15 @@ export class DropdownDataSortComponent implements OnInit {
      *
      * @param dropdownId
      */
-    setShowDropdown(dropdownId: any): void {
-        // console.log('showDropdownSort?', dropdownId, this.dropdownId);
+    // setShowDropdown(dropdownId: any): void {
+    //     // console.log('showDropdownSort?', dropdownId, this.dropdownId);
 
-        if (dropdownId === this.dropdownId) {
-            this.showDropContent = true;
-        } else {
-            this.showDropContent = false;
-        }
-    }
+    //     if (dropdownId === this.dropdownId) {
+    //         this.showDropContent = true;
+    //     } else {
+    //         this.showDropContent = false;
+    //     }
+    // }
 
     /**
      *
