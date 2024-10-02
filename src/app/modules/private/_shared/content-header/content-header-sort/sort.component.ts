@@ -43,6 +43,7 @@ export class SortComponent implements OnInit{
                 this.showContent = false;
             }
         });
+
     }
 
     /**

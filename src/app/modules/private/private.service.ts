@@ -45,7 +45,7 @@ export class PrivateService {
 
     // Fieldnames of choosen MenuObject for the filter-function at the content-header
     private fieldNamesForFilter = new BehaviorSubject<any>(undefined);
-    fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
+    // fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
 
     // Selected Object for Additional Informations
     private selectedObject = new BehaviorSubject<any>(undefined);
@@ -112,8 +112,8 @@ export class PrivateService {
             this.setIsViewDashboard(false);
         }
 
-        // Fieldnames for filter-function
-        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(trimmedRoute[0]));
+        // Fieldnames by clicking refresh
+        this.setFieldNamesOfObject(trimmedRoute[0]);
 
         this.setContentTitle(trimmedRoute[0]);
     }
@@ -228,7 +228,7 @@ export class PrivateService {
         }
 
         // Fieldnames for filter-function
-        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.name));
+        this.setFieldNamesOfObject(item.name);
         //
         this.setContentTitle(item);
         //
@@ -241,7 +241,7 @@ export class PrivateService {
     onSelectQuicklink(item: any): void {
         this.setActiveMenuItemByName(item.parentName);
         this.setContentTitle(item.menuItemName);
-        this.fieldNamesForFilter.next(this.getFieldNamesOfObject(item.menuItemName));
+        this.setFieldNamesOfObject(item.menuItemName);
 
         if (item.parentName === 'dashboard') {
             this.isViewDashboard.next(true);
@@ -259,16 +259,23 @@ export class PrivateService {
      * @param objectType (client, project)
      * @returns fieldnames as array
      */
-    getFieldNamesOfObject(objectType: any): string[] {
+    setFieldNamesOfObject(objectType: any): void {
         if (objectType === 'client') {
-            return clientFieldNames as string[];
+            this.fieldNamesForFilter.next(clientFieldNames as string[]);
+            // return clientFieldNames as string[];
         } else if (objectType === 'project') {
-            return projectFieldNames as string[];
+            this.fieldNamesForFilter.next(projectFieldNames as string[]);
+            // return projectFieldNames as string[];
         } else if (objectType === 'teamMember') {
-            return teamMemberFieldNames as string[];
+            this.fieldNamesForFilter.next(teamMemberFieldNames as string[]);
+            // return teamMemberFieldNames as string[];
         } else {
-            return [];
+            // return [];
         }
+    }
+
+    getFieldNamesOfObject() {
+        return this.fieldNamesForFilter.asObservable();
     }
 
     /**

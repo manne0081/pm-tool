@@ -33,7 +33,7 @@ export class DropdownService {
         private privateService: PrivateService,
     ) {
         // Read fieldNames for filter-dropdown
-        this.privateService.fieldNamesForFilter$.subscribe(data => {
+        this.privateService.getFieldNamesOfObject().subscribe(data => {
             this.fieldNamesForFilter.next(data);
         });
     }
