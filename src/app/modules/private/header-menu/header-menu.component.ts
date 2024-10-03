@@ -23,8 +23,12 @@ export class HeaderMenuComponent implements AfterViewInit{
 
     headerMenuItems: HeaderMenu[] = [];
     headerMenuSubItems: HeaderSubMenu[] = [];
-
     favoriteHasItems?: boolean;
+
+    // For timeTracker
+    runningTime: string = '00:43:32'
+    isTimerRunning: boolean = true;
+
 
     constructor (
         private router: Router,

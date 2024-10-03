@@ -243,6 +243,25 @@ $buttonBackground: var(--primary-color);
             font-weight: 700;
         }
 
-    }
+        .item-container.time-tracker {
+            // background-color: lime;
 
+            &.running {
+                background-color: rgb(47, 177, 29);
+                border: 1px solid rgb(37, 141, 24);
+
+                span,div {
+                    color: white;
+                }
+
+                span {
+                    margin-top: 1px;
+                }
+
+                &:hover {
+                    background-color: rgb(37, 141, 24);
+                }
+            }
+        }
+    }
 }
