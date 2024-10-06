@@ -1,8 +1,9 @@
 <p>demo-list works!</p>
 
 <div [ngStyle]="{'background-color': isTimerRunning ? 'green' : isTimerPaused ? 'red' : 'grey'}" class="timer-display">
-    {{ formatTime(elapsedTime) }}
     {{ elapsedTime }}
+    <br>
+    {{ formatSecondToDuration(elapsedTime) }}
 </div>
 
 <button (click)="startTimer()" [disabled]="isTimerRunning || isTimerPaused">Start</button>
@@ -12,4 +13,3 @@
 
 <br><br>
 
-<!-- timeInterval: {{ timerInterval }} -->
