@@ -1,10 +1,15 @@
 <p>demo-list works!</p>
 
-<div [ngStyle]="{'background-color': timerRunning ? 'green' : timerPaused ? 'red' : 'gray'}" class="timer-display">
+<div [ngStyle]="{'background-color': isTimerRunning ? 'green' : isTimerPaused ? 'red' : 'grey'}" class="timer-display">
     {{ formatTime(elapsedTime) }}
-  </div>
+    {{ elapsedTime }}
+</div>
 
-  <button (click)="startTimer()" [disabled]="timerRunning">Start</button>
-  <button (click)="pauseTimer()" [disabled]="!timerRunning || timerPaused">Pause</button>
-  <button (click)="resumeTimer()" [disabled]="!timerPaused">Resume</button>
-  <button (click)="stopTimer()">Stop</button>
+<button (click)="startTimer()" [disabled]="isTimerRunning || isTimerPaused">Start</button>
+<button (click)="pauseTimer()" [disabled]="!isTimerRunning || isTimerPaused">Pause</button>
+<button (click)="resumeTimer()" [disabled]="!isTimerPaused">Resume</button>
+<button (click)="stopTimer()">Stop</button>
+
+<br><br>
+
+<!-- timeInterval: {{ timerInterval }} -->

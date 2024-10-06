@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Time } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,10 +14,11 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class DemoListComponent {
+    startTime?: Time;
     elapsedTime: number = 0;
     timerInterval: any;
-    timerRunning: boolean = false;
-    timerPaused: boolean = false;
+    isTimerRunning: boolean = false;
+    isTimerPaused: boolean = false;
 
     ngOnInit() {
         const savedStartTime = localStorage.getItem('timerStart');
@@ -25,7 +26,11 @@ export class DemoListComponent {
         const isRunning = localStorage.getItem('timerRunning') === 'true';
         const isPaused = localStorage.getItem('timerPaused') === 'true';
 
+        console.log(savedStartTime, savedElapsedTime, isRunning, isPaused);
+
         if (isRunning && !isPaused) {
+            console.log('isRunning && !isPaused');
+
             const now = new Date().getTime(); // aktuelle Zeit
             const startTime = parseInt(savedStartTime || '0', 10);
 
@@ -35,45 +40,39 @@ export class DemoListComponent {
             // Setze den Timer fort
             this.startTimer();
         } else if (isPaused && savedElapsedTime) {
+            console.log('isPaused && savedElapsedTime');
+
             // Wenn der Timer pausiert ist, verstrichene Zeit aus dem LocalStorage übernehmen
             this.elapsedTime = parseInt(savedElapsedTime, 10);
-            this.timerPaused = true;
+            this.isTimerPaused = true;
         }
     }
 
     startTimer() {
-        if (!this.timerRunning) {
+        if (!this.isTimerRunning) {
             const currentTime = new Date().getTime(); // Aktuelle Zeit in Millisekunden
-
-            const savedStartTime = parseInt(localStorage.getItem('timerStart') || '0', 10);
-            const savedElapsedTime = parseInt(localStorage.getItem('elapsedTime') || '0', 10);
-
-            if (!savedStartTime) {
-              // Wenn keine Startzeit gespeichert wurde, die Startzeit als aktuelle Zeit setzen
-              localStorage.setItem('timerStart', currentTime.toString());
-            } else {
-              // Wenn eine verstrichene Zeit gespeichert wurde, neue Startzeit berechnen
-              const adjustedStartTime = currentTime - savedElapsedTime * 1000;
-              localStorage.setItem('timerStart', adjustedStartTime.toString());
-            }
+            console.log('currentTime:', this.formatTime(currentTime));
 
             localStorage.setItem('timerRunning', 'true');
-            this.timerRunning = true;
-            this.timerPaused = false;
+            this.isTimerRunning = true;
 
             // Timer-Intervall starten, um die verstrichene Zeit dynamisch zu berechnen
             this.timerInterval = setInterval(() => {
-              const now = new Date().getTime();
-              const startTime = parseInt(localStorage.getItem('timerStart') || '0', 10);
-              this.elapsedTime = Math.floor((now - startTime) / 1000); // Verstrichene Zeit in Sekunden
 
-              // Verstrichene Zeit NICHT im LocalStorage aktualisieren, da sie dynamisch berechnet wird
+                // Start from zero
+                const now = new Date().getTime();
+                const startTime = parseInt(localStorage.getItem('timerStart') || '0', 10);
+                this.elapsedTime = Math.floor((now - startTime) / 1000); // Verstrichene Zeit in Sekunden
+                // console.log('this.runningTime:',this.runningTime);
+                // Start now and add the time from the local-storage (when page-reload or closing the browser)
+
+
             }, 1000);
         }
     }
 
     pauseTimer() {
-        if (this.timerRunning && !this.timerPaused) {
+        if (this.isTimerRunning && !this.isTimerPaused) {
             clearInterval(this.timerInterval);
             const now = new Date().getTime();
             const startTime = parseInt(localStorage.getItem('timerStart') || '0', 10);
@@ -82,12 +81,13 @@ export class DemoListComponent {
             // Verstrichene Zeit speichern
             localStorage.setItem('elapsedTime', totalElapsedTime.toString());
             localStorage.setItem('timerPaused', 'true');
-            this.timerPaused = true;
+            this.isTimerRunning = false;
+            this.isTimerPaused = true;
         }
     }
 
     resumeTimer() {
-        if (this.timerPaused) {
+        if (this.isTimerPaused) {
             const pausedTime = parseInt(localStorage.getItem('elapsedTime') || '0', 10);
             const currentTime = new Date().getTime();
             const newStartTime = currentTime - pausedTime * 1000;
@@ -95,8 +95,8 @@ export class DemoListComponent {
             localStorage.setItem('timerStart', newStartTime.toString());
             localStorage.removeItem('timerPaused');
 
-            this.timerPaused = false;
-            this.timerRunning = true;
+            this.isTimerPaused = false;
+            this.isTimerRunning = true;
 
             this.timerInterval = setInterval(() => {
               const now = new Date().getTime();
@@ -114,14 +114,21 @@ export class DemoListComponent {
         localStorage.removeItem('timerRunning');
         localStorage.removeItem('timerPaused');
 
-        this.timerRunning = false;
-        this.timerPaused = false;
+        this.isTimerRunning = false;
+        this.isTimerPaused = false;
         this.elapsedTime = 0;
     }
 
     formatTime(seconds: number): string {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+
+        // Stunden, Minuten und Sekunden immer zweistellig formatieren (z.B. 04 statt 4)
+        const formattedHours = hours < 10 ? '0' + hours : hours;
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+        const formattedSeconds = secs < 10 ? '0' + secs : secs;
+
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     }
 }
