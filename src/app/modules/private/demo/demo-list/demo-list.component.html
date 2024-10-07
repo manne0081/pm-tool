@@ -6,9 +6,9 @@
     {{ formatSecondToDuration(elapsedTime) }}
 </div>
 
-<button (click)="startTimer()" [disabled]="isTimerRunning || isTimerPaused">Start</button>
+<button (click)="startTimer()" [disabled]="isTimerRunning">{{ !isTimerPaused ? 'Start' : 'Weiter'}}</button>
 <button (click)="pauseTimer()" [disabled]="!isTimerRunning || isTimerPaused">Pause</button>
-<button (click)="resumeTimer()" [disabled]="!isTimerPaused">Resume</button>
+<!-- <button (click)="resumeTimer()" [disabled]="!isTimerPaused">Resume</button> -->
 <button (click)="stopTimer()">Stop</button>
 
 <br><br>
