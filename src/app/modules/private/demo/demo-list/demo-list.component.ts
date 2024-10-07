@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
 
 export class DemoListComponent {
     startedTime: number = 0;
-    elapsedTime: number = 0;
+    elapsedSeconds: number = 0;
+    runningSeconds: number = 0;
     isTimerRunning: boolean = false;
     isTimerPaused: boolean = false;
     timerInterval: any;
@@ -30,9 +31,9 @@ export class DemoListComponent {
         const isTimerRunning = localStorage.getItem('isRunning') === 'true';
         const isTimerPaused = localStorage.getItem('isPaused') === 'true';
         const savedStartTime = localStorage.getItem('startTime');
-        const savedElapsedTime = localStorage.getItem('elapsedTime');
+        const savedElapsedSeconds = localStorage.getItem('elapsedSeconds');
 
-        console.log(isTimerRunning, isTimerPaused, savedStartTime, savedElapsedTime);
+        console.log(isTimerRunning, isTimerPaused, savedStartTime, savedElapsedSeconds);
 
         if (!isTimerRunning && !isTimerPaused) {
             /**
@@ -59,11 +60,11 @@ export class DemoListComponent {
             /**
              * Load component while the timer is paused
              */
-            console.log('isPaused && savedElapsedTime');
+            console.log('isPaused && savedElapsedSeconds');
 
             this.isTimerRunning = false;
             this.isTimerPaused = true;
-            this.elapsedTime = parseInt(savedElapsedTime || '0', 10);
+            this.elapsedSeconds = parseInt(savedElapsedSeconds || '0', 10);
 
 
             // this.elapsedTime = parseInt(savedElapsedTime, 10);
@@ -98,16 +99,23 @@ export class DemoListComponent {
             // Set timer-intervall
             this.timerInterval = setInterval(() => {
                 const now = new Date().getTime();
-                this.elapsedTime = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
+                this.elapsedSeconds = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
             }, 1000);
 
         } else if (!this.isTimerRunning && this.isTimerPaused) {
             console.log('startTimer > resume after a breake');
 
             this.isTimerRunning = true;
+            this.isTimerPaused = false;
             this.startedTime = new Date().getTime();
+            localStorage.setItem('startTime', this.startedTime.toString());
 
+            console.log('test', this.startedTime);
 
+            this.timerInterval = setInterval(() => {
+                const now = new Date().getTime();
+                this.elapsedSeconds = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
+            }, 1000);
 
 
 
@@ -127,15 +135,16 @@ export class DemoListComponent {
         if (this.isTimerRunning && !this.isTimerPaused) {
             clearInterval(this.timerInterval);
             const now = new Date().getTime();
-            const startTime = parseInt(localStorage.getItem('startTime') || '0', 10);
-            const elapsedTime = Math.floor((now - startTime) / 1000); // Verstrichene Zeit in Sekunden
+            // const startTime = parseInt(localStorage.getItem('startTime') || '0', 10);
+            const elapsedSeconds = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
 
             // Saving elapsed time
             this.isTimerRunning = false;
             this.isTimerPaused = true;
             localStorage.setItem('isRunning', 'false');
             localStorage.setItem('isPaused', 'true');
-            localStorage.setItem('elapsedTime', elapsedTime.toString());
+            // localStorage.removeItem('startTime');
+            localStorage.setItem('elapsedSeconds', elapsedSeconds.toString());
         }
     }
 
@@ -163,13 +172,13 @@ export class DemoListComponent {
     stopTimer() {
         clearInterval(this.timerInterval);
         localStorage.removeItem('startTime');
-        localStorage.removeItem('elapsedTime');
+        localStorage.removeItem('elapsedSeconds');
         localStorage.removeItem('isRunning');
         localStorage.removeItem('isPaused');
 
         this.isTimerRunning = false;
         this.isTimerPaused = false;
-        this.elapsedTime = 0;
+        this.elapsedSeconds = 0;
     }
 
     formatSecondToDuration(seconds: number): string {
