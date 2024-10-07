@@ -32,7 +32,7 @@ export class DemoListComponent {
             console.log('isRunning && !isPaused');
 
             const now = new Date().getTime(); // aktuelle Zeit
-            const startTime = parseInt(savedStartTime || '0', 10);
+            const startTime = parseInt(savedStartTime || '0');
 
             // Berechne die verstrichene Zeit dynamisch basierend auf der Startzeit
             this.elapsedTime = Math.floor((now - startTime) / 1000);
@@ -51,6 +51,7 @@ export class DemoListComponent {
 
     startTimer() {
         if (!this.isTimerRunning) {
+            console.log('startTimer > from zero');
             const currentTime = new Date().getTime(); // Aktuelle Zeit in Millisekunden
 
             this.startTime = currentTime;
@@ -70,6 +71,8 @@ export class DemoListComponent {
                 // const startTime = parseInt(localStorage.getItem('timerStart') || '0', 10);
                 this.elapsedTime = Math.floor((now - this.startTime) / 1000); // Verstrichene Zeit in Sekunden
             }, 1000);
+        } else {
+            console.log('startTimer > from onInit');
         }
     }
 
