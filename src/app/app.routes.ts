@@ -34,7 +34,7 @@ export const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
             { path: 'task', component: TaskListComponent },
-            { path: 'calendar', component: DemoListComponent },
+            { path: 'calendar', component: CalendarListComponent },
             { path: 'message', component: MessageListComponent },
             { path: 'teamMember', component: TeamMemberListComponent },
             { path: 'workSchedule', component: WorkScheduleListComponent },
