@@ -1,14 +1,11 @@
 <p>demo-list works!</p>
 
 <div [ngStyle]="{'background-color': isTimerRunning ? 'green' : isTimerPaused ? 'red' : 'grey'}" class="timer-display">
-    {{ elapsedSeconds }}
-    <br>
     {{ formatSecondToDuration(elapsedSeconds) }}
 </div>
 
 <button (click)="startTimer()" [disabled]="isTimerRunning">{{ !isTimerPaused ? 'Start' : 'Weiter'}}</button>
 <button (click)="pauseTimer()" [disabled]="!isTimerRunning || isTimerPaused">Pause</button>
-<!-- <button (click)="resumeTimer()" [disabled]="!isTimerPaused">Resume</button> -->
 <button (click)="stopTimer()">Stop</button>
 
 <br><br>

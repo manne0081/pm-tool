@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule, Time } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { BehaviorSubject, Observable } from 'rxjs';
+
 @Component({
     selector: 'app-demo-list',
     standalone: true,
@@ -28,7 +30,6 @@ export class DemoListComponent {
          * - Der Timer lief als der Browser aktualisiert wurde > Die verstichene Zeit ermitteln, speichern und den Timer von neuem starten
          * - Der Timer ist pausiert als der Browser aktualisiert wurde > Nichts weiter zu tun (denke ich)
          */
-        // const isTimerRunning = localStorage.getItem('isRunning') === 'true';
         const isTimerRunning = localStorage.getItem('isRunning') === 'true';
         const isTimerPaused = localStorage.getItem('isPaused') === 'true';
         const startedTime = parseInt(localStorage.getItem('startTime') || '0', 10);
@@ -42,23 +43,22 @@ export class DemoListComponent {
 
         } else if (isTimerRunning && !isTimerPaused) {
             // When is running
-            console.log('isTimerRunning && !isTimerPaused');
+            console.log('timer is running when reload');
+
+            const now = new Date().getTime();
+            const startedTime = parseInt(localStorage.getItem('startTime') || '0', 10);
+            const elapsedSeconds = Math.floor((now - startedTime) / 1000); // Verstrichene Zeit in Sekunden
 
             this.isTimerRunning = isTimerRunning;
             this.elapsedSeconds = elapsedSeconds;
             this.startTimer();
 
-            // const now = new Date().getTime(); // aktuelle Zeit
-            // const startTime = parseInt(savedStartTime || '0', 10);
-            // Berechne die verstrichene Zeit dynamisch basierend auf der Startzeit
-            // this.elapsedTime = Math.floor((now - startTime) / 1000);
-            // Setze den Timer fort
-            // this.startTimer();
-
         } else if (!isTimerRunning && isTimerPaused) {
             // When is paused
+            console.log('timer is paused when reload');
             this.isTimerPaused = isTimerPaused;
             this.elapsedSeconds = elapsedSeconds;
+
         }
     }
 
@@ -94,6 +94,7 @@ export class DemoListComponent {
             this.startedTime = new Date().getTime() - (this.elapsedSeconds * 1000);
 
             localStorage.setItem('isRunning', 'true');
+            localStorage.setItem('isPaused', 'false');
             localStorage.setItem('startTime', this.startedTime.toString());
 
             // Setze das Intervall mit der angepassten Startzeit
@@ -104,10 +105,10 @@ export class DemoListComponent {
 
         } else if (this.isTimerRunning) {
             // Wiederherstellen des Timers nach einem Browser-Neustart
-            console.log('startTimer > resume when reload');
+            console.log('startTimer > resume when timer is running and reload');
 
             // Hole die gespeicherte Startzeit und den Zustand des Timers
-            const savedElapsedTime = parseInt(localStorage.getItem('elapsedSeconds') || '0', 10);
+            const savedElapsedTime = this.elapsedSeconds;
 
             // Berechne die aktuelle Startzeit, um die bereits verstrichene Zeit einzubeziehen
             this.startedTime = new Date().getTime() - (savedElapsedTime * 1000);
@@ -132,7 +133,6 @@ export class DemoListComponent {
         if (this.isTimerRunning && !this.isTimerPaused) {
             clearInterval(this.timerInterval);
             const now = new Date().getTime();
-            // const startTime = parseInt(localStorage.getItem('startTime') || '0', 10);
             const elapsedSeconds = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
 
             // Saving elapsed time
@@ -140,31 +140,9 @@ export class DemoListComponent {
             this.isTimerPaused = true;
             localStorage.setItem('isRunning', 'false');
             localStorage.setItem('isPaused', 'true');
-            // localStorage.removeItem('startTime');
             localStorage.setItem('elapsedSeconds', elapsedSeconds.toString());
         }
     }
-
-    // resumeTimer() {
-    //     if (this.isTimerPaused) {
-    //         const pausedTime = parseInt(localStorage.getItem('elapsedTime') || '0', 10);
-    //         const currentTime = new Date().getTime();
-    //         const newStartTime = currentTime - pausedTime * 1000;
-
-    //         localStorage.setItem('startTime', newStartTime.toString());
-    //         localStorage.removeItem('isPaused');
-
-    //         this.isTimerPaused = false;
-    //         this.isTimerRunning = true;
-
-    //         this.timerInterval = setInterval(() => {
-    //           const now = new Date().getTime();
-    //           this.elapsedTime = Math.floor((now - newStartTime) / 1000);
-
-    //           // Verstrichene Zeit NICHT im LocalStorage aktualisieren, da sie dynamisch berechnet wird
-    //         }, 1000);
-    //     }
-    // }
 
     stopTimer() {
         clearInterval(this.timerInterval);

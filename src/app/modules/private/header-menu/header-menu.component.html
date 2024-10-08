@@ -79,14 +79,17 @@
         <!-- HEADER RIGHT -->
         <!-- ************ -->
         <div class="menu-wrapper right">
+
             <div class="item-container time-tracker" [ngClass]="{'running' : isTimerRunning}">
                 <div class="icon-alarm"></div>
                 <span style="margin-left: 6px;">{{runningTime}}</span>
             </div>
+
             <div class="item-container profile" (click)="testFunction()">
                 <div class="icon-user"></div>
                 <span>Max Mustermann</span>
             </div>
+
         </div>
 
     </div>

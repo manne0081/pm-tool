@@ -10,11 +10,12 @@ import { DropdownService } from '../_shared/dropdown/dropdown.service';
 })
 
 export class HeaderMenuService {
+    elapsedSeconds: number = 0;
 
     constructor(
         private privateService: PrivateService,
         private dropdownService: DropdownService,
-    ) { }
+    ) {}
 
     getHeaderMenu(): Observable<HeaderMenu[]> {
         return of(HEADERMENU_MOCK);

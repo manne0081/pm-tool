@@ -28,21 +28,20 @@ export class HeaderMenuComponent implements AfterViewInit{
     // For timeTracker
     runningTime: string = '00:43:32'
     isTimerRunning: boolean = true;
-
+    elapsedSeconds: number = 0;
 
     constructor (
         private router: Router,
         private route: ActivatedRoute,
         private eRef: ElementRef,
         private headerMenuService: HeaderMenuService,
-        // private quicklinkService: QuicklinksService,
-        // private contentTileViewService: ContentTileViewService,
     ) {}
 
     ngOnInit(): void {
         // Get header-items
         this.getHeaderMenuItems();
         this.getFavoriteHasItems();
+
     }
 
     /**
