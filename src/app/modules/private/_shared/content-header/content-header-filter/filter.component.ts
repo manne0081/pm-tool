@@ -34,7 +34,7 @@ export class FilterComponent {
         private contentHeaderService: ContentHeaderService,
         private fb: FormBuilder,
     ) {
-        console.log(this.elementId);
+        // console.log('elementId:',this.elementId);
 
         this.filterForm = this.fb.group({
             conditions: this.fb.array([])  // Array für mehrere Bedingungen
@@ -63,7 +63,8 @@ export class FilterComponent {
     }
 
     // Entfernen einer Bedingung
-    removeCondition(index: number) {
+    removeCondition(event: Event, index: number) {
+        event.stopPropagation();
         this.conditions.removeAt(index);
     }
 
@@ -81,15 +82,13 @@ export class FilterComponent {
 
     // Formular-Submit-Methode
     onSubmit() {
-        console.log(this.filterForm.value);
+        // console.log(this.filterForm.value);
     }
 
     @HostListener('document:click', ['$event'])
     onClickOutside(event: Event): void {
         const target = event.target as HTMLElement;
-
         if (!target.closest('.filter-container') && this.showContent) {
-            console.log('clickedOutsideFilter', target);
             this.contentHeaderService.setActiveDropdown(null);  // Schließt den Filter-Container
         }
     }

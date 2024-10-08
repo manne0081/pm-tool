@@ -17,9 +17,8 @@ export class DropdownService {
     clickedButton$ = this.clickedButton.asObservable();
 
     // neu aber vielleicht kein unterschied...
-    private openedDropdownId = new BehaviorSubject<string | null>(null);
-    openedDropdownId$ = this.openedDropdownId.asObservable();
-
+    private activeDropdownId = new BehaviorSubject<string | null>(null);
+    // activeDropdownId$ = this.activeDropdownId.asObservable();
 
     private numberFilterConditions = new BehaviorSubject<any>(null);
     numberFilterConditions$ = this.numberFilterConditions.asObservable();
@@ -34,7 +33,7 @@ export class DropdownService {
         private privateService: PrivateService,
     ) {
         // Read fieldNames for filter-dropdown
-        this.privateService.fieldNamesForFilter$.subscribe(data => {
+        this.privateService.getFieldNamesOfObject().subscribe(data => {
             this.fieldNamesForFilter.next(data);
         });
     }
@@ -44,19 +43,37 @@ export class DropdownService {
         this.clickedButton.next(clickedButtonValue);
     }
 
-    // Neu...
-    setOpenedDropdownId2(dropdownId: string): void {
-        // console.log('dropdownId:', dropdownId);
-        this.openedDropdownId.next(dropdownId);
-    }
-
-    // Neu...
-    getOpenedDropdownId2(): Observable<string | null> {
-        return this.openedDropdownId.asObservable();
-    }
-
+    /**
+     *
+     * @param number
+     */
     setNumberFilterConditions(number: Number) {
         this.numberFilterConditions.next(number);
+    }
+
+    /**
+     *
+     * @returns
+     */
+    getNumberFilterConditions() {
+        return this.numberFilterConditions.asObservable();
+    }
+
+    /**
+     *
+     * @param dropdownId
+     */
+    setActiveDropdownId(dropdownId: string | null): void {
+        // console.log('setActiveDropdownId:',dropdownId);
+        this.activeDropdownId.next(dropdownId);
+    }
+
+    /**
+     *
+     * @returns
+     */
+    getActiveDropdownId() {
+        return this.activeDropdownId.asObservable();
     }
 
     transformFieldNamesWithLineBreaks(fieldNames: string[]): string {

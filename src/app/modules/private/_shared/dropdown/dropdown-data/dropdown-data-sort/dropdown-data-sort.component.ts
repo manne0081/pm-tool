@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
 
 import { DropdownService } from '../../dropdown.service';
 
@@ -15,6 +16,7 @@ import { DropdownService } from '../../dropdown.service';
 })
 
 export class DropdownDataSortComponent implements OnInit {
+    @Input() elementId: string = '';
     @Input() dropdownId: string = '';
     @Input() dropdownContent: string = '';
 
@@ -30,36 +32,42 @@ export class DropdownDataSortComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // console.log('ngOnInit > inputValues:',this.dropdownId, this.dropdownContent);
+        console.log('dropcontent:',this.dropdownContent);
 
-        this.dropdownService.clickedButton$.subscribe(item => {
-            this.setShowDropdown(item);
-        });
         this.route.queryParams.subscribe(params => {
             this.searchTerm = params['search'] || '';
             this.sortingTerm = (params['sort'] || 'id-asc');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
         });
+
+        // Beobachten des Dropdown-Zustands
+        this.dropdownService.getActiveDropdownId().subscribe(activeDropdownId => {
+            // console.log('activeDdId und baseDdId',activeDropdownId, this.elementId);
+            if (activeDropdownId === this.elementId) {
+                this.showDropContent = true;  // Schließe, wenn ein anderer Dropdown aktiv ist
+            } else {
+                this.showDropContent = false;
+            }
+        });
     }
 
-    setShowDropdown(dropdownId: any): void {
-        // console.log('showDropdownSort?', dropdownId, this.dropdownId);
+    /**
+     *
+     * @param dropdownId
+     */
+    // setShowDropdown(dropdownId: any): void {
+    //     // console.log('showDropdownSort?', dropdownId, this.dropdownId);
 
-        if (dropdownId === this.dropdownId) {
-            this.showDropContent = true;
-        } else {
-            this.showDropContent = false;
-        }
-    }
+    //     if (dropdownId === this.dropdownId) {
+    //         this.showDropContent = true;
+    //     } else {
+    //         this.showDropContent = false;
+    //     }
+    // }
 
-    @HostListener('document:click', ['$event'])
-    closeDropdown(event: Event): void {
-        const target = event.target as HTMLElement;
-
-        if (!target.closest('.drop-content-container')) {
-            this.showDropContent = false;
-        }
-    }
-
+    /**
+     *
+     * @param option
+     */
     onChooseOption(option: string): void {
         this.sortingTerm = option;
         this.updateRoute();
@@ -80,5 +88,18 @@ export class DropdownDataSortComponent implements OnInit {
                 // console.log('Navigation failed');
             }
         });
+    }
+
+    /**
+     *
+     * @param event
+     */
+    @HostListener('document:click', ['$event'])
+    closeDropdown(event: Event): void {
+        const target = event.target as HTMLElement;
+
+        if (!target.closest('.drop-content-container')) {
+            this.showDropContent = false;
+        }
     }
 }
