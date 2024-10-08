@@ -1,0 +1,64 @@
+<div class="dropdown-wrapper">
+
+    <!-- Button -->
+    <button (click)="toggleContent($event)" class="drop-btn" [ngClass]="{'running': isTimerRunning, 'paused': isTimerPaused}">
+        <div class="icon-alarm"></div>
+        <span style="margin-left: 6px;">{{ formatSecondToDuration(elapsedSeconds) }}</span>
+    </button>
+
+    <!-- Content -->
+    <div *ngIf="showContent" class="drop-content" style="overflow: visible;">
+
+        <!-- Content-Header -->
+        <h3 style="margin-left: 11px; font-size: .8rem; margin-bottom: 8px;">Time tracking (WIP)</h3>
+
+        <!-- Content -->
+        <!-- <form [formGroup]="timeTrackerForm" style="margin-top: 12px;" style="overflow: visible;"> -->
+            <!-- <div formArrayName="conditions" style="overflow: visible;"> -->
+
+                <!-- <div class="condition-wrapper" style="overflow: visible;"> -->
+
+                    <!-- dropdown for Kunden -->
+                    <app-dropdown-base style="overflow: visible;"
+                        [dropdownId] = "'customer'"
+                        [buttonType] = "'button-01'"
+                        [buttonValue] = "'Kunden'"
+                        [buttonIcon] = "'icon-office'"
+                        [dropdownContent] = "'customer'">
+                    </app-dropdown-base>
+
+                    <br>
+
+                    <!-- dropdown for Projekte -->
+                    <app-dropdown-base style="overflow: visible;"
+                        [dropdownId] = "'project'"
+                        [buttonType] = "'button-01'"
+                        [buttonValue] = "'Projekte'"
+                        [buttonIcon] = "'icon-office'"
+                        [dropdownContent] = "'project'">
+                    </app-dropdown-base>
+
+                    <br>
+
+                    <!-- dropdown for Tickts -->
+                    <app-dropdown-base style="overflow: visible;"
+                        [dropdownId] = "'task'"
+                        [buttonType] = "'button-01'"
+                        [buttonValue] = "'Aufgabe'"
+                        [buttonIcon] = "'icon-office'"
+                        [dropdownContent] = "'task'">
+                    </app-dropdown-base>
+
+                    <br><br>
+
+                    <button class="action" [ngClass]="{'locked': isTimerRunning}" (click)="startTimer()" [disabled]="isTimerRunning">{{ !isTimerPaused ? 'Start' : 'Weiter'}}</button>
+                    <button class="action" (click)="pauseTimer()" [disabled]="!isTimerRunning || isTimerPaused">Pause</button>
+                    <button class="action" (click)="stopTimer()">Stop</button>
+
+                <!-- </div> -->
+
+            <!-- </div> -->
+        <!-- </form> -->
+
+    </div>
+</div>

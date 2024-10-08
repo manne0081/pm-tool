@@ -80,10 +80,7 @@
         <!-- ************ -->
         <div class="menu-wrapper right">
 
-            <div class="item-container time-tracker" [ngClass]="{'running' : isTimerRunning}">
-                <div class="icon-alarm"></div>
-                <span style="margin-left: 6px;">{{runningTime}}</span>
-            </div>
+            <app-time-tracker style="overflow: visible;"></app-time-tracker>
 
             <div class="item-container profile" (click)="testFunction()">
                 <div class="icon-user"></div>

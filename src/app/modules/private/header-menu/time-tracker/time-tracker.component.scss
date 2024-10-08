@@ -1,0 +1,154 @@
+.dropdown-wrapper {
+    position: relative; /* Referenz für das positionierte Filter-Fenster */
+    display: inline-block; /* Damit der Button und das Fenster relativ zueinander platziert werden */
+    overflow: visible;
+}
+
+.drop-btn {
+    background-color: rgba(44, 80, 103, 0.2);
+    border: 1px solid rgba(44, 80, 103, 0.12);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 8px;
+    height: 36px; /* Beispielhöhe */
+    margin-left: 8px;
+
+    &:hover {
+        background-color: rgba(44, 80, 103, 0.3);
+        cursor: pointer;
+    }
+
+    [class*="icon"] {
+        font-size: 1.6rem;
+    }
+}
+
+.drop-btn.running {
+    background-color: #2FB11D;
+
+    div,span {
+        color: white;
+    }
+}
+
+.drop-btn.paused {
+    background-color: #d3736c;
+
+    div,span {
+        color: white;
+    }
+}
+
+.drop-content {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 4px;
+    position: absolute;
+    top: 100%;  /* Platziere das Fenster direkt unter dem Button */
+    right: 0;   /* Rechtsbündig zum Button */
+    margin-top: 4px;
+    min-width: 360px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 8px 0px rgba(44, 80, 103, 0.4);
+    z-index: 10; /* Damit es über anderen Elementen liegt */
+
+    .condition-wrapper {
+        // background-color: lime;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .filter-item-operator {
+            width: 76px;
+            margin-right: 12px;
+            padding-left: 8px;
+
+            &.label {
+                margin-left: 9px;
+                margin-right: 3px;
+            }
+        }
+
+        .filter-input {
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgb(200, 200, 200);
+            border-radius: 0 4px 4px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            top: 1px;
+            padding: 4px 8px;
+            box-sizing: border-box;
+            height: 32px;
+            width: 200px;
+            margin-right: 8px;
+        }
+
+        .filter-item-remove {
+            padding-top: 4px;
+
+        }
+
+        [class*="icon-cancel-"] {
+            font-size: 1.1em;
+        }
+
+        [class*="icon-cancel-"]:hover {
+            color: red;
+        }
+    }
+
+    button {
+        border: transparent;
+        background-color: transparent;
+    }
+
+    button.action {
+        border: 1px solid grey;
+        padding: 2px 4px;
+        min-width: 60px;
+        margin-right: 8px;
+        border-radius: 4px;
+
+        &:hover:not(.locked) {
+            background-color: #e9e9e9;
+            cursor: pointer;
+        }
+    }
+
+    button.locked {
+        opacity: .6;
+    }
+
+    .filter-action-button {
+        display: flex;
+        margin-top: 12px;
+        margin-left: 8px;
+        background-color: transparent;
+        border: 1px solid #afafaf;
+        border-radius: 4px;
+        padding: 4px 6px;
+
+        span {
+            color: #afafaf;
+            font-size: .9em;
+        }
+
+        span.icon-add {
+            position: relative;
+            top: 1px;
+            margin-right: 2px;
+        }
+    }
+
+    button:hover span {
+        color: #727272;
+        cursor: pointer;
+    }
+
+
+}
