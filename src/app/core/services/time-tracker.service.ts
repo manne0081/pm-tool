@@ -12,6 +12,9 @@ export class TimeTrackerServiceGlobal {
     isTimerPaused: boolean = false;
     timerInterval: any;
 
+    lsIsRunning: boolean = localStorage.getItem('isPaused') === 'true';
+
+
     constructor() {
         /**
          * Usecases beim laden der Komponente:
