@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class TimeTrackerServiceGlobal {
     startedTime: number = 0;
     elapsedSeconds: number = 0;
-    runningSeconds: number = 0;
+    // runningSeconds: number = 0;
     isTimerRunning: boolean = false;
     isTimerPaused: boolean = false;
     timerInterval: any;
