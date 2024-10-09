@@ -14,7 +14,7 @@ export class ContentHeaderService {
         private privateService: PrivateService,
     ) {
         this.privateService.getFieldNamesOfObject().subscribe(data => {
-            console.log('fieldnames:', data);
+            console.log('_shared - fieldnames:', data);
         });
     }
 

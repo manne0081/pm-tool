@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../../../core/services/data.service';
 import { WorkspaceService } from '../workspace.service';
 import { Task } from '../../../../mocks/task';
+import { TimeTrackerServiceGlobal } from '../../../../core/services/time-tracker.service';
 
 @Component({
     selector: 'app-task-list',
@@ -27,6 +28,7 @@ export class TaskListComponent {
         private route: ActivatedRoute,
         private dataService: DataService,
         private workspaceService: WorkspaceService,
+        private timeTrackerService: TimeTrackerServiceGlobal,
     ) {}
 
     ngOnInit(): void {
@@ -73,8 +75,27 @@ export class TaskListComponent {
      *
      * @param item
      */
-    onSelectTask(item: any):void {
+    onSelectTask(event: Event, item: any):void {
+
+        // if ((event.target as HTMLElement).tagName === 'BUTTON') {
+        //     return; // Abbrechen, wenn auf den Button geklickt wurde
+        // }
+
         this.selectedItemId = item.id                   // Needed for UI
         this.workspaceService.setSelectedObject(item);     // Needed for AddInfoArea
     }
+
+    setTimerStart(): void {
+        this.timeTrackerService.setTimerStart();
+    }
+
+    setTimerPause(): void {
+        this.timeTrackerService.setTimerPause();
+    }
+
+    setTimerStop(): void {
+        this.timeTrackerService.setTimerStop();
+    }
+
+
 }

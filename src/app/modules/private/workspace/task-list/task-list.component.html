@@ -15,19 +15,27 @@
 
     <div class="ticket-container"
         *ngFor="let ticket of taskItems"
-        (click)="onSelectTask(ticket)"
+        (click)="onSelectTask($event, ticket)"
         [ngClass]="{ 'selected': ticket.id === selectedItemId }"
     >
-        <!-- Ticket Header: ID und Titel -->
-        <span><b>{{ ticket.id }} - {{ ticket.title }}</b></span>
-        <br><br>
+        <div class="left-column">
+            <!-- Ticket Header: ID und Titel -->
+            <span><b>{{ ticket.id }} - {{ ticket.title }}</b></span>
+            <br><br>
+            <!-- Ticket Details: Status, Priorität und Fälligkeitsdatum -->
+            <span>Status: {{ ticket.status }}</span>
+            <br>
+            <span>Priorität: {{ ticket.priority }}</span>
+            <br>
+            <span>Fälligkeitsdatum: {{ ticket.dueDate | date: 'dd.MM.yyyy' }}</span>
+        </div>
 
-        <!-- Ticket Details: Status, Priorität und Fälligkeitsdatum -->
-        <span>Status: {{ ticket.status }}</span>
-        <br>
-        <span>Priorität: {{ ticket.priority }}</span>
-        <br>
-        <span>Fälligkeitsdatum: {{ ticket.dueDate | date: 'dd.MM.yyyy' }}</span>
+        <div class="right-column">
+            <button (click)="setTimerStart()">Start</button>   <!-- (click)="$event.stopPropagation()" -->
+            <button (click)="setTimerPause()">Pause</button>
+            <button (click)="setTimerStop()">Stop</button>
+        </div>
+
     </div>
 
 </div>

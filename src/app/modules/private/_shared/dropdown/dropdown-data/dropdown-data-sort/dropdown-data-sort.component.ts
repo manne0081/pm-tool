@@ -32,7 +32,7 @@ export class DropdownDataSortComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        console.log('dropcontent:',this.dropdownContent);
+        // console.log('dropcontent:',this.dropdownContent);
 
         this.route.queryParams.subscribe(params => {
             this.searchTerm = params['search'] || '';
