@@ -50,6 +50,11 @@
                     color: white;
                 }
             }
+
+            &.no-hover {
+                pointer-events: none; /* Deaktiviert den Hover-Effekt */
+                opacity: .12;
+            }
         }
 
         button.action.active {

@@ -24,6 +24,8 @@ export class TaskListComponent {
     searchTerm: string = '';
     sortingTerm: string = '';
 
+    isAnyTimerActive = false;
+
     constructor (
         private route: ActivatedRoute,
         private dataService: DataService,
@@ -89,9 +91,10 @@ export class TaskListComponent {
 
     setTimerStart(selectedTask: Task): void {
         this.resetAllTasks();
-        selectedTask.isPlaying = true;
+        selectedTask.isRunning = true;
         this.timeTrackerService.setTimerStart();
         this.saveTaskStatus();
+        this.isAnyTimerActive = true;
     }
 
     setTimerPause(selectedTask: Task): void {
@@ -99,18 +102,20 @@ export class TaskListComponent {
         selectedTask.isPaused = true;
         this.timeTrackerService.setTimerPause();
         this.saveTaskStatus();
+        this.isAnyTimerActive = true;
     }
 
     setTimerStop(task: Task): void {
         this.resetAllTasks();
         this.timeTrackerService.setTimerStop();
         this.saveTaskStatus();
+        this.isAnyTimerActive = this.taskItems.some(t => t.isRunning || t.isPaused);
     }
 
     resetAllTasks() {
         this.taskItems.forEach(task => {
-          task.isPlaying = false;
-          task.isPaused = false;
+            task.isRunning = false;
+            task.isPaused = false;
         });
     }
 

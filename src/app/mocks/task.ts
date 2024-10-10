@@ -6,7 +6,7 @@ export interface Task {
     status: 'open' | 'in-progress' | 'closed';  // Aktueller Status des Tickets
     priority: 'low' | 'medium' | 'high';        // Priorität des Tickets
     category: string;                           // Kategorie des Tickets (z.B. Technisch, Kundensupport, Bug)
-    isPlaying: boolean;
+    isRunning: boolean;
     isPaused: boolean;
     assignedTo?: string;                        // Mitarbeiter, dem das Ticket zugewiesen ist (optional)
     createdAt: Date;                            // Datum und Uhrzeit, wann das Ticket erstellt wurde
@@ -34,7 +34,7 @@ export const TASK_MOCK: Task[] = [
         status: 'open',
         priority: 'high',
         category: 'Technisch',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Lisa Schmidt',
         createdAt: new Date('2024-01-01T09:00:00'),
@@ -56,7 +56,7 @@ export const TASK_MOCK: Task[] = [
         status: 'in-progress',
         priority: 'medium',
         category: 'Kundensupport',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Peter Müller',
         createdAt: new Date('2024-01-02T08:30:00'),
@@ -78,7 +78,7 @@ export const TASK_MOCK: Task[] = [
         status: 'open',
         priority: 'high',
         category: 'Bug',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Max Mustermann',
         createdAt: new Date('2024-01-03T10:00:00'),
@@ -94,7 +94,7 @@ export const TASK_MOCK: Task[] = [
         status: 'closed',
         priority: 'low',
         category: 'Feature-Anfrage',
-        isPlaying: true,
+        isRunning: true,
         isPaused: false,
         assignedTo: 'Frank Meyer',
         createdAt: new Date('2024-01-04T11:00:00'),
@@ -116,7 +116,7 @@ export const TASK_MOCK: Task[] = [
         status: 'open',
         priority: 'high',
         category: 'Technisch',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Lisa Schmidt',
         createdAt: new Date('2024-01-05T09:30:00'),
@@ -132,7 +132,7 @@ export const TASK_MOCK: Task[] = [
         status: 'in-progress',
         priority: 'medium',
         category: 'Bug',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Peter Müller',
         createdAt: new Date('2024-01-06T08:00:00'),
@@ -154,7 +154,7 @@ export const TASK_MOCK: Task[] = [
         status: 'open',
         priority: 'low',
         category: 'Feature-Anfrage',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Anna Bauer',
         createdAt: new Date('2024-01-07T10:30:00'),
@@ -170,7 +170,7 @@ export const TASK_MOCK: Task[] = [
         status: 'open',
         priority: 'high',
         category: 'Technisch',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Jens Bauer',
         createdAt: new Date('2024-01-08T09:00:00'),
@@ -192,7 +192,7 @@ export const TASK_MOCK: Task[] = [
         status: 'in-progress',
         priority: 'high',
         category: 'Kundensupport',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Frank Meyer',
         createdAt: new Date('2024-01-09T11:00:00'),
@@ -208,7 +208,7 @@ export const TASK_MOCK: Task[] = [
         status: 'closed',
         priority: 'medium',
         category: 'Rechtlich',
-        isPlaying: false,
+        isRunning: false,
         isPaused: false,
         assignedTo: 'Lisa Schmidt',
         createdAt: new Date('2024-01-10T12:00:00'),
