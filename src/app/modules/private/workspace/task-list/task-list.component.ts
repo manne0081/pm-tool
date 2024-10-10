@@ -45,13 +45,6 @@ export class TaskListComponent {
 
         if (savedTasks) {
             this.taskItems = JSON.parse(savedTasks);
-        } else {
-            // Falls keine gespeicherten Werte existieren, initialisiere die taskItems wie gehabt
-            // this.taskItems = [
-            // { id: 1, title: 'Task 1', status: 'Open', priority: 'High', dueDate: new Date(), isPlaying: false, isPaused: false },
-            // { id: 2, title: 'Task 2', status: 'In Progress', priority: 'Medium', dueDate: new Date(), isPlaying: false, isPaused: false },
-            // // Weitere `task`-Objekte
-            // ];
         }
     }
 
@@ -90,11 +83,6 @@ export class TaskListComponent {
      * @param item
      */
     onSelectTask(event: Event, item: any):void {
-
-        // if ((event.target as HTMLElement).tagName === 'BUTTON') {
-        //     return; // Abbrechen, wenn auf den Button geklickt wurde
-        // }
-
         this.selectedItemId = item.id                   // Needed for UI
         this.workspaceService.setSelectedObject(item);     // Needed for AddInfoArea
     }
@@ -102,14 +90,12 @@ export class TaskListComponent {
     setTimerStart(selectedTask: Task): void {
         this.resetAllTasks();
         selectedTask.isPlaying = true;
-        selectedTask.isPaused = false;
         this.timeTrackerService.setTimerStart();
         this.saveTaskStatus();
     }
 
     setTimerPause(selectedTask: Task): void {
         this.resetAllTasks();
-        selectedTask.isPlaying = false;
         selectedTask.isPaused = true;
         this.timeTrackerService.setTimerPause();
         this.saveTaskStatus();
@@ -117,8 +103,6 @@ export class TaskListComponent {
 
     setTimerStop(task: Task): void {
         this.resetAllTasks();
-        // selectedTask.isPlaying = false;
-        // selectedTask.isPaused = false;
         this.timeTrackerService.setTimerStop();
         this.saveTaskStatus();
     }

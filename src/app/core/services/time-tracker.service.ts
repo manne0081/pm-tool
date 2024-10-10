@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class TimeTrackerServiceGlobal {
-    startedTime: number = 0;
-    elapsedSeconds: number = 0;
-    isTimerRunning: boolean = false;
-    isTimerPaused: boolean = false;
+    // startTime: number = 0;
+    // elapsedSeconds: number = 0;
+    // isTimerRunning: boolean = false;
+    // isTimerPaused: boolean = false;
     timerInterval: any;
 
-    storageIsRunning: boolean = localStorage.getItem('isPaused') === 'true';
-
-
+    isRunning$ = new BehaviorSubject<boolean>(false);
+    isPaused$ = new BehaviorSubject<boolean>(false);
+    startedTime$ = new BehaviorSubject<number>(0);
+    elapsedSeconds$ = new BehaviorSubject<number>(0);
 
     constructor() {
         /**
@@ -22,34 +24,33 @@ export class TimeTrackerServiceGlobal {
          * - Der Timer lief als der Browser aktualisiert wurde > Die verstichene Zeit ermitteln, speichern und den Timer von neuem starten
          * - Der Timer ist pausiert als der Browser aktualisiert wurde > Nichts weiter zu tun (denke ich)
          */
-        const isTimerRunning = localStorage.getItem('isRunning') === 'true';
-        const isTimerPaused = localStorage.getItem('isPaused') === 'true';
-        const startedTime = parseInt(localStorage.getItem('startTime') || '0', 10);
+
+        const isRunning = localStorage.getItem('isRunning') === 'true';
+        const isPaused = localStorage.getItem('isPaused') === 'true';
+        const startedTime = parseInt(localStorage.getItem('startedTime') || '0', 10);
         const elapsedSeconds = parseInt(localStorage.getItem('elapsedSeconds') || '0', 10);
 
-        console.log('core > timeTrackerService \n isRunning:',isTimerRunning, '\n isPaused:', isTimerPaused, '\n startedTime:', startedTime, '\n elapsedSeconds:', elapsedSeconds);
+        console.log('core > timeTrackerService \n isRunning:',this.isRunning$.getValue(), '\n isPaused:', this.isPaused$.getValue(),
+                                              '\n startedTime:', this.startedTime$.getValue(), '\n elapsedSeconds:', this.elapsedSeconds$.getValue());
 
-        if (!isTimerRunning && !isTimerPaused) {
-            // When isnt running or paused
-            // console.log('nothing to do!');
+        if (!isRunning && !isPaused) {
+            // console.log('Timer isn't running or paused, so nothing to do here!');
 
-        } else if (isTimerRunning && !isTimerPaused) {
-            // When is running
-            // console.log('timer is running when reload');
+        } else if (isRunning && !isPaused) {
+            console.log('timer is running when reload');
 
             const now = new Date().getTime();
-            const startedTime = parseInt(localStorage.getItem('startTime') || '0', 10);
             const elapsedSeconds = Math.floor((now - startedTime) / 1000); // Verstrichene Zeit in Sekunden
 
-            this.isTimerRunning = isTimerRunning;
-            this.elapsedSeconds = elapsedSeconds;
+            this.isRunning$.next(true);
+            this.elapsedSeconds$.next(elapsedSeconds);
+            this.startedTime$.next(startedTime);
+
             this.setTimerStart();
 
-        } else if (!isTimerRunning && isTimerPaused) {
-            // When is paused
-            // console.log('timer is paused when reload');
-            this.isTimerPaused = isTimerPaused;
-            this.elapsedSeconds = elapsedSeconds;
+        } else if (!isRunning && isPaused) {
+            this.isPaused$.next(isPaused);
+            this.elapsedSeconds$.next(elapsedSeconds);
         }
     }
 
@@ -61,57 +62,57 @@ export class TimeTrackerServiceGlobal {
          * - Fortsetzen wenn der Browser neu geladen wird und die Zeit am laufen war
          * - Im Pause-Zustand bleiben, wenn beim neuladen des Browsers der Zustand auf Pause war
          */
-        if (!this.isTimerRunning && !this.isTimerPaused) {
+        if (!this.isRunning$.getValue() && !this.isPaused$.getValue()) {
             console.log('startTimer > from zero');
 
-            this.isTimerRunning = true;
-            this.startedTime = new Date().getTime();
-
+            this.isRunning$.next(true);
             localStorage.setItem('isRunning', 'true');
-            localStorage.setItem('startTime', this.startedTime.toString());
+
+            this.startedTime$.next(new Date().getTime());
+            localStorage.setItem('startedTime', this.startedTime$.getValue().toString());
 
             this.timerInterval = setInterval(() => {
                 const now = new Date().getTime();
-                this.elapsedSeconds = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
+                this.elapsedSeconds$.next(Math.floor((now - this.startedTime$.getValue()) / 1000));
             }, 1000);
 
-        } else if (!this.isTimerRunning && this.isTimerPaused) {
+        } else if (!this.isRunning$.getValue() && this.isPaused$.getValue()) {
             // console.log('startTimer > resume after a break');
 
-            this.isTimerRunning = true;
-            this.isTimerPaused = false;
+            this.isRunning$.next(true);
+            localStorage.setItem('isRunning', 'true');
+
+            this.isPaused$.next(false);
+            localStorage.setItem('isPaused', 'false');
 
             // Berechne die neue Startzeit unter Berücksichtigung der verstrichenen Zeit
-            this.startedTime = new Date().getTime() - (this.elapsedSeconds * 1000);
-
-            localStorage.setItem('isRunning', 'true');
-            localStorage.setItem('isPaused', 'false');
-            localStorage.setItem('startTime', this.startedTime.toString());
+            this.startedTime$.next(new Date().getTime() - (this.elapsedSeconds$.getValue() * 1000));
+            localStorage.setItem('startedTime', this.startedTime$.getValue().toString());
 
             // Setze das Intervall mit der angepassten Startzeit
             this.timerInterval = setInterval(() => {
                 const now = new Date().getTime();
-                this.elapsedSeconds = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
+                this.elapsedSeconds$.next(Math.floor((now - this.startedTime$.getValue()) / 1000));
             }, 1000);
 
-        } else if (this.isTimerRunning) {
-            // Wiederherstellen des Timers nach einem Browser-Neustart
+        } else if (this.isRunning$.getValue() && !this.isPaused$.getValue()) {
             // console.log('startTimer > resume when timer is running and reload');
 
+            clearInterval(this.timerInterval);
+
             // Hole die gespeicherte Startzeit und den Zustand des Timers
-            const savedElapsedTime = this.elapsedSeconds;
+            const savedElapsedTime = this.elapsedSeconds$.getValue();
 
             // Berechne die aktuelle Startzeit, um die bereits verstrichene Zeit einzubeziehen
-            this.startedTime = new Date().getTime() - (savedElapsedTime * 1000);
-            this.elapsedSeconds = savedElapsedTime;
-
+            this.startedTime$.next(new Date().getTime() - (savedElapsedTime * 1000));
+            this.elapsedSeconds$.next(savedElapsedTime);
 
             // Timer auf "läuft" setzen
-            this.isTimerRunning = true;
+            this.isRunning$.next(true);
 
             this.timerInterval = setInterval(() => {
                 const now = new Date().getTime();
-                this.elapsedSeconds = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
+                this.elapsedSeconds$.next(Math.floor((now - this.startedTime$.getValue()) / 1000));
             }, 1000);
 
         }
@@ -121,46 +122,49 @@ export class TimeTrackerServiceGlobal {
         /**
          *
          */
-        if (this.isTimerRunning && !this.isTimerPaused) {
+        if (this.isRunning$.getValue() && !this.isPaused$.getValue()) {
             clearInterval(this.timerInterval);
             const now = new Date().getTime();
-            const elapsedSeconds = Math.floor((now - this.startedTime) / 1000); // Verstrichene Zeit in Sekunden
+            const elapsedSeconds = Math.floor((now - this.startedTime$.getValue()) / 1000); // Verstrichene Zeit in Sekunden
 
-            // Saving elapsed time
-            this.isTimerRunning = false;
-            this.isTimerPaused = true;
+            this.isRunning$.next(false);
             localStorage.setItem('isRunning', 'false');
+
+            this.isPaused$.next(true);
             localStorage.setItem('isPaused', 'true');
+
+            this.elapsedSeconds$.next(elapsedSeconds);
             localStorage.setItem('elapsedSeconds', elapsedSeconds.toString());
         }
     }
 
     setTimerStop() {
         clearInterval(this.timerInterval);
-        localStorage.removeItem('startTime');
-        localStorage.removeItem('elapsedSeconds');
         localStorage.removeItem('isRunning');
         localStorage.removeItem('isPaused');
+        localStorage.removeItem('startedTime');
+        localStorage.removeItem('elapsedSeconds');
 
-        this.isTimerRunning = false;
-        this.isTimerPaused = false;
-        this.elapsedSeconds = 0;
+        this.isRunning$.next(false);
+        this.isPaused$.next(false);
+        this.startedTime$.next(0);
+        this.elapsedSeconds$.next(0);
     }
 
-    getIsTimerRunning(): boolean {
-        return this.isTimerRunning;
+    getIsTimerRunning() {
+        return this.isRunning$.asObservable();
     }
 
-    getIsTimerPaused(): boolean {
-        return this.isTimerPaused;
+    getIsTimerPaused() {
+        return this.isPaused$.asObservable();
     }
 
-    getStartedTime(): number {
-        return this.startedTime;
+    getStartedTime() {
+        return this.startedTime$.asObservable();
     }
 
-    getElapsedSeconds(): number {
-        return this.elapsedSeconds;
+    getElapsedSeconds() {
+        return this.elapsedSeconds$.asObservable();
     }
 
     getFormatedSeconds(seconds: number): string {
