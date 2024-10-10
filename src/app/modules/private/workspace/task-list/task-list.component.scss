@@ -22,10 +22,10 @@
 
     }
 
-    &:hover .right-column button.action{
-        // background-color: lime;
-        opacity: 1;
-    }
+    // &:hover .right-column button.action{
+    //     // background-color: lime;
+    //     opacity: 1;
+    // }
 
     .left-column {
         // background-color: lime;
@@ -49,11 +49,21 @@
             &:hover {
                 background-color: #527083;
                 border: none;
+                opacity: 1;
                 cursor: pointer;
 
                 div {
                     color: white;
                 }
+            }
+        }
+
+        button.action.active {
+            background-color: #527083; /* Zum Beispiel grün für aktiv */
+            opacity: 1;
+
+            div {
+                color: white;
             }
         }
     }
@@ -62,8 +72,14 @@
 
 }
 
-.ticket-container.selected {
+.ticket-container.selected, .right-column button.action {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: -1px -2px 8px -4px rgba(0, 0, 0, 1) inset;
     border-bottom: 3px solid #527083;
 }
+
+.ticket-container.selected .right-column button.action {
+    opacity: 1;
+}
+
+

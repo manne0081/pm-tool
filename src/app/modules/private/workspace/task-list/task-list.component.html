@@ -1,39 +1,26 @@
-<!-- <div class="grid-container">
-
-    <div class="item-container"
-        *ngFor="let item of taskItems"
-        (click)="onSelectTask(item)"
-        [ngClass]="{ 'selected': item.id === selectedItemId }"
-    >
-        <span><b>{{ item.id}} - {{ item.title }}</b></span>
-        <br><br>
-    </div>
-</div> -->
-
-
 <div class="grid-container">
 
     <div class="ticket-container"
-        *ngFor="let ticket of taskItems"
-        (click)="onSelectTask($event, ticket)"
-        [ngClass]="{ 'selected': ticket.id === selectedItemId }"
+        *ngFor="let task of taskItems"
+        (click)="onSelectTask($event, task)"
+        [ngClass]="{ 'selected': task.id === selectedItemId }"
     >
         <div class="left-column">
             <!-- Ticket Header: ID und Titel -->
-            <span><b>{{ ticket.id }} - {{ ticket.title }}</b></span>
+            <span><b>{{ task.id }} - {{ task.title }}</b></span>
             <br><br>
             <!-- Ticket Details: Status, Priorität und Fälligkeitsdatum -->
-            <span>Status: {{ ticket.status }}</span>
+            <span>Status: {{ task.status }}</span>
             <br>
-            <span>Priorität: {{ ticket.priority }}</span>
+            <span>Priorität: {{ task.priority }}</span>
             <br>
-            <span>Fälligkeitsdatum: {{ ticket.dueDate | date: 'dd.MM.yyyy' }}</span>
+            <span>Fälligkeitsdatum: {{ task.dueDate | date: 'dd.MM.yyyy' }}</span>
         </div>
 
         <div class="right-column visible">
-            <button class="action" (click)="setTimerStart()"><div class="icon-play3"></div></button>   <!-- (click)="$event.stopPropagation()" -->
-            <button class="action" (click)="setTimerPause()"><div class="icon-pause2"></div></button>
-            <button class="action" (click)="setTimerStop()"><div class="icon-stop2"></div></button>
+            <button class="action" [ngClass]="{ 'active': task.isPlaying }" (click)="setTimerStart(task)"><div class="icon-play3"></div></button>   <!-- (click)="$event.stopPropagation()" -->
+            <button class="action" [ngClass]="{ 'active': task.isPaused }" (click)="setTimerPause(task)"><div class="icon-pause2"></div></button>
+            <button class="action" (click)="setTimerStop(task)"><div class="icon-stop2"></div></button>
         </div>
 
     </div>

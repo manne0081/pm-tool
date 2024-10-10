@@ -39,6 +39,20 @@ export class TaskListComponent {
             this.sortingTerm = (params['sort'] || 'id-asc');      // for example: 'name-asc', 'name-desc', 'id-asc', 'id-desc'
             this.getTaskItems();
         });
+
+        // Lade die gespeicherten Task-Zustände aus dem `localStorage`
+        const savedTasks = localStorage.getItem('taskItems');
+
+        if (savedTasks) {
+            this.taskItems = JSON.parse(savedTasks);
+        } else {
+            // Falls keine gespeicherten Werte existieren, initialisiere die taskItems wie gehabt
+            // this.taskItems = [
+            // { id: 1, title: 'Task 1', status: 'Open', priority: 'High', dueDate: new Date(), isPlaying: false, isPaused: false },
+            // { id: 2, title: 'Task 2', status: 'In Progress', priority: 'Medium', dueDate: new Date(), isPlaying: false, isPaused: false },
+            // // Weitere `task`-Objekte
+            // ];
+        }
     }
 
     /**
@@ -85,17 +99,40 @@ export class TaskListComponent {
         this.workspaceService.setSelectedObject(item);     // Needed for AddInfoArea
     }
 
-    setTimerStart(): void {
+    setTimerStart(selectedTask: Task): void {
+        this.resetAllTasks();
+        selectedTask.isPlaying = true;
+        selectedTask.isPaused = false;
         this.timeTrackerService.setTimerStart();
+        this.saveTaskStatus();
     }
 
-    setTimerPause(): void {
+    setTimerPause(selectedTask: Task): void {
+        this.resetAllTasks();
+        selectedTask.isPlaying = false;
+        selectedTask.isPaused = true;
         this.timeTrackerService.setTimerPause();
+        this.saveTaskStatus();
     }
 
-    setTimerStop(): void {
+    setTimerStop(task: Task): void {
+        this.resetAllTasks();
+        // selectedTask.isPlaying = false;
+        // selectedTask.isPaused = false;
         this.timeTrackerService.setTimerStop();
+        this.saveTaskStatus();
     }
 
+    resetAllTasks() {
+        this.taskItems.forEach(task => {
+          task.isPlaying = false;
+          task.isPaused = false;
+        });
+    }
+
+    // Speichert den Zustand aller Tasks im `localStorage`
+    saveTaskStatus() {
+        localStorage.setItem('taskItems', JSON.stringify(this.taskItems));
+    }
 
 }
