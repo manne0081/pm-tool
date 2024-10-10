@@ -41,8 +41,20 @@
 
         button {
             margin-top: 4px;
-            opacity: .2;
+            opacity: .12;
+            border: none;
+            border-radius: 4px;
+            padding: 4px;
 
+            &:hover {
+                background-color: #527083;
+                border: none;
+                cursor: pointer;
+
+                div {
+                    color: white;
+                }
+            }
         }
     }
 
