@@ -18,9 +18,25 @@
         </div>
 
         <div class="right-column visible">
-            <button class="action" [ngClass]="{ 'active': task.isRunning, 'no-hover': isAnyTimerActive }" [disabled]="isAnyTimerActive && task.isRunning && !task.isPaused" (click)="setTimerStart(task)"><div class="icon-play3"></div></button>   <!-- (click)="$event.stopPropagation()" -->
-        <button class="action" [ngClass]="{ 'active': task.isPaused, 'no-hover': isAnyTimerActive }" [disabled]="isAnyTimerActive && !task.isRunning && task.isPaused" (click)="setTimerPause(task)"><div class="icon-pause2"></div></button>
-        <button class="action" [ngClass]="{ 'no-hover': isAnyTimerActive }" (click)="setTimerStop(task)" [disabled]="isAnyTimerActive && task.isRunning || task.isPaused"><div class="icon-stop2"></div></button>
+            <!-- [disabled]="isAnyTimerActive && task.isRunning && !task.isPaused" -->
+            <button class="action" [ngClass]="{ 'active': task.isRunning, 'no-hover': isAnyTimerActive }"
+
+                (click)="setTimerStart(task)">
+                <div class="icon-play3"></div>
+            </button>
+
+            <!-- [disabled]="isAnyTimerActive && !task.isRunning && task.isPaused" -->
+            <button class="action" [ngClass]="{ 'active': task.isPaused, 'no-hover': isAnyTimerActive }"
+
+                (click)="setTimerPause(task)">
+                <div class="icon-pause2"></div>
+            </button>
+
+            <!-- [disabled]="isAnyTimerActive && task.isRunning || task.isPaused" -->
+            <button class="action" [ngClass]="{ 'no-hover': isAnyTimerActive }" (click)="setTimerStop(task)"
+            >
+                <div class="icon-stop2"></div>
+            </button>
         </div>
 
     </div>
