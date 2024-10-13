@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { v4 as uuidv4 } from 'uuid';
 
 import { DataService } from '../../../../core/services/data.service';
 import { WorkspaceService } from '../workspace.service';
@@ -30,7 +31,7 @@ export class TaskListComponent {
         private route: ActivatedRoute,
         private dataService: DataService,
         private workspaceService: WorkspaceService,
-        private timeTrackerService: TimeTrackerServiceGlobal,
+        private timeTrackerServiceGlobal: TimeTrackerServiceGlobal,
     ) {}
 
     ngOnInit(): void {
@@ -48,6 +49,11 @@ export class TaskListComponent {
         if (savedTasks) {
             this.taskItems = JSON.parse(savedTasks);
         }
+
+        this.timeTrackerServiceGlobal.getIsAnyTimerActive().subscribe(data => {
+            this.isAnyTimerActive = data;
+        });
+
     }
 
     /**
@@ -90,26 +96,35 @@ export class TaskListComponent {
     }
 
     setTimerStart(selectedTask: Task): void {
+        if (this.isAnyTimerActive) {
+            return;
+        }
+
         this.resetAllTasks();
         selectedTask.isRunning = true;
-        this.timeTrackerService.setTimerStart();
+        this.timeTrackerServiceGlobal.setTimerStart();
         this.saveTaskStatus();
-        this.isAnyTimerActive = true;
     }
 
     setTimerPause(selectedTask: Task): void {
+        if (this.isAnyTimerActive) {
+            return;
+        }
+
         this.resetAllTasks();
         selectedTask.isPaused = true;
-        this.timeTrackerService.setTimerPause();
+        this.timeTrackerServiceGlobal.setTimerPause();
         this.saveTaskStatus();
-        this.isAnyTimerActive = true;
     }
 
     setTimerStop(task: Task): void {
+        if (this.isAnyTimerActive) {
+            return;
+        }
+
         this.resetAllTasks();
-        this.timeTrackerService.setTimerStop();
+        this.timeTrackerServiceGlobal.setTimerStop();
         this.saveTaskStatus();
-        this.isAnyTimerActive = this.taskItems.some(t => t.isRunning || t.isPaused);
     }
 
     resetAllTasks() {

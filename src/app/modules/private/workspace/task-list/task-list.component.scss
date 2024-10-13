@@ -52,7 +52,7 @@
             }
 
             &.no-hover {
-                pointer-events: none; /* Deaktiviert den Hover-Effekt */
+                // pointer-events: none; /* Deaktiviert den Hover-Effekt */
                 opacity: .12;
             }
         }

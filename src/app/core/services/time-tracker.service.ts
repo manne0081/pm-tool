@@ -17,6 +17,9 @@ export class TimeTrackerServiceGlobal {
     startedTime$ = new BehaviorSubject<number>(0);
     elapsedSeconds$ = new BehaviorSubject<number>(0);
 
+    isAnyTimerActive$ = new BehaviorSubject<boolean>(false);
+    activeTaskId$ = new BehaviorSubject<string>('');
+
     constructor() {
         /**
          * Usecases beim laden der Komponente:
@@ -29,9 +32,11 @@ export class TimeTrackerServiceGlobal {
         const isPaused = localStorage.getItem('isPaused') === 'true';
         const startedTime = parseInt(localStorage.getItem('startedTime') || '0', 10);
         const elapsedSeconds = parseInt(localStorage.getItem('elapsedSeconds') || '0', 10);
+        const isAnyTimerActive = localStorage.getItem('isAnyTimerRunning') === 'true';
 
         console.log('core > timeTrackerService \n isRunning:',this.isRunning$.getValue(), '\n isPaused:', this.isPaused$.getValue(),
-                                              '\n startedTime:', this.startedTime$.getValue(), '\n elapsedSeconds:', this.elapsedSeconds$.getValue());
+                                              '\n startedTime:', this.startedTime$.getValue(), '\n elapsedSeconds:', this.elapsedSeconds$.getValue(),
+                                              '\n isAnyTimerActive:', this.isAnyTimerActive$.getValue());
 
         if (!isRunning && !isPaused) {
             // console.log('Timer isn't running or paused, so nothing to do here!');
@@ -45,12 +50,14 @@ export class TimeTrackerServiceGlobal {
             this.isRunning$.next(true);
             this.elapsedSeconds$.next(elapsedSeconds);
             this.startedTime$.next(startedTime);
+            this.isAnyTimerActive$.next(true);
 
             this.setTimerStart();
 
         } else if (!isRunning && isPaused) {
             this.isPaused$.next(isPaused);
             this.elapsedSeconds$.next(elapsedSeconds);
+            this.isAnyTimerActive$.next(true);
         }
     }
 
@@ -70,6 +77,9 @@ export class TimeTrackerServiceGlobal {
 
             this.startedTime$.next(new Date().getTime());
             localStorage.setItem('startedTime', this.startedTime$.getValue().toString());
+
+            this.isAnyTimerActive$.next(true);
+            this.activeTaskId$.next('test');
 
             this.timerInterval = setInterval(() => {
                 const now = new Date().getTime();
@@ -148,6 +158,7 @@ export class TimeTrackerServiceGlobal {
         this.isRunning$.next(false);
         this.isPaused$.next(false);
         this.startedTime$.next(0);
+        this.isAnyTimerActive$.next(false);
         this.elapsedSeconds$.next(0);
     }
 
@@ -165,6 +176,10 @@ export class TimeTrackerServiceGlobal {
 
     getElapsedSeconds() {
         return this.elapsedSeconds$.asObservable();
+    }
+
+    getIsAnyTimerActive() {
+        return this.isAnyTimerActive$.asObservable();
     }
 
     getFormatedSeconds(seconds: number): string {

@@ -31,6 +31,7 @@ export class TimeTrackerComponent implements OnInit {
     runningSeconds: number = 0;
     isTimerRunning: boolean = false;
     isTimerPaused: boolean = false;
+    isAnyTimerActive: boolean = false;
     timerInterval: any;
 
     constructor(
@@ -65,7 +66,12 @@ export class TimeTrackerComponent implements OnInit {
             this.elapsedSeconds = data;
         });
 
-        console.log('time-tracker.component: \n isRunning:',this.isTimerRunning, '\n isPaused:', this.isTimerPaused, '\n startedTime:', this.startedTime, '\n elapsedSeconds:', this.elapsedSeconds);
+        this.timeTrackerServiceGlobal.getIsAnyTimerActive().subscribe(data => {
+            this.isAnyTimerActive = data;
+        });
+
+        console.log('time-tracker.component: \n isRunning:',this.isTimerRunning, '\n isPaused:', this.isTimerPaused, '\n startedTime:', this.startedTime,
+                                            '\n elapsedSeconds:', this.elapsedSeconds, '\n isAnyTimerActive:', this.isAnyTimerActive,);
     }
 
     toggleContent(event: Event) {
