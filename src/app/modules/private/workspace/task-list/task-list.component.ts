@@ -56,7 +56,6 @@ export class TaskListComponent {
             this.isAnyTimerActive = data;
         });
         this.timeTrackerServiceGlobal.getActiveTaskId().subscribe(data => {
-            console.log('onInit > activeTaskId:', data);
             this.activeTaskId = data;
         });
 
