@@ -24,13 +24,13 @@
                 <div class="icon-play3"></div>
             </button>
 
-            <button class="action" [ngClass]="{ 'active': task.isPaused, 'no-hover': isAnyTimerActive }"
+            <button class="action" [ngClass]="{ 'active': task.isPaused, 'no-hover': isAnyTimerActive && task.id !== activeTaskId }"
                 [disabled]="activeTaskId !== 0 && task.id !== activeTaskId"
                 (click)="setTimerPause(task)">
                 <div class="icon-pause2"></div>
             </button>
 
-            <button class="action" [ngClass]="{ 'no-hover': isAnyTimerActive }" (click)="setTimerStop(task)"
+            <button class="action" [ngClass]="{ 'no-hover': isAnyTimerActive && task.id !== activeTaskId }" (click)="setTimerStop(task)"
                 [disabled]="activeTaskId !== 0 && task.id !== activeTaskId"
             >
                 <div class="icon-stop2"></div>

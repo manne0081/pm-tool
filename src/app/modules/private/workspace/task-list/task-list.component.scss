@@ -60,6 +60,13 @@
                 color: white;
             }
         }
+
+        button.action.no-hover {
+            // background-color: lime;
+            pointer-events: none;
+            opacity: .12;
+        }
+
     }
 }
 
@@ -71,5 +78,9 @@
 
 .ticket-container.selected .right-column button.action {
     opacity: 1;
+}
+
+.ticket-container.selected .right-column button.action.no-hover {
+    opacity: .12;
 }
 

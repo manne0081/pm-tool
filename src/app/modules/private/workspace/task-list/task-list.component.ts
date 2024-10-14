@@ -108,6 +108,10 @@ export class TaskListComponent {
     }
 
     setTimerPause(selectedTask: Task): void {
+        if (!this.isAnyTimerActive) {
+            return;
+        }
+
         this.resetAllTasks();
         selectedTask.isPaused = true;
         this.timeTrackerServiceGlobal.setTimerPause();
