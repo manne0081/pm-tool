@@ -18,7 +18,7 @@ export class TimeTrackerServiceGlobal {
     elapsedSeconds$ = new BehaviorSubject<number>(0);
 
     isAnyTimerActive$ = new BehaviorSubject<boolean>(false);
-    activeTaskId$ = new BehaviorSubject<string>('');
+    activeTaskId$ = new BehaviorSubject<number>(0);
 
     constructor() {
         /**
@@ -61,7 +61,7 @@ export class TimeTrackerServiceGlobal {
         }
     }
 
-    setTimerStart() {
+    setTimerStart(taskId?: number) {
         /**
          * Usecases:
          * - Von 0 Starten
@@ -79,7 +79,7 @@ export class TimeTrackerServiceGlobal {
             localStorage.setItem('startedTime', this.startedTime$.getValue().toString());
 
             this.isAnyTimerActive$.next(true);
-            this.activeTaskId$.next('test');
+            this.activeTaskId$.next(taskId!);
 
             this.timerInterval = setInterval(() => {
                 const now = new Date().getTime();
@@ -159,6 +159,7 @@ export class TimeTrackerServiceGlobal {
         this.isPaused$.next(false);
         this.startedTime$.next(0);
         this.isAnyTimerActive$.next(false);
+        this.activeTaskId$.next(0);
         this.elapsedSeconds$.next(0);
     }
 
@@ -180,6 +181,10 @@ export class TimeTrackerServiceGlobal {
 
     getIsAnyTimerActive() {
         return this.isAnyTimerActive$.asObservable();
+    }
+
+    getActiveTaskId() {
+        return this.activeTaskId$.asObservable();
     }
 
     getFormatedSeconds(seconds: number): string {

@@ -18,23 +18,20 @@
         </div>
 
         <div class="right-column visible">
-            <!-- [disabled]="isAnyTimerActive && task.isRunning && !task.isPaused" -->
             <button class="action" [ngClass]="{ 'active': task.isRunning, 'no-hover': isAnyTimerActive }"
-                [disabled]="isAnyTimerActive && task.isRunning && !task.isPaused"
+                [disabled]="activeTaskId !== 0 && task.id !== activeTaskId"
                 (click)="setTimerStart(task)">
                 <div class="icon-play3"></div>
             </button>
 
-            <!-- [disabled]="isAnyTimerActive && !task.isRunning && task.isPaused" -->
             <button class="action" [ngClass]="{ 'active': task.isPaused, 'no-hover': isAnyTimerActive }"
-                [disabled]="isAnyTimerActive && !task.isRunning && task.isPaused"
+                [disabled]="activeTaskId !== 0 && task.id !== activeTaskId"
                 (click)="setTimerPause(task)">
                 <div class="icon-pause2"></div>
             </button>
 
-            <!-- [disabled]="isAnyTimerActive && task.isRunning || task.isPaused" -->
             <button class="action" [ngClass]="{ 'no-hover': isAnyTimerActive }" (click)="setTimerStop(task)"
-
+                [disabled]="activeTaskId !== 0 && task.id !== activeTaskId"
             >
                 <div class="icon-stop2"></div>
             </button>
