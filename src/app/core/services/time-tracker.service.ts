@@ -56,9 +56,11 @@ export class TimeTrackerServiceGlobal {
             this.setTimerStart();
 
         } else if (!isRunning && isPaused) {
+            // console.log('pause is active when reload');
             this.isPaused$.next(isPaused);
             this.elapsedSeconds$.next(elapsedSeconds);
             this.isAnyTimerActive$.next(true);
+            this.activeTaskId$.next(activeTaskId);
         }
     }
 
