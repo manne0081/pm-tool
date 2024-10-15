@@ -21,9 +21,9 @@ export interface Comment {
     timestamp: Date;            // Datum und Uhrzeit des Kommentars
 }
 
-export const ticketFieldNames: (keyof Task)[] = ['id', 'title', 'description', 'creator', 'status', 'priority',
-    'category', 'assignedTo', 'createdAt', 'dueDate', 'attachments', 'comments'];
-
+export const taskFieldNames: (keyof Task)[] = ['id', 'title', 'description', 'creator', 'status', 'priority',
+    'category', 'assignedTo', 'createdAt', 'dueDate', 'attachments', 'comments'
+];
 
 export const TASK_MOCK: Task[] = [
     {
@@ -222,5 +222,20 @@ export const TASK_MOCK: Task[] = [
         ],
         attachments: ['new_privacy_policy.pdf']
     }
-    ];
+];
 
+
+
+export interface TimeStamp {
+    id: number;  // Verknüpfte ID, z.B. die ID des Kunden, Projekts oder Tasks
+    entityType: 'customer' | 'project' | 'task';
+    start: Date;
+    pause?: Date;
+    stop?: Date;
+}
+
+export const TIMESTAMP_MOCK: TimeStamp[] = [
+    // Beispielzeitstempel
+    { id: 0, entityType: 'project', start: new Date('2023-01-01T10:00:00') },
+    { id: 1, entityType: 'customer', start: new Date('2023-01-01T11:00:00'), pause: new Date('2023-01-01T11:30:00') },
+];

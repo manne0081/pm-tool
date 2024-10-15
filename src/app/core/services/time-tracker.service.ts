@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { TIMESTAMP_MOCK } from '../../mocks/task';
+import { Task } from 'zone.js/lib/zone-impl';
+import { Client } from '../../mocks/client-mock';
+import { Project } from '../../mocks/project-mock';
+
 @Injectable({
     providedIn: 'root'
 })
 
 export class TimeTrackerServiceGlobal {
-    // startTime: number = 0;
-    // elapsedSeconds: number = 0;
-    // isTimerRunning: boolean = false;
-    // isTimerPaused: boolean = false;
-    timerInterval: any;
-
     isRunning$ = new BehaviorSubject<boolean>(false);
     isPaused$ = new BehaviorSubject<boolean>(false);
     startedTime$ = new BehaviorSubject<number>(0);
     elapsedSeconds$ = new BehaviorSubject<number>(0);
+    timerInterval: any;
 
     isAnyTimerActive$ = new BehaviorSubject<boolean>(false);
     activeTaskId$ = new BehaviorSubject<number>(0);
@@ -64,7 +64,7 @@ export class TimeTrackerServiceGlobal {
         }
     }
 
-    setTimerStart(taskId?: number) {
+    setTimerStart(taskId?: number, entity?: Task | Client | Project) {
         /**
          * Usecases:
          * - Von 0 Starten
@@ -84,6 +84,12 @@ export class TimeTrackerServiceGlobal {
             this.isAnyTimerActive$.next(true);
             this.activeTaskId$.next(taskId!);
             localStorage.setItem('activeTaskId', taskId!.toString());
+
+            // todo -> handle time-tracking
+            const timeStamp = new TimeStamp;
+            timeStamp.addStartTime(taskId!, 'task');
+            console.log('timeStampMock:',TIMESTAMP_MOCK);
+
 
 
             this.timerInterval = setInterval(() => {
@@ -129,7 +135,6 @@ export class TimeTrackerServiceGlobal {
                 const now = new Date().getTime();
                 this.elapsedSeconds$.next(Math.floor((now - this.startedTime$.getValue()) / 1000));
             }, 1000);
-
         }
     }
 
@@ -206,4 +211,34 @@ export class TimeTrackerServiceGlobal {
         const formattedTime = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
         return formattedTime;
     }
+}
+
+/**
+ * TimeStamp
+ */
+
+export class TimeStamp {
+
+    constructor() {}
+
+    addStartTime(id: number, entityType: 'customer' | 'project' | 'task') {
+        TIMESTAMP_MOCK.push({ id, entityType, start: new Date() });
+    }
+
+    // Aktualisiere die Pausezeit
+    addPauseTime(id: number, entityType: 'customer' | 'project' | 'task') {
+        const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && stamp.entityType === entityType && !stamp.stop);
+        if (currentStamp && !currentStamp.pause) {
+            currentStamp.pause = new Date();
+        }
+    }
+
+    // Aktualisiere die Stoppzeit
+    addStopTime(id: number, entityType: 'customer' | 'project' | 'task') {
+        const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && stamp.entityType === entityType && !stamp.stop);
+        if (currentStamp && !currentStamp.stop) {
+            currentStamp.stop = new Date();
+        }
+    }
+
 }

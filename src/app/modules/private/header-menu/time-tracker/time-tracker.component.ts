@@ -70,8 +70,8 @@ export class TimeTrackerComponent implements OnInit {
             this.isAnyTimerActive = data;
         });
 
-        console.log('time-tracker.component: \n isRunning:',this.isTimerRunning, '\n isPaused:', this.isTimerPaused, '\n startedTime:', this.startedTime,
-                                            '\n elapsedSeconds:', this.elapsedSeconds, '\n isAnyTimerActive:', this.isAnyTimerActive,);
+        // console.log('time-tracker.component: \n isRunning:',this.isTimerRunning, '\n isPaused:', this.isTimerPaused, '\n startedTime:', this.startedTime,
+        //                                     '\n elapsedSeconds:', this.elapsedSeconds, '\n isAnyTimerActive:', this.isAnyTimerActive,);
     }
 
     toggleContent(event: Event) {
