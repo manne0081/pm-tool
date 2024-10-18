@@ -6,7 +6,7 @@ import { v4 as uuidv4, v4 } from 'uuid';
 import { DataService } from '../../../../core/services/data.service';
 import { WorkspaceService } from '../workspace.service';
 import { Task } from '../../../../mocks/task';
-import { TimeTrackerServiceGlobal } from '../../../../core/services/time-tracker.service';
+import { _TimeTrackerService } from '../../../../core/services/_time-tracker.service';
 
 @Component({
     selector: 'app-task-list',
@@ -33,7 +33,7 @@ export class TaskListComponent {
         private route: ActivatedRoute,
         private dataService: DataService,
         private workspaceService: WorkspaceService,
-        private timeTrackerServiceGlobal: TimeTrackerServiceGlobal,
+        private _timeTrackerService: _TimeTrackerService,
     ) {}
 
     ngOnInit(): void {
@@ -52,10 +52,10 @@ export class TaskListComponent {
             this.taskItems = JSON.parse(savedTasks);
         }
 
-        this.timeTrackerServiceGlobal.getIsAnyTimerActive().subscribe(data => {
+        this._timeTrackerService.getIsAnyTimerActive().subscribe(data => {
             this.isAnyTimerActive = data;
         });
-        this.timeTrackerServiceGlobal.getActiveTaskId().subscribe(data => {
+        this._timeTrackerService.getActiveTaskId().subscribe(data => {
             this.activeTaskId = data;
         });
 
@@ -103,7 +103,7 @@ export class TaskListComponent {
     setTimerStart(selectedTask: Task): void {
         this.resetAllTasks();
         selectedTask.isRunning = true;
-        this.timeTrackerServiceGlobal.setTimerStart(selectedTask.id);
+        this._timeTrackerService.setTimerStart(selectedTask.id);
         this.saveTaskStatus();
     }
 
@@ -114,13 +114,13 @@ export class TaskListComponent {
 
         this.resetAllTasks();
         selectedTask.isPaused = true;
-        this.timeTrackerServiceGlobal.setTimerPause();
+        this._timeTrackerService.setTimerPause();
         this.saveTaskStatus();
     }
 
     setTimerStop(selectedTask: Task): void {
         this.resetAllTasks();
-        this.timeTrackerServiceGlobal.setTimerStop();
+        this._timeTrackerService.setTimerStop();
         this.saveTaskStatus();
     }
 

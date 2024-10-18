@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 
 import { TimeTrackerService } from './time-tracker.service';
-import { TimeTrackerServiceGlobal } from '../../../../core/services/time-tracker.service';
+import { _TimeTrackerService } from '../../../../core/services/_time-tracker.service';
 
 import { DropdownBaseComponent } from '../../_shared/dropdown/dropdown-base/dropdown-base.component';
 
@@ -37,7 +37,7 @@ export class TimeTrackerComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private timeTrackerService: TimeTrackerService,
-        private timeTrackerServiceGlobal: TimeTrackerServiceGlobal,
+        private _timeTrackerService: _TimeTrackerService,
     ) {
         this.timeTrackerForm = this.fb.group({
             conditions: this.fb.array([])  // Array für mehrere Bedingungen
@@ -50,23 +50,23 @@ export class TimeTrackerComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.timeTrackerServiceGlobal.getIsTimerRunning().subscribe(data => {
+        this._timeTrackerService.getIsTimerRunning().subscribe(data => {
             this.isTimerRunning = data;
         });
 
-        this.timeTrackerServiceGlobal.getIsTimerPaused().subscribe(data => {
+        this._timeTrackerService.getIsTimerPaused().subscribe(data => {
             this.isTimerPaused = data;
         });
 
-        this.timeTrackerServiceGlobal.getStartedTime().subscribe(data => {
+        this._timeTrackerService.getStartedTime().subscribe(data => {
             this.startedTime = data;
         });
 
-        this.timeTrackerServiceGlobal.getElapsedSeconds().subscribe(data => {
+        this._timeTrackerService.getElapsedSeconds().subscribe(data => {
             this.elapsedSeconds = data;
         });
 
-        this.timeTrackerServiceGlobal.getIsAnyTimerActive().subscribe(data => {
+        this._timeTrackerService.getIsAnyTimerActive().subscribe(data => {
             this.isAnyTimerActive = data;
         });
 
@@ -95,15 +95,15 @@ export class TimeTrackerComponent implements OnInit {
     }
 
     startTimer() {
-        this.timeTrackerServiceGlobal.setTimerStart();
+        this._timeTrackerService.setTimerStart();
     }
 
     pauseTimer() {
-        this.timeTrackerServiceGlobal.setTimerPause();
+        this._timeTrackerService.setTimerPause();
     }
 
     stopTimer() {
-        this.timeTrackerServiceGlobal.setTimerStop();
+        this._timeTrackerService.setTimerStop();
     }
 
     formatSecondToDuration(seconds: number): string {

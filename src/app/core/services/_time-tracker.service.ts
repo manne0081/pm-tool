@@ -10,7 +10,7 @@ import { Project } from '../../mocks/project-mock';
     providedIn: 'root'
 })
 
-export class TimeTrackerServiceGlobal {
+export class _TimeTrackerService {
     isRunning$ = new BehaviorSubject<boolean>(false);
     isPaused$ = new BehaviorSubject<boolean>(false);
     startedTime$ = new BehaviorSubject<number>(0);
