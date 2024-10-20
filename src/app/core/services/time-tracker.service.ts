@@ -240,5 +240,4 @@ export class TimeStamp {
             currentStamp.stop = new Date();
         }
     }
-
 }

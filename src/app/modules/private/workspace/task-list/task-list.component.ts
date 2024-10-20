@@ -58,7 +58,6 @@ export class TaskListComponent {
         this.timeTrackerServiceGlobal.getActiveTaskId().subscribe(data => {
             this.activeTaskId = data;
         });
-
     }
 
     /**

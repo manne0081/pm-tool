@@ -12,7 +12,7 @@ export interface Task {
     createdAt: Date;                            // Datum und Uhrzeit, wann das Ticket erstellt wurde
     dueDate?: Date;                             // Optionales Fälligkeitsdatum für das Ticket
     attachments?: string[];                     // Liste der Dateipfade oder URLs für Anhänge (optional)
-    comments?: Comment[];                       // Liste von Kommentaren zum Ticket (optional)
+    note?: Comment[];                       // Liste von Kommentaren zum Ticket (optional)
 }
 
 export interface Comment {
@@ -22,7 +22,7 @@ export interface Comment {
 }
 
 export const taskFieldNames: (keyof Task)[] = ['id', 'title', 'description', 'creator', 'status', 'priority',
-    'category', 'assignedTo', 'createdAt', 'dueDate', 'attachments', 'comments'
+    'category', 'assignedTo', 'createdAt', 'dueDate', 'attachments', 'note'
 ];
 
 export const TASK_MOCK: Task[] = [
@@ -39,7 +39,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Lisa Schmidt',
         createdAt: new Date('2024-01-01T09:00:00'),
         dueDate: new Date('2024-01-05'),
-        comments: [
+        note: [
         {
             user: 'Lisa Schmidt',
             message: 'Überprüfung des Benutzerkontos läuft.',
@@ -61,7 +61,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Peter Müller',
         createdAt: new Date('2024-01-02T08:30:00'),
         dueDate: new Date('2024-01-10'),
-        comments: [
+        note: [
         {
             user: 'Peter Müller',
             message: 'Kontakt mit dem Kunden zur Korrekturaufnahme.',
@@ -83,7 +83,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Max Mustermann',
         createdAt: new Date('2024-01-03T10:00:00'),
         dueDate: new Date('2024-01-07'),
-        comments: [],
+        note: [],
         attachments: ['error_log.txt']
     },
     {
@@ -99,7 +99,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Frank Meyer',
         createdAt: new Date('2024-01-04T11:00:00'),
         dueDate: new Date('2024-01-20'),
-        comments: [
+        note: [
         {
             user: 'Frank Meyer',
             message: 'Das neue Feature wurde implementiert und getestet.',
@@ -121,7 +121,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Lisa Schmidt',
         createdAt: new Date('2024-01-05T09:30:00'),
         dueDate: new Date('2024-01-08'),
-        comments: [],
+        note: [],
         attachments: ['performance_report.pdf']
     },
     {
@@ -137,7 +137,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Peter Müller',
         createdAt: new Date('2024-01-06T08:00:00'),
         dueDate: new Date('2024-01-12'),
-        comments: [
+        note: [
         {
             user: 'Peter Müller',
             message: 'Prüfung der E-Mail-Einstellungen gestartet.',
@@ -159,7 +159,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Anna Bauer',
         createdAt: new Date('2024-01-07T10:30:00'),
         dueDate: new Date('2024-02-01'),
-        comments: [],
+        note: [],
         attachments: ['design_mockup.pdf']
     },
     {
@@ -175,7 +175,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Jens Bauer',
         createdAt: new Date('2024-01-08T09:00:00'),
         dueDate: new Date('2024-01-15'),
-        comments: [
+        note: [
         {
             user: 'Jens Bauer',
             message: 'Planung der Migration läuft.',
@@ -197,7 +197,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Frank Meyer',
         createdAt: new Date('2024-01-09T11:00:00'),
         dueDate: new Date('2024-01-13'),
-        comments: [],
+        note: [],
         attachments: ['payment_issue_report.pdf']
     },
     {
@@ -213,7 +213,7 @@ export const TASK_MOCK: Task[] = [
         assignedTo: 'Lisa Schmidt',
         createdAt: new Date('2024-01-10T12:00:00'),
         dueDate: new Date('2024-01-30'),
-        comments: [
+        note: [
         {
             user: 'Lisa Schmidt',
             message: 'Datenschutzerklärung wurde angepasst.',
