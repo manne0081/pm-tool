@@ -80,6 +80,13 @@ $buttonBackground: var(--primary-color);
                         border-radius: $buttonBorderRadius;
                         padding: 0 10px;
 
+                        &.has-dropdown {
+                            box-shadow: 0px -10px 2px -8px rgba(39, 63, 97, .8) inset;
+                            box-shadow: 0px -9px 2px -8px rgba(39, 63, 97, .8) inset;
+                            box-shadow: 0px -8px 3px -6px rgba(39, 63, 97, .8) inset;
+                            // box-shadow: 0px -10px 0px -9px rgba(39, 63, 97, .8) inset;
+                        }
+
                         .button-icon {
                             font-size: 1.1em;
                         }

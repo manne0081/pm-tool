@@ -33,7 +33,8 @@
                         <!-- MENU-BUTTON (!Dashboard) / When the menu-item has a dropdown and dont have an url-link -->
                         <!-- ************************************************************************************** -->
                         <ng-template #noLink>
-                            <button #dropdownButton class="drop-button" [ngClass]="menuItem.status" *ngIf="menuItem.name !== 'placeholder'"
+                            <button #dropdownButton class="drop-button" *ngIf="menuItem.name !== 'placeholder'"
+                                [ngClass]="{'active' : menuItem.status === 'active', 'has-dropdown' : menuItem.name !== 'searching' && menuItem.name !== 'favorite'}"
                                 (click)="openDropdown(menuItem.name)"
                             >
                                 <span [class]="'button-icon ' + menuItem.icon" [ngClass]="{ 'button-icon-is-favorite': menuItem.isFavorite }"></span>
