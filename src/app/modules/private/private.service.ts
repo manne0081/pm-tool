@@ -209,6 +209,7 @@ export class PrivateService {
      * @param object
      */
     onSelectMenuItem (item: any): void {
+        this.fieldNamesForFilter.next([]);
         this.selectedMenuItem.next(item.name);
 
         if (item.name === 'dashboard') {
