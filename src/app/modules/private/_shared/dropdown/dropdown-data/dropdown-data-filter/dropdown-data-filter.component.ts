@@ -58,7 +58,7 @@ export class DropdownDataFilterComponent {
         } else if (this.dropdownId === 'filter-condition') {
             this.fieldNames = ['and', 'or'];
         } else if (this.dropdownId === 'filter-operator') {
-            this.fieldNames = ['abc', 'xyz'];
+            this.fieldNames = ['contains', 'does not contain', 'is exactly', 'is not'];
         }
     }
 
