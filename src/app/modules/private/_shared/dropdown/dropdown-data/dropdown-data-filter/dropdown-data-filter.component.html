@@ -1,9 +1,12 @@
 <!-- INNER Dropdown (Content) -->
 <div id="test" class="drop-content-container" *ngIf="showDropContent" (click)="$event.stopPropagation()">
+
     <ul>
-        <li><span>id-asc</span><br></li>
+        <li *ngFor="let fieldName of fieldNames">{{fieldName}}</li>
+        <!-- <li><span>id-asc</span><br></li>
         <li><span>id-desc</span></li>
         <li><span>name-asc</span><br></li>
-        <li><span>name-desc</span><br></li>
+        <li><span>name-desc</span><br></li> -->
     </ul>
+
 </div>

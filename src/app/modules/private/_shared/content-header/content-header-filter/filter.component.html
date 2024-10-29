@@ -24,6 +24,7 @@
                         <div class="filter-item-operator label" *ngIf="i === 0">Where</div>
 
                         <app-dropdown-base style="overflow: visible" class="filter-item-operator" *ngIf="i === 1"
+                            [dropdownType] = "'filter'"
                             [dropdownId] = "'filter-condition'"
                             [buttonType] = "'button-01'"
                             [buttonValue] = "'and'"
@@ -35,6 +36,7 @@
 
                         <!-- dropdown for fieldname -->
                         <app-dropdown-base style="overflow: visible;"
+                            [dropdownType] = "'filter'"
                             [dropdownId] = "'filter-fieldname'"
                             [buttonType] = "'button-01'"
                             [buttonValue] = "'fieldname'"
@@ -44,6 +46,7 @@
 
                         <!-- dropdown for operator -->
                         <app-dropdown-base style="overflow: visible"
+                            [dropdownType] = "'filter'"
                             [dropdownId] = "'filter-operator'"
                             [buttonType] = "'button-01'"
                             [buttonValue] = "'operator'"

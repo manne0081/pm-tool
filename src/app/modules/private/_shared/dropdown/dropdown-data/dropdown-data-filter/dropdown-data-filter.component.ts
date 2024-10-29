@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DropdownService } from '../../dropdown.service';
 
 import { DropdownBaseComponent } from '../../dropdown-base/dropdown-base.component';
+import { PrivateService } from '../../../../private.service';
 
 @Component({
     selector: 'app-dropdown-data-filter',
@@ -19,11 +20,12 @@ import { DropdownBaseComponent } from '../../dropdown-base/dropdown-base.compone
 })
 
 export class DropdownDataFilterComponent {
+    @Input() elementId: string = '';
     @Input() dropdownId: string = '';
     @Input() dropdownContent: string = '';
 
+    fieldNames?: string[];
     showDropContent: boolean = false;
-    fieldNamesForFilter?: string;
     filterConditions: { index: number, label: string, name: string, condition: string, value: string } [] = [];
     private newFilterConditionIndex: number = 0;
 
@@ -33,19 +35,31 @@ export class DropdownDataFilterComponent {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private privateService: PrivateService,
         private dropdownService: DropdownService,
     ) {}
 
     ngOnInit(): void {
         // console.log('ngOnInit > inputValues:',this.dropdownId, this.dropdownContent);
 
-        this.dropdownService.clickedButton$.subscribe(item => {
-            this.setShowDropdown(item);
+        this.dropdownService.getActiveDropdownId().subscribe(activeDropdownId => {
+            // console.log('activeDdId und baseDdId',activeDropdownId, this.elementId);
+            if (activeDropdownId === this.elementId) {
+                this.showDropContent = true;  // Schließe, wenn ein anderer Dropdown aktiv ist
+            } else {
+                this.showDropContent = false;
+            }
         });
 
-        this.dropdownService.fieldNamesForFilter$.subscribe(data => {
-            this.fieldNamesForFilter = this.dropdownService.transformFieldNamesWithLineBreaks(data);
-        });
+        if (this.dropdownId === 'filter-fieldname') {
+            this.privateService.getFieldNamesOfObject().subscribe(data => {
+                this.fieldNames = data;
+            });
+        } else if (this.dropdownId === 'filter-condition') {
+            this.fieldNames = ['and', 'or'];
+        } else if (this.dropdownId === 'filter-operator') {
+            this.fieldNames = ['abc', 'xyz'];
+        }
     }
 
     setShowDropdown(dropdownId: any): void {

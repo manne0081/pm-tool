@@ -14,6 +14,7 @@ interface FilterItem {
     id: number | string;
     name: string;
 }
+
 @Component({
     selector: 'app-content-header-for-list',
     standalone: true,
@@ -29,8 +30,7 @@ interface FilterItem {
 })
 
 export class ContentHeaderForListComponent implements OnInit {
-    // fieldNamesForFilter?: string[];
-
+    // fieldNames?: string[];
     searchTerm: string = '';
     sortingTerm: string = '';
 

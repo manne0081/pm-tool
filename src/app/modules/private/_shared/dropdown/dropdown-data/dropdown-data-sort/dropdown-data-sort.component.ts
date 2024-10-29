@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DropdownService } from '../../dropdown.service';
+import { PrivateService } from '../../../../private.service';
 
 @Component({
     selector: 'app-dropdown-data-sort',
@@ -20,14 +21,15 @@ export class DropdownDataSortComponent implements OnInit {
     @Input() dropdownId: string = '';
     @Input() dropdownContent: string = '';
 
+    fieldNames?: string[];
     showDropContent: boolean = false;
-
     searchTerm: string = '';
     sortingTerm: string = '';
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private privateService: PrivateService,
         private dropdownService: DropdownService,
     ) {}
 
@@ -48,6 +50,14 @@ export class DropdownDataSortComponent implements OnInit {
                 this.showDropContent = false;
             }
         });
+
+        if (this.dropdownId === 'sort-fieldname') {
+            this.privateService.getFieldNamesOfObject().subscribe(data => {
+                this.fieldNames = data;
+            });
+        } else {
+            this.fieldNames = ['A-Z', 'Z-A'];
+        }
     }
 
     /**

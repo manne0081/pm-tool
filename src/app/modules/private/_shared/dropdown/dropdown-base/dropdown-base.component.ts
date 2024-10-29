@@ -20,6 +20,7 @@ import { DropdownDataSortComponent } from '../dropdown-data/dropdown-data-sort/d
 })
 
 export class DropdownBaseComponent implements OnInit {
+    @Input() dropdownType: string = '';           // for example: content-filter, content-sort,
     @Input() dropdownId: string = '';           // for example: content-filter, content-sort,
     @Input() buttonType: string = '';           // for example: content-header-button, filter-dropdown,
     @Input() buttonValue: string = '';          // for example: sort, filter, group,
