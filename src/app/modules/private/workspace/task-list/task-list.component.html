@@ -5,6 +5,7 @@
         (click)="onSelectTask($event, task)"
         [ngClass]="{ 'selected': task.id === selectedItemId }"
     >
+
         <div class="left-column">
             <!-- Ticket Header: ID und Titel -->
             <span><b>{{ task.id }} - {{ task.title }}</b></span>
@@ -17,6 +18,8 @@
             <span>Fälligkeitsdatum: {{ task.dueDate | date: 'dd.MM.yyyy' }}</span>
         </div>
 
+        <!-- TIME TRACKER -->
+        <!-- ------------ -->
         <div class="right-column visible">
             <!-- <button class="action" [ngClass]="{ 'active': task.isRunning, 'no-hover': isAnyTimerActive && task.id !== activeTaskId}"
                 [disabled]="activeTaskId !== 0 && task.id !== activeTaskId"
