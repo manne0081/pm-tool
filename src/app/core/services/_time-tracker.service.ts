@@ -87,7 +87,7 @@ export class _TimeTrackerService {
 
             // todo -> handle time-tracking
             const timeStamp = new TimeStamp;
-            timeStamp.addStartTime(taskId!, 'task');
+            timeStamp.addStartTime(taskId!);
             console.log('timeStampMock:',TIMESTAMP_MOCK);
 
 
@@ -221,13 +221,13 @@ export class TimeStamp {
 
     constructor() {}
 
-    addStartTime(id: number, entityType: 'customer' | 'project' | 'task') {
-        TIMESTAMP_MOCK.push({ id, entityType, start: new Date() });
+    addStartTime(id: number) {
+        TIMESTAMP_MOCK.push({ id, start: new Date() });
     }
 
     // Aktualisiere die Pausezeit
     addPauseTime(id: number, entityType: 'customer' | 'project' | 'task') {
-        const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && stamp.entityType === entityType && !stamp.stop);
+        const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && !stamp.stop);
         if (currentStamp && !currentStamp.pause) {
             currentStamp.pause = new Date();
         }
@@ -235,7 +235,7 @@ export class TimeStamp {
 
     // Aktualisiere die Stoppzeit
     addStopTime(id: number, entityType: 'customer' | 'project' | 'task') {
-        const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && stamp.entityType === entityType && !stamp.stop);
+        const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && !stamp.stop);
         if (currentStamp && !currentStamp.stop) {
             currentStamp.stop = new Date();
         }
