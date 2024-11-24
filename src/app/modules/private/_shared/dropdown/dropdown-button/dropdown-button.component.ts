@@ -30,7 +30,6 @@ export class DropdownButtonComponent {
 
     ngOnInit(): void {
         // console.log('elementId:',this.elementId);
-
     }
 
     onClickButton(event: Event): void {
@@ -38,6 +37,5 @@ export class DropdownButtonComponent {
         event.stopPropagation();
         this.dropdownService.setActiveDropdownId(this.elementId);
     }
-
 
 }
