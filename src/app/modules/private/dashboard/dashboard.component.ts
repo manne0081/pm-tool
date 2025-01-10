@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Dialog, DialogRef, DIALOG_DATA, DialogModule, CdkDialogContainer } from '@angular/cdk/dialog';
 import { DialogComponent } from '../_shared/dialog/dialog.component';
+import { DropdownBaseComponent } from '../_shared/dropdown/dropdown-base/dropdown-base.component';
 
 @Component({
     selector: 'app-dashboard',
@@ -9,6 +10,7 @@ import { DialogComponent } from '../_shared/dialog/dialog.component';
     imports: [
         FormsModule,
         DialogModule,
+        DropdownBaseComponent,
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss'

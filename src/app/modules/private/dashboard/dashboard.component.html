@@ -36,9 +36,18 @@
             <p>test...</p>
         </div>
 
-        <div style="background-color: white; padding: 20px; margin-bottom: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 4px;">
+        <div style="background-color: white; padding: 20px; margin-bottom: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 4px; overflow: visible;">
             <h3 style="margin-top: 0; margin-bottom: 8px;">Card 5</h3>
-            <p>...</p>
+
+            <app-dropdown-base style="overflow: visible" class="filter-item-operator"
+                            [dropdownType] = "'filter'"
+                            [dropdownId] = "'filter-condition'"
+                            [buttonType] = "'button-01'"
+                            [buttonValue] = "'Test'"
+                            [buttonIcon] = "'icon-chevron-down'"
+                            [dropdownContent] = "'condition'">
+            </app-dropdown-base>
+
         </div>
 
         <!-- notice -->
