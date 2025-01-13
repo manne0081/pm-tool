@@ -29,7 +29,7 @@ export class DropdownButtonComponent {
     ) {}
 
     ngOnInit(): void {
-        // console.log('elementId:',this.elementId);
+        console.log(this.buttonValue);
 
     }
 

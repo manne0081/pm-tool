@@ -2,7 +2,9 @@
 <div id="test" class="drop-content-container" *ngIf="showDropContent" (click)="$event.stopPropagation()">
 
     <ul>
-        <li *ngFor="let fieldName of fieldNames">{{fieldName}}</li>
+        <li *ngFor="let fieldName of fieldNames" (click)="onChooseOption(fieldName)">
+            {{fieldName}}
+        </li>
     </ul>
 
 </div>
