@@ -17,10 +17,11 @@ import { PrivateService } from '../../../../private.service';
 })
 
 export class DropdownDataSortComponent implements OnInit {
-    @Input() elementId: string = '';
+    @Input() ddBaseId: string = '';
     @Input() dropdownId: string = '';
     @Input() dropdownContent: string = '';
 
+    clickedButtonId?: string;
     fieldNames?: string[];
     showDropContent: boolean = false;
     searchTerm: string = '';
@@ -34,21 +35,22 @@ export class DropdownDataSortComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // console.log('dropcontent:',this.dropdownContent);
+        //
         this.route.queryParams.subscribe(params => {
             this.searchTerm = params['search'] || '';
             this.sortingTerm = (params['sort'] || 'asc');    // for example: 'asc', 'desc'
         });
 
+        //
         this.dropdownService.getActiveDropdownId().subscribe(activeDropdownId => {
-            // console.log('activeDdId und baseDdId',activeDropdownId, this.elementId);
-            if (activeDropdownId === this.elementId) {
+            if (activeDropdownId === this.ddBaseId) {
                 this.showDropContent = true;
             } else {
                 this.showDropContent = false;
             }
         });
 
+        //
         if (this.dropdownId === 'sort-fieldname') {
             this.privateService.getFieldNamesOfObject().subscribe(data => {
                 this.fieldNames = data;
@@ -56,6 +58,11 @@ export class DropdownDataSortComponent implements OnInit {
         } else {
             this.fieldNames = ['A-Z', 'Z-A'];
         }
+
+        //
+        this.dropdownService.getClickedButtonId().subscribe(data => {
+            this.clickedButtonId = data;
+        });
     }
 
     /**
@@ -77,7 +84,12 @@ export class DropdownDataSortComponent implements OnInit {
      * @param option
      */
     onChooseOption(selectedOption: string): void {
-        console.log(selectedOption);
+        console.log("clickedButtonId " + this.clickedButtonId);
+        this.dropdownService.getClickedButtonId().subscribe(data => {
+            console.log("clickedButtonId " + data);
+        });
+
+        this.dropdownService.setChosenSortingOption(selectedOption, this.clickedButtonId!);
         // this.sortingTerm = option;
         // this.updateRoute();
         // this.showDropContent = false;

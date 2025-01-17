@@ -20,7 +20,7 @@ import { PrivateService } from '../../../../private.service';
 })
 
 export class DropdownDataFilterComponent {
-    @Input() elementId: string = '';
+    @Input() ddBaseId: string = '';
     @Input() dropdownId: string = '';
     @Input() dropdownContent: string = '';
 
@@ -40,11 +40,8 @@ export class DropdownDataFilterComponent {
     ) {}
 
     ngOnInit(): void {
-        // console.log('ngOnInit > inputValues:',this.dropdownId, this.dropdownContent);
-
         this.dropdownService.getActiveDropdownId().subscribe(activeDropdownId => {
-            // console.log('activeDdId und baseDdId',activeDropdownId, this.elementId);
-            if (activeDropdownId === this.elementId) {
+            if (activeDropdownId === this.ddBaseId) {
                 this.showDropContent = true;  // Schließe, wenn ein anderer Dropdown aktiv ist
             } else {
                 this.showDropContent = false;

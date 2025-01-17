@@ -12,8 +12,8 @@
 </button>
 
 
-<!-- Single-Select-Dropdown / For example: Filter-Element -->
-<!-- ---------------------------------------------------- -->
+<!-- Single-Select-Dropdown / For example: Filter-Element, Sort-Element -->
+<!-- ------------------------------------------------------------------ -->
 <button id="id-drop-button" class="drop-button-01" *ngIf="buttonType==='button-01'" (click)="onClickButton($event)"
     [ngClass]="{
         'filter-fieldname': dropdownId === 'filter-fieldname',
@@ -22,6 +22,7 @@
         'sort-order': dropdownId === 'sort-order',
     }"
 >
-    <p>{{ buttonValue }}</p>
+    <p *ngIf="!buttonValue2">{{ buttonValue }}</p>
+    <p *ngIf="buttonValue2">{{ buttonValue2 }}</p>
     <div class="{{buttonIcon}}"></div>
 </button>

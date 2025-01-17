@@ -3,17 +3,17 @@
 
     <!-- INNER DROPDOWN > Dropdown-Button -->
     <!-- <app-dropdown-button [dropdownId]="dropdownId" [buttonType]="buttonType" [buttonValue]="buttonValue" [buttonIcon]="buttonIcon"></app-dropdown-button> -->
-    <app-dropdown-button [elementId]="elementId" [dropdownId]="dropdownId" [buttonType]="buttonType" [buttonValue]="buttonValue" [buttonIcon]="buttonIcon"></app-dropdown-button>
+    <app-dropdown-button [ddBaseId]="ddBaseId" [dropdownId]="dropdownId" [buttonType]="buttonType" [buttonValue]="buttonValue" [buttonIcon]="buttonIcon"></app-dropdown-button>
 
     <!-- INNER DROPDOWN > Dropdown-Content -->
     <app-dropdown-data-sort
         *ngIf="dropdownType === 'sort'"
-        [elementId]="elementId" [dropdownId]="dropdownId" [dropdownContent]="dropdownContent">
+        [ddBaseId]="ddBaseId" [dropdownId]="dropdownId" [dropdownContent]="dropdownContent">
     </app-dropdown-data-sort>
 
     <app-dropdown-data-filter
         *ngIf="dropdownType === 'filter'"
-        [elementId]="elementId" [dropdownId]="dropdownId" [dropdownContent]="dropdownContent">
+        [ddBaseId]="ddBaseId" [dropdownId]="dropdownId" [dropdownContent]="dropdownContent">
     </app-dropdown-data-filter>
 
 </div>

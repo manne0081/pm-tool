@@ -7,8 +7,6 @@ import { PrivateService } from '../../private.service';
 })
 
 export class DropdownService {
-    // fieldNamesForFilter?: string[];
-
     private fieldNamesForFilter = new BehaviorSubject<any>(null);
     fieldNamesForFilter$ = this.fieldNamesForFilter.asObservable();
 
@@ -16,9 +14,13 @@ export class DropdownService {
     private clickedButton = new BehaviorSubject<any>(null);
     clickedButton$ = this.clickedButton.asObservable();
 
+    private clickedButtonId = new BehaviorSubject<any>(null);
+
     // neu aber vielleicht kein unterschied...
     private activeDropdownId = new BehaviorSubject<string | null>(null);
     // activeDropdownId$ = this.activeDropdownId.asObservable();
+
+    private chosenSortingOption = new BehaviorSubject<any>(null);
 
     private numberFilterConditions = new BehaviorSubject<any>(null);
     numberFilterConditions$ = this.numberFilterConditions.asObservable();
@@ -36,6 +38,14 @@ export class DropdownService {
         this.privateService.getFieldNamesOfObject().subscribe(data => {
             this.fieldNamesForFilter.next(data);
         });
+    }
+
+    setClickedButtonId(clickedButtonId: string): void {
+        this.clickedButtonId.next(clickedButtonId);
+    }
+
+    getClickedButtonId() {
+        return this.clickedButtonId.asObservable();
     }
 
     setOpenedDropdownId(clickedButtonValue: string): void {
@@ -74,6 +84,16 @@ export class DropdownService {
      */
     getActiveDropdownId() {
         return this.activeDropdownId.asObservable();
+    }
+
+    setChosenSortingOption(chosenSortingOption: string, buttonId: string): void {
+        if(buttonId === this.clickedButtonId.getValue()) {
+            this.chosenSortingOption.next(chosenSortingOption);
+        }
+    }
+
+    getChosenSortingOption() {
+        return this.chosenSortingOption.asObservable();
     }
 
     transformFieldNamesWithLineBreaks(fieldNames: string[]): string {

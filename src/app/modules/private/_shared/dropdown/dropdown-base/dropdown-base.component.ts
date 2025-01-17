@@ -20,19 +20,19 @@ import { DropdownDataSortComponent } from '../dropdown-data/dropdown-data-sort/d
 })
 
 export class DropdownBaseComponent implements OnInit {
-    @Input() dropdownType: string = '';           // for example: content-filter, content-sort,
-    @Input() dropdownId: string = '';           // for example: content-filter, content-sort,
-    @Input() buttonType: string = '';           // for example: content-header-button, filter-dropdown,
-    @Input() buttonValue: string = '';          // for example: sort, filter, group,
-    @Input() buttonIcon: string = '';           // for example: icon-sort, icon-filter, icon-drawer,
-    @Input() dropdownContent: string = '';      // for example: sort, filter, group,
+    @Input() dropdownType: string = '';             // for example: content-filter, content-sort,
+    @Input() dropdownId: string = '';               // for example: content-filter, content-sort,
+    @Input() buttonType: string = '';               // for example: content-header-button, filter-dropdown,
+    @Input() buttonValue: string = '';              // for example: sort, filter, group,
+    @Input() buttonIcon: string = '';               // for example: icon-sort, icon-filter, icon-drawer,
+    @Input() dropdownContent: string = '';          // for example: sort, filter, group,
 
-    elementId: string = uuidv4();
+    ddBaseId: string = uuidv4();
 
     constructor() {}
 
     ngOnInit(): void {
-        // console.log('elementId:',this.elementId);
+        console.log('ddBaseId:',this.ddBaseId);
         // console.log('dropdownId:', this.dropdownId);
         // console.log('buttonType:', this.buttonType);
         // console.log('buttonValue:', this.buttonValue);
