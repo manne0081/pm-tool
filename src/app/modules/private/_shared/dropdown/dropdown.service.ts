@@ -87,6 +87,7 @@ export class DropdownService {
     }
 
     setChosenSortingOption(chosenSortingOption: string, buttonId: string): void {
+        console.log("test: " + buttonId + " " + this.clickedButtonId.getValue());
         if(buttonId === this.clickedButtonId.getValue()) {
             this.chosenSortingOption.next(chosenSortingOption);
         }

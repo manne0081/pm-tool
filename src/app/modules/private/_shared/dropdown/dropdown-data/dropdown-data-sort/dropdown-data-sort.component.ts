@@ -85,10 +85,7 @@ export class DropdownDataSortComponent implements OnInit {
      */
     onChooseOption(selectedOption: string): void {
         console.log("clickedButtonId " + this.clickedButtonId);
-        this.dropdownService.getClickedButtonId().subscribe(data => {
-            console.log("clickedButtonId " + data);
-        });
-
+        
         this.dropdownService.setChosenSortingOption(selectedOption, this.clickedButtonId!);
         // this.sortingTerm = option;
         // this.updateRoute();

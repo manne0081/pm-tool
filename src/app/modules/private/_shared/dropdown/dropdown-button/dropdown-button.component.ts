@@ -27,15 +27,22 @@ export class DropdownButtonComponent {
     hasFilterConditions: boolean = false;
     hasSortConditions: boolean = false;
     hasGroupConditions: boolean = false;
+    test?: string;
 
     constructor(
         private dropdownService: DropdownService,
     ) {}
 
     ngOnInit(): void {
-        this.dropdownService.getChosenSortingOption().subscribe(data => {
-            this.buttonValue2 = data;
-        })
+        this.dropdownService.getClickedButtonId().subscribe(data => {
+            this.test = data;
+        });
+
+        if (1===1) {
+            this.dropdownService.getChosenSortingOption().subscribe(data => {
+                this.buttonValue2 = data;
+            });
+        }   
     }
 
     onClickButton(event: Event): void {
