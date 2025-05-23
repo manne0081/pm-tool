@@ -1,5 +1,9 @@
+import { Client } from "./client-mock";
+import { Project } from "./project-mock";
+
 export interface Task {
     id: number;                                 // Eindeutige Ticket-ID
+
     title: string;                              // Titel oder Betreff des Tickets
     description: string;                        // Detaillierte Beschreibung des Problems oder der Anfrage
     creator: string;                            // Name oder ID des Erstellers des Tickets
@@ -228,7 +232,9 @@ export const TASK_MOCK: Task[] = [
 
 export interface TimeStamp {
     id: number;  // Verknüpfte ID, z.B. die ID des Kunden, Projekts oder Tasks
-    entityType: 'customer' | 'project' | 'task';
+    task?: Task;
+    client?: Client;
+    project?: Project;
     start: Date;
     pause?: Date;
     stop?: Date;
@@ -236,6 +242,6 @@ export interface TimeStamp {
 
 export const TIMESTAMP_MOCK: TimeStamp[] = [
     // Beispielzeitstempel
-    { id: 0, entityType: 'project', start: new Date('2023-01-01T10:00:00') },
-    { id: 1, entityType: 'customer', start: new Date('2023-01-01T11:00:00'), pause: new Date('2023-01-01T11:30:00') },
+    { id: 0, start: new Date('2023-01-01T10:00:00') },
+    { id: 1, start: new Date('2023-01-01T11:00:00'), pause: new Date('2023-01-01T11:30:00') },
 ];

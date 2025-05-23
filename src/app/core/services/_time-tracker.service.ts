@@ -86,8 +86,8 @@ export class _TimeTrackerService {
             localStorage.setItem('activeTaskId', taskId!.toString());
 
             // todo -> handle time-tracking
-            const timeStamp = new TimeStamp;
-            timeStamp.addStartTime(taskId!, 'task');
+            // const timeStamp = new TimeStamp;
+            // timeStamp.addStartTime(taskId!, 'task');
             console.log('timeStampMock:',TIMESTAMP_MOCK);
 
 
@@ -217,27 +217,27 @@ export class _TimeTrackerService {
  * TimeStamp
  */
 
-export class TimeStamp {
+// export class TimeStamp {
 
-    constructor() {}
+//     constructor() {}
 
-    addStartTime(id: number, entityType: 'customer' | 'project' | 'task') {
-        TIMESTAMP_MOCK.push({ id, entityType, start: new Date() });
-    }
+//     addStartTime(id: number, entityType: 'customer' | 'project' | 'task') {
+//         TIMESTAMP_MOCK.push({ id, entityType, start: new Date() });
+//     }
 
-    // Aktualisiere die Pausezeit
-    addPauseTime(id: number, entityType: 'customer' | 'project' | 'task') {
-        const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && stamp.entityType === entityType && !stamp.stop);
-        if (currentStamp && !currentStamp.pause) {
-            currentStamp.pause = new Date();
-        }
-    }
+//     // Aktualisiere die Pausezeit
+//     addPauseTime(id: number, entityType: 'customer' | 'project' | 'task') {
+//         const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && stamp.entityType === entityType && !stamp.stop);
+//         if (currentStamp && !currentStamp.pause) {
+//             currentStamp.pause = new Date();
+//         }
+//     }
 
-    // Aktualisiere die Stoppzeit
-    addStopTime(id: number, entityType: 'customer' | 'project' | 'task') {
-        const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && stamp.entityType === entityType && !stamp.stop);
-        if (currentStamp && !currentStamp.stop) {
-            currentStamp.stop = new Date();
-        }
-    }
-}
+//     // Aktualisiere die Stoppzeit
+//     addStopTime(id: number, entityType: 'customer' | 'project' | 'task') {
+//         const currentStamp = TIMESTAMP_MOCK.find(stamp => stamp.id === id && stamp.entityType === entityType && !stamp.stop);
+//         if (currentStamp && !currentStamp.stop) {
+//             currentStamp.stop = new Date();
+//         }
+//     }
+// }
