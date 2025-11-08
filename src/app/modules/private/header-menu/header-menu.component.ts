@@ -13,7 +13,7 @@ import { TimeTrackerComponent } from "./time-tracker/time-tracker.component";
     imports: [
     CommonModule,
     RouterModule,
-    TimeTrackerComponent
+    // TimeTrackerComponent
 ],
     templateUrl: './header-menu.component.html',
     styleUrl: './header-menu.component.scss'
