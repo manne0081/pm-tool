@@ -30,7 +30,7 @@ export interface DialogData {
         ContentHeaderForDetailComponent,
     ],
     templateUrl: './private.component.html',
-    styleUrl: './private.component.scss',
+    styleUrl: './private.component.scss'
 })
 
 export class PrivateComponent implements OnInit {

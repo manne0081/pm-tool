@@ -42,7 +42,7 @@ export class DropdownButtonComponent {
             this.dropdownService.getChosenSortingOption().subscribe(data => {
                 this.buttonValue2 = data;
             });
-        }   
+        }
     }
 
     onClickButton(event: Event): void {

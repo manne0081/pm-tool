@@ -11,10 +11,10 @@ import { TimeTrackerComponent } from "./time-tracker/time-tracker.component";
     selector: 'app-header-menu',
     standalone: true,
     imports: [
-    CommonModule,
-    RouterModule,
-    // TimeTrackerComponent
-],
+        CommonModule,
+        RouterModule,
+        // TimeTrackerComponent
+    ],
     templateUrl: './header-menu.component.html',
     styleUrl: './header-menu.component.scss'
 })
