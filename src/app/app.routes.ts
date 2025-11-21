@@ -15,7 +15,6 @@ import { WorkScheduleListComponent } from './modules/private/team/work-schedule/
 import { ClientListComponent } from './modules/private/client/client-list/client-list.component';
 import { ProjectListComponent } from './modules/private/project/project-list/project-list.component';
 import { ProjectDetailComponent } from './modules/private/project/project-detail/project-detail.component';
-import { TaskListComponent } from './modules/private/workspace/task-list/task-list.component';
 import { CalendarListComponent } from './modules/private/workspace/calendar-list/calendar-list.component';
 import { MessageListComponent } from './modules/private/workspace/message-list/message-list.component';
 
@@ -33,7 +32,6 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
-            { path: 'task', component: TaskListComponent },
             { path: 'calendar', component: CalendarListComponent },
             { path: 'message', component: MessageListComponent },
             { path: 'teamMember', component: TeamMemberListComponent },

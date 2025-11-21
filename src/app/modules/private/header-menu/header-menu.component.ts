@@ -5,7 +5,6 @@ import { RouterModule, Router, ActivatedRoute, ActivatedRouteSnapshot } from '@a
 import { HeaderMenu, HEADERMENU_MOCK, HeaderSubMenu } from '../../../mocks/headerMenu-mock';
 import { HeaderMenuService } from './header-menu.service';
 import { PrivateService } from '../private.service';
-import { TimeTrackerComponent } from "./time-tracker/time-tracker.component";
 
 @Component({
     selector: 'app-header-menu',
